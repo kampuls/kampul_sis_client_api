@@ -25,7 +25,7 @@ keepalive = 5
 graceful_timeout = 30
 
 # Process naming
-proc_name = 'pama-api'
+proc_name = 'kampul-sis-client-api'
 
 # Logging
 accesslog = '-'  # stdout
