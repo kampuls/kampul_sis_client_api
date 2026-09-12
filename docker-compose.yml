@@ -11,7 +11,7 @@ services:
     environment:
       AUTO_MIGRATE_ON_STARTUP: "true"
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     depends_on:
       db:
         condition: service_healthy
@@ -43,8 +43,6 @@ services:
     image: redis:alpine
     container_name: kampul_sis_client_redis
     restart: always
-    ports:
-      - "6380:6379"
     volumes:
       - kampul_sis_client_redis_data:/data
 
