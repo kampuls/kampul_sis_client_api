@@ -284,6 +284,7 @@ school_management_api/
 
 Comprehensive documentation is available in the [`docs/`](./docs/) folder:
 
+- **[Database Migrations & New Feature Guide](./docs/MIGRATIONS_AND_NEW_FEATURES_GUIDE.md)** - Guide for schema updates, new columns, and default seeds
 - **[Documentation Index](./docs/README.md)** - Start here for all documentation
 - **[Marking System Overview](./docs/MARKING_SYSTEM_OVERVIEW.md)** - Complete guide to the marking system
 - **[Deep Verification Report](./docs/DEEP_VERIFICATION_REPORT.md)** - Implementation verification
@@ -291,7 +292,7 @@ Comprehensive documentation is available in the [`docs/`](./docs/) folder:
 
 ### Quick Links
 
-- **New Developers:** Start with [Marking System Overview](./docs/MARKING_SYSTEM_OVERVIEW.md)
+- **New Developers:** Start with [Database Migrations & New Feature Guide](./docs/MIGRATIONS_AND_NEW_FEATURES_GUIDE.md)
 - **API Integration:** See [API Endpoints](./docs/MARKING_SYSTEM_OVERVIEW.md#api-endpoints)
 - **Database Setup:** See [Database Schema](./docs/MARKING_SYSTEM_OVERVIEW.md#database-schema)
 - **Troubleshooting:** See [Developer Guide](./docs/MARKING_SYSTEM_OVERVIEW.md#developer-guide)
