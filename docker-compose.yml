@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: kampul_sis_client_api
+    restart: always
+    env_file:
+      - config/.env
+      - .env.production
+    environment:
+      AUTO_MIGRATE_ON_STARTUP: "true"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./uploads:/app/uploads
+
+  db:
+    image: mysql:8.0
+    container_name: kampul_sis_client_db
+    restart: always
+    command: --sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?DB_ROOT_PASSWORD must be set}
+      MYSQL_DATABASE: ${DB_NAME:-kampul_sis_client_db}
+      MYSQL_USER: ${DB_USER:-kampul_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set}
+    volumes:
+      - kampul_sis_client_db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+      start_period: 20s
+
+  redis:
+    image: redis:alpine
+    container_name: kampul_sis_client_redis
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - kampul_sis_client_redis_data:/data
+
+volumes:
+  kampul_sis_client_db_data:
+  kampul_sis_client_redis_data:

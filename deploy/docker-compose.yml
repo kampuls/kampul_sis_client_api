@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  kampul-sis-client-api:
+    build: ..
+    container_name: kampul_sis_client_api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_USER=${DB_USER:-kampul_user}
+      - DB_PASSWORD=${DB_PASSWORD:-changeme}
+      - DB_NAME=${DB_NAME:-kampul_sis_client_db}
+      - DB_SSL_MODE=PREFERRED
+      - SECRET_KEY=${SECRET_KEY:-your-super-secret-production-key-change-this-immediately}
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - WORKERS=4
+    volumes:
+      - ../certs:/app/ssl_certs:ro
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import requests; requests.get('http://localhost:8000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a reverse proxy with SSL termination
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../certs:/etc/nginx/ssl:ro
+    depends_on:
+      - kampul-sis-client-api
+    restart: unless-stopped

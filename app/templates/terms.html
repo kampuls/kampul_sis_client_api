@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - {{ app_name }}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #1976D2;
+        }
+
+        h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+
+        .date {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Terms of Service</h1>
+    <p class="date">Effective Date: {{ effective_date }}<br>
+        App Name: {{ app_name }}{% if app_short_name %} ({{ app_short_name }}){% endif %}{% if app_version %}<br>
+        App Version: {{ app_version }}{% endif %}</p>
+
+    <p>Welcome to the {{ app_name }} application. These Terms of Service govern your use of our mobile application and
+        related school services (the "Service"). By using the Service, you agree to these terms.</p>
+
+    <h2>1. Authorized Use</h2>
+    <p>This application is intended for active students, parents/guardians of enrolled students, and staff of
+        {{ app_name }}. Unauthorized access, account sharing for misuse, or attempts to circumvent school security
+        controls are prohibited.</p>
+
+    <h2>2. Account Responsibility</h2>
+    <p>You are responsible for keeping your login credentials secure (username, password, phone number,
+        {% if google_sign_in_enabled %}Google account link, {% endif %}and verification codes). Notify school
+        administration immediately if you suspect unauthorized use of your account. Do not share SMS or email
+        verification codes.</p>
+
+    <h2>3. School Features and Accurate Use</h2>
+    <ul>
+        <li><strong>Attendance and location:</strong> Check-in/out, QR scanning, and location verification must reflect
+            genuine presence as required by school policy. Falsifying attendance is prohibited.</li>
+        <li><strong>Uploads and media:</strong> Profile photos, leave proof, documents, and voice messages must be
+            school-appropriate and truthful.</li>
+        <li><strong>Messaging and announcements:</strong> Communications must remain respectful and school-related.</li>
+        {% if ai_chat_enabled %}
+        <li><strong>AI assistant:</strong> AI responses are informational aids only and may be inaccurate. They do not
+            replace official school instructions, grades, or administrative decisions.</li>
+        {% endif %}
+    </ul>
+
+    <h2>4. Communication Conduct</h2>
+    <p>In-app messaging and related school channels must be used professionally. Abusive language, harassment, spam, or
+        inappropriate content toward teachers, staff, students, or parents may result in suspension or other action by
+        {{ app_name }} administration.</p>
+
+    <h2>5. Privacy</h2>
+    <p>How we handle personal data is described in our
+        <a href="{{ privacy_url }}">Privacy Policy</a>. By using the Service, you also acknowledge that policy.</p>
+
+    <h2>6. Application Updates and Availability</h2>
+    <p>You may be required to update the application to continue using the Service when security or feature updates are
+        released. We may restrict older unsupported versions. The Service may be unavailable during maintenance or
+        outages.</p>
+
+    <h2>7. Intellectual Property and School Content</h2>
+    <p>App software, branding, and school-published content remain the property of {{ app_name }} or its licensors.
+        You may use the Service only for authorized school purposes.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>To the extent permitted by law, {{ app_name }} provides the Service for school operations on an “as available”
+        basis and is not liable for indirect damages arising from use or inability to use the Service, except where
+        liability cannot be excluded.</p>
+
+    <h2>9. Changes</h2>
+    <p>We may update these Terms from time to time. Continued use after an update constitutes acceptance of the revised
+        Terms. The effective date above reflects the current version for this deployment.</p>
+
+    <h2>10. Contact Information</h2>
+    <p>Questions or technical issues about these Terms should go to {{ app_name }} administration:</p>
+    {% if support_phone %}
+    <p><strong>Phone / Support:</strong> <a href="tel:{{ support_phone_tel }}">{{ support_phone }}</a></p>
+    {% endif %}
+    {% if support_telegram_url %}
+    <p><strong>Telegram:</strong> <a href="{{ support_telegram_url }}" target="_blank" rel="noopener noreferrer">{{ support_telegram_label }}</a></p>
+    {% endif %}
+</body>
+
+</html>

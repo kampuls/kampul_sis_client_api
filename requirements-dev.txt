@@ -1,0 +1,12 @@
+# Test-only dependencies.
+#
+# These are NOT installed in production. They live in their own file so CI and a
+# developer machine install exactly the same set — four async tests passed
+# locally and failed in CI purely because pytest-asyncio happened to be present
+# in one venv and not the other.
+-r requirements.txt
+
+pytest==9.1.1
+pytest-asyncio==1.4.0
+pip-audit
+PyYAML

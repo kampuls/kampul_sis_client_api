@@ -1,0 +1,166 @@
+name: Deploy to LightNode Super-Server
+
+on:
+  push:
+    branches:
+      - main  # Trigger whenever code is pushed to the main branch
+
+# Never let two production deploys build or migrate the same server at once.
+concurrency:
+  group: lightnode-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run tests and security checks
+        env:
+          # These are non-production placeholders required only while importing
+          # application configuration during the architecture tests.
+          SECRET_KEY: ci-test-secret-not-for-production
+          DEEPSEEK_API_KEY: ci-test-key-not-for-production
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+          python -m compileall -q app
+          # Blocks known security regressions before anything ships.
+          python scripts/security_guard.py
+          # The FULL suite. This step used to run two files out of forty, so a
+          # broken change could reach production with almost nothing checked.
+          python -m pytest -q
+
+      - name: Install SSH Key natively
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          # See deploy-las.yml: one key per server, with a fallback so this
+          # keeps working until PAMA_SSH_PRIVATE_KEY is configured.
+          ssh-private-key: ${{ secrets.PAMA_SSH_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}
+
+      - name: Rsync project files to LightNode
+        run: |
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            --exclude '.git' \
+            --exclude '__pycache__' \
+            --exclude '*.pyc' \
+            --exclude 'venv' \
+            --exclude 'uploads' \
+            --exclude 'migration_uploads' \
+            --exclude 'config/.env' \
+            --exclude '.env' \
+            --exclude '.env.lightnode' \
+            --exclude 'certs' \
+            --exclude 'tmp' \
+            --exclude 'config/firebase-service-account.json' \
+            ./ root@38.60.169.172:/root/pama_api/
+
+
+      - name: Build, migrate, and restart API
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+        with:
+          host: 38.60.169.172
+          username: root
+          # Same per-server key as the rsync step above. Missing this
+          # second reference is what left the deploy half-migrated.
+          key: ${{ secrets.PAMA_SSH_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}
+          envs: TELEGRAM_API_ID,TELEGRAM_API_HASH
+          script: |
+            set -eu
+            cd /root/pama_api
+
+            # Restore encrypted Telegram credentials into the preserved runtime
+            # environment on every push. Validate without printing either value.
+            case "${TELEGRAM_API_ID:-}" in
+              ''|*[!0-9]*) echo "TELEGRAM_API_ID secret is missing or invalid" >&2; exit 1 ;;
+            esac
+            case "${TELEGRAM_API_HASH:-}" in
+              ''|*[!0-9a-fA-F]*) echo "TELEGRAM_API_HASH secret is missing or invalid" >&2; exit 1 ;;
+            esac
+            if [ "${#TELEGRAM_API_HASH}" -ne 32 ]; then
+              echo "TELEGRAM_API_HASH secret must contain 32 hexadecimal characters" >&2
+              exit 1
+            fi
+
+            runtime_env=$(mktemp /root/pama_api/.env.lightnode.XXXXXX)
+            trap 'rm -f "$runtime_env"' EXIT
+            sed '/^TELEGRAM_API_ID=/d; /^TELEGRAM_API_HASH=/d' .env.lightnode > "$runtime_env"
+            printf '\nTELEGRAM_API_ID=%s\nTELEGRAM_API_HASH=%s\n' \
+              "$TELEGRAM_API_ID" "$TELEGRAM_API_HASH" >> "$runtime_env"
+            chmod 600 "$runtime_env"
+            mv "$runtime_env" .env.lightnode
+            trap - EXIT
+
+            # Restore/start the database first and wait for its own healthcheck.
+            # The db_data volume is preserved across container recreation.
+            docker compose --env-file .env.lightnode up -d db redis
+
+            database_ready=0
+            for attempt in $(seq 1 36); do
+              if docker compose --env-file .env.lightnode exec -T db mysqladmin ping \
+                -h 127.0.0.1 --silent >/dev/null 2>&1; then
+                database_ready=1
+                break
+              fi
+              sleep 5
+            done
+
+            if [ "$database_ready" -ne 1 ]; then
+              docker compose --env-file .env.lightnode logs --tail=200 db
+              exit 1
+            fi
+
+            # Repair the live schema immediately when an API container already
+            # exists, then run the complete startup migration sequence again on
+            # the freshly built container below.
+            if docker compose --env-file .env.lightnode ps --status running --services | grep -qx api; then
+              docker compose --env-file .env.lightnode exec -T api python -m app.core.migrations || true
+            fi
+            # Build first so dependency changes in requirements.txt are included.
+            docker compose --env-file .env.lightnode build api
+
+            # Recreate instead of merely restarting so the new image is used.
+            # Do not use `docker compose run` for migrations here: production
+            # MySQL is reached through the long-running API service's network,
+            # while a one-off container resolves 127.0.0.1 to itself and fails.
+            # AUTO_MIGRATE_ON_STARTUP makes the recreated API run Alembic, model
+            # schema sync, manual migrations, indexes, attendance migrations,
+            # and permission seeds before it begins serving requests.
+            docker compose --env-file .env.lightnode up -d --no-deps --force-recreate api
+
+            # Do not report a successful deployment until the new API and its
+            # database connection are healthy.
+            healthy=0
+            for attempt in $(seq 1 30); do
+              if docker compose --env-file .env.lightnode exec -T api python -c \
+                "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5).read()" \
+                >/dev/null 2>&1; then
+                healthy=1
+                break
+              fi
+              sleep 2
+            done
+
+            if [ "$healthy" -ne 1 ]; then
+              docker compose --env-file .env.lightnode logs --tail=200 api
+              exit 1
+            fi
+
+            # Telegram staff login is a production dependency. Fail the deploy
+            # instead of silently publishing an API that cannot send login codes.
+            docker compose --env-file .env.lightnode exec -T api python -c \
+              "from app.core.config import settings; assert settings.telegram_api_id and settings.telegram_api_hash, 'TELEGRAM_API_ID and TELEGRAM_API_HASH must be configured'"
+
+            docker compose --env-file .env.lightnode ps api

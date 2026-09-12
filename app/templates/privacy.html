@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - {{ app_name }}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #1976D2;
+        }
+
+        h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+
+        .date {
+            color: #666;
+            font-style: italic;
+        }
+
+        .muted {
+            color: #666;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Privacy Policy</h1>
+    <p class="date">Effective Date: {{ effective_date }}<br>
+        App Name: {{ app_name }}{% if app_short_name %} ({{ app_short_name }}){% endif %}{% if app_version %}<br>
+        App Version: {{ app_version }}{% endif %}</p>
+
+    <p>Welcome to the {{ app_name }} application. This Privacy Policy explains how we collect, use, and protect
+        information when you use our mobile application and related school services (the "Service"). By using the
+        Service, you agree to this policy.</p>
+
+    <h2>1. Information We Collect</h2>
+    <ul>
+        <li><strong>Account and identity:</strong> Registered phone number, full name, username, role, and school-linked
+            profile details needed for secure access.</li>
+        {% if google_sign_in_enabled %}
+        <li><strong>Google Sign-In:</strong> If you choose Google login, we receive basic profile identifiers from Google
+            (such as email and account ID) solely to authenticate your school account.</li>
+        {% endif %}
+        <li><strong>Authentication data:</strong> We use secure authentication
+            {% if firebase_enabled %}(including Firebase Authentication / SMS OTP where enabled){% endif %}
+            to verify your identity. Device tokens may be stored to deliver push notifications.</li>
+        <li><strong>Academic and school records:</strong> Depending on your role (parent, student, teacher, or staff),
+            the Service may display and process enrollment, attendance, leave, messaging, schedules, and related school
+            records for {{ app_name }}.</li>
+        <li><strong>Location data:</strong> When you use features such as digital attendance check-in/out, nearest-branch
+            helpers, or pickup-zone confirmation, the app may request location access. Location is used for those
+            verification or guidance features and is not used for continuous background tracking.</li>
+        <li><strong>Camera, photos, and microphone:</strong> With your permission, the app may use the camera (for
+            example QR attendance), photo library (profile photos, leave proof, assignment documents), and microphone
+            (voice messages). Media you upload is stored as part of your school workflow.</li>
+        <li><strong>Messages and notifications:</strong> In-app messages, announcement receipts, and operational
+            notifications (including school Telegram alerts where configured by administrators) may be processed to
+            deliver school communications.</li>
+        {% if ai_chat_enabled %}
+        <li><strong>AI assistant prompts:</strong> If you use the in-app AI chat, your prompts and necessary context may
+            be sent to our AI provider to generate responses. Do not submit sensitive personal data that is not needed
+            for the question.</li>
+        {% endif %}
+        <li><strong>Technical data:</strong> App version, device type, and basic diagnostics may be processed to keep
+            the Service secure and reliable.</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use collected data only to operate and improve the Service for {{ app_name }}, including:</p>
+    <ul>
+        <li>Creating and securing user accounts and role-based access.</li>
+        <li>Push notifications for school updates, attendance, leave, and emergency announcements.</li>
+        <li>Parent–teacher and staff messaging.</li>
+        <li>Attendance, leave, academic, and administrative reporting.</li>
+        <li>Verifying check-in/out and related school-operational workflows.</li>
+        {% if ai_chat_enabled %}
+        <li>Providing optional AI assistance inside the app.</li>
+        {% endif %}
+    </ul>
+
+    <h2>3. Third-Party Services</h2>
+    <p>We do not sell, trade, or rent user data for advertising. We use trusted processors to run the Service, which may
+        include:</p>
+    <ul>
+        {% if firebase_enabled or google_sign_in_enabled %}
+        <li>Google / Firebase (authentication, push notifications, and related mobile infrastructure).</li>
+        {% endif %}
+        {% if ai_chat_enabled %}
+        <li>AI language providers used only when you use the AI chat feature.</li>
+        {% endif %}
+        <li>Telegram (when school administrators configure bots or group alerts for operational notices).</li>
+        <li>Email delivery providers (when the school enables email features).</li>
+    </ul>
+    <p class="muted">Those providers process data under their own policies and only as needed to deliver the Service.</p>
+
+    <h2>4. Children's and Student Data</h2>
+    <p>The Service is a school portal. Student information may appear for authorized parents/guardians and staff in
+        connection with enrollment and school operations. Access is role-restricted. Accounts are managed by the school;
+        children should use the Service only as directed by their school or guardian.</p>
+
+    <h2>5. Data Retention, Access, and Deletion</h2>
+    <p>Because accounts are tied to enrollment or employment records, requests to update phone numbers/names or to delete
+        a profile must be made through {{ app_name }} administration. The school will handle requests according to its
+        administrative and legal obligations.</p>
+
+    <h2>6. Your Choices</h2>
+    <ul>
+        <li>You can deny optional device permissions (location, camera, photos, microphone); related features may not
+            work until permission is granted.</li>
+        <li>You can disable push notifications in device settings.</li>
+        {% if google_sign_in_enabled %}
+        <li>You may disconnect Google Sign-In by contacting school administration if your account uses that method.</li>
+        {% endif %}
+    </ul>
+
+    <h2>7. Related Terms</h2>
+    <p>Use of the Service is also governed by our
+        <a href="{{ terms_url }}">Terms of Service</a>.</p>
+
+    <h2>8. Contact Us</h2>
+    <p>Questions about this Privacy Policy should go to {{ app_name }} administration:</p>
+    {% if support_phone %}
+    <p><strong>Phone / Support:</strong> <a href="tel:{{ support_phone_tel }}">{{ support_phone }}</a></p>
+    {% endif %}
+    {% if support_telegram_url %}
+    <p><strong>Telegram:</strong> <a href="{{ support_telegram_url }}" target="_blank" rel="noopener noreferrer">{{ support_telegram_label }}</a></p>
+    {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+# Runtime uploads — recreated from app/static/push on startup / certificate push
+uploads/
+migration_uploads/
+
+# Local / secrets (never bake into image)
+.env
+config/.env
+**/__pycache__
+**/*.pyc
+.git
+.venv
+venv
