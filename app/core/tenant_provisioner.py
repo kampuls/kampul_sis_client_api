@@ -1,17 +1,29 @@
 """
-Tenant Database Provisioner for Kampul SIS Client API.
-Creates the isolated tenant database, all 212 tables, default seed data,
-and generates a cryptographically random admin password.
+Tenant database provisioner for Kampul SIS Client API.
+
+Creates `sis_<subdomain>` from template_school_db.sql (the full schema plus the
+single-branch, single-academic-year presets built by
+scripts/build_school_template.py) and adds the school's administrator.
 """
+import argparse
+import json
+import logging
 import os
 import re
 import secrets
 import string
-import logging
+from pathlib import Path
+from typing import Any, Dict, Optional
+
+import bcrypt
 import pymysql
-from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
+
+TEMPLATE_PATH = Path(__file__).resolve().parents[2] / "template_school_db.sql"
+ADMIN_USER_ID = 1
+SUPER_ADMIN_ROLE_ID = 1
+DEFAULT_BRANCH_ID = 1
 
 
 def generate_random_admin_password(length: int = 12) -> str:
@@ -25,6 +37,16 @@ def generate_random_admin_password(length: int = 12) -> str:
     return f"{prefix}{random_part}"
 
 
+def template_statements(path: Path):
+    """Yield the template's statements. The generator escapes newlines inside
+    string literals, so a semicolon at end of line always ends a statement."""
+    sql = path.read_text(encoding="utf-8")
+    for chunk in re.split(r";\s*\n", sql):
+        stmt = "\n".join(l for l in chunk.splitlines() if not l.strip().startswith("--")).strip()
+        if stmt:
+            yield stmt
+
+
 def provision_tenant_database(
     subdomain: str,
     school_name: str,
@@ -32,142 +54,133 @@ def provision_tenant_database(
     contact_name: Optional[str] = None,
     contact_email: Optional[str] = None,
     contact_phone: Optional[str] = None,
+    admin_username: Optional[str] = None,
+    admin_password: Optional[str] = None,
     mysql_host: Optional[str] = None,
     mysql_port: Optional[int] = None,
     mysql_user: Optional[str] = None,
     mysql_password: Optional[str] = None,
+    template_path: Optional[Path] = None,
 ) -> Dict[str, Any]:
     """
-    Provisions a complete 212-table school database in MySQL with default reference data
-    and an auto-generated administrator account with a unique random password.
+    Provisions a new school database with the template presets and an administrator
+    account. Refuses to touch a database that already contains tables.
     """
     host = mysql_host or os.getenv("DB_HOST", "127.0.0.1")
     port = int(mysql_port or os.getenv("DB_PORT", 3306))
     user = mysql_user or os.getenv("DB_USER", "root")
-    password = mysql_password or os.getenv("DB_PASSWORD", "")
+    password = mysql_password if mysql_password is not None else os.getenv("DB_PASSWORD", "")
+    template = Path(template_path or os.getenv("KAMPUL_TEMPLATE_SQL") or TEMPLATE_PATH)
+    if not template.is_file():
+        raise FileNotFoundError(f"School template not found: {template}")
 
-    # Sanitize database name
-    safe_subdomain = "".join(c if c.isalnum() else "_" for c in subdomain.lower())
+    safe_subdomain = re.sub(r"[^a-z0-9]", "_", subdomain.lower()).strip("_")
+    if not safe_subdomain:
+        raise ValueError(f"Invalid subdomain: {subdomain!r}")
     db_name = f"sis_{safe_subdomain}"
 
-    # Generate random admin password and username
-    email_prefix = (contact_email or "admin").split("@")[0]
-    clean_prefix = "".join(c for c in email_prefix if c.isalnum() or c == "_")
-    admin_username = clean_prefix or "admin"
-    admin_plain_password = generate_random_admin_password()
+    if not admin_username:
+        email_prefix = (contact_email or "admin").split("@")[0]
+        admin_username = "".join(c for c in email_prefix if c.isalnum() or c == "_") or "admin"
+    admin_password = admin_password or generate_random_admin_password()
+    admin_password_hash = bcrypt.hashpw(admin_password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+    admin_name = (contact_name or school_name)[:100]
 
-    # Hash password with bcrypt
-    try:
-        from passlib.context import CryptContext
-        pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-        admin_password_hash = pwd_context.hash(admin_plain_password)
-    except Exception:
-        import hashlib
-        admin_password_hash = hashlib.sha256(admin_plain_password.encode('utf-8')).hexdigest()
-
-    logger.info(f"Provisioning tenant database `{db_name}` on {host}:{port}...")
-
-    conn = pymysql.connect(
-        host=host,
-        port=port,
-        user=user,
-        password=password,
-        charset="utf8mb4",
-        autocommit=True
-    )
-
+    logger.info("Provisioning tenant database `%s` on %s:%s", db_name, host, port)
+    conn = pymysql.connect(host=host, port=port, user=user, password=password, charset="utf8mb4", autocommit=True)
+    created = False
     try:
         with conn.cursor() as cur:
-            # 1. Create database
-            cur.execute(f"CREATE DATABASE IF NOT EXISTS `{db_name}` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;")
-            cur.execute(f"USE `{db_name}`;")
-            cur.execute("SET FOREIGN_KEY_CHECKS = 0;")
-            cur.execute("SET NAMES utf8mb4;")
+            cur.execute("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %s", (db_name,))
+            existing_tables = cur.fetchone()[0]
+            if existing_tables:
+                raise RuntimeError(
+                    f"Database `{db_name}` already has {existing_tables} tables; refusing to overwrite an existing school"
+                )
+            cur.execute("SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = %s", (db_name,))
+            created = cur.fetchone()[0] == 0
+            cur.execute(f"CREATE DATABASE IF NOT EXISTS `{db_name}` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+            cur.execute(f"USE `{db_name}`")
 
-            # 2. Read and execute template SQL containing all 212 tables and seed data
-            template_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "template_school_db.sql")
-            if not os.path.exists(template_path):
-                template_path = r"e:\kampul\kampul_sis_client_api\template_school_db.sql"
+            for stmt in template_statements(template):
+                cur.execute(stmt)
 
-            with open(template_path, "r", encoding="utf-8") as f:
-                sql_content = f.read()
-
-            statements = re.split(r';\s*\n', sql_content)
-            for stmt in statements:
-                lines = [l for l in stmt.splitlines() if not l.strip().startswith("--")]
-                stmt = "\n".join(lines).strip()
-                if not stmt:
-                    continue
-                try:
-                    cur.execute(stmt)
-                except Exception as e:
-                    logger.warning(f"Notice during SQL execution: {e}")
-
-            # 3. Update settings with school details
-            km_name = school_name_km or school_name
+            cur.execute("SET FOREIGN_KEY_CHECKS = 0")
             cur.execute(
-                "UPDATE `settings` SET `enterpriseName` = %s, `default_exchange` = 4100 WHERE id = 1;",
-                (school_name,)
+                "UPDATE `settings` SET `enterpriseName` = %s, `ownerKname` = %s, `ownerEname` = %s ORDER BY id LIMIT 1",
+                (school_name[:100], admin_name, admin_name),
             )
-
-            # 4. Update default branch
             cur.execute(
-                "UPDATE `branch` SET `branch_name` = 'Main Campus', `app_display_name` = 'Main Campus' WHERE id = 1;"
+                "UPDATE `branch` SET `email` = %s, `contact` = %s WHERE id = %s",
+                (contact_email or None, contact_phone or None, DEFAULT_BRANCH_ID),
             )
-
-            # 5. Update default academic year
-            cur.execute(
-                "UPDATE `academic` SET `academic_name` = '2026-2027', `academic_us_name` = '2026-2027', `status` = 1 WHERE id = 1;"
-            )
-
-            # 6. Insert initial Administrator user with unique random password
-            full_contact_name = contact_name or school_name
             cur.execute(
                 "INSERT INTO `users` ("
-                "  id, username, password, email, uniqueId, kName, eName, phone, "
-                "  height, gender, dob, nationality, religion, province, district, commune, "
-                "  education, workplace, status, role, isForeigner"
-                ") VALUES ("
-                "  1, %s, %s, %s, 'ADM-001', %s, %s, %s, "
-                "  170.00, 'Male', '1990-01-01', 'Cambodian', 'Buddhism', 'Phnom Penh', 'Daun Penh', 'Phsar Thmei', "
-                "  'Bachelor', 1, 1, 1, 0"
-                ") ON DUPLICATE KEY UPDATE "
-                "  password = VALUES(password), "
-                "  status = 1, role = 1, email = VALUES(email);",
+                "  id, username, password, uniqueId, kName, eName, height, gender, dob, nationality,"
+                "  religion, province, district, commune, email, phone, education, workplace, status,"
+                "  role, isForeigner, token_version"
+                ") VALUES (%s, %s, %s, 'ADM-001', %s, %s, 0, '', '1990-01-01', 'ខ្មែរ',"
+                "  '', '', '', '', %s, %s, '', %s, 1, %s, 0, 1)",
                 (
-                    admin_username,
-                    admin_password_hash,
-                    contact_email or "",
-                    km_name,
-                    full_contact_name,
-                    contact_phone or ""
-                )
+                    ADMIN_USER_ID, admin_username, admin_password_hash,
+                    (school_name_km or admin_name)[:100], admin_name,
+                    contact_email or None, contact_phone or None,
+                    DEFAULT_BRANCH_ID, SUPER_ADMIN_ROLE_ID,
+                ),
             )
+            cur.execute(
+                "INSERT INTO `app_admins` (user_id, is_super_admin, is_locked, created_at, updated_at,"
+                " can_reset_attendance_devices) VALUES (%s, 1, 0, NOW(), NOW(), 1)",
+                (ADMIN_USER_ID,),
+            )
+            cur.execute("SET FOREIGN_KEY_CHECKS = 1")
 
-            # Verify table count
-            cur.execute("SHOW TABLES;")
-            tables = cur.fetchall()
-            table_count = len(tables)
-
-            cur.execute("SET FOREIGN_KEY_CHECKS = 1;")
-
-        logger.info(f"Tenant database `{db_name}` provisioned successfully with {table_count} tables.")
-
-        return {
-            "success": True,
-            "database": db_name,
-            "table_count": table_count,
-            "admin_username": admin_username,
-            "admin_password": admin_plain_password,
-            "school_code": f"SIS-{subdomain[:4].upper()}"
-        }
+            cur.execute("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %s", (db_name,))
+            table_count = cur.fetchone()[0]
+    except Exception:
+        if created:
+            logger.error("Provisioning `%s` failed; dropping the partially created database", db_name)
+            with conn.cursor() as cur:
+                cur.execute(f"DROP DATABASE IF EXISTS `{db_name}`")
+        raise
     finally:
         conn.close()
 
+    logger.info("Tenant database `%s` provisioned with %s tables", db_name, table_count)
+    return {
+        "success": True,
+        "database": db_name,
+        "table_count": table_count,
+        "admin_username": admin_username,
+        "admin_password": admin_password,
+        "school_code": f"SIS-{safe_subdomain[:4].upper()}",
+    }
+
 
 if __name__ == "__main__":
-    import sys
-    subdomain = sys.argv[1] if len(sys.argv) > 1 else "demo"
-    name = sys.argv[2] if len(sys.argv) > 2 else "Demo School"
-    res = provision_tenant_database(subdomain, name)
-    print("Provision result:", res)
+    logging.basicConfig(level=logging.INFO)
+    parser = argparse.ArgumentParser(description="Create a new school database from the template.")
+    parser.add_argument("subdomain")
+    parser.add_argument("school_name")
+    parser.add_argument("--school-name-km")
+    parser.add_argument("--contact-name")
+    parser.add_argument("--contact-email")
+    parser.add_argument("--contact-phone")
+    parser.add_argument("--admin-username")
+    args = parser.parse_args()
+
+    # The password comes from the environment so it never appears in the process list.
+    supplied_password = os.getenv("KAMPUL_ADMIN_PASSWORD") or None
+    result = provision_tenant_database(
+        args.subdomain,
+        args.school_name,
+        school_name_km=args.school_name_km,
+        contact_name=args.contact_name,
+        contact_email=args.contact_email,
+        contact_phone=args.contact_phone,
+        admin_username=args.admin_username,
+        admin_password=supplied_password,
+    )
+    if supplied_password:
+        result.pop("admin_password")
+    print(json.dumps(result, ensure_ascii=False))
