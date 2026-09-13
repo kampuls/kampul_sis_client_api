@@ -102,11 +102,10 @@ def provision_tenant_database(
     db_name = f"sis_{safe_subdomain}"
 
     if not admin_username:
-        email_prefix = (contact_email or "admin").split("@")[0]
-        admin_username = "".join(c for c in email_prefix if c.isalnum() or c == "_") or "admin"
+        admin_username = "kampul_admin_" + secrets.token_hex(6)
     admin_password = admin_password or generate_random_admin_password()
     admin_password_hash = bcrypt.hashpw(admin_password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
-    admin_name = (contact_name or school_name)[:100]
+    admin_name = "Super Admin"
 
     logger.info("Provisioning tenant database `%s` on %s:%s", db_name, host, port)
     conn = pymysql.connect(host=host, port=port, user=user, password=password, charset="utf8mb4", autocommit=True)
@@ -130,14 +129,16 @@ def provision_tenant_database(
             validate_school_defaults(cur)
 
             cur.execute("SET FOREIGN_KEY_CHECKS = 0")
-            cur.execute(
-                "UPDATE `settings` SET `enterpriseName` = %s, `ownerKname` = %s, `ownerEname` = %s ORDER BY id LIMIT 1",
-                (school_name[:100], admin_name, admin_name),
-            )
-            cur.execute(
-                "UPDATE `branch` SET `email` = %s, `contact` = %s WHERE id = %s",
-                (contact_email or None, contact_phone or None, DEFAULT_BRANCH_ID),
-            )
+            if school_name:
+                cur.execute(
+                    "UPDATE `settings` SET `enterpriseName` = %s, `system_name` = %s, `ownerKname` = %s, `ownerEname` = %s ORDER BY id LIMIT 1",
+                    (school_name[:100], school_name[:100], (school_name_km or admin_name)[:100], admin_name),
+                )
+                cur.execute(
+                    "UPDATE `branch` SET `branch_name` = %s, `app_display_name` = %s WHERE id = %s",
+                    (school_name[:100], school_name[:100], DEFAULT_BRANCH_ID),
+                )
+
             cur.execute(
                 "INSERT INTO `users` ("
                 "  id, username, password, uniqueId, kName, eName, height, gender, dob, nationality,"
@@ -147,7 +148,7 @@ def provision_tenant_database(
                 "  '', '', '', '', %s, %s, '', %s, 1, %s, 0, 1)",
                 (
                     ADMIN_USER_ID, admin_username, admin_password_hash,
-                    (school_name_km or admin_name)[:100], admin_name,
+                    admin_name, admin_name,
                     contact_email or None, contact_phone or None,
                     DEFAULT_BRANCH_ID, SUPER_ADMIN_ROLE_ID,
                 ),
