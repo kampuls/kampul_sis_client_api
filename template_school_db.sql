@@ -1,23 +1,240 @@
 -- ========================================================
--- KAMPUL SIS MASTER TENANT DATABASE TEMPLATE
--- 100% Complete 212 Tables & Core Cambodian Reference Presets
--- Generated: 2026-09-12 20:42:15
+-- Kampul SIS Master Clean School Database Template
+-- Contains all 212 tables with Cambodian education presets
+-- ZERO operational/transactional data (0 students, 0 invoices, etc.)
+-- Generated: 2026-09-13T09:30:35.142417
 -- ========================================================
 
-SET FOREIGN_KEY_CHECKS = 0;
 SET NAMES utf8mb4;
 
--- ========================================================
--- 1. DDL: CREATE ALL 212 TABLES
--- ========================================================
+SET CHARACTER SET utf8mb4;
 
-CREATE TABLE IF NOT EXISTS `_schema_patches` (
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Drop existing tables in bulk to ensure clean recreation
+DROP TABLE IF EXISTS `_schema_patches`;
+DROP TABLE IF EXISTS `academic`;
+DROP TABLE IF EXISTS `academic_program_images`;
+DROP TABLE IF EXISTS `academic_programs`;
+DROP TABLE IF EXISTS `accounts`;
+DROP TABLE IF EXISTS `ad_clicks`;
+DROP TABLE IF EXISTS `admin_logs`;
+DROP TABLE IF EXISTS `ads`;
+DROP TABLE IF EXISTS `ai_conversations`;
+DROP TABLE IF EXISTS `ai_messages`;
+DROP TABLE IF EXISTS `alembic_version`;
+DROP TABLE IF EXISTS `app_admins`;
+DROP TABLE IF EXISTS `app_branding_settings`;
+DROP TABLE IF EXISTS `app_quick_action_settings`;
+DROP TABLE IF EXISTS `attendance`;
+DROP TABLE IF EXISTS `attendance__allowed_branches`;
+DROP TABLE IF EXISTS `attendance_audience_presets`;
+DROP TABLE IF EXISTS `attendance_audit_log`;
+DROP TABLE IF EXISTS `attendance_log`;
+DROP TABLE IF EXISTS `attendance_primary_device_events`;
+DROP TABLE IF EXISTS `attendance_primary_devices`;
+DROP TABLE IF EXISTS `attendance_processing_rules`;
+DROP TABLE IF EXISTS `attendance_records`;
+DROP TABLE IF EXISTS `attendance_schedule_exception_enrollments`;
+DROP TABLE IF EXISTS `attendance_schedule_exceptions`;
+DROP TABLE IF EXISTS `attendance_schedules`;
+DROP TABLE IF EXISTS `attendance_statistics`;
+DROP TABLE IF EXISTS `attendance_system_settings`;
+DROP TABLE IF EXISTS `attendance_user_assignments`;
+DROP TABLE IF EXISTS `background_cards`;
+DROP TABLE IF EXISTS `background_cert`;
+DROP TABLE IF EXISTS `bonus_deduction_rules`;
+DROP TABLE IF EXISTS `branch`;
+DROP TABLE IF EXISTS `branch_contacts`;
+DROP TABLE IF EXISTS `bus_assignment_assistants`;
+DROP TABLE IF EXISTS `bus_assignments`;
+DROP TABLE IF EXISTS `bus_attendance`;
+DROP TABLE IF EXISTS `bus_maintenance`;
+DROP TABLE IF EXISTS `bus_routes`;
+DROP TABLE IF EXISTS `bus_stop_prices`;
+DROP TABLE IF EXISTS `bus_stops`;
+DROP TABLE IF EXISTS `bus_stu_inroll`;
+DROP TABLE IF EXISTS `buses`;
+DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `certificate_settings`;
+DROP TABLE IF EXISTS `check_in_security_events`;
+DROP TABLE IF EXISTS `class_teachers`;
+DROP TABLE IF EXISTS `classes`;
+DROP TABLE IF EXISTS `daily_attendance`;
+DROP TABLE IF EXISTS `decimal_marks_allow`;
+DROP TABLE IF EXISTS `demo_cert`;
+DROP TABLE IF EXISTS `department`;
+DROP TABLE IF EXISTS `departments`;
+DROP TABLE IF EXISTS `device_tokens`;
+DROP TABLE IF EXISTS `discount_childs`;
+DROP TABLE IF EXISTS `discount_result`;
+DROP TABLE IF EXISTS `enrollments`;
+DROP TABLE IF EXISTS `exam_calculate_sign`;
+DROP TABLE IF EXISTS `exam_calculate_sign_subjects`;
+DROP TABLE IF EXISTS `expense_categories`;
+DROP TABLE IF EXISTS `expenses`;
+DROP TABLE IF EXISTS `feature_locks`;
+DROP TABLE IF EXISTS `fee_services`;
+DROP TABLE IF EXISTS `feedbacks`;
+DROP TABLE IF EXISTS `form_field_options`;
+DROP TABLE IF EXISTS `form_fields`;
+DROP TABLE IF EXISTS `form_submission_values`;
+DROP TABLE IF EXISTS `form_submissions`;
+DROP TABLE IF EXISTS `forms`;
+DROP TABLE IF EXISTS `grade`;
+DROP TABLE IF EXISTS `grade_group`;
+DROP TABLE IF EXISTS `grade_scale`;
+DROP TABLE IF EXISTS `grade_type`;
+DROP TABLE IF EXISTS `holidays`;
+DROP TABLE IF EXISTS `hot_event_impressions`;
+DROP TABLE IF EXISTS `hot_events`;
+DROP TABLE IF EXISTS `inventories`;
+DROP TABLE IF EXISTS `invoice`;
+DROP TABLE IF EXISTS `invoice_items`;
+DROP TABLE IF EXISTS `items_group`;
+DROP TABLE IF EXISTS `learning`;
+DROP TABLE IF EXISTS `learning_class_schedules`;
+DROP TABLE IF EXISTS `learning_homework`;
+DROP TABLE IF EXISTS `learning_homework_attachments`;
+DROP TABLE IF EXISTS `learning_schedule_exceptions`;
+DROP TABLE IF EXISTS `learning_session_logs`;
+DROP TABLE IF EXISTS `learning_time_slot_scopes`;
+DROP TABLE IF EXISTS `learning_time_slots`;
+DROP TABLE IF EXISTS `leave_approvers`;
+DROP TABLE IF EXISTS `leave_balance_adjustments`;
+DROP TABLE IF EXISTS `leave_balances`;
+DROP TABLE IF EXISTS `leave_histories`;
+DROP TABLE IF EXISTS `leave_policies`;
+DROP TABLE IF EXISTS `leave_policy_leave_type_association`;
+DROP TABLE IF EXISTS `leave_request_days`;
+DROP TABLE IF EXISTS `leave_requests`;
+DROP TABLE IF EXISTS `leave_type_allocations`;
+DROP TABLE IF EXISTS `leave_types`;
+DROP TABLE IF EXISTS `login_attempts`;
+DROP TABLE IF EXISTS `logtransaction`;
+DROP TABLE IF EXISTS `mark_entry_locks`;
+DROP TABLE IF EXISTS `mark_lock_attempts`;
+DROP TABLE IF EXISTS `mark_lock_passcodes`;
+DROP TABLE IF EXISTS `market_categories`;
+DROP TABLE IF EXISTS `market_listing_broadcasts`;
+DROP TABLE IF EXISTS `market_listing_images`;
+DROP TABLE IF EXISTS `market_listings`;
+DROP TABLE IF EXISTS `market_orders`;
+DROP TABLE IF EXISTS `market_reviews`;
+DROP TABLE IF EXISTS `market_seller_bans`;
+DROP TABLE IF EXISTS `market_settings`;
+DROP TABLE IF EXISTS `market_stores`;
+DROP TABLE IF EXISTS `market_wishlists`;
+DROP TABLE IF EXISTS `marks_input`;
+DROP TABLE IF EXISTS `marks_monthly`;
+DROP TABLE IF EXISTS `marks_monthly_items`;
+DROP TABLE IF EXISTS `marks_semester`;
+DROP TABLE IF EXISTS `marks_semester_monthlies`;
+DROP TABLE IF EXISTS `marks_system`;
+DROP TABLE IF EXISTS `marks_system_subjects`;
+DROP TABLE IF EXISTS `marks_yearly`;
+DROP TABLE IF EXISTS `marks_yearly_semesters`;
+DROP TABLE IF EXISTS `medal_points_setup`;
+DROP TABLE IF EXISTS `medal_price`;
+DROP TABLE IF EXISTS `medalname`;
+DROP TABLE IF EXISTS `medals`;
+DROP TABLE IF EXISTS `message_group_bans`;
+DROP TABLE IF EXISTS `message_group_members`;
+DROP TABLE IF EXISTS `message_group_settings`;
+DROP TABLE IF EXISTS `message_groups`;
+DROP TABLE IF EXISTS `message_pinned`;
+DROP TABLE IF EXISTS `message_reactions`;
+DROP TABLE IF EXISTS `messages`;
+DROP TABLE IF EXISTS `news`;
+DROP TABLE IF EXISTS `news_images`;
+DROP TABLE IF EXISTS `nittes`;
+DROP TABLE IF EXISTS `nittes_discount`;
+DROP TABLE IF EXISTS `notifications`;
+DROP TABLE IF EXISTS `otp_codes`;
+DROP TABLE IF EXISTS `parent_permission_interactions`;
+DROP TABLE IF EXISTS `parent_registration_audit`;
+DROP TABLE IF EXISTS `parent_student_link_requests`;
+DROP TABLE IF EXISTS `parents`;
+DROP TABLE IF EXISTS `partner_images`;
+DROP TABLE IF EXISTS `partners`;
+DROP TABLE IF EXISTS `permissions`;
+DROP TABLE IF EXISTS `pickup`;
+DROP TABLE IF EXISTS `pickup_branch_calling`;
+DROP TABLE IF EXISTS `pickup_requests`;
+DROP TABLE IF EXISTS `pickup_settings`;
+DROP TABLE IF EXISTS `position`;
+DROP TABLE IF EXISTS `price_list`;
+DROP TABLE IF EXISTS `price_visibility_settings`;
+DROP TABLE IF EXISTS `profile_frame_history`;
+DROP TABLE IF EXISTS `profile_frames`;
+DROP TABLE IF EXISTS `program`;
+DROP TABLE IF EXISTS `qrattendance`;
+DROP TABLE IF EXISTS `results_top_students`;
+DROP TABLE IF EXISTS `results_top_students_display_settings`;
+DROP TABLE IF EXISTS `role_permissions`;
+DROP TABLE IF EXISTS `roles`;
+DROP TABLE IF EXISTS `salary_bonuses`;
+DROP TABLE IF EXISTS `salary_deductions`;
+DROP TABLE IF EXISTS `salary_history`;
+DROP TABLE IF EXISTS `scholarship`;
+DROP TABLE IF EXISTS `school_documents`;
+DROP TABLE IF EXISTS `school_events`;
+DROP TABLE IF EXISTS `school_overviews`;
+DROP TABLE IF EXISTS `settings`;
+DROP TABLE IF EXISTS `shift`;
+DROP TABLE IF EXISTS `smart_download_links`;
+DROP TABLE IF EXISTS `splash_ads`;
+DROP TABLE IF EXISTS `status`;
+DROP TABLE IF EXISTS `student_activity_logs`;
+DROP TABLE IF EXISTS `student_profile_edit_requests`;
+DROP TABLE IF EXISTS `students`;
+DROP TABLE IF EXISTS `subject_attendance`;
+DROP TABLE IF EXISTS `subject_grade_components`;
+DROP TABLE IF EXISTS `subject_grade_plans`;
+DROP TABLE IF EXISTS `subject_grade_scores`;
+DROP TABLE IF EXISTS `subjects`;
+DROP TABLE IF EXISTS `subjects_group`;
+DROP TABLE IF EXISTS `teachers`;
+DROP TABLE IF EXISTS `telegram_attendance_settings`;
+DROP TABLE IF EXISTS `telegram_bot_auth_codes`;
+DROP TABLE IF EXISTS `telegram_branch_notification_routes`;
+DROP TABLE IF EXISTS `telegram_chat_moderation_settings`;
+DROP TABLE IF EXISTS `telegram_group_members`;
+DROP TABLE IF EXISTS `telegram_group_reply_settings`;
+DROP TABLE IF EXISTS `telegram_login_sessions`;
+DROP TABLE IF EXISTS `telegram_moderation_events`;
+DROP TABLE IF EXISTS `telegram_moderation_quarantine_items`;
+DROP TABLE IF EXISTS `telegram_otp_sessions`;
+DROP TABLE IF EXISTS `telegram_tracked_chats`;
+DROP TABLE IF EXISTS `telegram_webhook_events`;
+DROP TABLE IF EXISTS `units`;
+DROP TABLE IF EXISTS `user_financials`;
+DROP TABLE IF EXISTS `user_home_app_permissions`;
+DROP TABLE IF EXISTS `user_sessions`;
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `users_resource`;
+DROP TABLE IF EXISTS `users_social_links`;
+DROP TABLE IF EXISTS `work_locations`;
+DROP TABLE IF EXISTS `ws_broadcast_queue`;
+DROP TABLE IF EXISTS `zing_book_branch_limits`;
+DROP TABLE IF EXISTS `zing_book_support`;
+DROP TABLE IF EXISTS `zing_book_support_history`;
+DROP TABLE IF EXISTS `zing_books`;
+DROP TABLE IF EXISTS `zing_payment_methods`;
+DROP TABLE IF EXISTS `zing_survey_questions`;
+DROP TABLE IF EXISTS `zing_survey_responses`;
+DROP TABLE IF EXISTS `zing_surveys`;
+
+-- Create all 212 tables
+-- 212 Tables Schema Dump from backup database
+
+CREATE TABLE `_schema_patches` (
   `patch_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `applied_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`patch_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `academic` (
+CREATE TABLE `academic` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academic_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `academic_us_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -43,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `academic` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `academic_program_images` (
+CREATE TABLE `academic_program_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `program_id` int NOT NULL,
   `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -54,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `academic_program_images` (
   CONSTRAINT `academic_program_images_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `academic_programs` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `academic_programs` (
+CREATE TABLE `academic_programs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `program_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -78,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `academic_programs` (
   KEY `ix_academic_programs_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `accounts` (
+CREATE TABLE `accounts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `account_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `account_number` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -95,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `ad_clicks` (
+CREATE TABLE `ad_clicks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `ad_id` int NOT NULL,
   `user_id` int DEFAULT NULL COMMENT 'User who clicked (if logged in)',
@@ -111,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `ad_clicks` (
   CONSTRAINT `fk_ad_clicks_ad_id` FOREIGN KEY (`ad_id`) REFERENCES `ads` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `admin_logs` (
+CREATE TABLE `admin_logs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `action` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -122,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `admin_logs` (
   KEY `idx_admin_logs_action` (`action`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `ads` (
+CREATE TABLE `ads` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Ad title (e.g., "New Academic Year Registration")',
   `subtitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Short subtitle or tagline',
@@ -154,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `ads` (
   KEY `idx_type` (`ad_type`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `ai_conversations` (
+CREATE TABLE `ai_conversations` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `role_id` int DEFAULT NULL,
@@ -168,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `ai_conversations` (
   KEY `ix_ai_conversations_user_id` (`user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `ai_messages` (
+CREATE TABLE `ai_messages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `conversation_id` int NOT NULL,
   `role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -181,12 +398,12 @@ CREATE TABLE IF NOT EXISTS `ai_messages` (
   CONSTRAINT `ai_messages_ibfk_1` FOREIGN KEY (`conversation_id`) REFERENCES `ai_conversations` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `alembic_version` (
+CREATE TABLE `alembic_version` (
   `version_num` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`version_num`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `app_admins` (
+CREATE TABLE `app_admins` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `is_super_admin` tinyint(1) NOT NULL,
@@ -204,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `app_admins` (
   CONSTRAINT `app_admins_ibfk_2` FOREIGN KEY (`locked_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `app_branding_settings` (
+CREATE TABLE `app_branding_settings` (
   `id` int NOT NULL,
   `icon_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'school_rounded',
   `top_text` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PAMA',
@@ -225,14 +442,14 @@ CREATE TABLE IF NOT EXISTS `app_branding_settings` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `app_quick_action_settings` (
+CREATE TABLE `app_quick_action_settings` (
   `id` int NOT NULL,
   `items_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance` (
+CREATE TABLE `attendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `branch` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stuid` int DEFAULT NULL,
@@ -254,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance__allowed_branches` (
+CREATE TABLE `attendance__allowed_branches` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `branch_id` int NOT NULL,
@@ -265,7 +482,7 @@ CREATE TABLE IF NOT EXISTS `attendance__allowed_branches` (
   KEY `ix_attendance__allowed_branches_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=776 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_audience_presets` (
+CREATE TABLE `attendance_audience_presets` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `preset_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -285,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `attendance_audience_presets` (
   KEY `ix_attendance_audience_presets_branch_id` (`branch_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_audit_log` (
+CREATE TABLE `attendance_audit_log` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `user_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -315,7 +532,7 @@ CREATE TABLE IF NOT EXISTS `attendance_audit_log` (
   CONSTRAINT `attendance_audit_log_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=100247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_log` (
+CREATE TABLE `attendance_log` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `scan_time` datetime NOT NULL,
@@ -326,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `attendance_log` (
   KEY `idx_attendance_log_student_time` (`student_id`,`scan_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_primary_device_events` (
+CREATE TABLE `attendance_primary_device_events` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `action` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -345,7 +562,7 @@ CREATE TABLE IF NOT EXISTS `attendance_primary_device_events` (
   CONSTRAINT `attendance_primary_device_events_ibfk_2` FOREIGN KEY (`actor_user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_primary_devices` (
+CREATE TABLE `attendance_primary_devices` (
   `user_id` int NOT NULL,
   `device_id_hash` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `device_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -361,7 +578,7 @@ CREATE TABLE IF NOT EXISTS `attendance_primary_devices` (
   CONSTRAINT `attendance_primary_devices_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_processing_rules` (
+CREATE TABLE `attendance_processing_rules` (
   `id` int NOT NULL AUTO_INCREMENT,
   `scope_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `scope_id` int NOT NULL,
@@ -375,7 +592,7 @@ CREATE TABLE IF NOT EXISTS `attendance_processing_rules` (
   KEY `ix_attendance_processing_rules_scope_type` (`scope_type`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_records` (
+CREATE TABLE `attendance_records` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `check_in_time` datetime DEFAULT NULL,
@@ -411,7 +628,7 @@ CREATE TABLE IF NOT EXISTS `attendance_records` (
   KEY `idx_attendance_records_schedule_id` (`schedule_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15065 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_schedule_exception_enrollments` (
+CREATE TABLE `attendance_schedule_exception_enrollments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exception_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -425,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `attendance_schedule_exception_enrollments` (
   KEY `ix_attendance_schedule_exception_enrollments_exception_id` (`exception_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_schedule_exceptions` (
+CREATE TABLE `attendance_schedule_exceptions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exception_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
@@ -457,7 +674,7 @@ CREATE TABLE IF NOT EXISTS `attendance_schedule_exceptions` (
   KEY `ix_attendance_schedule_exceptions_exception_date` (`exception_date`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_schedules` (
+CREATE TABLE `attendance_schedules` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'standard',
@@ -477,7 +694,7 @@ CREATE TABLE IF NOT EXISTS `attendance_schedules` (
   KEY `idx_schedule_active` (`is_active`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_statistics` (
+CREATE TABLE `attendance_statistics` (
   `id` int NOT NULL AUTO_INCREMENT,
   `branch_id` int NOT NULL,
   `program_id` int NOT NULL,
@@ -520,7 +737,7 @@ CREATE TABLE IF NOT EXISTS `attendance_statistics` (
   CONSTRAINT `attendance_statistics_ibfk_1` FOREIGN KEY (`primary_teacher_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=4936 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_system_settings` (
+CREATE TABLE `attendance_system_settings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `require_location` tinyint(1) DEFAULT '1',
   `block_mock_location` tinyint(1) DEFAULT '1',
@@ -547,7 +764,7 @@ CREATE TABLE IF NOT EXISTS `attendance_system_settings` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `attendance_user_assignments` (
+CREATE TABLE `attendance_user_assignments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `schedule_id` int NOT NULL,
@@ -562,7 +779,7 @@ CREATE TABLE IF NOT EXISTS `attendance_user_assignments` (
   KEY `idx_assignment_schedule` (`schedule_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=581 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `background_cards` (
+CREATE TABLE `background_cards` (
   `id` int NOT NULL AUTO_INCREMENT,
   `front_image` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `back_image` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -572,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `background_cards` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `background_cert` (
+CREATE TABLE `background_cert` (
   `id` int NOT NULL AUTO_INCREMENT,
   `program_id` int NOT NULL,
   `academic_id` int NOT NULL,
@@ -589,7 +806,7 @@ CREATE TABLE IF NOT EXISTS `background_cert` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bonus_deduction_rules` (
+CREATE TABLE `bonus_deduction_rules` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -604,7 +821,7 @@ CREATE TABLE IF NOT EXISTS `bonus_deduction_rules` (
   KEY `idx_rules_active` (`is_active`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `branch` (
+CREATE TABLE `branch` (
   `id` int NOT NULL AUTO_INCREMENT,
   `branch_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -661,7 +878,7 @@ CREATE TABLE IF NOT EXISTS `branch` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `branch_contacts` (
+CREATE TABLE `branch_contacts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `branch_id` int NOT NULL,
   `label` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -675,7 +892,7 @@ CREATE TABLE IF NOT EXISTS `branch_contacts` (
   CONSTRAINT `branch_contacts_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_assignment_assistants` (
+CREATE TABLE `bus_assignment_assistants` (
   `id` int NOT NULL AUTO_INCREMENT,
   `assignment_id` int NOT NULL,
   `assistant_id` int NOT NULL,
@@ -684,7 +901,7 @@ CREATE TABLE IF NOT EXISTS `bus_assignment_assistants` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_assignments` (
+CREATE TABLE `bus_assignments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `bus_id` int NOT NULL,
   `driver_id` int NOT NULL,
@@ -696,7 +913,7 @@ CREATE TABLE IF NOT EXISTS `bus_assignments` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_attendance` (
+CREATE TABLE `bus_attendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `assignment_id` int NOT NULL,
@@ -710,7 +927,7 @@ CREATE TABLE IF NOT EXISTS `bus_attendance` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_maintenance` (
+CREATE TABLE `bus_maintenance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `bus_id` int NOT NULL,
   `maintenance_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -724,7 +941,7 @@ CREATE TABLE IF NOT EXISTS `bus_maintenance` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_routes` (
+CREATE TABLE `bus_routes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `branch_id` int NOT NULL,
   `route_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -734,7 +951,7 @@ CREATE TABLE IF NOT EXISTS `bus_routes` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_stop_prices` (
+CREATE TABLE `bus_stop_prices` (
   `id` int NOT NULL AUTO_INCREMENT,
   `route_id` int NOT NULL,
   `stop_id` int NOT NULL,
@@ -747,7 +964,7 @@ CREATE TABLE IF NOT EXISTS `bus_stop_prices` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_stops` (
+CREATE TABLE `bus_stops` (
   `id` int NOT NULL AUTO_INCREMENT,
   `route_id` int NOT NULL,
   `stop_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -759,7 +976,7 @@ CREATE TABLE IF NOT EXISTS `bus_stops` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `bus_stu_inroll` (
+CREATE TABLE `bus_stu_inroll` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `route_id` int NOT NULL,
@@ -772,7 +989,7 @@ CREATE TABLE IF NOT EXISTS `bus_stu_inroll` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `buses` (
+CREATE TABLE `buses` (
   `id` int NOT NULL AUTO_INCREMENT,
   `plate_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `car_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -786,7 +1003,7 @@ CREATE TABLE IF NOT EXISTS `buses` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `noted` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -795,7 +1012,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `certificate_settings` (
+CREATE TABLE `certificate_settings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academic_id` int NOT NULL,
   `prefix` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -808,7 +1025,7 @@ CREATE TABLE IF NOT EXISTS `certificate_settings` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `check_in_security_events` (
+CREATE TABLE `check_in_security_events` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `user_id` int DEFAULT NULL,
@@ -828,7 +1045,7 @@ CREATE TABLE IF NOT EXISTS `check_in_security_events` (
   CONSTRAINT `check_in_security_events_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=1662 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `class_teachers` (
+CREATE TABLE `class_teachers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `teacher_id` int NOT NULL,
   `teacher_assistant_id` int NOT NULL,
@@ -846,7 +1063,7 @@ CREATE TABLE IF NOT EXISTS `class_teachers` (
   KEY `idx_class_teachers_grade_shift` (`grade_id`,`shift_id`,`academic_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `classes` (
+CREATE TABLE `classes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `class_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `class_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -865,7 +1082,7 @@ CREATE TABLE IF NOT EXISTS `classes` (
   KEY `ix_classes_id` (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `daily_attendance` (
+CREATE TABLE `daily_attendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `program_id` int NOT NULL,
@@ -890,7 +1107,7 @@ CREATE TABLE IF NOT EXISTS `daily_attendance` (
   KEY `idx_attendance_academic` (`academic_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=187158 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `decimal_marks_allow` (
+CREATE TABLE `decimal_marks_allow` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `program_id` int unsigned NOT NULL,
   `allow` decimal(3,2) NOT NULL,
@@ -900,7 +1117,7 @@ CREATE TABLE IF NOT EXISTS `decimal_marks_allow` (
   UNIQUE KEY `uq_program_allow` (`program_id`,`allow`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `demo_cert` (
+CREATE TABLE `demo_cert` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `cer_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -925,7 +1142,7 @@ CREATE TABLE IF NOT EXISTS `demo_cert` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1396 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `department` (
+CREATE TABLE `department` (
   `id` int NOT NULL AUTO_INCREMENT,
   `department` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `translate` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -935,7 +1152,7 @@ CREATE TABLE IF NOT EXISTS `department` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `departments` (
+CREATE TABLE `departments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `department` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `translate` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -946,7 +1163,7 @@ CREATE TABLE IF NOT EXISTS `departments` (
   KEY `ix_departments_id` (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `device_tokens` (
+CREATE TABLE `device_tokens` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL COMMENT 'User ID (parent, teacher, student, etc.)',
   `user_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'user_type: parent, teacher, student, staff',
@@ -972,7 +1189,7 @@ CREATE TABLE IF NOT EXISTS `device_tokens` (
   KEY `idx_active` (`is_active`,`last_used_at`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=55384 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `discount_childs` (
+CREATE TABLE `discount_childs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `discount_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `child_count` int NOT NULL,
@@ -986,7 +1203,7 @@ CREATE TABLE IF NOT EXISTS `discount_childs` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `discount_result` (
+CREATE TABLE `discount_result` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `grade_scale_id` int NOT NULL,
@@ -997,7 +1214,7 @@ CREATE TABLE IF NOT EXISTS `discount_result` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `enrollments` (
+CREATE TABLE `enrollments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `class_id` int NOT NULL,
@@ -1010,7 +1227,7 @@ CREATE TABLE IF NOT EXISTS `enrollments` (
   KEY `ix_enrollments_id` (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `exam_calculate_sign` (
+CREATE TABLE `exam_calculate_sign` (
   `id` int NOT NULL AUTO_INCREMENT,
   `program_id` int NOT NULL,
   `grade_group_id` int DEFAULT NULL,
@@ -1027,7 +1244,7 @@ CREATE TABLE IF NOT EXISTS `exam_calculate_sign` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=187 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `exam_calculate_sign_subjects` (
+CREATE TABLE `exam_calculate_sign_subjects` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam_calculate_sign_id` int NOT NULL,
   `subject_id` int NOT NULL,
@@ -1039,7 +1256,7 @@ CREATE TABLE IF NOT EXISTS `exam_calculate_sign_subjects` (
   CONSTRAINT `fk_sign_subjects_sign` FOREIGN KEY (`exam_calculate_sign_id`) REFERENCES `exam_calculate_sign` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=2430 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `expense_categories` (
+CREATE TABLE `expense_categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -1050,7 +1267,7 @@ CREATE TABLE IF NOT EXISTS `expense_categories` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `expenses` (
+CREATE TABLE `expenses` (
   `id` int NOT NULL AUTO_INCREMENT,
   `expense_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ref` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1077,7 +1294,7 @@ CREATE TABLE IF NOT EXISTS `expenses` (
   UNIQUE KEY `expense_no` (`expense_no`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `feature_locks` (
+CREATE TABLE `feature_locks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `feature_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `feature_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1093,7 +1310,7 @@ CREATE TABLE IF NOT EXISTS `feature_locks` (
   CONSTRAINT `feature_locks_ibfk_1` FOREIGN KEY (`locked_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `fee_services` (
+CREATE TABLE `fee_services` (
   `id` int NOT NULL AUTO_INCREMENT,
   `service_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` decimal(65,2) NOT NULL,
@@ -1107,7 +1324,7 @@ CREATE TABLE IF NOT EXISTS `fee_services` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `feedbacks` (
+CREATE TABLE `feedbacks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `child_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `guardian_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1120,7 +1337,7 @@ CREATE TABLE IF NOT EXISTS `feedbacks` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `form_field_options` (
+CREATE TABLE `form_field_options` (
   `id` int NOT NULL AUTO_INCREMENT,
   `field_id` int NOT NULL,
   `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1132,7 +1349,7 @@ CREATE TABLE IF NOT EXISTS `form_field_options` (
   CONSTRAINT `form_field_options_ibfk_1` FOREIGN KEY (`field_id`) REFERENCES `form_fields` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `form_fields` (
+CREATE TABLE `form_fields` (
   `id` int NOT NULL AUTO_INCREMENT,
   `form_id` int NOT NULL,
   `field_type` enum('short_text','long_text','number','dropdown','checkboxes','radio','date','time','child_selector','image','file') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1150,7 +1367,7 @@ CREATE TABLE IF NOT EXISTS `form_fields` (
   CONSTRAINT `form_fields_ibfk_1` FOREIGN KEY (`form_id`) REFERENCES `forms` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `form_submission_values` (
+CREATE TABLE `form_submission_values` (
   `id` int NOT NULL AUTO_INCREMENT,
   `submission_id` int NOT NULL,
   `field_id` int NOT NULL,
@@ -1163,7 +1380,7 @@ CREATE TABLE IF NOT EXISTS `form_submission_values` (
   CONSTRAINT `form_submission_values_ibfk_2` FOREIGN KEY (`field_id`) REFERENCES `form_fields` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `form_submissions` (
+CREATE TABLE `form_submissions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `form_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -1175,7 +1392,7 @@ CREATE TABLE IF NOT EXISTS `form_submissions` (
   CONSTRAINT `form_submissions_ibfk_1` FOREIGN KEY (`form_id`) REFERENCES `forms` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `forms` (
+CREATE TABLE `forms` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -1191,7 +1408,7 @@ CREATE TABLE IF NOT EXISTS `forms` (
   KEY `ix_forms_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `grade` (
+CREATE TABLE `grade` (
   `id` int NOT NULL AUTO_INCREMENT,
   `grade_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `grade_name_us` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1208,7 +1425,7 @@ CREATE TABLE IF NOT EXISTS `grade` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `grade_group` (
+CREATE TABLE `grade_group` (
   `id` int NOT NULL AUTO_INCREMENT,
   `group_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `academic_id` int NOT NULL,
@@ -1223,7 +1440,7 @@ CREATE TABLE IF NOT EXISTS `grade_group` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `grade_scale` (
+CREATE TABLE `grade_scale` (
   `id` int NOT NULL AUTO_INCREMENT,
   `grade_group_id` int NOT NULL,
   `academic_id` int NOT NULL DEFAULT '1',
@@ -1239,7 +1456,7 @@ CREATE TABLE IF NOT EXISTS `grade_scale` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `grade_type` (
+CREATE TABLE `grade_type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `program_id` int NOT NULL,
@@ -1254,7 +1471,7 @@ CREATE TABLE IF NOT EXISTS `grade_type` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `holidays` (
+CREATE TABLE `holidays` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` date NOT NULL,
@@ -1264,7 +1481,7 @@ CREATE TABLE IF NOT EXISTS `holidays` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `hot_event_impressions` (
+CREATE TABLE `hot_event_impressions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `hot_event_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -1276,7 +1493,7 @@ CREATE TABLE IF NOT EXISTS `hot_event_impressions` (
   KEY `ix_hot_event_impressions_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=626 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `hot_events` (
+CREATE TABLE `hot_events` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1297,7 +1514,7 @@ CREATE TABLE IF NOT EXISTS `hot_events` (
   KEY `ix_hot_events_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `inventories` (
+CREATE TABLE `inventories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `product_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1316,7 +1533,7 @@ CREATE TABLE IF NOT EXISTS `inventories` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `invoice` (
+CREATE TABLE `invoice` (
   `id` int NOT NULL AUTO_INCREMENT,
   `invoice_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ref` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1352,7 +1569,7 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=294 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `invoice_items` (
+CREATE TABLE `invoice_items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `invoice_id` int DEFAULT NULL,
   `ref` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1377,7 +1594,7 @@ CREATE TABLE IF NOT EXISTS `invoice_items` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1475 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `items_group` (
+CREATE TABLE `items_group` (
   `id` int NOT NULL AUTO_INCREMENT,
   `group_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `items_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1387,7 +1604,7 @@ CREATE TABLE IF NOT EXISTS `items_group` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning` (
+CREATE TABLE `learning` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academicid` int NOT NULL,
   `studentid` int NOT NULL,
@@ -1404,7 +1621,7 @@ CREATE TABLE IF NOT EXISTS `learning` (
   KEY `idx_learning_program` (`programid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3466 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning_class_schedules` (
+CREATE TABLE `learning_class_schedules` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academic_id` int NOT NULL,
   `branch_id` int NOT NULL COMMENT 'Links to branch table',
@@ -1437,7 +1654,7 @@ CREATE TABLE IF NOT EXISTS `learning_class_schedules` (
   KEY `ix_learning_class_schedule_shift` (`shift_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1998 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning_homework` (
+CREATE TABLE `learning_homework` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academic_id` int NOT NULL,
   `class_schedule_id` int DEFAULT NULL,
@@ -1469,7 +1686,7 @@ CREATE TABLE IF NOT EXISTS `learning_homework` (
   CONSTRAINT `fk_learning_homework_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning_homework_attachments` (
+CREATE TABLE `learning_homework_attachments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `homework_id` int NOT NULL,
   `file_url` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1482,7 +1699,7 @@ CREATE TABLE IF NOT EXISTS `learning_homework_attachments` (
   CONSTRAINT `fk_learning_homework_attachment_homework` FOREIGN KEY (`homework_id`) REFERENCES `learning_homework` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning_schedule_exceptions` (
+CREATE TABLE `learning_schedule_exceptions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `class_schedule_id` int NOT NULL,
   `exception_date` date NOT NULL,
@@ -1500,7 +1717,7 @@ CREATE TABLE IF NOT EXISTS `learning_schedule_exceptions` (
   KEY `ix_learning_schedule_exceptions_class_schedule_id` (`class_schedule_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning_session_logs` (
+CREATE TABLE `learning_session_logs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `class_schedule_id` int NOT NULL,
   `session_date` date NOT NULL,
@@ -1521,7 +1738,7 @@ CREATE TABLE IF NOT EXISTS `learning_session_logs` (
   KEY `ix_learning_session_logs_session_date` (`session_date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning_time_slot_scopes` (
+CREATE TABLE `learning_time_slot_scopes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `time_slot_id` int NOT NULL,
   `scope_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1534,7 +1751,7 @@ CREATE TABLE IF NOT EXISTS `learning_time_slot_scopes` (
   CONSTRAINT `learning_time_slot_scopes_ibfk_1` FOREIGN KEY (`time_slot_id`) REFERENCES `learning_time_slots` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=411 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `learning_time_slots` (
+CREATE TABLE `learning_time_slots` (
   `id` int NOT NULL AUTO_INCREMENT,
   `slot_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_time` time NOT NULL,
@@ -1553,7 +1770,7 @@ CREATE TABLE IF NOT EXISTS `learning_time_slots` (
   KEY `ix_learning_time_slots_grade_id` (`grade_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_approvers` (
+CREATE TABLE `leave_approvers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `department_id` int DEFAULT NULL,
@@ -1573,7 +1790,7 @@ CREATE TABLE IF NOT EXISTS `leave_approvers` (
   CONSTRAINT `leave_approvers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_balance_adjustments` (
+CREATE TABLE `leave_balance_adjustments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `leave_type_id` int NOT NULL,
@@ -1603,7 +1820,7 @@ CREATE TABLE IF NOT EXISTS `leave_balance_adjustments` (
   CONSTRAINT `leave_balance_adjustments_ibfk_4` FOREIGN KEY (`voided_by`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_balances` (
+CREATE TABLE `leave_balances` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `leave_type_id` int NOT NULL,
@@ -1625,7 +1842,7 @@ CREATE TABLE IF NOT EXISTS `leave_balances` (
   CONSTRAINT `leave_balances_ibfk_3` FOREIGN KEY (`policy_id`) REFERENCES `leave_policies` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_histories` (
+CREATE TABLE `leave_histories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `leave_request_id` int NOT NULL,
   `action` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1643,7 +1860,7 @@ CREATE TABLE IF NOT EXISTS `leave_histories` (
   CONSTRAINT `leave_histories_ibfk_2` FOREIGN KEY (`changed_by`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_policies` (
+CREATE TABLE `leave_policies` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -1656,7 +1873,7 @@ CREATE TABLE IF NOT EXISTS `leave_policies` (
   KEY `ix_leave_policies_id` (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_policy_leave_type_association` (
+CREATE TABLE `leave_policy_leave_type_association` (
   `leave_policy_id` int NOT NULL,
   `leave_type_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1667,7 +1884,7 @@ CREATE TABLE IF NOT EXISTS `leave_policy_leave_type_association` (
   CONSTRAINT `leave_policy_leave_type_association_ibfk_2` FOREIGN KEY (`leave_type_id`) REFERENCES `leave_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_request_days` (
+CREATE TABLE `leave_request_days` (
   `id` int NOT NULL AUTO_INCREMENT,
   `leave_request_id` int NOT NULL,
   `leave_date` date NOT NULL,
@@ -1686,7 +1903,7 @@ CREATE TABLE IF NOT EXISTS `leave_request_days` (
   CONSTRAINT `leave_request_days_ibfk_1` FOREIGN KEY (`leave_request_id`) REFERENCES `leave_requests` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_requests` (
+CREATE TABLE `leave_requests` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `leave_type_id` int NOT NULL,
@@ -1721,7 +1938,7 @@ CREATE TABLE IF NOT EXISTS `leave_requests` (
   CONSTRAINT `leave_requests_ibfk_3` FOREIGN KEY (`approver_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_type_allocations` (
+CREATE TABLE `leave_type_allocations` (
   `id` int NOT NULL AUTO_INCREMENT,
   `leave_type_id` int NOT NULL,
   `academic_id` int NOT NULL,
@@ -1738,7 +1955,7 @@ CREATE TABLE IF NOT EXISTS `leave_type_allocations` (
   CONSTRAINT `leave_type_allocations_ibfk_1` FOREIGN KEY (`leave_type_id`) REFERENCES `leave_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `leave_types` (
+CREATE TABLE `leave_types` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -1756,7 +1973,7 @@ CREATE TABLE IF NOT EXISTS `leave_types` (
   KEY `ix_leave_types_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `login_attempts` (
+CREATE TABLE `login_attempts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `computer_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1785,7 +2002,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   KEY `idx_processor_id` (`processor_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `logtransaction` (
+CREATE TABLE `logtransaction` (
   `id` int NOT NULL AUTO_INCREMENT,
   `ref` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `accounts_id` int NOT NULL,
@@ -1800,7 +2017,7 @@ CREATE TABLE IF NOT EXISTS `logtransaction` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=338 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `mark_entry_locks` (
+CREATE TABLE `mark_entry_locks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `program_id` int NOT NULL,
   `grade_id` int NOT NULL,
@@ -1818,7 +2035,7 @@ CREATE TABLE IF NOT EXISTS `mark_entry_locks` (
   KEY `idx_mark_entry_locks_locked_by` (`locked_by`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `mark_lock_attempts` (
+CREATE TABLE `mark_lock_attempts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `failed_attempts` int NOT NULL DEFAULT '0',
@@ -1832,7 +2049,7 @@ CREATE TABLE IF NOT EXISTS `mark_lock_attempts` (
   KEY `idx_mark_lock_attempts_locked_until` (`locked_until`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `mark_lock_passcodes` (
+CREATE TABLE `mark_lock_passcodes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `passcode_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1843,7 +2060,7 @@ CREATE TABLE IF NOT EXISTS `mark_lock_passcodes` (
   KEY `idx_mark_lock_passcodes_user` (`user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_categories` (
+CREATE TABLE `market_categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_en` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1856,7 +2073,7 @@ CREATE TABLE IF NOT EXISTS `market_categories` (
   KEY `ix_market_categories_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_listing_broadcasts` (
+CREATE TABLE `market_listing_broadcasts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `store_id` int NOT NULL,
   `listing_id` int NOT NULL,
@@ -1872,7 +2089,7 @@ CREATE TABLE IF NOT EXISTS `market_listing_broadcasts` (
   CONSTRAINT `market_listing_broadcasts_ibfk_2` FOREIGN KEY (`listing_id`) REFERENCES `market_listings` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_listing_images` (
+CREATE TABLE `market_listing_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `listing_id` int NOT NULL,
   `image_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1884,7 +2101,7 @@ CREATE TABLE IF NOT EXISTS `market_listing_images` (
   CONSTRAINT `market_listing_images_ibfk_1` FOREIGN KEY (`listing_id`) REFERENCES `market_listings` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_listings` (
+CREATE TABLE `market_listings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `store_id` int NOT NULL,
   `category_id` int DEFAULT NULL,
@@ -1912,7 +2129,7 @@ CREATE TABLE IF NOT EXISTS `market_listings` (
   CONSTRAINT `market_listings_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `market_categories` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_orders` (
+CREATE TABLE `market_orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `listing_id` int NOT NULL,
   `store_id` int NOT NULL,
@@ -1937,7 +2154,7 @@ CREATE TABLE IF NOT EXISTS `market_orders` (
   CONSTRAINT `market_orders_ibfk_2` FOREIGN KEY (`store_id`) REFERENCES `market_stores` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_reviews` (
+CREATE TABLE `market_reviews` (
   `id` int NOT NULL AUTO_INCREMENT,
   `listing_id` int NOT NULL,
   `store_id` int NOT NULL,
@@ -1960,7 +2177,7 @@ CREATE TABLE IF NOT EXISTS `market_reviews` (
   CONSTRAINT `market_reviews_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `market_orders` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_seller_bans` (
+CREATE TABLE `market_seller_bans` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `user_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1973,7 +2190,7 @@ CREATE TABLE IF NOT EXISTS `market_seller_bans` (
   KEY `ix_market_seller_bans_user_id` (`user_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_settings` (
+CREATE TABLE `market_settings` (
   `id` int NOT NULL,
   `welcome_enabled` tinyint(1) NOT NULL DEFAULT '1',
   `welcome_skip_seconds` int NOT NULL DEFAULT '30',
@@ -1982,7 +2199,7 @@ CREATE TABLE IF NOT EXISTS `market_settings` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_stores` (
+CREATE TABLE `market_stores` (
   `id` int NOT NULL AUTO_INCREMENT,
   `seller_user_id` int NOT NULL,
   `seller_user_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2007,7 +2224,7 @@ CREATE TABLE IF NOT EXISTS `market_stores` (
   KEY `ix_market_stores_status` (`status`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `market_wishlists` (
+CREATE TABLE `market_wishlists` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `user_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2021,7 +2238,7 @@ CREATE TABLE IF NOT EXISTS `market_wishlists` (
   CONSTRAINT `market_wishlists_ibfk_1` FOREIGN KEY (`listing_id`) REFERENCES `market_listings` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_input` (
+CREATE TABLE `marks_input` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `program_id` int NOT NULL,
@@ -2039,7 +2256,7 @@ CREATE TABLE IF NOT EXISTS `marks_input` (
   KEY `idx_marks_input_marks_system` (`marks_system_id`,`student_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=78729 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_monthly` (
+CREATE TABLE `marks_monthly` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam_name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `student_id` int NOT NULL,
@@ -2059,7 +2276,7 @@ CREATE TABLE IF NOT EXISTS `marks_monthly` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8808 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_monthly_items` (
+CREATE TABLE `marks_monthly_items` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `marks_monthly_id` int NOT NULL,
   `marks_input_id` bigint NOT NULL,
@@ -2072,7 +2289,7 @@ CREATE TABLE IF NOT EXISTS `marks_monthly_items` (
   CONSTRAINT `fk_marks_monthly_items_monthly` FOREIGN KEY (`marks_monthly_id`) REFERENCES `marks_monthly` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=425384 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_semester` (
+CREATE TABLE `marks_semester` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam_name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `student_id` int NOT NULL,
@@ -2099,7 +2316,7 @@ CREATE TABLE IF NOT EXISTS `marks_semester` (
   KEY `idx_grade_scale_id` (`grade_scale_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2416 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_semester_monthlies` (
+CREATE TABLE `marks_semester_monthlies` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `marks_semester_id` int NOT NULL,
   `marks_monthly_id` int NOT NULL,
@@ -2112,7 +2329,7 @@ CREATE TABLE IF NOT EXISTS `marks_semester_monthlies` (
   CONSTRAINT `fk_semester_monthlies_semester` FOREIGN KEY (`marks_semester_id`) REFERENCES `marks_semester` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=456982 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_system` (
+CREATE TABLE `marks_system` (
   `id` int NOT NULL AUTO_INCREMENT,
   `marks_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `marks_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2130,7 +2347,7 @@ CREATE TABLE IF NOT EXISTS `marks_system` (
   UNIQUE KEY `uq_marks_system_code` (`program_id`,`academic_id`,`grade_group_id`,`marks_code`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_system_subjects` (
+CREATE TABLE `marks_system_subjects` (
   `id` int NOT NULL AUTO_INCREMENT,
   `marks_system_id` int NOT NULL,
   `subject_id` int NOT NULL,
@@ -2143,7 +2360,7 @@ CREATE TABLE IF NOT EXISTS `marks_system_subjects` (
   CONSTRAINT `fk_system_subjects_system` FOREIGN KEY (`marks_system_id`) REFERENCES `marks_system` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=3666 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_yearly` (
+CREATE TABLE `marks_yearly` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam_name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `student_id` int NOT NULL,
@@ -2170,7 +2387,7 @@ CREATE TABLE IF NOT EXISTS `marks_yearly` (
   KEY `idx_grade_scale_id` (`grade_scale_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=805 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `marks_yearly_semesters` (
+CREATE TABLE `marks_yearly_semesters` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `marks_yearly_id` int NOT NULL,
   `marks_semester_id` int NOT NULL,
@@ -2183,7 +2400,7 @@ CREATE TABLE IF NOT EXISTS `marks_yearly_semesters` (
   CONSTRAINT `fk_yearly_semesters_yearly` FOREIGN KEY (`marks_yearly_id`) REFERENCES `marks_yearly` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=1601 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `medal_points_setup` (
+CREATE TABLE `medal_points_setup` (
   `program_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `gold_pts` double DEFAULT '0',
   `silver_pts` double DEFAULT '0',
@@ -2193,7 +2410,7 @@ CREATE TABLE IF NOT EXISTS `medal_points_setup` (
   PRIMARY KEY (`program_name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `medal_price` (
+CREATE TABLE `medal_price` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name_us` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_kh` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2204,7 +2421,7 @@ CREATE TABLE IF NOT EXISTS `medal_price` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `medalname` (
+CREATE TABLE `medalname` (
   `id` int NOT NULL AUTO_INCREMENT,
   `medal_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2212,7 +2429,7 @@ CREATE TABLE IF NOT EXISTS `medalname` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `medals` (
+CREATE TABLE `medals` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cer_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `student_id` int NOT NULL,
@@ -2226,7 +2443,7 @@ CREATE TABLE IF NOT EXISTS `medals` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2281 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `message_group_bans` (
+CREATE TABLE `message_group_bans` (
   `id` int NOT NULL AUTO_INCREMENT,
   `group_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -2245,7 +2462,7 @@ CREATE TABLE IF NOT EXISTS `message_group_bans` (
   CONSTRAINT `message_group_bans_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `message_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `message_group_members` (
+CREATE TABLE `message_group_members` (
   `id` int NOT NULL AUTO_INCREMENT,
   `group_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -2261,7 +2478,7 @@ CREATE TABLE IF NOT EXISTS `message_group_members` (
   CONSTRAINT `message_group_members_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `message_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=2735 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `message_group_settings` (
+CREATE TABLE `message_group_settings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `group_id` int NOT NULL,
   `can_send_text` int NOT NULL DEFAULT '1',
@@ -2277,7 +2494,7 @@ CREATE TABLE IF NOT EXISTS `message_group_settings` (
   CONSTRAINT `message_group_settings_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `message_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `message_groups` (
+CREATE TABLE `message_groups` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2295,7 +2512,7 @@ CREATE TABLE IF NOT EXISTS `message_groups` (
   KEY `ix_message_groups_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `message_pinned` (
+CREATE TABLE `message_pinned` (
   `id` int NOT NULL AUTO_INCREMENT,
   `group_id` int NOT NULL,
   `message_id` int NOT NULL,
@@ -2311,7 +2528,7 @@ CREATE TABLE IF NOT EXISTS `message_pinned` (
   CONSTRAINT `message_pinned_ibfk_2` FOREIGN KEY (`message_id`) REFERENCES `messages` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `message_reactions` (
+CREATE TABLE `message_reactions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `message_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -2324,7 +2541,7 @@ CREATE TABLE IF NOT EXISTS `message_reactions` (
   CONSTRAINT `message_reactions_ibfk_1` FOREIGN KEY (`message_id`) REFERENCES `messages` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `messages` (
+CREATE TABLE `messages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `group_id` int NOT NULL,
   `sender_id` int NOT NULL,
@@ -2345,7 +2562,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `message_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `news` (
+CREATE TABLE `news` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2368,7 +2585,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   KEY `ix_news_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `news_images` (
+CREATE TABLE `news_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `news_id` int NOT NULL,
   `image_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2381,7 +2598,7 @@ CREATE TABLE IF NOT EXISTS `news_images` (
   CONSTRAINT `news_images_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=1560 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `nittes` (
+CREATE TABLE `nittes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name_us` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_kh` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2390,7 +2607,7 @@ CREATE TABLE IF NOT EXISTS `nittes` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `nittes_discount` (
+CREATE TABLE `nittes_discount` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academic_id` int NOT NULL,
   `branch_id` int NOT NULL,
@@ -2402,7 +2619,7 @@ CREATE TABLE IF NOT EXISTS `nittes_discount` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `notifications` (
+CREATE TABLE `notifications` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `user_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2420,7 +2637,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   KEY `idx_notif_read` (`is_read`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=47886 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `otp_codes` (
+CREATE TABLE `otp_codes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `otp_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2433,7 +2650,7 @@ CREATE TABLE IF NOT EXISTS `otp_codes` (
   KEY `idx_otp_expiry` (`expiry`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `parent_permission_interactions` (
+CREATE TABLE `parent_permission_interactions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `parent_id` int NOT NULL,
   `student_id` int NOT NULL,
@@ -2447,7 +2664,7 @@ CREATE TABLE IF NOT EXISTS `parent_permission_interactions` (
   KEY `ix_permission_student_learning` (`student_id`,`learning_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `parent_registration_audit` (
+CREATE TABLE `parent_registration_audit` (
   `id` int NOT NULL AUTO_INCREMENT,
   `parent_id` int NOT NULL,
   `action` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2462,7 +2679,7 @@ CREATE TABLE IF NOT EXISTS `parent_registration_audit` (
   KEY `idx_pra_parent` (`parent_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `parent_student_link_requests` (
+CREATE TABLE `parent_student_link_requests` (
   `id` int NOT NULL AUTO_INCREMENT,
   `parent_id` int NOT NULL,
   `student_id` int NOT NULL,
@@ -2476,7 +2693,7 @@ CREATE TABLE IF NOT EXISTS `parent_student_link_requests` (
   CONSTRAINT `parent_student_link_requests_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `parents` (
+CREATE TABLE `parents` (
   `id` int NOT NULL AUTO_INCREMENT,
   `uniqueid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2512,7 +2729,7 @@ CREATE TABLE IF NOT EXISTS `parents` (
   KEY `ix_parents_status` (`status`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1016 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `partner_images` (
+CREATE TABLE `partner_images` (
   `id` int NOT NULL AUTO_INCREMENT,
   `partner_id` int NOT NULL,
   `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2524,7 +2741,7 @@ CREATE TABLE IF NOT EXISTS `partner_images` (
   CONSTRAINT `partner_images_ibfk_1` FOREIGN KEY (`partner_id`) REFERENCES `partners` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `partners` (
+CREATE TABLE `partners` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `short_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2546,7 +2763,7 @@ CREATE TABLE IF NOT EXISTS `partners` (
   CONSTRAINT `partners_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `permissions` (
+CREATE TABLE `permissions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `permission_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2556,7 +2773,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   UNIQUE KEY `permission_name` (`permission_name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `pickup` (
+CREATE TABLE `pickup` (
   `id` int NOT NULL AUTO_INCREMENT,
   `parentid` int DEFAULT NULL,
   `childid` int DEFAULT NULL,
@@ -2570,7 +2787,7 @@ CREATE TABLE IF NOT EXISTS `pickup` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `pickup_branch_calling` (
+CREATE TABLE `pickup_branch_calling` (
   `academic_id` int NOT NULL,
   `branch_id` int NOT NULL,
   `calling_enabled` tinyint(1) NOT NULL DEFAULT '0',
@@ -2579,7 +2796,7 @@ CREATE TABLE IF NOT EXISTS `pickup_branch_calling` (
   KEY `idx_pbc_academic` (`academic_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `pickup_requests` (
+CREATE TABLE `pickup_requests` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `parent_id` int NOT NULL,
@@ -2604,7 +2821,7 @@ CREATE TABLE IF NOT EXISTS `pickup_requests` (
   KEY `idx_pickup_student_active` (`student_id`,`status`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `pickup_settings` (
+CREATE TABLE `pickup_settings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academic_id` int NOT NULL,
   `repeat_count` int NOT NULL,
@@ -2616,7 +2833,7 @@ CREATE TABLE IF NOT EXISTS `pickup_settings` (
   KEY `ix_pickup_settings_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `position` (
+CREATE TABLE `position` (
   `id` int NOT NULL AUTO_INCREMENT,
   `position` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `translate` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2626,7 +2843,7 @@ CREATE TABLE IF NOT EXISTS `position` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `price_list` (
+CREATE TABLE `price_list` (
   `id` int NOT NULL AUTO_INCREMENT,
   `program_id` int NOT NULL,
   `grade_id` int NOT NULL,
@@ -2642,7 +2859,7 @@ CREATE TABLE IF NOT EXISTS `price_list` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `price_visibility_settings` (
+CREATE TABLE `price_visibility_settings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `branch_id` int DEFAULT NULL COMMENT 'NULL = all branches',
   `program_id` int DEFAULT NULL COMMENT 'NULL = all programs',
@@ -2655,7 +2872,7 @@ CREATE TABLE IF NOT EXISTS `price_visibility_settings` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `profile_frame_history` (
+CREATE TABLE `profile_frame_history` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `frame_id` int DEFAULT NULL,
@@ -2669,7 +2886,7 @@ CREATE TABLE IF NOT EXISTS `profile_frame_history` (
   CONSTRAINT `profile_frame_history_ibfk_2` FOREIGN KEY (`frame_id`) REFERENCES `profile_frames` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `profile_frames` (
+CREATE TABLE `profile_frames` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2691,7 +2908,7 @@ CREATE TABLE IF NOT EXISTS `profile_frames` (
   CONSTRAINT `profile_frames_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `program` (
+CREATE TABLE `program` (
   `id` int NOT NULL AUTO_INCREMENT,
   `program_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `program_name_us` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2709,7 +2926,7 @@ CREATE TABLE IF NOT EXISTS `program` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `qrattendance` (
+CREATE TABLE `qrattendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `attendance_date` date NOT NULL,
@@ -2722,7 +2939,7 @@ CREATE TABLE IF NOT EXISTS `qrattendance` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `results_top_students` (
+CREATE TABLE `results_top_students` (
   `id` int NOT NULL AUTO_INCREMENT,
   `featured_batch_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `academic_id` int NOT NULL,
@@ -2756,7 +2973,7 @@ CREATE TABLE IF NOT EXISTS `results_top_students` (
   KEY `ix_results_top_students_academic_id` (`academic_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=367 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `results_top_students_display_settings` (
+CREATE TABLE `results_top_students_display_settings` (
   `id` int NOT NULL,
   `avatar_chip_mode` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `hide_section` tinyint(1) NOT NULL DEFAULT '0',
@@ -2765,7 +2982,7 @@ CREATE TABLE IF NOT EXISTS `results_top_students_display_settings` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `role_permissions` (
+CREATE TABLE `role_permissions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `role_id` int NOT NULL,
   `permission_id` int NOT NULL,
@@ -2778,7 +2995,7 @@ CREATE TABLE IF NOT EXISTS `role_permissions` (
   CONSTRAINT `role_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=607 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `roles` (
+CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `role_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2786,7 +3003,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `salary_bonuses` (
+CREATE TABLE `salary_bonuses` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2804,7 +3021,7 @@ CREATE TABLE IF NOT EXISTS `salary_bonuses` (
   KEY `idx_bonus_effective` (`effective_date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `salary_deductions` (
+CREATE TABLE `salary_deductions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `attendance_setting_id` int DEFAULT NULL,
@@ -2823,7 +3040,7 @@ CREATE TABLE IF NOT EXISTS `salary_deductions` (
   KEY `idx_deduction_effective` (`effective_date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `salary_history` (
+CREATE TABLE `salary_history` (
   `id` int NOT NULL AUTO_INCREMENT,
   `financial_id` int NOT NULL,
   `previous_amount` decimal(12,2) DEFAULT NULL,
@@ -2843,7 +3060,7 @@ CREATE TABLE IF NOT EXISTS `salary_history` (
   KEY `idx_salary_history_change_date` (`change_date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `scholarship` (
+CREATE TABLE `scholarship` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `academic_id` int NOT NULL,
@@ -2853,7 +3070,7 @@ CREATE TABLE IF NOT EXISTS `scholarship` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `school_documents` (
+CREATE TABLE `school_documents` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `title_km` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2870,7 +3087,7 @@ CREATE TABLE IF NOT EXISTS `school_documents` (
   KEY `idx_sd_active_order` (`is_active`,`sort_order`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `school_events` (
+CREATE TABLE `school_events` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `title_kh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2892,7 +3109,7 @@ CREATE TABLE IF NOT EXISTS `school_events` (
   KEY `ix_school_events_event_date` (`event_date`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `school_overviews` (
+CREATE TABLE `school_overviews` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2910,7 +3127,7 @@ CREATE TABLE IF NOT EXISTS `school_overviews` (
   KEY `ix_school_overviews_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `settings` (
+CREATE TABLE `settings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `enterpriseName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `enterpriseType` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2971,7 +3188,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `shift` (
+CREATE TABLE `shift` (
   `id` int NOT NULL AUTO_INCREMENT,
   `shift_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `shift_name_en` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2985,7 +3202,7 @@ CREATE TABLE IF NOT EXISTS `shift` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `smart_download_links` (
+CREATE TABLE `smart_download_links` (
   `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `android_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2996,7 +3213,7 @@ CREATE TABLE IF NOT EXISTS `smart_download_links` (
   KEY `ix_smart_download_links_id` (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `splash_ads` (
+CREATE TABLE `splash_ads` (
   `id` int NOT NULL AUTO_INCREMENT,
   `image_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `duration_seconds` int NOT NULL,
@@ -3010,7 +3227,7 @@ CREATE TABLE IF NOT EXISTS `splash_ads` (
   KEY `ix_splash_ads_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `status` (
+CREATE TABLE `status` (
   `id` int NOT NULL AUTO_INCREMENT,
   `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -3018,7 +3235,7 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `student_activity_logs` (
+CREATE TABLE `student_activity_logs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `action_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3035,7 +3252,7 @@ CREATE TABLE IF NOT EXISTS `student_activity_logs` (
   KEY `idx_performed_by` (`performed_by`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=919 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `student_profile_edit_requests` (
+CREATE TABLE `student_profile_edit_requests` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `requested_by` int NOT NULL,
@@ -3065,7 +3282,7 @@ CREATE TABLE IF NOT EXISTS `student_profile_edit_requests` (
   KEY `ix_student_profile_edit_requests_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `students` (
+CREATE TABLE `students` (
   `id` int NOT NULL AUTO_INCREMENT,
   `studentid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `optional_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3103,7 +3320,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   KEY `idx_students_academic` (`academic`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `subject_attendance` (
+CREATE TABLE `subject_attendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student_id` int NOT NULL,
   `academic_id` int NOT NULL,
@@ -3126,7 +3343,7 @@ CREATE TABLE IF NOT EXISTS `subject_attendance` (
   KEY `ix_subject_attendance_student` (`student_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `subject_grade_components` (
+CREATE TABLE `subject_grade_components` (
   `id` int NOT NULL AUTO_INCREMENT,
   `plan_id` int NOT NULL,
   `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3140,7 +3357,7 @@ CREATE TABLE IF NOT EXISTS `subject_grade_components` (
   CONSTRAINT `fk_subject_grade_component_plan` FOREIGN KEY (`plan_id`) REFERENCES `subject_grade_plans` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `subject_grade_plans` (
+CREATE TABLE `subject_grade_plans` (
   `id` int NOT NULL AUTO_INCREMENT,
   `academic_id` int NOT NULL,
   `program_id` int NOT NULL,
@@ -3161,7 +3378,7 @@ CREATE TABLE IF NOT EXISTS `subject_grade_plans` (
   KEY `ix_subject_grade_plan_exam` (`marks_system_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `subject_grade_scores` (
+CREATE TABLE `subject_grade_scores` (
   `id` int NOT NULL AUTO_INCREMENT,
   `component_id` int NOT NULL,
   `student_id` int NOT NULL,
@@ -3175,7 +3392,7 @@ CREATE TABLE IF NOT EXISTS `subject_grade_scores` (
   CONSTRAINT `fk_subject_grade_score_component` FOREIGN KEY (`component_id`) REFERENCES `subject_grade_components` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `subjects` (
+CREATE TABLE `subjects` (
   `id` int NOT NULL AUTO_INCREMENT,
   `subject_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `subject_name_us` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3190,7 +3407,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `subjects_group` (
+CREATE TABLE `subjects_group` (
   `id` int NOT NULL AUTO_INCREMENT,
   `grade_group_id` int NOT NULL,
   `program_id` int NOT NULL,
@@ -3206,7 +3423,7 @@ CREATE TABLE IF NOT EXISTS `subjects_group` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `teachers` (
+CREATE TABLE `teachers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `teacher_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3226,7 +3443,7 @@ CREATE TABLE IF NOT EXISTS `teachers` (
   KEY `ix_teachers_id` (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_attendance_settings` (
+CREATE TABLE `telegram_attendance_settings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `bot_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `chat_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3242,7 +3459,7 @@ CREATE TABLE IF NOT EXISTS `telegram_attendance_settings` (
   KEY `ix_telegram_attendance_settings_id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_bot_auth_codes` (
+CREATE TABLE `telegram_bot_auth_codes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -3256,7 +3473,7 @@ CREATE TABLE IF NOT EXISTS `telegram_bot_auth_codes` (
   KEY `idx_tbac_used_at` (`used_at`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_branch_notification_routes` (
+CREATE TABLE `telegram_branch_notification_routes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `settings_id` int NOT NULL,
   `branch_id` int NOT NULL,
@@ -3272,7 +3489,7 @@ CREATE TABLE IF NOT EXISTS `telegram_branch_notification_routes` (
   CONSTRAINT `telegram_branch_notification_routes_ibfk_1` FOREIGN KEY (`settings_id`) REFERENCES `telegram_attendance_settings` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_chat_moderation_settings` (
+CREATE TABLE `telegram_chat_moderation_settings` (
   `chat_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `file_policy` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3288,7 +3505,7 @@ CREATE TABLE IF NOT EXISTS `telegram_chat_moderation_settings` (
   PRIMARY KEY (`chat_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_group_members` (
+CREATE TABLE `telegram_group_members` (
   `id` int NOT NULL AUTO_INCREMENT,
   `telegram_user_id` bigint NOT NULL,
   `group_chat_id` bigint NOT NULL,
@@ -3309,7 +3526,7 @@ CREATE TABLE IF NOT EXISTS `telegram_group_members` (
   KEY `ix_telegram_group_members_telegram_user_id` (`telegram_user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1092 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_group_reply_settings` (
+CREATE TABLE `telegram_group_reply_settings` (
   `chat_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   `features` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3319,7 +3536,7 @@ CREATE TABLE IF NOT EXISTS `telegram_group_reply_settings` (
   PRIMARY KEY (`chat_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_login_sessions` (
+CREATE TABLE `telegram_login_sessions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `token` varchar(96) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `telegram_user_id` bigint DEFAULT NULL,
@@ -3340,7 +3557,7 @@ CREATE TABLE IF NOT EXISTS `telegram_login_sessions` (
   KEY `idx_tls_status_expires` (`status`,`expires_at`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_moderation_events` (
+CREATE TABLE `telegram_moderation_events` (
   `event_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `chat_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `message_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3357,7 +3574,7 @@ CREATE TABLE IF NOT EXISTS `telegram_moderation_events` (
   KEY `idx_tme_created_at` (`created_at`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_moderation_quarantine_items` (
+CREATE TABLE `telegram_moderation_quarantine_items` (
   `chat_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `message_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3370,7 +3587,7 @@ CREATE TABLE IF NOT EXISTS `telegram_moderation_quarantine_items` (
   PRIMARY KEY (`batch_key`,`message_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_otp_sessions` (
+CREATE TABLE `telegram_otp_sessions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_code_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3388,7 +3605,7 @@ CREATE TABLE IF NOT EXISTS `telegram_otp_sessions` (
   KEY `idx_tos_registration_token` (`registration_token_hash`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1335 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_tracked_chats` (
+CREATE TABLE `telegram_tracked_chats` (
   `id` int NOT NULL AUTO_INCREMENT,
   `chat_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Telegram chat ID',
   `chat_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Group/channel name',
@@ -3405,7 +3622,7 @@ CREATE TABLE IF NOT EXISTS `telegram_tracked_chats` (
   KEY `idx_active` (`is_active`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `telegram_webhook_events` (
+CREATE TABLE `telegram_webhook_events` (
   `event_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `event_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `update_id` bigint DEFAULT NULL,
@@ -3417,7 +3634,7 @@ CREATE TABLE IF NOT EXISTS `telegram_webhook_events` (
   KEY `idx_twe_processed_at` (`processed_at`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `units` (
+CREATE TABLE `units` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -3425,7 +3642,7 @@ CREATE TABLE IF NOT EXISTS `units` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `user_financials` (
+CREATE TABLE `user_financials` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `bank_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3445,7 +3662,7 @@ CREATE TABLE IF NOT EXISTS `user_financials` (
   KEY `idx_financials_user` (`user_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `user_home_app_permissions` (
+CREATE TABLE `user_home_app_permissions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `feature_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3460,7 +3677,7 @@ CREATE TABLE IF NOT EXISTS `user_home_app_permissions` (
   CONSTRAINT `user_home_app_permissions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `user_sessions` (
+CREATE TABLE `user_sessions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `telegram_id` bigint NOT NULL,
   `user_id` int DEFAULT NULL,
@@ -3477,7 +3694,7 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   UNIQUE KEY `telegram_id` (`telegram_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1166 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3534,7 +3751,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `idx_users_workplace_role_status` (`workplace`,`role`,`status`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `users_resource` (
+CREATE TABLE `users_resource` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `user_type` enum('teacher','student','parent','employee') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3554,7 +3771,7 @@ CREATE TABLE IF NOT EXISTS `users_resource` (
   KEY `ix_users_resource_user_type` (`user_type`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=26177 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `users_social_links` (
+CREATE TABLE `users_social_links` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_resource_id` int NOT NULL,
   `platform_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3568,7 +3785,7 @@ CREATE TABLE IF NOT EXISTS `users_social_links` (
   CONSTRAINT `users_social_links_ibfk_1` FOREIGN KEY (`user_resource_id`) REFERENCES `users_resource` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `work_locations` (
+CREATE TABLE `work_locations` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `latitude` float(10,8) NOT NULL,
@@ -3585,7 +3802,7 @@ CREATE TABLE IF NOT EXISTS `work_locations` (
   KEY `idx_location_active` (`is_active`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `ws_broadcast_queue` (
+CREATE TABLE `ws_broadcast_queue` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `channel` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` json NOT NULL,
@@ -3595,7 +3812,7 @@ CREATE TABLE IF NOT EXISTS `ws_broadcast_queue` (
   KEY `idx_ws_created` (`created_at`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=83305 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_book_branch_limits` (
+CREATE TABLE `zing_book_branch_limits` (
   `id` int NOT NULL AUTO_INCREMENT,
   `book_id` int NOT NULL,
   `branch_id` int NOT NULL,
@@ -3608,7 +3825,7 @@ CREATE TABLE IF NOT EXISTS `zing_book_branch_limits` (
   CONSTRAINT `zing_book_branch_limits_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `zing_books` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=1288 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_book_support` (
+CREATE TABLE `zing_book_support` (
   `id` int NOT NULL AUTO_INCREMENT,
   `book_id` int DEFAULT NULL,
   `parent_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3633,7 +3850,7 @@ CREATE TABLE IF NOT EXISTS `zing_book_support` (
   CONSTRAINT `zing_book_support_ibfk_2` FOREIGN KEY (`payment_method_id`) REFERENCES `zing_payment_methods` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_book_support_history` (
+CREATE TABLE `zing_book_support_history` (
   `id` int NOT NULL AUTO_INCREMENT,
   `support_id` int NOT NULL,
   `action` enum('create','update_status','update','delete') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3649,7 +3866,7 @@ CREATE TABLE IF NOT EXISTS `zing_book_support_history` (
   CONSTRAINT `zing_book_support_history_ibfk_1` FOREIGN KEY (`support_id`) REFERENCES `zing_book_support` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_books` (
+CREATE TABLE `zing_books` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `title_kh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3675,7 +3892,7 @@ CREATE TABLE IF NOT EXISTS `zing_books` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=796 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_payment_methods` (
+CREATE TABLE `zing_payment_methods` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3688,7 +3905,7 @@ CREATE TABLE IF NOT EXISTS `zing_payment_methods` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_survey_questions` (
+CREATE TABLE `zing_survey_questions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `survey_id` int NOT NULL,
   `question_text_en` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3704,7 +3921,7 @@ CREATE TABLE IF NOT EXISTS `zing_survey_questions` (
   CONSTRAINT `zing_survey_questions_ibfk_1` FOREIGN KEY (`survey_id`) REFERENCES `zing_surveys` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_survey_responses` (
+CREATE TABLE `zing_survey_responses` (
   `id` int NOT NULL AUTO_INCREMENT,
   `survey_id` int NOT NULL,
   `parent_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -3721,7 +3938,7 @@ CREATE TABLE IF NOT EXISTS `zing_survey_responses` (
   CONSTRAINT `zing_survey_responses_ibfk_1` FOREIGN KEY (`survey_id`) REFERENCES `zing_surveys` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `zing_surveys` (
+CREATE TABLE `zing_surveys` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title_en` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `title_kh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -3735,4007 +3952,4313 @@ CREATE TABLE IF NOT EXISTS `zing_surveys` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+SET FOREIGN_KEY_CHECKS = 1;
+
+
 -- ========================================================
--- 2. CORE SYSTEM SEED DATA (Settings, Branch, Academic)
+-- PRESET REFERENCE DATA (Curriculum, Roles, Formats)
 -- ========================================================
 
-INSERT INTO `settings` (`id`, `enterpriseName`, `enterpriseType`, `eProvince`, `eDistrict`, `eCommune`, `eVillage`, `enterpriseAddress`, `ownerKname`, `ownerEname`, `ownerGender`, `ownerNationality`, `isForeigner`, `prefixid`, `suffix`, `digit_number`, `follow_type`, `academicid`, `startid`, `status_fixedexchange`, `default_exchange`, `telegrambot`, `parent_bot_token`, `chat_id`, `time_report`, `report_chat_id`, `report_status`, `skip_sat`, `skip_sun`, `time_allow_start`, `time_allow_end`, `marks_extraday`, `notify_parents`, `system_logo`, `system_name`, `secret_pass`, `created_at`, `updated_at`, `image_header`, `facebook_url`, `telegram_url`, `youtube_url`, `instagram_url`, `tiktok_url`, `active_storage_provider`, `cloudinary_cloud_name`, `cloudinary_api_key`, `cloudinary_api_secret`, `aws_access_key_id`, `aws_secret_access_key`, `aws_region_name`, `aws_bucket_name`, `firebase_storage_bucket`, `firebase_service_account_json`, `enable_schedule_reminders`, `ota_updates_enabled`, `phone_conflict_lock_enabled`) VALUES
-  (1, 'សាលាប៉ាម៉ាអន្តរជាតិ', 'គ្រឹះស្ថានអប់រំ', 'ព្រះសីហនុ', 'ព្រះសីហនុ', 'សង្កាត់១', 'ភូមិ១', 'ភូមិ១, សង្កាត់១, ព្រះសីហនុ, ព្រះសីហនុ', 'ផុន ហុកឡាំ', 'PHON Hoklaim', 'ប្រុស', 'ខ្មែរ', 1, 'PAMA-', '', 6, 'settings', 16, 1680001, 'no', 4100, '7006399389:AAGSmNXBm3eNxguz6h63dfIVyhORHlxFq-0', '7006399389:AAGSmNXBm3eNxguz6h63dfIVyhORHlxFq-0', '', '16:30:00', '-4830878733', NULL, 'yes', 'yes', '7:15:00', '21:15:00', '500', 'yes', '/uploads/desktop-migration/settings/system_logo/611b6e0a456cca2b30df5b85c945b201f07f3ddc4f6bc24298240d7a98f2d058.png', 'PAMAIS', '$2a$11$6pl0xaL1f4WDMjf67CDfMuwSqpBNQg1aaDfX.cy9FKXt9Ln2hHF5.', '2025-05-20 21:41:14', '2026-09-03 13:07:09', '', 'https://www.facebook.com/pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'local', '', '', '', '', '', '', '', '', '', 'yes', 0, 0)
-ON DUPLICATE KEY UPDATE id=id;
+-- Data for table `_schema_patches` (1 rows)
+INSERT INTO `_schema_patches` (`patch_id`, `applied_at`) VALUES
+('branch_pickup_radius_null_to_100_v1', '2026-03-23 18:42:55');
 
+
+-- Data for table `alembic_version` (1 rows)
+INSERT INTO `alembic_version` (`version_num`) VALUES
+('0001_initial_migration');
+
+
+-- Data for table `roles` (13 rows)
+INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
+(1, 'Super Admin', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(2, 'Teacher', '2025-07-21 19:27:26', '2025-08-04 10:57:01'),
+(3, 'Admin', '2025-07-21 19:27:26', '2025-08-04 10:56:52'),
+(4, 'Accountant', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(5, 'Reception', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(6, 'Viewer', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(7, 'Principal', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(8, 'Counselor', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(9, 'Librarian', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(10, 'Registrar', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(11, 'ITSupport', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(12, 'Parent', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
+(13, 'Student', '2025-07-21 19:27:26', '2025-07-21 19:27:26');
+
+
+-- Data for table `permissions` (109 rows)
+INSERT INTO `permissions` (`id`, `permission_name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'ViewStudent', 'View student information', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(2, 'AddStudent', 'Add new students', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(3, 'UpdateStudent', 'Edit student details', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(4, 'DeleteStudent', 'Delete student records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(5, 'ViewTeacher', 'View teacher information', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(6, 'AddTeacher', 'Add new teachers', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(7, 'UpdateTeacher', 'Edit teacher details', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(8, 'DeleteTeacher', 'Remove teacher records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(9, 'ViewClass', 'View classes or courses', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(10, 'AddClass', 'Add new classes or courses', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(11, 'UpdateClass', 'Edit class/course details', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(12, 'DeleteClass', 'Delete classes', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(13, 'ViewAttendance', 'View attendance records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(14, 'AddAttendance', 'Add attendance records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(15, 'UpdateAttendance', 'Edit attendance', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(16, 'DeleteAttendance', 'Delete attendance records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(17, 'ViewGrades', 'View student grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(18, 'AddGrades', 'Enter grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(19, 'UpdateGrades', 'Edit grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(20, 'DeleteGrades', 'Remove grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(21, 'ViewReports', 'View various reports', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(22, 'GenerateReports', 'Generate or export reports', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(23, 'ManageUsers', 'Manage user accounts and roles', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(24, 'ManageRoles', 'Create/edit/delete roles and permissions', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
+(25, 'ViewAllBranches', 'View all Branch', '2025-07-21 20:37:25', '2025-07-21 20:37:25'),
+(26, 'ViewAdminDashboard', NULL, '2025-07-21 21:05:16', '2025-07-21 21:05:16'),
+(27, 'ViewTeacherDashboard', '', '2025-07-21 21:05:16', '2025-07-21 21:05:16'),
+(28, 'DeleteReceipt', 'Delete invoice', '2025-07-29 07:40:49', '2025-07-29 07:41:42'),
+(29, 'ViewAccounts', NULL, '2025-08-04 16:22:58', '2025-08-04 16:22:58'),
+(30, 'ViewReceipt', NULL, '2025-08-04 16:25:51', '2025-08-04 16:25:51'),
+(31, 'ChangeRole', NULL, '2025-08-04 17:13:43', '2025-08-04 17:13:43'),
+(32, 'UserPassword', NULL, '2025-08-04 17:29:11', '2025-08-04 17:29:11'),
+(34, 'ClearAccounts', NULL, '2025-08-04 17:44:14', '2025-08-04 17:44:14'),
+(35, 'UpdateSettings', NULL, '2025-08-04 17:48:54', '2025-08-04 17:48:54'),
+(36, 'DashboardBasic', NULL, '2025-08-10 20:55:34', '2025-08-10 20:55:34'),
+(37, 'DashboardAccounting', NULL, '2025-08-10 20:55:55', '2025-08-10 20:55:55'),
+(38, 'GeneralDelete', NULL, '2025-08-19 09:11:20', '2025-08-19 09:11:20'),
+(39, 'GeneralUpdate', NULL, '2025-08-19 09:11:39', '2025-08-19 09:11:39'),
+(40, 'GeneralAdd', NULL, '2025-08-19 09:11:59', '2025-08-19 09:11:59'),
+(41, 'AdminViewApp', 'View App settings', '2026-01-13 02:30:00', '2026-01-13 02:30:00'),
+(42, 'AdminUpdateApp', 'Update App settings', '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
+(43, 'AdminDeleteApp', 'Delete App settings', '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
+(44, 'ViewInvoices', NULL, '2026-06-15 02:47:21', '2026-06-15 02:47:21'),
+(45, 'ViewUpcomingInvoices', NULL, '2026-06-15 02:47:22', '2026-06-15 02:47:22'),
+(46, 'ViewInventories', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(47, 'ViewPricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(48, 'ViewFeeServices', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(49, 'AddAccount', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(50, 'EditAccount', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(51, 'EditInvoice', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(52, 'AddInventory', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(53, 'EditInventory', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(54, 'DeleteInventory', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(55, 'AddPricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(56, 'EditPricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(57, 'DeletePricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(58, 'AddFeeService', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(59, 'EditFeeService', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(60, 'DeleteFeeService', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
+(61, 'AddDiscount', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
+(62, 'EditDiscount', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
+(63, 'DeleteDiscount', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
+(64, 'ViewDashboard', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
+(65, 'ViewStudents', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
+(66, 'ViewStudentsByClass', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
+(67, 'ViewStudentTeachers', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
+(68, 'ViewStudentPrograms', NULL, '2026-06-15 02:47:26', '2026-06-15 02:47:26'),
+(69, 'ViewScholarship', NULL, '2026-06-15 02:47:26', '2026-06-15 02:47:26'),
+(70, 'ViewCertificate', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(71, 'ViewMedals', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(72, 'ViewAchievement', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(73, 'ViewStoppedStudents', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(74, 'ViewParents', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(75, 'ViewParentPayments', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(76, 'ViewParentPickupReport', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(77, 'ViewEmployees', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(78, 'ViewPendingEmployees', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(79, 'ViewStoppedEmployees', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(80, 'ViewDepartments', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(81, 'ViewClassTeacherAssignment', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(82, 'ViewCalendar', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(83, 'ViewAcademic', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
+(84, 'ViewBranch', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
+(85, 'ViewGradeTypes', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
+(86, 'ViewGradeGroups', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
+(87, 'ViewPrograms', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
+(88, 'ViewShifts', NULL, '2026-06-15 02:47:29', '2026-06-15 02:47:29'),
+(89, 'ViewExamSystem', NULL, '2026-06-15 02:47:29', '2026-06-15 02:47:29'),
+(90, 'ViewMarksSystem', NULL, '2026-06-15 02:47:29', '2026-06-15 02:47:29'),
+(91, 'ViewMarkSubjects', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(92, 'ViewSubjects', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(93, 'ViewSubjectGroups', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(94, 'ViewNites', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(95, 'ViewExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(96, 'ViewExpenseCategories', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(97, 'AddExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(98, 'EditExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(99, 'DeleteExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
+(100, 'AddExpenseCategory', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(101, 'EditExpenseCategory', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(102, 'DeleteExpenseCategory', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(103, 'ViewBuses', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(104, 'ViewBusAttendance', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(105, 'ViewBusStops', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(106, 'ViewBusStopPrices', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(107, 'ViewBusDriverAssignment', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(108, 'ViewBusStudentEnrollment', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(109, 'ViewActivityLogs', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(110, 'ReviewStudentProfileEdits', NULL, '2026-08-24 02:44:41', '2026-08-24 02:44:41');
+
+
+-- Data for table `department` (9 rows)
+INSERT INTO `department` (`id`, `department`, `translate`, `code`, `updated_at`, `created_at`) VALUES
+(1, 'Board of Directors', 'ក្រុមប្រឹក្សាភិបាល', 'BDD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(2, 'Management Team', 'គណៈគ្រប់គ្រង', 'MTD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(3, 'Human Resource​ ', 'ផ្នែកធនធានមនុស្ស', 'HRD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(4, 'Administrative', 'ផ្នែករដ្ឋបាល', 'AD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(5, 'Financial', 'ផ្នែកហិរញ្ញវត្ថុ', 'FD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(6, 'Information Technology', 'ផ្នែកព័ត៌មានវិទ្យា', 'ITD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(7, 'Marketing', 'ផ្នែកទីផ្សារ', 'MD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(8, 'Full Time Academic', 'ផ្នែកសិក្សាធិការ (ពេញម៉ោង)', 'FTD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
+(9, 'Part Time Academic', 'ផ្នែកសិក្សាធិការ (ក្រៅម៉ោង)', 'PTD', '2025-03-31 14:22:09', '2025-06-10 13:10:54');
+
+
+-- Data for table `position` (40 rows)
+INSERT INTO `position` (`id`, `position`, `translate`, `departmentId`, `updated_at`, `created_at`) VALUES
+(1, 'Chairman of Board of Directors', 'ប្រធានក្រុមប្រឹក្សាភិបាល', 1, '2025-07-05 15:14:31', '2025-06-10 13:13:25'),
+(2, 'Member of Board of Director', 'សមាជិកក្រុមប្រឹក្សាភិបាល', 1, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(3, 'Director', 'នាយក', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(4, 'Vice Director', 'នាយករង', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(5, 'Senior Advisor of Academy', 'ទីប្រឹក្សាជាន់ខ្ពស់ផ្នែកសិក្សាធិការ', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(6, 'Senior Advisor of Curriculum Development', 'ទីប្រឹក្សាជាន់ខ្ពស់ផ្នែកអភិវឌ្ឍកម្មវិធីសិក្សា', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(7, 'Head of HR', 'ប្រធានផ្នែកធនធានមនុស្ស', 3, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(8, 'Training Coordinator', 'ប្រធានផ្នែកបណ្តុះបណ្តាល', 3, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(9, 'Assistant to HR', 'ជំនួយការធនធានមនុស្ស', 3, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(10, 'Head of Admin', 'ប្រធានផ្នែករដ្ឋបាល', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(11, 'Admin Assistant', 'ជំនួយការរដ្ឋបាល', 4, '2025-04-22 11:10:51', '2025-06-10 13:13:25'),
+(13, 'Cleaner and Gardener', 'អ្នកសម្អាត និងថែទាំសួន', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(14, 'Security Guard-Gardener-Cleaner', 'សន្តិសុខ ថែសួន និងសម្អាត', 4, '2025-06-03 08:09:26', '2025-06-10 13:13:25'),
+(15, 'Driver-Security Guards', 'អ្នកបើកបរ និងសន្តិសុខ', 4, '2025-06-03 09:15:05', '2025-06-10 13:13:25'),
+(16, 'Driver-Security Guards-Cleaner', 'អ្នកបើកបរ សន្តិសុខ និងសម្អាត', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(17, 'Security Guards-Cleaner', 'សន្តិសុខអនាម័យ', 4, '2025-06-03 08:08:14', '2025-06-10 13:13:25'),
+(18, 'Gardener', 'មន្ត្រីផ្នែកកសិកម្ម', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(19, 'Head of Finance', 'ប្រធានផ្នែកហិរញ្ញវត្តុ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(20, 'Cashier', 'បេឡាធិការ/បេឡាធិការិនី', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(21, 'Accountant', 'គណនេយ្យករ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(22, 'Financial assistant', 'ជំនួយការហិរញ្ញវត្ថុ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(23, 'Accounting Assistant', 'ជំនួយការគណនេយ្យ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(24, 'Head of IT', 'ប្រធានព័ត៌មានវិទ្យា', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(25, 'Digital Marketer', 'មន្ត្រីម៉ាឃីតធីងឌីជីថល', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(26, 'IT Supporter', 'ជំនួយការព័ត៌មានវិទ្យា', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(27, 'Camera Woman', 'មន្ត្រីផ្នែកថតរូប​ (ស្រី)', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(28, 'Camera Man', 'មន្ត្រីផ្នែកថតរូប (ប្រុស)', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(29, 'Admin & Program Supporter', 'ជំនួយការរដ្ឋបាល និងដំណើរការកម្មវិធី', 7, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(30, 'Head of Academy', 'ប្រធានសិក្សាធិការ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(31, 'Head of Teacher', 'ប្រធានគ្រូ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(32, 'Academic Assistant', 'ជំនួយការសិក្សាធិការ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(33, 'Head Teacher Assistant', 'ជំំនួយការប្រធានគ្រូ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(34, 'Teacher', 'គ្រូបង្រៀន', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(35, 'Chinese Teacher', 'គ្រូបង្រៀនភាសាចិន', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(36, 'English Teacher', 'គ្រូបង្រៀនភាសាអង់គ្លេស', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(37, 'Teacher Assistant', 'ជំនួយការគ្រូ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(38, 'Internship Teacher', 'គ្រូបង្រៀនហាត់ការ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(39, 'Head of Part Time Teacher', 'ប្រធានគ្រូបង្រៀនក្រៅម៉ោង', 9, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(40, 'Assistant to Head of Part time Teacher', 'ជំនួយការប្រធានគ្រូបង្រៀនក្រៅម៉ោង', 9, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
+(41, 'Part time Teacher', 'គ្រូបង្រៀនក្រៅម៉ោង', 9, '2025-03-31 14:22:28', '2025-06-10 13:13:25');
+
+
+-- Data for table `status` (5 rows)
+INSERT INTO `status` (`id`, `status`, `updated_at`, `created_at`) VALUES
+(1, 'Active', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
+(2, 'Inactive', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
+(3, 'Suspended', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
+(4, 'Finished', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
+(5, 'Banned', '2025-03-31 09:45:02', '2026-01-06 07:11:39');
+
+
+-- Data for table `shift` (2 rows)
+INSERT INTO `shift` (`id`, `shift_name`, `shift_name_en`, `start_at`, `end_at`, `report_status`, `send_report_at`, `weeken_send`, `created_at`, `updated_at`) VALUES
+(1, 'វេនព្រឹក (AM)', 'Morning (AM)', '7:15:00', '11:00:00', 'no', '8:15:00', 'no', '2025-10-01 01:36:29', '2025-10-28 00:49:17'),
+(2, 'វេនរសៀល (PM)', 'Afternoon (PM)', '12:00:00', '18:00:00', 'no', '14:16:00', 'no', '2025-10-01 01:36:29', '2025-12-01 10:02:37');
+
+
+-- Data for table `units` (32 rows)
+INSERT INTO `units` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'ប្រអប់', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(2, 'កេស', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(3, 'ក្បាល', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(4, 'ដុំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(5, 'ធុង', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(6, 'ឯកតា', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(7, 'ប្រអប់', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(8, 'កញ្ចប់', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(9, 'ញ៉ុង', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(10, 'កាបូប', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(11, 'ដប', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(12, 'កំប៉ុង', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(13, 'ការទុន', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(14, 'ប្រអប់ធំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(15, 'លីត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(16, 'មីលីលីត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(17, 'គីឡូក្រាម', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(18, 'ក្រាម', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(19, 'ម៉ែត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(20, 'សង់ទីម៉ែត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(21, 'ដុសិន', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(22, 'សំណុំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(23, 'គូ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(24, 'មូល', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(25, 'មួក', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(26, 'រមៀល', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(27, 'ក្បាល', '2025-05-20 21:42:38', '2025-07-28 07:23:53'),
+(28, 'ឈុត', '2025-05-20 21:42:38', '2025-07-28 07:23:47'),
+(29, 'កញ្ចប់', '2025-05-20 21:42:38', '2025-07-28 07:23:57'),
+(30, 'បាច់ធំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(31, 'សន្លឹក', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
+(32, 'បំពង់', '2025-05-20 21:42:38', '2025-05-20 21:42:38');
+
+
+-- Data for table `category` (4 rows)
+INSERT INTO `category` (`id`, `category_name`, `noted`, `created_at`, `updated_at`) VALUES
+(1, 'សៀវភៅ', '', '2025-05-20 11:23:16', '2025-05-20 11:23:16'),
+(2, 'សម្លៀកបំពាក់', '', '2025-05-20 11:30:29', '2025-05-20 11:30:29'),
+(3, 'សម្ភារៈសិក្សា', '', '2025-05-20 11:30:49', '2025-05-20 11:30:49'),
+(4, 'ផ្សេងៗ​(Other)', '', '2025-06-20 13:12:55', '2025-06-24 09:11:17');
+
+
+-- Data for table `items_group` (2 rows)
+INSERT INTO `items_group` (`id`, `group_name`, `items_id`, `unit_id`, `created_at`, `updated_at`) VALUES
+(1, 'សៀវភៅមតេ្តយ្យសិក្សាកម្រិតខ្ពស់', '45,46', -1, '2025-07-09 11:07:07', '2025-07-09 11:07:07'),
+(2, 'សៀវភៅមតេ្តយ្យសិក្សាកម្រិតមធ្បម', '47,48', -1, '2025-07-09 11:11:29', '2025-07-09 11:11:29');
+
+
+-- Data for table `nittes` (6 rows)
+INSERT INTO `nittes` (`id`, `name_us`, `name_kh`, `created_at`, `updated_at`) VALUES
+(1, 'A', 'ល្អប្រសើរ', '2025-06-11 13:53:38', '2025-06-11 13:53:38'),
+(2, 'B', 'ល្អណាស់', '2025-06-11 13:53:38', '2025-06-11 13:53:38'),
+(3, 'C', 'ល្អ', '2025-06-11 13:54:33', '2025-06-11 13:54:33'),
+(4, 'D', 'បង្គួរ', '2025-06-11 13:54:33', '2025-06-11 13:54:33'),
+(5, 'E', 'មធ្យម', '2025-06-11 13:55:44', '2025-06-11 13:55:44'),
+(6, 'F', 'ក្រោមមធ្យម', '2025-06-11 13:55:44', '2025-06-11 13:55:44');
+
+
+-- Data for table `branch` (3 rows)
 INSERT INTO `branch` (`id`, `branch_name`, `contact`, `address_khmer`, `address_english`, `email`, `website`, `id_prefix`, `id_start_number`, `id_digit`, `id_reset_option`, `report_time`, `users_id`, `report_weekend`, `report_status`, `invoice_prefix`, `invoice_digit`, `invoice_start_number`, `invoice_reset_december`, `vatin_number`, `receipt_digit`, `receipt_prefix`, `receipt_start_number`, `receipt_reset_option`, `receipt_header`, `image_header`, `director_kName`, `director_eName`, `director_signature`, `stamp`, `headTeacher_kName`, `headTeacher_eName`, `headTeacher_signature`, `created_at`, `updated_at`, `app_display_name`, `app_branch_cover`, `app_branch_facebook_url`, `app_branch_telegram_url`, `app_branch_youtube_url`, `app_branch_tiktok_url`, `app_branch_google_map_url`, `map_latitude`, `map_longitude`, `open_at`, `close_at`, `pickup_radius_meters`, `image_header_path`, `director_signature_path`, `headTeacher_signature_path`, `stamp_path`, `signature_url`, `stamp_url`) VALUES
-  (1, 'ឃ្លាំងលើ (KL)', '012/093 746046', 'ភូមិ១ សង្កាត់១ ព្រះសីហនុ', 'Village 1, District 1, Preah Sihanouk', 'info@pamainternationalschool.com', 'www.pamainternationalschool.com', 'KL', 1, 10, 'auto', '14:20:00', 20, 'yes', 'no', 'KL', 4, 1, 1, NULL, 6, '', 638, 'no_reset', '/uploads/desktop-migration/branch/receipt_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', '/uploads/desktop-migration/branch/image_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', 'ផុន ហុកឡាំ', 'PHON Hoklaim', '/uploads/desktop-migration/branch/director_signature/346c210496238bc943e4870efab67493b843c5af22516adac29a94a821c2d007.png', '/uploads/desktop-migration/branch/stamp/d02d118e96f1f11068f5a50b65c1ac5e4ef2663a832bbd15fb32ff7962e3696d.png', 'វ៉េត ស៊ីណាត', 'VET Sinat', '/uploads/desktop-migration/branch/headTeacher_signature/b41c94cd4cf01c5e5a42b55bc4dff559b68b583ca9f17ddbe86f8731fef9eec2.png', '2025-05-28 10:05:56', '2026-08-17 02:49:09', NULL, NULL, 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'https://maps.app.goo.gl/5QqSbB4U8mx5hM8e7', 10.631527, 103.557417, '7:30:00', '18:00:00', '1000.00', 'uploads/branches/branch_1_image_header.png', 'uploads/branches/branch_1_director_signature.png', 'uploads/branches/branch_1_headTeacher_signature.png', 'uploads/branches/branch_1_stamp.png', '/uploads/desktop-migration/branch/director_signature/346c210496238bc943e4870efab67493b843c5af22516adac29a94a821c2d007.png', '/uploads/branches/stamps/image_cropper_1782176095163.jpg')
-ON DUPLICATE KEY UPDATE id=id;
+(1, 'ឃ្លាំងលើ (KL)', '012/093 746046', 'ភូមិ១ សង្កាត់១ ព្រះសីហនុ', 'Village 1, District 1, Preah Sihanouk', 'info@pamainternationalschool.com', 'www.pamainternationalschool.com', 'KL', 1, 10, 'auto', '14:20:00', 20, 'yes', 'no', 'KL', 4, 1, 1, NULL, 6, '', 638, 'no_reset', '/uploads/desktop-migration/branch/receipt_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', '/uploads/desktop-migration/branch/image_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', 'ផុន ហុកឡាំ', 'PHON Hoklaim', '/uploads/desktop-migration/branch/director_signature/346c210496238bc943e4870efab67493b843c5af22516adac29a94a821c2d007.png', '/uploads/desktop-migration/branch/stamp/d02d118e96f1f11068f5a50b65c1ac5e4ef2663a832bbd15fb32ff7962e3696d.png', 'វ៉េត ស៊ីណាត', 'VET Sinat', '/uploads/desktop-migration/branch/headTeacher_signature/b41c94cd4cf01c5e5a42b55bc4dff559b68b583ca9f17ddbe86f8731fef9eec2.png', '2025-05-28 10:05:56', '2026-08-17 02:49:09', NULL, NULL, 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'https://maps.app.goo.gl/5QqSbB4U8mx5hM8e7', 10.631527, 103.557417, '7:30:00', '18:00:00', 1000.00, 'uploads/branches/branch_1_image_header.png', 'uploads/branches/branch_1_director_signature.png', 'uploads/branches/branch_1_headTeacher_signature.png', 'uploads/branches/branch_1_stamp.png', '/uploads/desktop-migration/branch/director_signature/346c210496238bc943e4870efab67493b843c5af22516adac29a94a821c2d007.png', '/uploads/branches/stamps/image_cropper_1782176095163.jpg'),
+(2, 'អូរពីរ (O2)', '012/016 491777', 'ភូមិ៥ សង្កាត់៤ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ', 'Village 5, Songkat 4, Preah Sihanouk', 'info@pamainternationalschool.com', 'www.pamainternationalschool.com', 'O2', 1, 10, 'auto', '16:50:00', 3, 'no', 'no', 'O2', 4, 1, 1, NULL, 3, '02', 1, 'reset_monthly', '/uploads/desktop-migration/branch/receipt_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', '/uploads/desktop-migration/branch/image_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', 'ផុន ហុកឡាំ', 'PHON Hoklaim', '/uploads/desktop-migration/branch/director_signature/346c210496238bc943e4870efab67493b843c5af22516adac29a94a821c2d007.png', '/uploads/desktop-migration/branch/stamp/d02d118e96f1f11068f5a50b65c1ac5e4ef2663a832bbd15fb32ff7962e3696d.png', 'វ៉េត ស៊ីណាត', 'VET Sinat', '/uploads/desktop-migration/branch/headTeacher_signature/b41c94cd4cf01c5e5a42b55bc4dff559b68b583ca9f17ddbe86f8731fef9eec2.png', '2025-05-28 10:05:56', '2026-08-17 02:49:09', NULL, NULL, 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'https://maps.app.goo.gl/3rwYGJYjg6nB9trU9', 10.611557, 103.538825, '7:30:00', '18:00:00', 1000.00, 'uploads/branches/branch_2_image_header.png', 'uploads/branches/branch_2_director_signature.png', 'uploads/branches/branch_2_headTeacher_signature.png', 'uploads/branches/branch_2_stamp.png', '/uploads/desktop-migration/branch/director_signature/346c210496238bc943e4870efab67493b843c5af22516adac29a94a821c2d007.png', '/uploads/branches/stamps/image_cropper_1782176104646.jpg'),
+(3, 'ប៉ាម៉ា៣ (PAMA3)', '087746046', 'ផ្លូវលេខ១១១, ភូមិ៣,សង្កាត់២,ខេត្តព្រះសីហនុ', 'Street 111, Village 3, District 2, Preah Sihanouk', 'info@pamainternationalschool.com', 'www.pamainternationalschool.com', 'P3', 1, 10, 'auto', '16:55:00', 87, 'no', 'no', 'P3', 4, 1, 1, NULL, 3, 'P3', 1, 'reset_monthly', '/uploads/desktop-migration/branch/receipt_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', '/uploads/desktop-migration/branch/image_header/61276bfa3a45f17ec08ae33b13bbe46d44dd03cbe8c06264bd415a86bbbeb8b3.jpg', 'ផុន ហុកឡាំ', 'PHON Hoklaim', '/uploads/desktop-migration/branch/director_signature/a321a0d6736f83a3782be6d3f8cbb592511ba0af5e56452f153a5f1caed41405.png', '/uploads/desktop-migration/branch/stamp/d02d118e96f1f11068f5a50b65c1ac5e4ef2663a832bbd15fb32ff7962e3696d.png', 'វ៉េត ស៊ីណាត', 'VET Sinat', '/uploads/desktop-migration/branch/headTeacher_signature/b41c94cd4cf01c5e5a42b55bc4dff559b68b583ca9f17ddbe86f8731fef9eec2.png', '2025-07-16 16:16:25', '2026-08-17 02:49:09', NULL, NULL, 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', 'https://maps.app.goo.gl/tiuXChps1p1v9P9H6', 10.620206, 103.520253, '7:30:00', '18:00:00', 1000.00, 'uploads/branches/branch_3_image_header.png', 'uploads/branches/branch_3_director_signature.png', 'uploads/branches/branch_3_headTeacher_signature.png', 'uploads/branches/branch_3_stamp.png', '/uploads/desktop-migration/branch/director_signature/a321a0d6736f83a3782be6d3f8cbb592511ba0af5e56452f153a5f1caed41405.png', '/uploads/branches/stamps/image_cropper_1782176112514.jpg');
 
+
+-- Data for table `academic` (3 rows)
 INSERT INTO `academic` (`id`, `academic_name`, `academic_us_name`, `academic_start`, `academic_end`, `quarter_one_start`, `quarter_one_end`, `quarter_two_start`, `quarter_two_end`, `quarter_three_start`, `quarter_three_end`, `quarter_four_start`, `quarter_four_end`, `semester_one_start`, `semester_one_end`, `semester_two_start`, `semester_two_end`, `status`, `isUsed`, `isUsed_at`, `updated_at`, `created_at`) VALUES
-  (16, '២០២៦-២០២៧', '2026-2027', '2026-08-24', '2027-07-08', '2026-08-24', '2026-11-05', '2026-11-06', '2027-01-29', '2027-02-08', '2027-04-23', '2027-04-26', '2027-07-08', '2026-08-24', '2027-01-29', '2027-02-08', '2027-07-08', 1, 1, '2026-07-22 01:19:55', '2026-07-22 01:19:55', '2026-06-11 00:35:30')
-ON DUPLICATE KEY UPDATE id=id;
+(1, '២០២៤-២០២៥', '2024-2025', '2024-09-02', '2025-07-31', '2024-09-02', '2024-11-25', '2024-11-26', '2025-02-21', '2025-03-03', '2025-05-21', '2025-05-22', '2025-07-31', '2024-09-02', '2025-02-21', '2025-03-03', '2025-07-31', 0, 1, '2025-11-15 08:27:46', '2025-11-17 00:53:15', '2025-04-24 00:00:00'),
+(2, '២០២៥-២០២៦', '2025-2026', '2025-08-25', '2026-07-09', '2025-08-25', '2025-11-12', '2025-11-13', '2026-01-30', '2026-02-06', '2026-04-24', '2026-04-27', '2026-07-09', '2025-08-25', '2026-01-30', '2026-02-06', '2026-07-09', 0, 1, '2026-07-17 08:30:03', '2026-07-22 01:19:55', '2025-04-24 00:00:00'),
+(16, '២០២៦-២០២៧', '2026-2027', '2026-08-24', '2027-07-08', '2026-08-24', '2026-11-05', '2026-11-06', '2027-01-29', '2027-02-08', '2027-04-23', '2027-04-26', '2027-07-08', '2026-08-24', '2027-01-29', '2027-02-08', '2027-07-08', 1, 1, '2026-07-22 01:19:55', '2026-07-22 01:19:55', '2026-06-11 00:35:30');
+
+
+-- Data for table `forms` (3 rows)
+INSERT INTO `forms` (`id`, `title`, `description`, `target_role`, `allow_multiple_submissions`, `is_active`, `image_url`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
+(4, 'ឧបករណ៍វាយតម្លៃគ្រូបង្រៀនមានស្នាដៃល្អ', '', 'teachers', 0, 1, NULL, NULL, NULL, '2026-03-30 07:40:43', '2026-03-30 08:32:29'),
+(5, 'សូមបំពេញព័ត៌មានអាវ Shirt Information', '', 'teachers', 0, 1, NULL, '2026-07-30 00:00:00', '2026-08-02 23:59:59', '2026-07-30 08:24:21', '2026-07-30 08:28:23'),
+(6, 'Teachers Items needed', '', 'teachers', 1, 1, NULL, NULL, NULL, '2026-08-04 03:35:38', NULL);
+
+
+-- Data for table `leave_types` (5 rows)
+INSERT INTO `leave_types` (`id`, `name`, `description`, `max_days_per_year`, `is_paid`, `requires_approval`, `created_at`, `updated_at`, `requires_proof`, `is_active`, `display_order`, `color_hex`, `max_days_per_month`) VALUES
+(1, 'Annual Leave', '', 0.0, 1, 1, '2026-07-02 19:32:06', '2026-09-02 09:40:01', 0, 1, 1, '#7C3AED', 1.0),
+(2, 'Sick Leave', '', 0.0, 1, 1, '2026-07-03 02:22:31', '2026-08-03 07:22:42', 1, 1, 2, '#42A5F5', NULL),
+(4, 'Marriage Leave', '', 0.0, 1, 1, '2026-07-03 02:24:05', '2026-08-03 07:22:54', 1, 1, 4, '#FFB300', NULL),
+(5, 'Dead leave or Funeral', '', 0.0, 1, 1, '2026-07-03 02:24:52', '2026-08-03 07:23:05', 0, 1, 5, '#E91E63', NULL),
+(9, 'Other leave', NULL, 10.0, 0, 1, '2026-08-21 02:24:23', '2026-08-24 08:20:03', 0, 1, 5, '#FFB300', NULL);
+
+
+-- Data for table `learning_time_slots` (48 rows)
+INSERT INTO `learning_time_slots` (`id`, `slot_name`, `start_time`, `end_time`, `duration_minutes`, `sort_order`, `is_active`, `is_global`, `created_at`, `updated_at`, `grade_group_id`, `grade_id`) VALUES
+(1, 'M-Session 1', '7:30:00', '8:10:00', NULL, 1, 1, 1, '2026-02-12 00:31:24', '2026-02-12 01:48:18', NULL, NULL),
+(2, 'M-Session 2', '8:10:00', '8:50:00', NULL, 2, 1, 1, '2026-02-12 00:32:01', '2026-02-12 01:49:04', NULL, NULL),
+(3, 'M-Session 3', '9:10:00', '9:50:00', NULL, 3, 1, 1, '2026-02-12 00:32:57', '2026-02-12 01:49:28', NULL, NULL),
+(4, 'M-Session 4', '9:50:00', '10:30:00', NULL, 4, 1, 1, '2026-02-12 01:51:03', '2026-02-12 01:51:03', NULL, NULL),
+(5, 'M-Session 5', '10:30:00', '11:00:00', NULL, 5, 1, 1, '2026-02-12 01:51:50', '2026-02-12 01:51:50', NULL, NULL),
+(6, 'M-Session 6', '11:00:00', '12:00:00', NULL, 6, 1, 1, '2026-02-17 03:19:20', '2026-02-17 03:19:20', NULL, NULL),
+(7, 'PM-Session 1', '12:00:00', '13:00:00', NULL, 7, 1, 1, '2026-02-17 03:20:04', '2026-02-17 03:20:04', NULL, NULL),
+(8, 'PM-Session 2', '13:00:00', '14:40:00', NULL, 8, 1, 1, '2026-02-17 03:20:37', '2026-02-23 04:01:59', NULL, NULL),
+(9, 'PM-Session 3', '13:40:00', '14:20:00', NULL, 9, 1, 1, '2026-02-17 03:20:59', '2026-02-23 04:06:52', NULL, NULL),
+(10, 'PM-Session 4', '14:40:00', '15:20:00', NULL, 10, 1, 1, '2026-02-17 03:21:17', '2026-02-23 04:08:29', NULL, NULL),
+(11, 'PM-Session 5', '15:20:00', '16:00:00', NULL, 11, 1, 1, '2026-02-17 03:21:52', '2026-02-23 04:09:43', NULL, NULL),
+(12, 'PM-Session 6', '16:00:00', '16:40:00', NULL, 12, 1, 1, '2026-02-17 03:22:43', '2026-02-23 04:10:37', NULL, NULL),
+(13, 'MK-Session 1', '7:30:00', '8:00:00', NULL, 13, 1, 1, '2026-02-25 03:12:37', '2026-02-25 03:12:37', NULL, NULL),
+(14, 'MK-Session 2', '8:00:00', '8:30:00', NULL, 14, 1, 1, '2026-02-25 03:13:10', '2026-02-25 03:13:10', NULL, NULL),
+(15, 'MK-Session 3', '8:45:00', '9:15:00', NULL, 15, 1, 1, '2026-02-25 03:13:52', '2026-02-25 03:13:52', NULL, NULL),
+(16, 'MK-Session 4', '9:15:00', '9:45:00', NULL, 16, 1, 1, '2026-02-25 03:14:37', '2026-02-25 03:14:37', NULL, NULL),
+(17, 'MK-Session 5', '10:00:00', '10:45:00', NULL, 17, 1, 1, '2026-02-25 03:15:13', '2026-02-25 03:15:13', NULL, NULL),
+(18, 'PK-Session 1', '13:00:00', '13:30:00', NULL, 18, 1, 1, '2026-02-25 03:18:56', '2026-02-25 03:18:56', NULL, NULL),
+(19, 'PK-Session 2', '13:30:00', '14:00:00', NULL, 19, 1, 1, '2026-02-25 03:19:51', '2026-02-25 03:19:51', NULL, NULL),
+(20, 'PK-Session 3', '14:15:00', '14:45:00', NULL, 20, 1, 1, '2026-02-25 03:20:44', '2026-02-25 03:20:44', NULL, NULL),
+(21, 'PK-Session 4', '14:45:00', '15:15:00', NULL, 21, 1, 1, '2026-02-25 03:21:56', '2026-02-25 03:21:56', NULL, NULL),
+(22, 'PK-Session 5', '15:30:00', '16:15:00', NULL, 22, 1, 1, '2026-02-25 03:23:09', '2026-02-25 03:23:09', NULL, NULL),
+(23, 'MI-Session 1', '7:30:00', '8:30:00', NULL, 23, 1, 1, '2026-02-27 03:11:23', '2026-02-27 03:17:01', NULL, NULL),
+(24, 'MI-Session 2', '8:45:00', '9:25:00', NULL, 24, 1, 1, '2026-02-27 03:17:49', '2026-02-27 03:17:49', NULL, NULL),
+(25, 'MI-Session 3', '9:40:00', '10:20:00', NULL, 25, 1, 1, '2026-02-27 03:18:27', '2026-02-27 03:18:27', NULL, NULL),
+(26, 'MI-Session 4', '10:20:00', '11:00:00', NULL, 26, 1, 1, '2026-02-27 03:18:56', '2026-02-27 03:18:56', NULL, NULL),
+(27, 'PI-Session 1', '13:00:00', '14:00:00', NULL, 27, 1, 1, '2026-02-27 03:21:00', '2026-02-27 03:21:00', NULL, NULL),
+(28, 'PI-Session 2', '14:15:00', '14:55:00', NULL, 28, 1, 1, '2026-02-27 03:21:39', '2026-02-27 03:21:39', NULL, NULL),
+(29, 'PI-Session 3', '15:10:00', '15:50:00', NULL, 29, 1, 1, '2026-02-27 03:22:27', '2026-02-27 03:22:27', NULL, NULL),
+(30, 'PI-Session 4', '15:50:00', '16:30:00', NULL, 30, 1, 1, '2026-02-27 03:23:02', '2026-02-27 03:23:02', NULL, NULL),
+(31, 'MW-Session 1', '7:30:00', '8:15:00', NULL, 31, 1, 1, '2026-02-27 03:24:17', '2026-02-27 03:24:17', NULL, NULL),
+(32, 'MW-Session 2', '8:15:00', '9:00:00', NULL, 32, 1, 1, '2026-02-27 03:26:18', '2026-02-27 03:26:18', NULL, NULL),
+(33, 'MW-Session 3', '9:30:00', '10:15:00', NULL, 33, 1, 1, '2026-02-27 03:26:51', '2026-02-27 03:26:51', NULL, NULL),
+(34, 'MW-Session 4', '10:15:00', '11:00:00', NULL, 34, 1, 1, '2026-02-27 03:27:13', '2026-02-27 03:27:13', NULL, NULL),
+(35, 'PW-Session 1', '13:00:00', '13:45:00', NULL, 35, 1, 1, '2026-02-27 03:28:09', '2026-02-27 03:28:09', NULL, NULL),
+(36, 'PW-Session 2', '13:45:00', '14:30:00', NULL, 36, 1, 1, '2026-02-27 03:28:33', '2026-02-27 03:28:33', NULL, NULL),
+(37, 'PW-Session 3', '15:00:00', '15:45:00', NULL, 37, 1, 1, '2026-02-27 03:29:22', '2026-02-27 03:29:22', NULL, NULL),
+(38, 'PW-Session 4', '15:45:00', '16:45:00', NULL, 38, 1, 1, '2026-02-27 03:30:00', '2026-02-27 03:30:00', NULL, NULL),
+(39, 'PH-Session 1', '12:00:00', '12:50:00', NULL, 39, 1, 1, '2026-03-19 03:47:00', '2026-03-19 03:48:39', NULL, NULL),
+(40, 'PH-Session 2', '13:00:00', '13:50:00', NULL, 40, 1, 1, '2026-03-19 03:49:12', '2026-03-19 03:49:12', NULL, NULL),
+(41, 'PH-Session 3', '14:00:00', '14:50:00', NULL, 41, 1, 1, '2026-03-19 03:49:39', '2026-03-19 03:49:39', NULL, NULL),
+(42, 'PH-Session 4', '15:00:00', '15:50:00', NULL, 42, 1, 1, '2026-03-19 03:50:22', '2026-03-19 03:50:22', NULL, NULL),
+(43, 'PH-Session 5', '16:00:00', '16:50:00', NULL, 43, 1, 1, '2026-03-19 03:50:58', '2026-03-19 03:50:58', NULL, NULL),
+(44, 'PH-Session 6', '17:00:00', '17:50:00', NULL, 44, 1, 1, '2026-03-19 03:51:38', '2026-03-19 03:51:38', NULL, NULL),
+(45, 'MH-Session 1', '8:00:00', '8:50:00', NULL, 45, 1, 1, '2026-03-19 11:02:23', '2026-03-19 11:02:23', NULL, NULL),
+(46, 'MH-Session 2', '9:00:00', '9:50:00', NULL, 46, 1, 1, '2026-03-19 11:03:09', '2026-03-19 11:03:09', NULL, NULL),
+(47, 'MH-Session 3', '10:00:00', '10:50:00', NULL, 47, 1, 1, '2026-03-19 11:04:04', '2026-03-19 11:04:04', NULL, NULL),
+(48, 'MH-Session 4', '11:00:00', '11:50:00', NULL, 48, 1, 1, '2026-03-19 11:04:41', '2026-03-19 11:04:41', NULL, NULL);
+
+
+-- Data for table `zing_surveys` (1 rows)
+INSERT INTO `zing_surveys` (`id`, `title_en`, `title_kh`, `description_en`, `description_kh`, `allow_public`, `allow_private`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, '📝 Parent Survey – PAMA International School', 'ការស្ទង់មតិមាតាបិតា – សាលាអន្តរជាតិ PAMA', 'Thank you for taking time to complete this survey.\nYour feedback is very important to help PAMA International School improve teaching quality, school services, and the overall learning environment.\n\nThis survey is anonymous, and all responses will be kept confidential.\nPlease answer honestly based on your experience.', 'សូមអរគុណដែលលោកអ្នកបានចំណាយពេលបំពេញការស្ទង់មតិនេះ។\nមតិយោបល់របស់លោកអ្នកមានសារៈសំខាន់ខ្លាំងក្នុងការជួយ សាលាអន្តរជាតិ PAMA បង្កើនគុណភាពការបង្រៀន សេវាកម្មសាលា និងបរិយាកាសសិក្សាឲ្យកាន់តែប្រសើរ។\n\nការស្ទង់មតិនេះគឺជា អនាមិក ហើយព័ត៌មានទាំងអស់នឹងត្រូវរក្សាទុកជា ការសម្ងាត់។\nសូមឆ្លើយដោយស្មោះត្រង់តាមបទពិសោធន៍របស់លោកអ្នក។', 1, 1, 1, '2026-01-28 07:38:35', '2026-01-28 07:39:53');
+
+
+-- Data for table `holidays` (104 rows)
+INSERT INTO `holidays` (`id`, `name`, `date`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Constitution Day', '2024-09-24', '', '2025-05-05 14:39:29', '2025-05-05 14:39:29'),
+(2, 'Pchumben Festival', '2024-09-30', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
+(3, 'Pchumben Festival', '2024-10-01', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
+(4, 'Pchumben Festival', '2024-10-02', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
+(5, 'Pchumben Festival', '2024-10-03', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
+(6, 'Pchumben Festival', '2024-10-04', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
+(7, 'King\'s Father Commemoration Day', '2024-10-15', '', '2025-05-05 14:42:01', '2025-05-05 14:42:01'),
+(8, 'King\'s Coronation Day', '2024-10-29', '', '2025-05-05 14:42:53', '2025-05-05 14:42:53'),
+(9, 'Independence Day', '2024-11-09', '', '2025-05-05 14:44:03', '2025-05-05 14:44:03'),
+(10, 'Water Festival', '2024-11-14', '', '2025-05-05 14:45:33', '2025-05-05 14:45:33'),
+(11, 'Water Festival', '2024-11-15', '', '2025-05-05 14:45:33', '2025-05-05 14:45:33'),
+(12, 'Water Festival', '2024-11-16', '', '2025-05-05 14:45:33', '2025-05-05 14:45:33'),
+(13, 'Chrismas Day', '2024-12-23', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(14, 'Chrismas Day', '2024-12-24', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(15, 'Chrismas Day', '2024-12-25', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(16, 'Chrismas Day', '2024-12-26', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(17, 'Chrismas Day', '2024-12-27', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(18, 'Chrismas Day', '2024-12-28', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(20, 'Chrismas Day', '2024-12-30', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(21, 'Chrismas Day', '2024-12-31', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
+(22, 'New Year\'s day', '2025-01-01', '', '2025-05-05 14:54:45', '2025-05-05 14:54:45'),
+(23, 'Victory Day', '2025-01-07', '', '2025-05-05 14:55:24', '2025-05-05 14:55:24'),
+(24, 'Chinese New Year', '2025-01-28', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
+(25, 'Chinese New Year', '2025-01-29', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
+(26, 'Chinese New Year', '2025-01-30', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
+(27, 'Chinese New Year', '2025-01-31', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
+(28, 'International Woman\'s Day', '2025-03-08', '', '2025-05-05 14:58:21', '2025-05-05 14:58:21'),
+(29, 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-04-12', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:04:35', '2025-05-05 15:04:35'),
+(30, 'Khmer New Year', '2025-04-14', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:05:20', '2025-05-05 15:05:20'),
+(31, 'Khmer New Year', '2025-04-15', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:05:20', '2025-05-05 15:05:20'),
+(32, 'Khmer New Year', '2025-04-16', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:05:20', '2025-05-05 15:05:20'),
+(33, 'សម្រាកបន្ថែមចូលឆ្នាំខ្មែរ', '2025-04-17', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:11:32', '2025-05-05 15:11:32'),
+(34, 'សម្រាកបន្ថែមចូលឆ្នាំខ្មែរ', '2025-04-18', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:11:32', '2025-05-05 15:11:32'),
+(35, 'សម្រាកបន្ថែមចូលឆ្នាំខ្មែរ', '2025-04-19', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:11:32', '2025-05-05 15:11:32'),
+(36, 'International Labor Day', '2025-05-01', '', '2025-05-05 15:13:23', '2025-05-05 15:19:57'),
+(37, 'King\'s Sihamony Birthday', '2025-05-14', '', '2025-05-05 15:21:25', '2025-05-05 15:21:25'),
+(38, 'Royal Ploughing Ceremony', '2025-05-15', '', '2025-05-05 15:21:53', '2025-05-05 15:21:53'),
+(39, 'King\'s Mother Birthday', '2025-06-18', '', '2025-05-05 15:23:18', '2025-05-05 15:23:18'),
+(40, 'Semeter Break', '2025-02-24', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
+(41, 'Semeter Break', '2025-02-25', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
+(42, 'Semeter Break', '2025-02-26', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
+(43, 'Semeter Break', '2025-02-27', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
+(44, 'Semeter Break', '2025-02-28', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
+(45, 'ពិធីបុណ្យភ្ជុំបិណ្ឌ (Pchum Ben Festival)', '2025-09-21', '3 day', '2025-06-19 10:56:04', '2025-06-19 10:56:04'),
+(46, 'ពិធីបុណ្យភ្ជុំបិណ្ឌ (Pchum Ben Festival)', '2025-09-22', '3 day', '2025-06-19 10:56:04', '2025-06-19 10:56:04'),
+(47, 'ពិធីបុណ្យភ្ជុំបិណ្ឌ (Pchum Ben Festival)', '2025-09-23', '3 day', '2025-06-19 10:56:04', '2025-06-19 10:56:04'),
+(48, 'ទិវាប្រកាសរដ្ឋធម្មនុញ្ញខួបលើកទី៣២ (Constitution Day)', '2025-09-24', '(Constitution Day)', '2025-06-19 10:56:32', '2025-06-19 10:56:32'),
+(49, '(King Father\'s Commemoration Day)', '2025-10-15', '(King Father\'s Commemoration Day)', '2025-06-19 10:56:54', '2025-06-19 10:56:54'),
+(50, '(King\'s Coronation Day)', '2025-10-29', '(King\'s Coronation Day)', '2025-06-19 10:58:00', '2025-06-19 10:58:00'),
+(51, 'ព្រះរាជពិធីបុណ្យអុំទូក (Water Festival)', '2025-11-04', '3day', '2025-06-19 11:00:31', '2025-06-19 11:00:31'),
+(52, 'ព្រះរាជពិធីបុណ្យអុំទូក (Water Festival)', '2025-11-05', '3day', '2025-06-19 11:00:31', '2025-06-19 11:00:31'),
+(53, 'ព្រះរាជពិធីបុណ្យអុំទូក (Water Festival)', '2025-11-06', '3day', '2025-06-19 11:00:31', '2025-06-19 11:00:31'),
+(54, 'ទិវាសន្តិភាពនៅកម្ពុជា (Peace Day in Cambodia)', '2025-12-29', '(Peace Day in Cambodia)', '2025-06-19 11:01:20', '2025-06-19 11:01:20'),
+(55, 'ទិវាចូលឆ្នាំសាកល (New Year\'s Day)', '2026-01-01', '(New Year\'s Day)', '2025-06-19 11:04:00', '2025-06-19 11:04:00'),
+(56, 'ទិវាជ័យជម្នះលើរបបប្រល័យពូជសាសន៍ខួបលើកទី៤៧', '2026-01-07', 'ទិវាជ័យជម្នះលើរបបប្រល័យពូជសាសន៍ខួបលើកទី៤៧', '2025-06-19 11:04:46', '2025-06-19 11:04:46'),
+(57, 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2026-04-14', 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2025-06-19 11:05:45', '2025-06-19 11:05:45'),
+(58, 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2026-04-15', 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2025-06-19 11:05:45', '2025-06-19 11:05:45'),
+(59, 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2026-04-16', 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2025-06-19 11:05:45', '2025-06-19 11:05:45'),
+(60, 'ទិវាពលកម្មអន្តរជាតិខួបលើកទី១៤០', '2026-05-01', 'ទិវាពលកម្មអន្តរជាតិខួបលើកទី១៤០', '2025-06-19 11:06:22', '2025-06-19 11:06:22'),
+(61, 'ព្រះរាជពិធីច្រត់ព្រះនង្គ័ល (Royal Ploughing Ceremony)', '2026-05-05', '(Royal Ploughing Ceremony)', '2025-06-19 11:07:04', '2025-06-19 11:07:04'),
+(62, 'ព្រះរាជពិធីបុណ្យចម្រើនព្រះជន្មសម្តេចព្រះបរមនាថនរោត្តមសីហមុនី', '2026-05-14', '(King Sihamoni\'s Birthday)', '2025-06-19 11:08:03', '2025-06-19 11:08:03'),
+(63, 'ព្រះ​រាជ​ពិធី​បុណ្យ​ចម្រើន​ព្រះជន្មសម្តេចព្រះមហាក្សត្រីនរោត្តមមុនិនាថសីហនុ', '2026-06-18', '(Queen Mother\'s Birthday)', '2025-06-19 11:08:55', '2025-06-19 11:08:55'),
+(68, 'Extra Day', '2026-02-02', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
+(69, 'Extra Day', '2026-02-03', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
+(70, 'Extra Day', '2026-02-04', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
+(71, 'Extra Day', '2026-02-05', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
+(72, 'ចូលឆ្នាំចិន', '2026-02-16', '', '2025-06-30 16:40:01', '2025-06-30 16:40:01'),
+(73, 'Christmas Day', '2025-12-25', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
+(74, 'Christmas Day', '2025-12-26', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
+(75, 'Christmas Day', '2025-12-30', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
+(76, 'Christmas Day', '2025-12-31', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
+(77, 'Extra day khmer new​ year', '2026-04-13', '', '2025-06-30 17:04:20', '2026-03-13 08:22:13'),
+(78, 'Extra day khmer new year', '2026-04-17', '', '2025-06-30 17:04:20', '2026-03-13 08:21:53'),
+(81, 'ទិវារដ្ឋធម្មនុញ្ញ-Constitution Day', '2026-09-24', '', '2026-05-28 14:42:55', '2026-05-28 14:42:55'),
+(82, 'បុណ្យភ្ជុំបិណ្ឌ-Pchum Ben Day', '2026-10-10', '', '2026-05-28 14:47:28', '2026-05-28 14:47:28'),
+(83, 'បុណ្យភ្ជុំបិណ្ឌ-Pchum Ben Day', '2026-10-11', '', '2026-05-28 14:47:28', '2026-05-28 14:47:28'),
+(84, 'បុណ្យភ្ជុំបិណ្ឌ-Pchum Ben Day', '2026-10-12', '', '2026-05-28 14:47:28', '2026-05-28 14:47:28'),
+(85, 'ទិវាប្រារព្ធពិធីកាន់ទុក្ខព្រះវររាជបិតាជាតិ-Commemoration Day of the King Father', '2026-10-15', '', '2026-05-28 14:48:55', '2026-05-28 14:48:55'),
+(86, 'ព្រះរាជពិធីគ្រងព្រះបរមរាជសម្បត្តិ-King\'s Coronation Day', '2026-10-29', '', '2026-05-28 14:50:01', '2026-05-28 14:50:01'),
+(87, 'ពិធីបុណ្យឯករាជ្យជាតិ-National Independence Day', '2026-11-09', '', '2026-05-28 14:50:52', '2026-05-28 14:50:52'),
+(88, 'ពិធីបុណ្យអុំទូក បណ្តែតប្រទីប និងសំពះព្រះខែ អកអំបុក-Water Festival Ceremony', '2026-11-23', '', '2026-05-28 14:52:36', '2026-05-28 14:52:36'),
+(89, 'ពិធីបុណ្យអុំទូក បណ្តែតប្រទីប និងសំពះព្រះខែ អកអំបុក-Water Festival Ceremony', '2026-11-24', '', '2026-05-28 14:52:36', '2026-05-28 14:52:36'),
+(90, 'ពិធីបុណ្យអុំទូក បណ្តែតប្រទីប និងសំពះព្រះខែ អកអំបុក-Water Festival Ceremony', '2026-11-25', '', '2026-05-28 14:52:36', '2026-05-28 14:52:36'),
+(91, 'ទិវាសន្តិភាពនៅកម្ពុជា-Peace Day in Cambodia/Christmas', '2026-12-29', '', '2026-05-28 14:54:38', '2026-05-28 15:15:56'),
+(92, 'Extra Day 25', '2026-12-25', '', '2026-05-28 15:05:12', '2026-05-28 15:47:56'),
+(93, 'Extra Day', '2027-11-26', '', '2026-05-28 15:19:35', '2026-05-28 15:19:57'),
+(94, 'Extra Days', '2027-12-26', '', '2026-05-28 15:21:57', '2026-05-28 15:21:57'),
+(95, 'Extra Day 26', '2026-12-26', '', '2026-05-28 15:29:38', '2026-05-28 15:48:11'),
+(96, 'Extra Day 30', '2026-12-30', '', '2026-05-28 15:30:28', '2026-05-28 15:48:19'),
+(97, 'Extra Day 31', '2026-12-31', '', '2026-05-28 15:30:45', '2026-05-28 15:48:29'),
+(98, 'New Year\'s Day-ទិវាបុណ្យចូលឆ្នាំសកល', '2027-01-01', '', '2026-05-28 15:32:08', '2026-05-28 15:32:08'),
+(99, 'ទិវាជ័យជម្នះលើរបបប្រល័យពូជសាសន៍-Victory Over Genocide Day', '2027-01-07', '', '2026-05-28 15:32:45', '2026-05-28 15:33:32'),
+(100, 'ពិធីបុណ្យចូលឆ្នាំចិន-Chinese New Year\'s Eve', '2027-02-05', '', '2026-05-28 15:38:04', '2026-05-28 15:38:04'),
+(101, 'ទិវាអន្តរជាតិនារី-International Women\'s Day', '2027-03-08', '', '2026-05-28 15:39:22', '2026-05-28 15:39:22'),
+(102, 'ពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិ-Khmer New Year', '2027-04-14', '', '2026-05-28 15:41:04', '2026-05-28 15:41:04'),
+(103, 'ពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិ-Khmer New Year', '2027-04-15', '', '2026-05-28 15:41:04', '2026-05-28 15:41:04'),
+(104, 'ពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិ-Khmer New Year', '2027-04-16', '', '2026-05-28 15:41:04', '2026-05-28 15:41:04'),
+(105, 'Extra Day 13', '2027-04-13', '', '2026-05-28 15:41:33', '2026-05-28 15:48:38'),
+(106, 'Extra Day 17', '2027-04-17', '', '2026-05-28 15:42:00', '2026-05-28 15:48:47'),
+(107, 'ទិវាពលកម្មអន្តរជាតិ-International Labor', '2027-05-01', '', '2026-05-28 15:42:59', '2026-05-28 16:21:52'),
+(108, 'ព្រះរាជពិធីបុណ្យចម្រើនព្រះជន្ម ព្រះករុណា ព្រះបាទសម្តេច ព្រះបរមនាថ នរោត្តម សីហមុនី-King Sihamoni\'s Birthday', '2027-05-14', '', '2026-05-28 15:44:15', '2026-05-28 15:44:15'),
+(109, 'ពិធីបុណ្យវិសាខបូជា-Visak Bochea', '2027-05-20', '', '2026-05-28 15:45:38', '2026-05-28 15:45:38'),
+(110, 'ព្រះរាជពិធីច្រត់ព្រះនង្គ័ល-Royal Ploughing Ceremony', '2027-05-24', '', '2026-05-28 15:46:13', '2026-05-28 15:46:13'),
+(112, 'ព្រះរាជពិធីបុណ្យចម្រើនព្រះជន្ម សម្តេចព្រះមហាក្សត្រី នរោត្តម មុនិនាថ សីហនុ-Queen Mother\'s Birthday', '2027-06-18', '', '2026-05-28 15:47:45', '2026-05-28 15:47:45');
+
+
+-- Data for table `market_categories` (5 rows)
+INSERT INTO `market_categories` (`id`, `name`, `name_en`, `name_km`, `icon_key`, `sort_order`, `created_at`) VALUES
+(1, 'Books', 'Books', 'សៀវភៅ', 'books', 1, '2026-06-28 15:33:06'),
+(2, 'Uniform', 'Uniform', 'ឯកសណ្ឋាន', 'uniform', 2, '2026-06-28 15:33:06'),
+(3, 'Food', 'Food', 'អាហារ', 'food', 3, '2026-06-28 15:33:06'),
+(4, 'Electronics', 'Electronics', 'អេឡិចត្រូនិច', 'electronics', 4, '2026-06-28 15:33:06'),
+(5, 'Other', 'Other', 'ផ្សេងៗ', 'other', 99, '2026-06-28 15:33:06');
+
+
+-- Data for table `market_settings` (1 rows)
+INSERT INTO `market_settings` (`id`, `welcome_enabled`, `welcome_skip_seconds`, `welcome_version`, `updated_at`) VALUES
+(1, 0, 30, 1, '2026-07-23 15:04:43');
+
+
+-- Data for table `decimal_marks_allow` (4 rows)
+INSERT INTO `decimal_marks_allow` (`id`, `program_id`, `allow`, `created_at`, `updated_at`) VALUES
+(1, 1, 0.25, '2025-12-10 06:45:03', '2025-12-10 06:45:03'),
+(2, 1, 0.50, '2025-12-10 06:45:03', '2025-12-10 06:45:03'),
+(3, 1, 0.75, '2025-12-10 06:45:03', '2025-12-10 06:45:03'),
+(4, 1, 0.00, '2025-12-16 02:38:49', '2025-12-16 02:38:49');
+
+
+-- Data for table `medalname` (93 rows)
+INSERT INTO `medalname` (`id`, `medal_name`, `created_at`, `updated_at`) VALUES
+(1, 'កម្មវិធីប៉ាម៉ា', '2025-07-25 13:04:17', '2025-07-25 13:04:17'),
+(2, 'ប្រកបពាក្យ និងអក្ខរវិញ្ញាស', '2025-07-25 13:04:17', '2025-07-28 02:40:46'),
+(3, 'អំណាន និងកំណាព្យ', '2025-07-28 02:35:26', '2025-07-28 02:35:26'),
+(4, 'ប្រកួតនិទានរឿង', '2025-07-28 02:35:56', '2025-07-28 02:35:56'),
+(5, 'បទបង្ហាញអមដោយរូបភាព', '2025-07-28 02:36:31', '2025-07-28 02:36:31'),
+(6, 'និយាយជាសាធារណៈ', '2025-07-28 02:37:10', '2025-07-28 02:37:10'),
+(7, 'តែងសេក្ដី', '2025-07-28 02:41:08', '2025-07-28 02:41:08'),
+(8, 'សិស្សឆ្នើម', '2025-07-28 02:41:25', '2025-07-28 02:41:25'),
+(9, 'Picture Prompts', '2025-07-28 02:43:26', '2025-08-28 03:29:50'),
+(10, 'Outstanding students', '2025-07-28 02:44:20', '2025-07-28 02:44:20'),
+(11, 'Story Telling', '2025-07-28 02:45:57', '2025-07-29 02:45:15'),
+(12, 'Show and Tell', '2025-07-28 02:46:25', '2025-07-28 02:46:25'),
+(13, 'Public Speaking', '2025-07-28 02:47:00', '2025-07-28 02:47:00'),
+(14, 'Reading Contest', '2025-07-28 02:47:18', '2025-07-29 09:36:07'),
+(17, 'ISOCSEA NR SCI', '2025-07-28 03:06:58', '2026-07-31 03:57:19'),
+(18, 'សំណេរ និងអត្ថន័យពាក្យ', '2025-07-28 03:14:16', '2025-07-28 03:14:16'),
+(19, 'ប្រកួតអំណាន និងស្មូត្រកំណាព្យ', '2025-07-28 03:14:23', '2025-07-28 03:14:23'),
+(20, 'IMOCSEA NR MATH', '2025-07-28 03:20:47', '2026-07-31 03:55:50'),
+(21, 'SMC', '2025-07-28 03:22:41', '2025-07-28 03:22:41'),
+(23, 'SEAMO', '2025-07-28 03:23:33', '2025-07-28 03:23:33'),
+(24, 'AMO', '2025-07-28 03:23:47', '2025-07-28 03:23:47'),
+(25, 'TEENEAGLE', '2025-07-28 03:24:10', '2025-07-28 03:24:10'),
+(26, 'TIMO', '2025-07-28 03:24:24', '2025-07-28 03:24:24'),
+(27, 'AMC FINAL', '2025-07-28 03:24:46', '2025-07-28 03:24:46'),
+(28, 'IGC', '2025-07-28 03:25:17', '2025-07-28 03:25:17'),
+(35, 'PIMSO NR MATH', '2025-07-28 03:32:34', '2026-07-31 06:36:42'),
+(36, 'PIMSO NR SCI', '2025-07-28 03:32:50', '2026-07-31 06:36:57'),
+(37, 'WMI', '2025-07-28 03:33:02', '2025-07-28 03:33:02'),
+(38, 'SASMO', '2025-07-28 03:33:13', '2025-07-28 03:33:13'),
+(39, 'BBB', '2025-07-28 03:33:42', '2025-07-28 03:33:42'),
+(42, 'IMEC', '2025-07-28 03:34:37', '2025-07-28 03:34:37'),
+(43, 'MPCH', '2025-07-28 03:34:50', '2025-07-28 03:34:50'),
+(44, 'BMC', '2025-07-28 03:35:02', '2025-07-28 03:35:02'),
+(46, 'Dream', '2025-08-13 03:35:24', '2025-08-13 03:35:24'),
+(48, 'CIMOC PRE', '2025-10-25 01:50:24', '2026-07-03 10:12:50'),
+(51, 'VIAMC', '2026-01-19 00:58:49', '2026-01-19 00:58:49'),
+(52, 'SEAMOX IR', '2026-01-26 02:44:38', '2026-07-31 06:46:11'),
+(53, 'BEBRAS', '2026-03-18 02:52:18', '2026-03-18 02:52:18'),
+(54, 'SIMSO/MATH', '2026-03-24 07:19:19', '2026-03-24 07:19:19'),
+(55, 'SIMSO/SCIENCE', '2026-03-24 07:19:50', '2026-03-24 07:19:50'),
+(57, 'WMC', '2026-04-21 07:29:48', '2026-04-21 07:29:48'),
+(58, 'WEC', '2026-04-21 07:30:51', '2026-04-21 07:30:51'),
+(59, 'Math Kangaroo', '2026-04-21 08:09:38', '2026-04-21 08:09:38'),
+(60, 'Romdul Scholars Challenge', '2026-05-18 02:44:21', '2026-06-10 02:20:31'),
+(61, 'WSC/Scholar\'s Bowl', '2026-06-01 06:53:33', '2026-06-01 06:53:33'),
+(62, 'WSC/Writing', '2026-06-01 06:54:30', '2026-06-01 06:54:30'),
+(63, 'WSC/Debate', '2026-06-01 06:56:18', '2026-06-01 06:56:18'),
+(64, 'WSC/Scholar\'s Challenge', '2026-06-01 06:57:07', '2026-06-01 06:57:07'),
+(65, 'WSC/TEAM WRITING', '2026-06-01 07:02:06', '2026-07-31 08:13:12'),
+(66, 'WSC/TEAM DEBATE', '2026-06-01 07:02:27', '2026-06-01 07:02:27'),
+(67, 'KOALA/ENGLISH', '2026-06-09 03:08:19', '2026-06-09 03:08:19'),
+(68, 'KOALA/MATH', '2026-06-09 03:08:42', '2026-06-09 03:08:42'),
+(69, 'KOALA/SCIENCE', '2026-06-09 03:09:10', '2026-06-09 03:09:10'),
+(70, 'KOALA/ARTS', '2026-06-09 03:09:22', '2026-06-09 03:11:43'),
+(71, 'IESO NR SCI', '2026-06-09 08:29:26', '2026-07-30 09:38:43'),
+(73, 'Linker Scientia Cup', '2026-06-13 01:24:55', '2026-06-13 01:24:55'),
+(74, 'Linker/Math', '2026-06-15 03:37:07', '2026-06-15 03:37:07'),
+(75, 'Linker/Bio', '2026-06-15 03:39:34', '2026-06-15 03:39:34'),
+(76, 'Linker/Chemistry', '2026-06-15 03:44:56', '2026-06-15 03:44:56'),
+(77, 'Linker/Physic', '2026-06-15 03:54:02', '2026-06-15 03:54:02'),
+(78, 'Romdul/Math', '2026-06-20 02:03:38', '2026-06-20 02:03:38'),
+(79, 'Romdul/science', '2026-06-20 02:04:15', '2026-06-20 02:04:15'),
+(80, 'Romdul/Geo', '2026-06-20 02:06:00', '2026-06-20 02:06:00'),
+(81, 'Romdul/History', '2026-06-20 02:06:22', '2026-06-20 02:06:22'),
+(82, 'Romdul/Art', '2026-06-20 02:06:37', '2026-06-20 02:06:37'),
+(83, 'CIMOC FINAL', '2026-07-03 10:26:37', '2026-07-03 10:26:37'),
+(85, 'PHIMO NR MATH', '2026-07-08 10:13:41', '2026-07-31 04:09:09'),
+(86, 'COPERNICUS MATH', '2026-07-09 08:42:48', '2026-07-09 08:42:48'),
+(90, 'GMC', '2026-07-09 08:47:04', '2026-07-09 08:47:04'),
+(91, 'IESO IR', '2026-07-09 08:49:15', '2026-07-30 09:36:03'),
+(92, 'PHIMO IR', '2026-07-09 08:52:19', '2026-07-31 04:08:06'),
+(93, 'SMGF', '2026-07-09 08:54:51', '2026-07-09 08:54:51'),
+(94, 'WSC IR SCI', '2026-07-09 08:58:11', '2026-07-31 08:09:44'),
+(95, 'ESB PRELIMINARY', '2026-07-09 09:45:48', '2026-07-09 09:45:48'),
+(96, 'ESB FINAL', '2026-07-09 09:46:13', '2026-07-09 09:46:13'),
+(97, 'FISO IR ARTS', '2026-07-30 08:08:51', '2026-07-30 08:08:51'),
+(98, 'FISO IR ENG', '2026-07-30 08:09:03', '2026-07-30 08:09:03'),
+(99, 'FISO IR IQ', '2026-07-30 08:09:16', '2026-07-30 08:09:16'),
+(100, 'FISO IR MATH', '2026-07-30 08:10:14', '2026-07-30 08:10:14'),
+(101, 'FISO IR SCI', '2026-07-30 08:10:19', '2026-07-30 08:10:19'),
+(102, 'FISO NR ART', '2026-07-30 08:10:46', '2026-07-30 08:10:46'),
+(103, 'FISO NR ENG', '2026-07-30 08:10:52', '2026-07-30 08:10:52'),
+(104, 'FISO NR IQ', '2026-07-30 08:10:58', '2026-07-30 08:10:58'),
+(105, 'FISO NR MATH', '2026-07-30 08:11:06', '2026-07-30 08:11:06'),
+(106, 'FISO NR SCI', '2026-07-30 08:11:12', '2026-07-30 08:11:12'),
+(107, 'FISO NR TECH', '2026-07-30 08:11:42', '2026-07-30 08:11:42'),
+(108, 'HKIMO IR', '2026-07-30 09:19:32', '2026-07-30 09:19:32'),
+(109, 'HKIMO NR', '2026-07-30 09:19:37', '2026-07-30 09:19:37'),
+(110, 'IEMO NR ENG', '2026-07-30 09:29:01', '2026-07-30 09:29:01'),
+(111, 'PIMSO IR MATH', '2026-07-31 06:37:05', '2026-07-31 06:37:05'),
+(112, 'PIMSO IR SCI', '2026-07-31 06:37:12', '2026-07-31 06:37:12'),
+(113, 'TIMO IR', '2026-07-31 07:58:34', '2026-07-31 07:58:34'),
+(114, 'VIAMC IR', '2026-07-31 08:00:36', '2026-07-31 08:00:36');
+
+
+-- Data for table `medal_points_setup` (96 rows)
+INSERT INTO `medal_points_setup` (`program_name`, `gold_pts`, `silver_pts`, `bronze_pts`, `diamond_pts`, `participation_pts`) VALUES
+('AMC FINAL', 2.0, 1.0, 0.5, 0.0, 0.0),
+('AMO', 4.0, 3.0, 2.0, 0.0, 0.5),
+('BBB', 5.0, 4.0, 3.0, 0.0, 1.0),
+('BEBRAS', 5.0, 4.0, 3.0, 0.0, 0.0),
+('BMC', 2.0, 1.0, 0.5, 0.0, 0.0),
+('CIMOC FINAL', 2.0, 1.0, 0.5, 0.0, 0.0),
+('CIMOC PRE', 2.0, 1.0, 0.5, 0.0, 0.0),
+('COPERNICUS MATH', 3.0, 2.0, 1.0, 0.0, 0.5),
+('Dream', 2.0, 1.0, 0.5, 0.0, 0.0),
+('ESB FINAL', 3.0, 2.0, 1.0, 0.0, 0.5),
+('ESB PRELIMINARY', 3.0, 2.0, 1.0, 0.0, 0.5),
+('FISO GR ENG', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO GR MATH', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO GR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO IR ARTS', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO IR ENG', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO IR IQ', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO IR MATH', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO IR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
+('FISO NR ART', 3.0, 2.0, 1.0, 0.0, 0.5),
+('FISO NR ENG', 3.0, 2.0, 1.0, 0.0, 0.5),
+('FISO NR IQ', 3.0, 2.0, 1.0, 0.0, 0.5),
+('FISO NR MATH', 3.0, 2.0, 1.0, 0.0, 0.5),
+('FISO NR SCI', 3.0, 2.0, 1.0, 0.0, 0.5),
+('FISO NR TECH', 3.0, 2.0, 1.0, 0.0, 0.5),
+('GMC', 5.0, 4.0, 3.0, 0.0, 2.0),
+('HKIMO', 0.0, 0.0, 0.0, 0.0, 0.0),
+('HKIMO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
+('HKIMO NR', 4.0, 3.0, 2.0, 0.0, 1.0),
+('IEMO NR ENG', 4.0, 3.0, 2.0, 0.0, 1.0),
+('IESO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
+('IESO NR SCI', 4.0, 3.0, 2.0, 0.0, 1.0),
+('IMOCSEA NR MATH', 4.0, 3.0, 2.0, 5.0, 1.0),
+('ISOCSEA NR SCI', 4.0, 3.0, 2.0, 5.0, 1.0),
+('KOALA/ARTS', 3.0, 2.0, 1.0, 0.0, 0.5),
+('KOALA/ENGLISH', 3.0, 2.0, 1.0, 0.0, 0.5),
+('KOALA/MATH', 3.0, 2.0, 1.0, 0.0, 0.5),
+('KOALA/SCIENCE', 3.0, 2.0, 1.0, 0.0, 0.5),
+('Linker Scientia Cup', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Linker/Bio', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Linker/Chemistry', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Linker/Math', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Linker/Physic', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Math Kangaroo', 3.0, 2.0, 1.0, 0.0, 0.5),
+('MPCH', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Outstanding students', 3.0, 2.0, 1.0, 0.0, 0.0),
+('PHIMO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
+('PHIMO NR MATH', 4.0, 3.0, 2.0, 0.0, 1.0),
+('Picture Prompts', 2.0, 1.0, 0.5, 0.0, 0.0),
+('PIMSO IR MATH', 5.0, 4.0, 3.0, 0.0, 2.0),
+('PIMSO IR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
+('PIMSO NR MATH', 4.0, 3.0, 2.0, 0.0, 1.0),
+('PIMSO NR SCI', 4.0, 3.0, 2.0, 0.0, 1.0),
+('Public Speaking', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Reading Contest', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Romdul Scholars Challenge', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Romdul/Art', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Romdul/Geo', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Romdul/History', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Romdul/Math', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Romdul/science', 2.0, 1.0, 0.5, 0.0, 0.0),
+('SASMO', 4.0, 3.0, 2.0, 0.0, 1.0),
+('SEAMO', 4.0, 3.0, 2.0, 0.0, 0.5),
+('SEAMOX IR', 7.0, 6.0, 5.0, 0.0, 3.0),
+('Show and Tell', 2.0, 1.0, 0.5, 0.0, 0.0),
+('SIMSO/MATH', 4.0, 3.0, 2.0, 0.0, 1.0),
+('SIMSO/SCIENCE', 4.0, 3.0, 2.0, 0.0, 1.0),
+('SMC', 4.0, 3.0, 2.0, 0.0, 1.0),
+('SMGF', 4.0, 3.0, 2.0, 0.0, 1.0),
+('Spelling Bee', 2.0, 1.0, 0.5, 0.0, 0.0),
+('Story Telling', 2.0, 1.0, 0.5, 0.0, 0.0),
+('TEENEAGLE', 2.0, 1.0, 0.5, 0.0, 0.0),
+('TIMO', 4.0, 3.0, 2.0, 0.0, 1.0),
+('TIMO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
+('VIAMC', 4.0, 3.0, 2.0, 0.0, 0.5),
+('VIAMC IR', 5.0, 4.0, 3.0, 0.0, 2.0),
+('WEC', 5.0, 4.0, 3.0, 0.0, 2.0),
+('WMC', 5.0, 4.0, 3.0, 0.0, 2.0),
+('WMI', 4.0, 3.0, 2.0, 0.0, 0.5),
+('WSC IR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
+('WSC/Debate', 2.0, 1.0, 0.5, 0.0, 0.0),
+('WSC/Scholar\'s Bowl', 2.0, 1.0, 0.5, 0.0, 0.0),
+('WSC/Scholar\'s Challenge', 2.0, 1.0, 0.5, 0.0, 0.0),
+('WSC/TEAM DEBATE', 2.0, 1.0, 0.5, 0.0, 0.0),
+('WSC/TEAM WRITING', 2.0, 1.0, 0.5, 0.0, 0.0),
+('WSC/Writing', 2.0, 1.0, 0.5, 0.0, 0.0),
+('កម្មវិធីប៉ាម៉ា', 2.0, 1.0, 0.5, 0.0, 0.0),
+('តែងសេក្ដី', 2.0, 1.0, 0.5, 0.0, 0.0),
+('និយាយជាសាធារណៈ', 2.0, 1.0, 0.5, 0.0, 0.0),
+('បទបង្ហាញអមដោយរូបភាព', 2.0, 1.0, 0.5, 0.0, 0.0),
+('ប្រកបពាក្យ និងអក្ខរវិញ្ញាស', 2.0, 1.0, 0.5, 0.0, 0.0),
+('ប្រកួតនិទានរឿង', 2.0, 1.0, 0.5, 0.0, 0.0),
+('ប្រកួតអំណាន និងស្មូត្រកំណាព្យ', 2.0, 1.0, 0.5, 0.0, 0.0),
+('សំណេរ និងអត្ថន័យពាក្យ', 2.0, 1.0, 0.5, 0.0, 0.0),
+('សិស្សឆ្នើម', 2.0, 1.0, 0.5, 0.0, 0.0),
+('អំណាន និងកំណាព្យ', 2.0, 1.0, 0.5, 0.0, 0.0);
+
+
+-- Data for table `medal_price` (11 rows)
+INSERT INTO `medal_price` (`id`, `name_us`, `name_kh`, `amount`, `academic_id`, `created_at`, `updated_at`) VALUES
+(1, 'Gold', 'មាស', 20.00, 1, '2025-07-25 13:34:45', '2025-07-25 13:34:45'),
+(2, 'Silver', 'ប្រាក់', 15.00, 1, '2025-07-25 13:34:45', '2025-07-25 13:34:45'),
+(3, 'Bronze', 'សំរិទ្ធ', 10.00, 1, '2025-07-25 13:35:37', '2025-07-25 13:35:37'),
+(4, 'Gold', 'មាស', 20.00, 2, '2025-08-27 01:59:57', '2025-08-27 01:59:57'),
+(5, 'Silver', 'ប្រាក់', 15.00, 2, '2025-08-27 02:00:21', '2025-08-27 02:00:21'),
+(6, 'Bronze', 'សំរិទ្ធ', 10.00, 2, '2025-08-27 02:00:50', '2025-08-27 02:00:50'),
+(7, 'Dimond', 'ពេជ្រ', 20.00, 2, '2025-11-12 06:45:16', '2025-11-12 06:45:16'),
+(8, 'Gold', 'មាស', 20.00, 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
+(9, 'Silver', 'ប្រាក់', 15.00, 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
+(10, 'Bronze', 'សំរិទ្ធ', 10.00, 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
+(11, 'Dimond', 'ពេជ្រ', 20.00, 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59');
+
+
+-- Data for table `attendance_processing_rules` (7 rows)
+INSERT INTO `attendance_processing_rules` (`id`, `scope_type`, `scope_id`, `is_enabled`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'department', 6, 1, 58, '2026-07-21 16:00:29', '2026-07-21 16:01:16'),
+(2, 'department', 1, 0, 58, '2026-07-21 16:10:23', '2026-07-21 16:10:23'),
+(3, 'user', 141, 0, 58, '2026-07-21 16:11:25', '2026-07-21 16:11:25'),
+(4, 'user', 4, 0, 58, '2026-07-21 16:11:54', '2026-07-21 16:11:54'),
+(5, 'user', 154, 0, 58, '2026-07-21 16:12:02', '2026-07-21 16:12:02'),
+(6, 'user', 140, 0, 58, '2026-07-21 16:12:14', '2026-07-21 16:12:14'),
+(7, 'user', 34, 1, 58, '2026-08-24 01:48:02', '2026-08-24 01:48:04');
+
+
+-- Data for table `attendance_system_settings` (1 rows)
+INSERT INTO `attendance_system_settings` (`id`, `require_location`, `block_mock_location`, `block_developer_options`, `allowed_ip_ranges`, `allow_early_clock_in_mins`, `allow_late_clock_out_mins`, `late_grace_minutes`, `updated_at`, `created_at`, `per_session_early_clock_in_mins`, `min_minutes_before_checkout`, `allow_early_leave_mins`, `allow_makeup_missing_sessions`, `notify_enable_before`, `notify_minutes_before`, `notify_enable_after`, `notify_minutes_after`, `notify_enable_before_checkout`, `notify_minutes_before_checkout`, `notify_enable_after_checkout`, `notify_minutes_after_checkout`, `session_transition_wait_mins`) VALUES
+(1, 1, 1, 0, '', 120, 480, 15, '2026-09-11', '2026-01-09 04:29:31', '[190, 40]', 30, 0, 0, 1, '[10]', 1, '[5]', 0, '[0]', 1, '[5]', 10);
+
+
+-- Data for table `background_cards` (1 rows)
+INSERT INTO `background_cards` (`id`, `front_image`, `back_image`, `card_model`, `created_at`, `updated_at`) VALUES
+(1, '/uploads/desktop-migration/background_cards/front_image/9d4ccaf979c465788986aa25cc1ff1dee01165840f3c98ce62d57d2b6501f35b.png', '/uploads/desktop-migration/background_cards/back_image/7bf137be2beed8c61baea52fcf36059da029d99ed5e94dc8ceffcc6281320adb.png', 'CARD_TYPE_1', '2025-10-30 10:12:37', '2026-08-17 01:36:07');
+
+
+-- Data for table `background_cert` (6 rows)
+INSERT INTO `background_cert` (`id`, `program_id`, `academic_id`, `cer_model`, `background_image`, `updated_at`, `created_at`, `grade_group_ids`, `grade_ids`, `background_url`, `orientation`, `signature_url`, `stamp_url`) VALUES
+(1, 1, 1, 1, '/uploads/desktop-migration/background_cert/background_image/c6bc5a998ac28a37f18c855379944a022d41287d664a4013ae07f8a0886cb201.png', '2026-08-17 01:36:07', '2026-01-06 07:11:35', NULL, NULL, '/uploads/certificates/backgrounds/bg_model_1.png', 'landscape', '/uploads/certificates/signatures/bg_model_signature_1.png', '/uploads/certificates/stamps/bg_model_stamp_1.png'),
+(2, 1, 1, 2, '/uploads/desktop-migration/background_cert/background_image/2a786b13926180c176aaab9f542fcf85fcb21d5a15ace7f62324194134976777.png', '2026-08-17 01:36:07', '2026-01-06 07:11:35', NULL, NULL, '/uploads/certificates/backgrounds/bg_model_2.png', 'portrait', '/uploads/certificates/signatures/bg_model_signature_2.png', '/uploads/certificates/stamps/bg_model_stamp_2.png'),
+(3, 3, 1, 3, '/uploads/desktop-migration/background_cert/background_image/d55c5f0938f9df0f100b8bc201cc2a5512547c02040ef374c88c8f768296ca66.png', '2026-08-17 01:36:07', '2026-01-06 07:11:35', NULL, NULL, '/uploads/certificates/backgrounds/bg_model_3.png', 'landscape', '/uploads/certificates/signatures/bg_model_signature_3.png', '/uploads/certificates/stamps/bg_model_stamp_3.png'),
+(6, 1, 2, 1, '/uploads/desktop-migration/background_cert/background_image/5b095155e2c91a2ff615faefc5df75e56189ed2d153ea1f966bc728ef9cfb854.png', '2026-08-17 01:36:07', '2026-06-23 01:48:55', NULL, NULL, '/uploads/certificates/backgrounds/bg_model_6.png', 'landscape', '/uploads/certificates/signatures/bg_model_signature_6.png', NULL),
+(8, 3, 2, 1, '/uploads/desktop-migration/background_cert/background_image/0196d969410d0eefeb2babb8b7d9c96326cd222d26c14cd7e20f9358980c7a85.png', '2026-08-17 01:36:07', '2026-06-23 01:52:55', NULL, NULL, '/uploads/certificates/backgrounds/bg_model_8.png', 'landscape', '/uploads/certificates/signatures/bg_model_signature_8.png', NULL),
+(9, 1, 2, 2, '/uploads/desktop-migration/background_cert/background_image/bb3a6a6db12969ea8230a1cf285e09fcf84cb2a60a8dc20c1f35db303ae871ed.png', '2026-08-17 01:36:07', '2026-06-24 09:36:54', NULL, NULL, '/uploads/certificates/backgrounds/bg_model_9.png', 'portrait', '/uploads/certificates/signatures/bg_model_signature_9.png', NULL);
+
+
+-- Data for table `certificate_settings` (2 rows)
+INSERT INTO `certificate_settings` (`id`, `academic_id`, `prefix`, `surfix`, `digit`, `year`, `created_at`, `updated_at`, `orientation`) VALUES
+(1, 1, '', '/25PAMAIS', 4, NULL, '2026-06-03 18:06:49', '2026-06-03 18:06:49', 'landscape'),
+(2, 2, '', '/26PAMAIS', 4, NULL, '2026-06-03 18:07:03', '2026-06-03 18:07:03', 'landscape');
+
+
+-- Data for table `app_branding_settings` (1 rows)
+INSERT INTO `app_branding_settings` (`id`, `icon_name`, `top_text`, `bottom_text`, `icon_background_color`, `icon_color`, `top_text_color`, `bottom_text_color`, `created_at`, `updated_at`, `icon_background_color_dark`, `icon_color_dark`, `top_text_color_dark`, `bottom_text_color_dark`, `use_logo_image`, `logo_image_url`, `logo_image_url_dark`) VALUES
+(1, 'school_rounded', 'PAMA', 'INTERNATIONAL SCHOOL', '#1E5BD8', '#FFFFFF', '#22252A', '#6F7280', '2026-03-17 19:57:09', '2026-04-25 12:11:07', '#1E5BD8', '#FFFFFF', '#FFFFFF', '#B7C0D1', 1, '/uploads/branding/branding_logo_light_24700c3b24.jpg', '/uploads/branding/branding_logo_dark_7419206d06.jpg');
+
+
+-- Data for table `app_quick_action_settings` (1 rows)
+INSERT INTO `app_quick_action_settings` (`id`, `items_json`, `updated_at`) VALUES
+(1, '[{"id":"website_1784808728018332","kind":"website","title_en":"The One News","title_km":"The One News","title_zh":"","url":"https://theonenewsasia.com/","icon_name":"newspaper","color_hex":"#E11D48","visible":true,"sort_order":0,"open_mode":"embedded","highlight_new":true,"icon_image_url":""},{"id":"website_1784939001066138","kind":"website","title_en":"Facebook","title_km":"ហ្វេសបុក","title_zh":"","url":"https://www.facebook.com/share/1EZEcrB9LS/","icon_name":"school","color_hex":"#1677F2","visible":false,"sort_order":1,"open_mode":"embedded","highlight_new":true,"icon_image_url":""},{"id":"contact","kind":"contact","title_en":"Contact & map","title_km":"ទំនាក់ទំនង និងផែនទី","title_zh":"联系与地图","url":null,"icon_name":"contact_phone","color_hex":"#1677F2","visible":true,"sort_order":2,"open_mode":"embedded","highlight_new":false,"icon_image_url":""},{"id":"admissions","kind":"admissions","title_en":"Admissions","title_km":"ចុះឈ្មោះសិស្ស","title_zh":"招生","url":null,"icon_name":"assignment","color_hex":"#1677F2","visible":true,"sort_order":3,"open_mode":"embedded","highlight_new":false,"icon_image_url":""},{"id":"fees","kind":"fees","title_en":"Fees","title_km":"ថ្លៃសិក្សា","title_zh":"费用","url":null,"icon_name":"payments","color_hex":"#1677F2","visible":true,"sort_order":4,"open_mode":"embedded","highlight_new":false,"icon_image_url":""}]', '2026-07-25 00:58:23');
+
+
+-- Data for table `price_visibility_settings` (1 rows)
+INSERT INTO `price_visibility_settings` (`id`, `branch_id`, `program_id`, `show_monthly`, `show_quarter`, `show_semester`, `show_oneyear`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 1, 1, 1, 1, '2026-03-17 01:43:26', '2026-08-25 11:17:07');
+
+
+-- Data for table `results_top_students_display_settings` (1 rows)
+INSERT INTO `results_top_students_display_settings` (`id`, `avatar_chip_mode`, `hide_section`, `updated_at`, `hide_medals_section`) VALUES
+(1, 'grade', 0, '2026-07-25 00:21:56', 0);
+
+
+-- Data for table `telegram_attendance_settings` (1 rows)
+INSERT INTO `telegram_attendance_settings` (`id`, `bot_token`, `chat_id`, `enabled`, `created_at`, `updated_at`, `notify_leave_requests`, `notify_leave_decisions`, `leave_routing_mode`, `leave_chat_id`, `branch_routing_mode`) VALUES
+(3, '8686190656:AAEl84Nkz7WwDe1SMn323iNV93BnIUeTvfw', '-1003926360219', 1, '2026-04-23 17:43:37', '2026-07-23 02:47:42', 1, 1, 'separate', '-1004357357756', NULL);
+
+
+-- Data for table `telegram_chat_moderation_settings` (3 rows)
+INSERT INTO `telegram_chat_moderation_settings` (`chat_id`, `enabled`, `file_policy`, `blocked_extensions`, `allowed_extensions`, `link_policy`, `allowed_domains`, `exempt_admins`, `send_warning`, `updated_by`, `created_at`, `updated_at`) VALUES
+('-1002222013522', 1, 'blocklist', '[".7z", ".apk", ".app", ".bat", ".bz2", ".cmd", ".com", ".cpl", ".deb", ".dll", ".dmg", ".docm", ".exe", ".gz", ".hta", ".ipa", ".iso", ".jar", ".js", ".lnk", ".msi", ".pkg", ".pptm", ".ps1", ".rar", ".reg", ".rpm", ".scr", ".sh", ".so", ".tar", ".tar.gz", ".tgz", ".vbs", ".xlsm", ".xz", ".zip"]', '[".csv", ".doc", ".docx", ".gif", ".jpeg", ".jpg", ".m4a", ".mov", ".mp3", ".mp4", ".pdf", ".png", ".ppt", ".pptx", ".txt", ".wav", ".webp", ".xls", ".xlsx"]', 'allowlist', '["google.com", "googleusercontent.com", "gstatic.com", "maps.app.goo.gl", "t.me", "youtu.be", "youtube.com"]', 1, 1, 58, '2026-07-20 10:25:28', '2026-08-06 09:38:13'),
+('-1002491545022', 1, 'allow_all', '[".7z", ".apk", ".app", ".bat", ".bz2", ".cmd", ".com", ".cpl", ".deb", ".dll", ".dmg", ".docm", ".exe", ".gz", ".hta", ".ipa", ".iso", ".jar", ".js", ".lnk", ".msi", ".pkg", ".pptm", ".ps1", ".rar", ".reg", ".rpm", ".scr", ".sh", ".so", ".tar", ".tar.gz", ".tgz", ".vbs", ".xlsm", ".xz", ".zip"]', '[".csv", ".doc", ".docx", ".gif", ".jpeg", ".jpg", ".m4a", ".mov", ".mp3", ".mp4", ".pdf", ".png", ".ppt", ".pptx", ".txt", ".wav", ".webp", ".xls", ".xlsx"]', 'allowlist', '["apps.apple.com", "forms.gle", "g.co", "goo.gl", "google.com", "googleapis.com", "googleusercontent.com", "googlevideo.com", "gstatic.com", "maps.app.goo.gl", "microsoft.com", "office.com", "pamainternationalschool.com", "pamais.duckdns.org", "t.me", "telegram.org", "wikipedia.org", "youtu.be", "youtube-nocookie.com", "youtube.com", "ytimg.com", "zoom.us"]', 0, 1, 58, '2026-08-04 07:36:51', '2026-08-04 07:36:51'),
+('-1004402180493', 1, 'allowlist', '[".7z", ".apk", ".app", ".bat", ".bz2", ".cmd", ".com", ".cpl", ".deb", ".dll", ".dmg", ".docm", ".exe", ".gz", ".hta", ".ipa", ".iso", ".jar", ".js", ".lnk", ".msi", ".pkg", ".pptm", ".ps1", ".rar", ".reg", ".rpm", ".scr", ".sh", ".so", ".tar", ".tar.gz", ".tgz", ".vbs", ".xlsm", ".xz", ".zip"]', '[".csv", ".doc", ".docx", ".gif", ".jpeg", ".jpg", ".m4a", ".mov", ".mp3", ".mp4", ".pdf", ".png", ".ppt", ".pptx", ".txt", ".wav", ".webp", ".xls", ".xlsx"]', 'allowlist', '["apps.apple.com", "forms.gle", "g.co", "goo.gl", "google.com", "googleapis.com", "googleusercontent.com", "googlevideo.com", "gstatic.com", "maps.app.goo.gl", "microsoft.com", "office.com", "pamainternationalschool.com", "pamais.duckdns.org", "t.me", "telegram.org", "wikipedia.org", "youtu.be", "youtube-nocookie.com", "youtube.com", "ytimg.com", "zoom.us"]', 0, 1, 58, '2026-07-22 03:51:37', '2026-07-22 03:51:37');
+
+
+-- Data for table `zing_payment_methods` (1 rows)
+INSERT INTO `zing_payment_methods` (`id`, `name`, `display_name`, `image_url`, `payment_url`, `is_active`, `display_order`, `created_at`, `updated_at`) VALUES
+(6, 'ABA', 'Pay by ABA', '/survey/api/receipts/1770190272218-a upload.png', 'https://pay.ababank.com/oRF8/072e78fb', 1, 0, '2026-01-28 07:58:27', '2026-02-04 07:31:13');
+
+
+-- Data for table `role_permissions` (213 rows)
+INSERT INTO `role_permissions` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
+(32, 2, 1, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(33, 2, 25, '2025-07-21 20:11:07', '2025-07-21 21:12:51'),
+(34, 2, 3, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(35, 2, 4, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(36, 2, 5, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(37, 2, 6, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(38, 2, 7, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(39, 2, 8, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(40, 2, 9, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(41, 2, 10, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(42, 2, 11, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(120, 12, 13, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(121, 13, 14, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
+(126, 2, 26, '2025-07-21 21:08:38', '2025-07-21 21:08:38'),
+(248, 5, 2, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(249, 5, 22, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(250, 5, 3, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(251, 5, 26, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(252, 5, 9, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(253, 5, 17, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(254, 5, 30, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(255, 5, 21, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(256, 5, 1, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(257, 5, 5, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(258, 5, 36, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
+(259, 6, 10, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
+(260, 6, 6, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
+(261, 6, 4, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
+(262, 6, 11, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
+(263, 6, 7, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
+(264, 6, 5, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
+(265, 6, 36, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
+(291, 9, 11, '2025-08-10 14:01:45', '2025-08-10 14:01:45'),
+(292, 9, 9, '2025-08-10 14:01:45', '2025-08-10 14:01:45'),
+(293, 9, 36, '2025-08-10 14:01:45', '2025-08-10 14:01:45'),
+(294, 8, 8, '2025-08-10 14:01:50', '2025-08-10 14:01:50'),
+(295, 8, 11, '2025-08-10 14:01:50', '2025-08-10 14:01:50'),
+(296, 8, 36, '2025-08-10 14:01:50', '2025-08-10 14:01:50'),
+(297, 7, 10, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
+(298, 7, 6, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
+(299, 7, 7, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
+(300, 7, 5, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
+(301, 7, 37, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
+(302, 7, 36, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
+(303, 4, 2, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(304, 4, 6, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(305, 4, 22, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(306, 4, 11, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(307, 4, 3, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(308, 4, 29, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(309, 4, 26, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(310, 4, 25, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(311, 4, 9, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(312, 4, 30, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(313, 4, 21, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(314, 4, 1, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(315, 4, 5, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(316, 4, 36, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(317, 4, 37, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
+(368, 3, 10, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(369, 3, 2, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(370, 3, 6, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(371, 3, 37, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(372, 3, 36, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(373, 3, 4, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(374, 3, 8, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(375, 3, 11, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(376, 3, 3, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(377, 3, 7, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(378, 3, 9, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(379, 3, 5, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(380, 3, 40, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(381, 3, 38, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(382, 3, 39, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
+(468, 3, 41, '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
+(469, 3, 42, '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
+(470, 3, 43, '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
+(471, 1, 14, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(472, 1, 10, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(473, 1, 18, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(474, 1, 2, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(475, 1, 6, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(476, 1, 31, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(477, 1, 34, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(478, 1, 37, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(479, 1, 36, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(480, 1, 16, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(481, 1, 12, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(482, 1, 20, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(483, 1, 28, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(484, 1, 4, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(485, 1, 8, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(486, 1, 40, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(487, 1, 38, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(488, 1, 39, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(489, 1, 22, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(490, 1, 24, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(491, 1, 23, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(492, 1, 15, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(493, 1, 11, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(494, 1, 19, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(495, 1, 35, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(496, 1, 3, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(497, 1, 7, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(498, 1, 32, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(499, 1, 29, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(500, 1, 26, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(501, 1, 25, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(502, 1, 13, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(503, 1, 9, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(504, 1, 17, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(505, 1, 30, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(506, 1, 21, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(507, 1, 1, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(508, 1, 5, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(509, 1, 43, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(510, 1, 42, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(511, 1, 41, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
+(512, 1, 44, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(513, 1, 45, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(514, 1, 46, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(515, 1, 47, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(516, 1, 48, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(517, 1, 49, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(518, 1, 50, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(519, 1, 51, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(520, 1, 52, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(521, 1, 53, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(522, 1, 54, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(523, 1, 55, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(524, 1, 56, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(525, 1, 57, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(526, 1, 58, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(527, 1, 59, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(528, 1, 60, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(529, 1, 61, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(530, 1, 62, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(531, 1, 63, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(532, 1, 64, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(533, 1, 65, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(534, 1, 66, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(535, 1, 67, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(536, 1, 68, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(537, 1, 69, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(538, 1, 70, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(539, 1, 71, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(540, 1, 72, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(541, 1, 73, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(542, 1, 74, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(543, 1, 75, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(544, 1, 76, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(545, 1, 77, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(546, 1, 78, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(547, 1, 79, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(548, 1, 80, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(549, 1, 81, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(550, 1, 82, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(551, 1, 83, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(552, 1, 84, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(553, 1, 85, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(554, 1, 86, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(555, 1, 87, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(556, 1, 88, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(557, 1, 89, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(558, 1, 90, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(559, 1, 91, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(560, 1, 92, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(561, 1, 93, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(562, 1, 94, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(563, 1, 95, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(564, 1, 96, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(565, 1, 97, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(566, 1, 98, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(567, 1, 99, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(568, 1, 100, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(569, 1, 101, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(570, 1, 102, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(571, 1, 103, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(572, 1, 104, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(573, 1, 105, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(574, 1, 106, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(575, 1, 107, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(576, 1, 108, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(577, 1, 109, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
+(578, 1, 27, '2026-06-19 01:18:33', '2026-06-19 01:18:33'),
+(579, 2, 64, '2026-08-18 10:18:36', '2026-08-18 10:18:36'),
+(580, 3, 64, '2026-08-18 10:18:37', '2026-08-18 10:18:37'),
+(581, 4, 64, '2026-08-18 10:18:37', '2026-08-18 10:18:37'),
+(582, 5, 64, '2026-08-18 10:18:38', '2026-08-18 10:18:38'),
+(583, 6, 64, '2026-08-18 10:18:38', '2026-08-18 10:18:38'),
+(584, 7, 64, '2026-08-18 10:18:38', '2026-08-18 10:18:38'),
+(585, 8, 64, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
+(586, 9, 64, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
+(587, 10, 64, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
+(588, 10, 36, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
+(589, 10, 65, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
+(590, 10, 66, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
+(591, 10, 68, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
+(592, 10, 2, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(593, 10, 74, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(594, 10, 75, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(595, 10, 76, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(596, 10, 82, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(597, 10, 44, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(598, 10, 45, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(599, 10, 47, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(600, 10, 48, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(601, 11, 64, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(602, 11, 36, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
+(603, 12, 64, '2026-08-18 10:18:41', '2026-08-18 10:18:41'),
+(604, 13, 64, '2026-08-18 10:18:41', '2026-08-18 10:18:41'),
+(605, 1, 110, '2026-08-24 02:44:48', '2026-08-24 02:44:48'),
+(606, 3, 110, '2026-08-24 08:17:36', '2026-08-24 08:17:36');
+
+
+-- Data for table `form_fields` (24 rows)
+INSERT INTO `form_fields` (`id`, `form_id`, `field_type`, `label`, `description`, `image_url`, `display_only`, `is_required`, `order`, `created_at`, `updated_at`) VALUES
+(23, 4, 'short_text', 'នែកទី១ ៖ ព័ត៌មានសង្ខេបរបស់គ្រូ (សូមបំពេញនៅលើចន្លោះស្នាមចុច)', '', NULL, 1, 0, 0, '2026-03-30 07:40:43', '2026-03-30 07:52:51'),
+(24, 4, 'short_text', 'គោត្តនាម-នាមគ្រូបង្រៀន', '', NULL, 0, 1, 1, '2026-03-30 07:40:43', NULL),
+(25, 4, 'dropdown', 'ជ្រើសរើសភេទ', '', NULL, 0, 1, 2, '2026-03-30 07:40:43', NULL),
+(26, 4, 'date', 'ថ្ងៃខែឆ្នាំកំណើត', '', NULL, 0, 1, 3, '2026-03-30 07:40:43', NULL),
+(27, 4, 'short_text', 'អតីតភាពកាងារ', '', NULL, 0, 0, 4, '2026-03-30 07:40:43', '2026-03-31 01:07:56'),
+(28, 4, 'short_text', 'មុខតំណែង', '', NULL, 0, 0, 5, '2026-03-30 07:40:43', '2026-03-31 01:07:56'),
+(29, 4, 'short_text', 'បង្រៀនថ្នាក់', '', NULL, 0, 1, 6, '2026-03-30 07:40:43', NULL),
+(31, 4, 'short_text', 'ក្រុង', '', NULL, 0, 1, 8, '2026-03-30 07:40:43', NULL),
+(32, 4, 'short_text', 'ខេត្ត', '', NULL, 0, 1, 9, '2026-03-30 07:40:43', NULL),
+(38, 4, 'dropdown', 'ទីតាំង', '', NULL, 0, 1, 7, '2026-03-30 07:52:51', NULL),
+(45, 4, 'short_text', 'ផ្នែកទី២ ៖ លក្ខណៈវិនិច្ឆ័យនៃការវាយតម្លៃ', '', NULL, 1, 0, 10, '2026-03-30 08:26:15', NULL),
+(46, 4, 'short_text', '០  មានន័យថា  មិនបានប្រតិបត្តិទាល់តែសោះ', '', NULL, 1, 0, 11, '2026-03-30 08:26:15', NULL),
+(47, 4, 'short_text', '១  មានន័យថា  មានការប្រតិបត្តិបានមធ្យម', '', NULL, 1, 0, 12, '2026-03-30 08:26:15', NULL),
+(48, 4, 'short_text', '២  មានន័យថា  មានការប្រតិបត្តិបានល្អបង្គួរ', '', NULL, 1, 0, 13, '2026-03-30 08:26:15', NULL),
+(49, 4, 'short_text', '៣  មានន័យថា  មានការប្រតិបត្តិបានល្អ', '', NULL, 1, 0, 14, '2026-03-30 08:26:15', NULL),
+(50, 4, 'short_text', '៤  មានន័យថា  មានការប្រតិបត្តិបានល្អណាស់', '', NULL, 1, 0, 15, '2026-03-30 08:26:15', NULL),
+(51, 4, 'short_text', '៥  មានន័យថា  មានការប្រតិបត្តិបានល្អប្រសើរ', '', NULL, 1, 0, 16, '2026-03-30 08:26:15', NULL),
+(52, 4, 'dropdown', '១ បញ្ចប់ជាស្ថាពរនូវកម្រិតសិក្សា', '', NULL, 0, 1, 17, '2026-03-30 08:46:24', NULL),
+(53, 4, 'dropdown', '២ បញ្ចប់ការបណ្ដុះបណ្ដាលវិជ្ជាជីវៈគ្រូបង្រៀន(ក្រេឌីត)', '', NULL, 0, 1, 18, '2026-03-30 08:46:24', '2026-03-30 08:53:28'),
+(54, 4, 'dropdown', '៣ បញ្ចប់ការបណ្តុះបណ្តាលវគ្គខ្លី/១ឆ្នាំ(ពីខាងក្រៅ)', '', NULL, 0, 1, 19, '2026-03-30 08:53:28', NULL),
+(55, 4, 'dropdown', '៤ កម្រិតភាសាអង់គ្លេស', '', NULL, 0, 1, 20, '2026-03-30 08:53:28', NULL),
+(56, 4, 'dropdown', 'កម្រិតភាសាចិន ឬភាសាអាស៊ានណាមួយ', '', NULL, 0, 0, 21, '2026-03-30 08:53:28', NULL),
+(60, 5, 'dropdown', 'ទំហំ/Size', 'Size', NULL, 0, 1, 0, '2026-07-30 15:13:09', NULL),
+(61, 6, 'long_text', 'Write the names of the items you need', 'the materials needed ', NULL, 0, 1, 0, '2026-08-04 03:35:38', NULL);
+
+
+-- Data for table `leave_type_allocations` (9 rows)
+INSERT INTO `leave_type_allocations` (`id`, `leave_type_id`, `academic_id`, `allocated_days`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 0.0, 1, 58, '2026-07-02 19:32:14', '2026-07-18 00:00:42'),
+(2, 5, 2, 0.0, 1, 58, '2026-07-03 02:25:42', '2026-07-18 00:00:42'),
+(3, 4, 2, 0.0, 1, 58, '2026-07-03 02:25:42', '2026-07-18 00:00:42'),
+(5, 2, 2, 0.0, 1, 58, '2026-07-03 02:25:42', '2026-07-18 00:00:42'),
+(6, 1, 16, 11.0, 1, 58, '2026-07-17 10:15:54', '2026-08-20 07:50:57'),
+(7, 5, 16, 2.0, 1, 58, '2026-07-17 10:15:54', '2026-07-17 10:15:54'),
+(8, 4, 16, 4.0, 1, 58, '2026-07-17 10:15:54', '2026-07-17 10:15:54'),
+(9, 2, 16, 4.0, 1, 58, '2026-07-17 10:15:54', '2026-07-17 10:15:54'),
+(12, 9, 16, 10.0, 1, 58, '2026-08-21 02:32:49', '2026-08-21 02:32:49');
+
+
+-- Data for table `learning_time_slot_scopes` (352 rows)
+INSERT INTO `learning_time_slot_scopes` (`id`, `time_slot_id`, `scope_type`, `scope_id`, `created_at`, `shift_id`) VALUES
+(42, 1, 'grade', 43, '2026-02-17 03:24:34', 1),
+(43, 1, 'grade', 44, '2026-02-17 03:24:34', 1),
+(44, 1, 'grade', 45, '2026-02-17 03:24:35', 1),
+(45, 1, 'grade', 46, '2026-02-17 03:24:35', 1),
+(46, 1, 'grade', 47, '2026-02-17 03:24:35', 1),
+(47, 1, 'grade', 48, '2026-02-17 03:24:35', 1),
+(48, 1, 'grade', 55, '2026-02-17 03:24:36', 1),
+(49, 1, 'grade', 56, '2026-02-17 03:24:36', 1),
+(50, 1, 'grade', 58, '2026-02-17 03:24:36', 1),
+(51, 2, 'grade', 43, '2026-02-17 03:24:37', 1),
+(52, 2, 'grade', 44, '2026-02-17 03:24:37', 1),
+(53, 2, 'grade', 45, '2026-02-17 03:24:37', 1),
+(54, 2, 'grade', 46, '2026-02-17 03:24:38', 1),
+(55, 2, 'grade', 47, '2026-02-17 03:24:38', 1),
+(56, 2, 'grade', 48, '2026-02-17 03:24:53', 1),
+(57, 2, 'grade', 55, '2026-02-17 03:24:54', 1),
+(58, 2, 'grade', 56, '2026-02-17 03:24:54', 1),
+(59, 2, 'grade', 58, '2026-02-17 03:24:54', 1),
+(60, 3, 'grade', 43, '2026-02-17 03:24:55', 1),
+(61, 3, 'grade', 44, '2026-02-17 03:24:55', 1),
+(62, 3, 'grade', 45, '2026-02-17 03:24:55', 1),
+(63, 3, 'grade', 46, '2026-02-17 03:24:55', 1),
+(64, 3, 'grade', 47, '2026-02-17 03:24:56', 1),
+(65, 3, 'grade', 48, '2026-02-17 03:24:56', 1),
+(66, 3, 'grade', 55, '2026-02-17 03:24:56', 1),
+(67, 3, 'grade', 56, '2026-02-17 03:24:57', 1),
+(68, 3, 'grade', 58, '2026-02-17 03:24:57', 1),
+(69, 4, 'grade', 43, '2026-02-17 03:24:57', 1),
+(70, 4, 'grade', 44, '2026-02-17 03:24:57', 1),
+(71, 4, 'grade', 45, '2026-02-17 03:24:58', 1),
+(72, 4, 'grade', 46, '2026-02-17 03:24:58', 1),
+(73, 4, 'grade', 47, '2026-02-17 03:24:58', 1),
+(74, 4, 'grade', 48, '2026-02-17 03:24:58', 1),
+(75, 4, 'grade', 55, '2026-02-17 03:24:58', 1),
+(76, 4, 'grade', 56, '2026-02-17 03:24:59', 1),
+(77, 4, 'grade', 58, '2026-02-17 03:24:59', 1),
+(78, 5, 'grade', 43, '2026-02-17 03:25:00', 1),
+(79, 5, 'grade', 44, '2026-02-17 03:25:00', 1),
+(80, 5, 'grade', 45, '2026-02-17 03:25:00', 1),
+(81, 5, 'grade', 46, '2026-02-17 03:25:00', 1),
+(82, 5, 'grade', 47, '2026-02-17 03:25:01', 1),
+(83, 5, 'grade', 48, '2026-02-17 03:25:01', 1),
+(84, 5, 'grade', 55, '2026-02-17 03:25:01', 1),
+(85, 5, 'grade', 56, '2026-02-17 03:25:02', 1),
+(86, 5, 'grade', 58, '2026-02-17 03:25:02', 1),
+(101, 13, 'grade', 42, '2026-02-25 09:19:59', 1),
+(102, 14, 'grade', 42, '2026-02-25 09:19:59', 1),
+(103, 15, 'grade', 42, '2026-02-25 09:19:59', 1),
+(104, 16, 'grade', 42, '2026-02-25 09:19:59', 1),
+(105, 17, 'grade', 42, '2026-02-25 09:20:00', 1),
+(106, 18, 'grade', 42, '2026-02-25 09:27:33', 2),
+(107, 19, 'grade', 42, '2026-02-25 09:27:34', 2),
+(108, 20, 'grade', 42, '2026-02-25 09:27:34', 2),
+(109, 21, 'grade', 42, '2026-02-25 09:27:34', 2),
+(110, 22, 'grade', 42, '2026-02-25 09:27:34', 2),
+(111, 8, 'grade', 43, '2026-02-25 09:29:13', 2),
+(112, 9, 'grade', 43, '2026-02-25 09:29:13', 2),
+(113, 10, 'grade', 43, '2026-02-25 09:29:14', 2),
+(114, 11, 'grade', 43, '2026-02-25 09:29:14', 2),
+(115, 12, 'grade', 43, '2026-02-25 09:29:14', 2),
+(116, 13, 'grade', 40, '2026-02-25 09:31:08', 1),
+(117, 13, 'grade', 41, '2026-02-25 09:31:08', 1),
+(118, 13, 'grade', 97, '2026-02-25 09:31:08', 1),
+(119, 13, 'grade', 100, '2026-02-25 09:31:08', 1),
+(120, 13, 'grade', 98, '2026-02-25 09:31:08', 1),
+(121, 13, 'grade', 99, '2026-02-25 09:31:09', 1),
+(122, 13, 'grade', 54, '2026-02-25 09:31:09', 1),
+(123, 13, 'grade', 52, '2026-02-25 09:31:09', 1),
+(124, 13, 'grade', 53, '2026-02-25 09:31:09', 1),
+(125, 14, 'grade', 40, '2026-02-25 09:31:10', 1),
+(126, 14, 'grade', 41, '2026-02-25 09:31:10', 1),
+(127, 14, 'grade', 97, '2026-02-25 09:31:10', 1),
+(128, 14, 'grade', 100, '2026-02-25 09:31:11', 1),
+(129, 14, 'grade', 98, '2026-02-25 09:31:11', 1),
+(130, 14, 'grade', 99, '2026-02-25 09:31:11', 1),
+(131, 14, 'grade', 54, '2026-02-25 09:31:11', 1),
+(132, 14, 'grade', 52, '2026-02-25 09:31:11', 1),
+(133, 14, 'grade', 53, '2026-02-25 09:31:12', 1),
+(134, 15, 'grade', 40, '2026-02-25 09:31:12', 1),
+(135, 15, 'grade', 41, '2026-02-25 09:31:13', 1),
+(136, 15, 'grade', 97, '2026-02-25 09:31:13', 1),
+(137, 15, 'grade', 100, '2026-02-25 09:31:13', 1),
+(138, 15, 'grade', 98, '2026-02-25 09:31:13', 1),
+(139, 15, 'grade', 99, '2026-02-25 09:31:13', 1),
+(140, 15, 'grade', 54, '2026-02-25 09:31:14', 1),
+(141, 15, 'grade', 52, '2026-02-25 09:31:14', 1),
+(143, 16, 'grade', 40, '2026-02-25 09:31:15', 1),
+(144, 16, 'grade', 41, '2026-02-25 09:31:15', 1),
+(145, 16, 'grade', 97, '2026-02-25 09:31:15', 1),
+(146, 16, 'grade', 100, '2026-02-25 09:31:15', 1),
+(147, 16, 'grade', 98, '2026-02-25 09:31:16', 1),
+(148, 16, 'grade', 99, '2026-02-25 09:31:16', 1),
+(149, 16, 'grade', 54, '2026-02-25 09:31:16', 1),
+(150, 16, 'grade', 52, '2026-02-25 09:31:17', 1),
+(151, 16, 'grade', 53, '2026-02-25 09:31:17', 1),
+(152, 17, 'grade', 40, '2026-02-25 09:31:18', 1),
+(153, 17, 'grade', 41, '2026-02-25 09:31:18', 1),
+(154, 17, 'grade', 97, '2026-02-25 09:31:18', 1),
+(155, 17, 'grade', 100, '2026-02-25 09:31:18', 1),
+(156, 17, 'grade', 98, '2026-02-25 09:31:19', 1),
+(157, 17, 'grade', 99, '2026-02-25 09:31:19', 1),
+(158, 17, 'grade', 54, '2026-02-25 09:31:19', 1),
+(159, 17, 'grade', 52, '2026-02-25 09:31:19', 1),
+(160, 17, 'grade', 53, '2026-02-25 09:31:20', 1),
+(161, 18, 'grade', 40, '2026-02-27 02:29:16', 2),
+(162, 18, 'grade', 100, '2026-02-27 02:29:17', 2),
+(163, 18, 'grade', 98, '2026-02-27 02:29:17', 2),
+(164, 18, 'grade', 99, '2026-02-27 02:29:17', 2),
+(165, 18, 'grade', 54, '2026-02-27 02:29:17', 2),
+(166, 18, 'grade', 52, '2026-02-27 02:29:18', 2),
+(167, 18, 'grade', 53, '2026-02-27 02:29:18', 2),
+(168, 19, 'grade', 40, '2026-02-27 02:29:19', 2),
+(169, 19, 'grade', 100, '2026-02-27 02:29:19', 2),
+(170, 19, 'grade', 98, '2026-02-27 02:29:19', 2),
+(171, 19, 'grade', 99, '2026-02-27 02:29:19', 2),
+(172, 19, 'grade', 54, '2026-02-27 02:29:19', 2),
+(173, 19, 'grade', 52, '2026-02-27 02:29:20', 2),
+(174, 19, 'grade', 53, '2026-02-27 02:29:20', 2),
+(175, 20, 'grade', 40, '2026-02-27 02:29:21', 2),
+(176, 20, 'grade', 100, '2026-02-27 02:29:21', 2),
+(177, 20, 'grade', 98, '2026-02-27 02:29:21', 2),
+(178, 20, 'grade', 99, '2026-02-27 02:29:21', 2),
+(179, 20, 'grade', 54, '2026-02-27 02:29:21', 2),
+(180, 20, 'grade', 52, '2026-02-27 02:29:22', 2),
+(181, 20, 'grade', 53, '2026-02-27 02:29:22', 2),
+(182, 21, 'grade', 40, '2026-02-27 02:29:23', 2),
+(183, 21, 'grade', 100, '2026-02-27 02:29:23', 2),
+(184, 21, 'grade', 98, '2026-02-27 02:29:23', 2),
+(185, 21, 'grade', 99, '2026-02-27 02:29:23', 2),
+(186, 21, 'grade', 54, '2026-02-27 02:29:23', 2),
+(187, 21, 'grade', 52, '2026-02-27 02:29:24', 2),
+(188, 21, 'grade', 53, '2026-02-27 02:29:24', 2),
+(189, 22, 'grade', 40, '2026-02-27 02:29:25', 2),
+(190, 22, 'grade', 100, '2026-02-27 02:29:25', 2),
+(191, 22, 'grade', 98, '2026-02-27 02:29:25', 2),
+(192, 22, 'grade', 99, '2026-02-27 02:29:25', 2),
+(193, 22, 'grade', 54, '2026-02-27 02:29:26', 2),
+(194, 22, 'grade', 52, '2026-02-27 02:29:26', 2),
+(195, 22, 'grade', 53, '2026-02-27 02:29:26', 2),
+(196, 27, 'grade', 79, '2026-02-27 03:30:26', 2),
+(197, 27, 'grade', 80, '2026-02-27 03:30:26', 2),
+(198, 27, 'grade', 112, '2026-02-27 03:30:26', 2),
+(199, 27, 'grade', 67, '2026-02-27 03:30:26', 2),
+(200, 27, 'grade', 68, '2026-02-27 03:30:27', 2),
+(201, 28, 'grade', 79, '2026-02-27 03:30:27', 2),
+(202, 28, 'grade', 80, '2026-02-27 03:30:27', 2),
+(203, 28, 'grade', 112, '2026-02-27 03:30:28', 2),
+(204, 28, 'grade', 67, '2026-02-27 03:30:28', 2),
+(205, 28, 'grade', 68, '2026-02-27 03:30:28', 2),
+(206, 29, 'grade', 79, '2026-02-27 03:30:29', 2),
+(207, 29, 'grade', 80, '2026-02-27 03:30:29', 2),
+(208, 29, 'grade', 112, '2026-02-27 03:30:29', 2),
+(209, 29, 'grade', 67, '2026-02-27 03:30:29', 2),
+(210, 29, 'grade', 68, '2026-02-27 03:30:29', 2),
+(211, 30, 'grade', 79, '2026-02-27 03:30:30', 2),
+(212, 30, 'grade', 80, '2026-02-27 03:30:30', 2),
+(213, 30, 'grade', 112, '2026-02-27 03:30:30', 2),
+(214, 30, 'grade', 67, '2026-02-27 03:30:30', 2),
+(215, 30, 'grade', 68, '2026-02-27 03:30:31', 2),
+(216, 35, 'grade', 81, '2026-02-27 03:53:38', 2),
+(217, 35, 'grade', 69, '2026-02-27 03:53:38', 2),
+(218, 36, 'grade', 81, '2026-02-27 03:53:38', 2),
+(219, 36, 'grade', 69, '2026-02-27 03:53:39', 2),
+(220, 37, 'grade', 81, '2026-02-27 03:53:39', 2),
+(221, 37, 'grade', 69, '2026-02-27 03:53:39', 2),
+(222, 38, 'grade', 81, '2026-02-27 03:53:40', 2),
+(223, 38, 'grade', 69, '2026-02-27 03:53:40', 2),
+(224, 35, 'grade', 82, '2026-02-27 04:17:49', 2),
+(225, 35, 'grade', 83, '2026-02-27 04:17:50', 2),
+(226, 35, 'grade', 84, '2026-02-27 04:17:50', 2),
+(227, 35, 'grade', 85, '2026-02-27 04:17:50', 2),
+(228, 36, 'grade', 82, '2026-02-27 04:17:50', 2),
+(229, 36, 'grade', 83, '2026-02-27 04:17:51', 2),
+(230, 36, 'grade', 84, '2026-02-27 04:17:51', 2),
+(231, 36, 'grade', 85, '2026-02-27 04:17:51', 2),
+(232, 37, 'grade', 82, '2026-02-27 04:17:52', 2),
+(233, 37, 'grade', 83, '2026-02-27 04:17:52', 2),
+(234, 37, 'grade', 84, '2026-02-27 04:17:52', 2),
+(235, 37, 'grade', 85, '2026-02-27 04:17:52', 2),
+(236, 38, 'grade', 82, '2026-02-27 04:17:53', 2),
+(237, 38, 'grade', 83, '2026-02-27 04:17:53', 2),
+(238, 38, 'grade', 84, '2026-02-27 04:17:53', 2),
+(239, 38, 'grade', 85, '2026-02-27 04:17:53', 2),
+(241, 8, 'grade', 101, '2026-03-03 11:22:34', 2),
+(242, 8, 'grade', 102, '2026-03-03 11:22:34', 2),
+(243, 8, 'grade', 103, '2026-03-03 11:22:34', 2),
+(244, 8, 'grade', 127, '2026-03-03 11:22:35', 2),
+(245, 8, 'grade', 104, '2026-03-03 11:22:35', 2),
+(246, 8, 'grade', 105, '2026-03-03 11:22:35', 2),
+(247, 8, 'grade', 55, '2026-03-03 11:22:35', 2),
+(248, 8, 'grade', 56, '2026-03-03 11:22:35', 2),
+(249, 8, 'grade', 57, '2026-03-03 11:22:36', 2),
+(250, 8, 'grade', 58, '2026-03-03 11:22:36', 2),
+(251, 8, 'grade', 59, '2026-03-03 11:22:36', 2),
+(252, 8, 'grade', 60, '2026-03-03 11:22:36', 2),
+(253, 9, 'grade', 101, '2026-03-03 11:22:37', 2),
+(254, 9, 'grade', 102, '2026-03-03 11:22:37', 2),
+(255, 9, 'grade', 103, '2026-03-03 11:22:37', 2),
+(256, 9, 'grade', 127, '2026-03-03 11:22:37', 2),
+(257, 9, 'grade', 104, '2026-03-03 11:22:37', 2),
+(258, 9, 'grade', 105, '2026-03-03 11:22:37', 2),
+(259, 9, 'grade', 55, '2026-03-03 11:22:38', 2),
+(260, 9, 'grade', 56, '2026-03-03 11:22:38', 2),
+(261, 9, 'grade', 57, '2026-03-03 11:22:38', 2),
+(262, 9, 'grade', 58, '2026-03-03 11:22:38', 2),
+(263, 9, 'grade', 59, '2026-03-03 11:22:39', 2),
+(264, 9, 'grade', 60, '2026-03-03 11:22:39', 2),
+(265, 10, 'grade', 101, '2026-03-03 11:22:39', 2),
+(266, 10, 'grade', 102, '2026-03-03 11:22:39', 2),
+(267, 10, 'grade', 103, '2026-03-03 11:22:40', 2),
+(268, 10, 'grade', 127, '2026-03-03 11:22:40', 2),
+(269, 10, 'grade', 104, '2026-03-03 11:22:40', 2),
+(270, 10, 'grade', 105, '2026-03-03 11:22:40', 2),
+(271, 10, 'grade', 55, '2026-03-03 11:22:40', 2),
+(272, 10, 'grade', 56, '2026-03-03 11:22:41', 2),
+(273, 10, 'grade', 57, '2026-03-03 11:22:41', 2),
+(274, 10, 'grade', 58, '2026-03-03 11:22:41', 2),
+(275, 10, 'grade', 59, '2026-03-03 11:22:41', 2),
+(276, 10, 'grade', 60, '2026-03-03 11:22:42', 2),
+(277, 11, 'grade', 101, '2026-03-03 11:22:42', 2),
+(278, 11, 'grade', 102, '2026-03-03 11:22:42', 2),
+(279, 11, 'grade', 103, '2026-03-03 11:22:42', 2),
+(280, 11, 'grade', 127, '2026-03-03 11:22:43', 2),
+(281, 11, 'grade', 104, '2026-03-03 11:22:43', 2),
+(282, 11, 'grade', 105, '2026-03-03 11:22:43', 2),
+(283, 11, 'grade', 55, '2026-03-03 11:22:43', 2),
+(284, 11, 'grade', 56, '2026-03-03 11:22:44', 2),
+(285, 11, 'grade', 57, '2026-03-03 11:22:44', 2),
+(286, 11, 'grade', 58, '2026-03-03 11:22:44', 2),
+(287, 11, 'grade', 59, '2026-03-03 11:22:44', 2),
+(288, 11, 'grade', 60, '2026-03-03 11:22:44', 2),
+(289, 12, 'grade', 101, '2026-03-03 11:22:45', 2),
+(290, 12, 'grade', 102, '2026-03-03 11:22:45', 2),
+(291, 12, 'grade', 103, '2026-03-03 11:22:45', 2),
+(292, 12, 'grade', 127, '2026-03-03 11:22:45', 2),
+(293, 12, 'grade', 104, '2026-03-03 11:22:45', 2),
+(294, 12, 'grade', 105, '2026-03-03 11:22:46', 2),
+(295, 12, 'grade', 55, '2026-03-03 11:22:46', 2),
+(296, 12, 'grade', 56, '2026-03-03 11:22:46', 2),
+(297, 12, 'grade', 57, '2026-03-03 11:22:46', 2),
+(298, 12, 'grade', 58, '2026-03-03 11:22:46', 2),
+(299, 12, 'grade', 59, '2026-03-03 11:22:47', 2),
+(300, 12, 'grade', 60, '2026-03-03 11:22:47', 2),
+(301, 15, 'grade', 53, '2026-03-12 01:42:35', 1),
+(302, 23, 'grade', 112, '2026-03-12 03:53:12', 1),
+(303, 23, 'grade', 113, '2026-03-12 03:53:12', 1),
+(304, 23, 'grade', 67, '2026-03-12 03:53:12', 1),
+(305, 23, 'grade', 68, '2026-03-12 03:53:13', 1),
+(306, 24, 'grade', 112, '2026-03-12 03:53:13', 1),
+(307, 24, 'grade', 113, '2026-03-12 03:53:14', 1),
+(308, 24, 'grade', 67, '2026-03-12 03:53:14', 1),
+(309, 24, 'grade', 68, '2026-03-12 03:53:14', 1),
+(310, 25, 'grade', 112, '2026-03-12 03:53:15', 1),
+(311, 25, 'grade', 113, '2026-03-12 03:53:15', 1),
+(312, 25, 'grade', 67, '2026-03-12 03:53:15', 1),
+(313, 25, 'grade', 68, '2026-03-12 03:53:15', 1),
+(314, 26, 'grade', 112, '2026-03-12 03:53:16', 1),
+(315, 26, 'grade', 113, '2026-03-12 03:53:16', 1),
+(316, 26, 'grade', 67, '2026-03-12 03:53:17', 1),
+(317, 26, 'grade', 68, '2026-03-12 03:53:17', 1),
+(318, 31, 'grade', 126, '2026-03-13 01:31:19', 1),
+(319, 31, 'grade', 69, '2026-03-13 01:31:19', 1),
+(320, 32, 'grade', 126, '2026-03-13 01:31:20', 1),
+(321, 32, 'grade', 69, '2026-03-13 01:31:20', 1),
+(322, 33, 'grade', 126, '2026-03-13 01:31:20', 1),
+(323, 33, 'grade', 69, '2026-03-13 01:31:20', 1),
+(324, 34, 'grade', 126, '2026-03-13 01:31:21', 1),
+(325, 34, 'grade', 69, '2026-03-13 01:31:21', 1),
+(326, 31, 'grade', 114, '2026-03-13 02:08:20', 1),
+(327, 31, 'grade', 115, '2026-03-13 02:08:21', 1),
+(328, 31, 'grade', 116, '2026-03-13 02:08:21', 1),
+(329, 31, 'grade', 117, '2026-03-13 02:08:22', 1),
+(330, 31, 'grade', 118, '2026-03-13 02:08:22', 1),
+(331, 31, 'grade', 119, '2026-03-13 02:08:22', 1),
+(332, 31, 'grade', 120, '2026-03-13 02:08:23', 1),
+(333, 31, 'grade', 121, '2026-03-13 02:08:23', 1),
+(334, 31, 'grade', 70, '2026-03-13 02:08:23', 1),
+(335, 31, 'grade', 72, '2026-03-13 02:08:23', 1),
+(336, 31, 'grade', 73, '2026-03-13 02:08:24', 1),
+(337, 32, 'grade', 114, '2026-03-13 02:08:25', 1),
+(338, 32, 'grade', 115, '2026-03-13 02:08:25', 1),
+(339, 32, 'grade', 116, '2026-03-13 02:08:25', 1),
+(340, 32, 'grade', 117, '2026-03-13 02:08:26', 1),
+(341, 32, 'grade', 118, '2026-03-13 02:08:26', 1),
+(342, 32, 'grade', 119, '2026-03-13 02:08:26', 1),
+(343, 32, 'grade', 120, '2026-03-13 02:08:26', 1),
+(344, 32, 'grade', 121, '2026-03-13 02:08:26', 1),
+(345, 32, 'grade', 70, '2026-03-13 02:08:27', 1),
+(346, 32, 'grade', 72, '2026-03-13 02:08:27', 1),
+(347, 32, 'grade', 73, '2026-03-13 02:08:27', 1),
+(348, 33, 'grade', 114, '2026-03-13 02:08:27', 1),
+(349, 33, 'grade', 115, '2026-03-13 02:08:28', 1),
+(350, 33, 'grade', 116, '2026-03-13 02:08:28', 1),
+(351, 33, 'grade', 117, '2026-03-13 02:08:28', 1),
+(352, 33, 'grade', 118, '2026-03-13 02:08:28', 1),
+(353, 33, 'grade', 119, '2026-03-13 02:08:28', 1),
+(354, 33, 'grade', 120, '2026-03-13 02:08:29', 1),
+(355, 33, 'grade', 121, '2026-03-13 02:08:29', 1),
+(356, 33, 'grade', 70, '2026-03-13 02:08:29', 1),
+(357, 33, 'grade', 72, '2026-03-13 02:08:29', 1),
+(358, 33, 'grade', 73, '2026-03-13 02:08:29', 1),
+(359, 34, 'grade', 114, '2026-03-13 02:08:30', 1),
+(360, 34, 'grade', 115, '2026-03-13 02:08:30', 1),
+(361, 34, 'grade', 116, '2026-03-13 02:08:30', 1),
+(362, 34, 'grade', 117, '2026-03-13 02:08:31', 1),
+(363, 34, 'grade', 118, '2026-03-13 02:08:31', 1),
+(364, 34, 'grade', 119, '2026-03-13 02:08:31', 1),
+(365, 34, 'grade', 120, '2026-03-13 02:08:32', 1),
+(366, 34, 'grade', 121, '2026-03-13 02:08:32', 1),
+(367, 34, 'grade', 70, '2026-03-13 02:08:32', 1),
+(368, 34, 'grade', 72, '2026-03-13 02:08:32', 1),
+(369, 34, 'grade', 73, '2026-03-13 02:08:33', 1),
+(370, 40, 'grade', 106, '2026-03-19 03:52:26', 2),
+(371, 40, 'grade', 107, '2026-03-19 03:52:26', 2),
+(372, 41, 'grade', 106, '2026-03-19 03:52:26', 2),
+(373, 41, 'grade', 107, '2026-03-19 03:52:27', 2),
+(374, 42, 'grade', 106, '2026-03-19 03:52:27', 2),
+(375, 42, 'grade', 107, '2026-03-19 03:52:27', 2),
+(376, 43, 'grade', 106, '2026-03-19 03:52:28', 2),
+(377, 43, 'grade', 107, '2026-03-19 03:52:28', 2),
+(378, 44, 'grade', 106, '2026-03-19 03:52:28', 2),
+(379, 44, 'grade', 107, '2026-03-19 03:52:28', 2),
+(380, 39, 'grade', 106, '2026-03-19 03:53:16', 2),
+(381, 39, 'grade', 107, '2026-03-19 03:53:16', 2),
+(382, 45, 'grade', 106, '2026-03-19 11:05:11', 2),
+(383, 45, 'grade', 107, '2026-03-19 11:05:11', 2),
+(384, 46, 'grade', 106, '2026-03-19 11:05:11', 2),
+(385, 46, 'grade', 107, '2026-03-19 11:05:11', 2),
+(386, 47, 'grade', 106, '2026-03-19 11:05:12', 2),
+(387, 47, 'grade', 107, '2026-03-19 11:05:12', 2),
+(388, 48, 'grade', 106, '2026-03-19 11:05:13', 2),
+(389, 48, 'grade', 107, '2026-03-19 11:05:13', 2),
+(390, 39, 'grade', 108, '2026-03-19 11:28:31', 2),
+(391, 40, 'grade', 108, '2026-03-19 11:28:31', 2),
+(392, 41, 'grade', 108, '2026-03-19 11:28:32', 2),
+(393, 42, 'grade', 108, '2026-03-19 11:28:32', 2),
+(394, 43, 'grade', 108, '2026-03-19 11:28:32', 2),
+(395, 44, 'grade', 108, '2026-03-19 11:28:33', 2),
+(396, 45, 'grade', 108, '2026-03-19 11:28:33', 2),
+(397, 46, 'grade', 108, '2026-03-19 11:28:34', 2),
+(398, 47, 'grade', 108, '2026-03-19 11:28:34', 2),
+(399, 48, 'grade', 108, '2026-03-19 11:28:34', 2),
+(400, 39, 'grade', 109, '2026-03-20 02:56:42', 2),
+(401, 40, 'grade', 109, '2026-03-20 02:56:42', 2),
+(402, 41, 'grade', 109, '2026-03-20 02:56:43', 2),
+(403, 42, 'grade', 109, '2026-03-20 02:56:43', 2),
+(404, 43, 'grade', 109, '2026-03-20 02:56:44', 2),
+(405, 44, 'grade', 109, '2026-03-20 02:56:44', 2),
+(406, 45, 'grade', 109, '2026-03-20 02:56:44', 2),
+(407, 46, 'grade', 109, '2026-03-20 02:56:45', 2),
+(408, 47, 'grade', 109, '2026-03-20 02:56:45', 2),
+(409, 48, 'grade', 109, '2026-03-20 02:56:46', 2);
+
+
+-- Data for table `zing_survey_questions` (8 rows)
+INSERT INTO `zing_survey_questions` (`id`, `survey_id`, `question_text_en`, `question_text_kh`, `question_type`, `options`, `is_required`, `order_index`, `created_at`, `updated_at`) VALUES
+(1, 1, 'How satisfied are you with PAMA International School?', 'តើលោកអ្នកពេញចិត្តជាមួយសាលាអន្តរជាតិ PAMA កម្រិតណា?', 'radio', '["Very satisfied / ពេញចិត្តខ្លាំង", "Satisfied / ពេញចិត្ត", "Neutral / មធ្យម", "Unsatisfied / មិនពេញចិត្ត"]', 1, 0, '2026-01-28 07:38:35', '2026-01-28 07:38:35'),
+(2, 1, 'Teachers teach clearly and professionally.', 'គ្រូបង្រៀនបង្រៀនបានច្បាស់ និងមានវិជ្ជាជីវៈ។', 'radio', '["Strongly agree / ព្រមយ៉ាងខ្លាំង", "Agree / ព្រម", "Neutral / មធ្យម", "Disagree / មិនព្រម"]', 1, 1, '2026-01-28 07:38:36', '2026-01-28 07:38:36'),
+(3, 1, 'My child is improving academically.', 'កូនរបស់ខ្ញុំមានការរីកចម្រើនផ្នែកការសិក្សា។', 'radio', '["Strongly agree / ព្រមយ៉ាងខ្លាំង", "Agree / ព្រម", "Neutral / មធ្យម", "Disagree / មិនព្រម"]', 1, 2, '2026-01-28 07:38:36', '2026-01-28 07:38:36'),
+(4, 1, 'The school environment is safe and clean.', 'បរិយាកាសសាលាមានសុវត្ថិភាព និងស្អាត។', 'radio', '["Strongly agree / ព្រមយ៉ាងខ្លាំង", "Agree / ព្រម", "Neutral / មធ្យម", "Disagree / មិនព្រម"]', 1, 3, '2026-01-28 07:38:36', '2026-01-28 07:38:36'),
+(5, 1, 'The school communicates well with parents.', 'សាលាទំនាក់ទំនងបានល្អជាមួយមាតាបិតា។', 'radio', '["Excellent / ល្អបំផុត", "Good / ល្អ", "Fair / មធ្យម", "Poor / មិនល្អ"]', 1, 4, '2026-01-28 07:38:36', '2026-01-28 07:38:36'),
+(6, 1, 'Would you recommend PAMA International School to others?', 'តើលោកអ្នកណែនាំសាលាអន្តរជាតិ PAMA ដល់អ្នកដទៃដែរឬទេ?', 'radio', '["Yes / បាទ/ចាស", "Maybe / ប្រហែល", "No / ទេ"]', 1, 5, '2026-01-28 07:38:36', '2026-01-28 07:38:36'),
+(7, 1, 'What do you like MOST about PAMA International School?', 'តើអ្វីដែលលោកអ្នកពេញចិត្តបំផុតអំពីសាលាអន្តរជាតិ PAMA?', 'textarea', '[]', 1, 6, '2026-01-28 07:38:36', '2026-01-28 07:38:36'),
+(8, 1, 'What do you think the school should IMPROVE?', 'តើលោកអ្នកគិតថាសាលាគួរតែប 개선 ឬកែលម្អអ្វីខ្លះ?', 'textarea', '[]', 1, 7, '2026-01-28 07:38:36', '2026-01-28 07:38:36');
+
+
+-- Data for table `branch_contacts` (4 rows)
+INSERT INTO `branch_contacts` (`id`, `branch_id`, `label`, `value`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Cellcard', '012746046', 0, '2026-03-09 03:00:00', '2026-03-09 03:40:54'),
+(2, 1, 'Smart', '093746046', 1, '2026-03-09 03:00:24', '2026-03-09 03:04:48'),
+(3, 2, 'Smart', '016491777', 0, '2026-03-09 03:01:57', '2026-03-09 03:05:01'),
+(4, 3, 'Cellcard', '012491777', 0, '2026-03-09 03:02:47', '2026-03-09 03:41:17');
+
+
+-- Data for table `work_locations` (3 rows)
+INSERT INTO `work_locations` (`id`, `name`, `latitude`, `longitude`, `radius_meters`, `branch_id`, `is_active`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(2, 'ប៉ាម៉ា៣ (PAMA3)', 10.6202898, 103.52033997, 50, 3, 1, '2026-03-17 00:31:38', '2026-04-23 00:28:02', 58, 87),
+(3, 'អូរពីរ (O2)', 10.61149216, 103.53865814, 50, 2, 1, '2026-03-17 00:31:45', '2026-07-29 23:56:45', 58, 58),
+(5, 'ឃ្លាំងលើ (KL)', 10.6315918, 103.55739594, 25, 1, 1, '2026-07-23 23:55:44', '2026-08-25 00:08:15', 58, 58);
+
+
+-- Data for table `academic_programs` (11 rows)
+INSERT INTO `academic_programs` (`id`, `program_name`, `icon_name`, `custom_logo_url`, `color_start`, `color_end`, `sort_order`, `is_active`, `description`, `contact_phone`, `contact_email`, `facebook_url`, `telegram_url`, `youtube_url`, `tiktok_url`, `registration_start_date`, `registration_end_date`, `created_at`, `updated_at`) VALUES
+(4, 'UNP', 'school_rounded', '/uploads/academic_programs/prog_3e679b9afb.jpg', '0xFF0034FF', '0xFFA8ACFF', 1, 1, 'កម្មវិធីជាតិពិសេសចំណេះទូទៅភាសាខ្មែរ', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:18:07', '2026-03-29 18:32:23'),
+(5, 'WAC', 'school_rounded', '/uploads/academic_programs/prog_386804ff6c.jpg', '0xFF3C3C3C', '0xFFF2BAFF', 4, 1, 'ជាកម្មវិធីភាសាអង់គ្លេសអន្តរជាតិដែលទទួលស្គាល់ពីប្រទេសអូស្ត្រាលី', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:18:46', '2026-03-29 18:32:33'),
+(6, 'PAMA', 'school_rounded', '/uploads/academic_programs/prog_4dd9bddadf.jpg', '0xFF565656', '0xFFFF6500', 2, 1, 'កម្មវិធីប៉ាម៉ាគិតលេខរហ័សជួយឱ្យសិស្សឆ្លាត ចូលចិត្តរៀនគណិតវិទ្យានិងបង្កើតបំណិនគិតស៊ីជម្រៅ។', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:19:10', '2026-03-29 18:32:27'),
+(7, 'Brain Scan', 'school_rounded', '/uploads/academic_programs/prog_4958dbcdf1.jpg', '0xFFFF5757', '0xFF007FEE', 5, 1, 'Brain Scan ជួយឱ្យកុមារទទួលបាននូវក្ដីស្រមៃត្រូវ ការអប់រំត្រូវ រៀនត្រូវ គិតត្រូវ ធ្វើត្រូវ ជ្រើសរើសជំនាញត្រូវ និងរស់ក្នុងជីវិតរឹងមាំរីករាយលេចធ្លោ។', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:19:55', '2026-03-29 18:32:44'),
+(8, 'Techcademy', 'school_rounded', '/uploads/academic_programs/prog_eb3ccd22fb.jpg', '0xFF8F00A6', '0xFFE7B0FF', 3, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:21:35', '2026-03-29 18:32:31'),
+(9, 'Computer', 'school_rounded', '/uploads/academic_programs/prog_242b642068.jpg', '0xFF00589F', '0xFF008FFF', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:22:02', '2026-03-10 07:35:40'),
+(10, 'Karate', 'school_rounded', '/uploads/academic_programs/prog_fdbac4589c.jpg', '0xFFFFD3D3', '0xFFFF686B', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:22:28', '2026-03-10 07:35:51'),
+(11, 'ថ្នាក់បំប៉ន', 'category', '/uploads/academic_programs/prog_4d163f62a2.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:56:13', '2026-03-10 07:36:09'),
+(12, 'GEP', 'menu_book_outlined', '/uploads/academic_programs/prog_0cfb3e22d6.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:58:41', '2026-03-10 07:36:19'),
+(13, 'PAME', 'face_2', '/uploads/academic_programs/prog_9ec0991215.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 09:09:07', '2026-03-10 07:36:30'),
+(14, 'Mermaid', 'school_rounded', '/uploads/academic_programs/prog_6ddf1bd7cc.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-04 02:34:43', '2026-03-10 07:36:46');
+
+
+-- Data for table `program` (3 rows)
+INSERT INTO `program` (`id`, `program_name`, `program_name_us`, `mark_type`, `short_code`, `academic_id`, `report_status`, `head_user_id`, `time_report`, `created_at`, `created_by`, `updated_by`, `noted`, `updated_at`) VALUES
+(1, 'ជាតិពិសេស ចំណេះទូទៅភាសាខ្មែរ (UNP)', 'Unique National Program (UNP)', 'kh', 'UNP', 1, 'no', 32, '16:16:15', '2025-04-23 14:11:36', 58, 58, 'ចំណេះដឹងទូទៅភាសាខ្មែរ', '2026-06-26 01:02:52'),
+(2, 'WAC', 'WAC', 'en', 'WAC', 1, 'no', 27, '16:21:15', '2025-04-23 14:12:15', 58, 58, 'Western Australian', '2026-01-28 11:05:15'),
+(3, 'ភាសាអង់គ្លេសអន្តរជាតិ (IEP)', 'International English Program (IEP)', 'iep', 'IEP', 1, 'no', 29, '16:26:15', '2025-04-23 14:12:32', 58, 58, '', '2026-06-23 11:07:30');
+
+
+-- Data for table `grade_group` (27 rows)
+INSERT INTO `grade_group` (`id`, `group_name`, `academic_id`, `program_id`, `multiplier`, `model_cer`, `noted`, `updated_by`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'មត្តេយ្យសិក្សា', 1, 1, 6.00, 1, '', 19, 19, '2025-05-02 08:12:01', '2025-05-02 08:12:01'),
+(2, 'បឋមសិក្សា', 1, 1, 11.00, 1, '', 19, 19, '2025-05-02 08:12:38', '2025-05-02 08:12:38'),
+(3, 'អនុវិទ្យាល័យ', 1, 1, 18.00, 1, '', 19, 19, '2025-05-02 08:13:47', '2025-05-02 08:13:47'),
+(4, 'អនុវិទ្យាល័យ ថ្នាក់ទី៩', 1, 1, 8.40, 1, 'ថ្នាក់ទី៩', 58, 19, '2025-05-02 08:14:29', '2025-05-07 13:37:04'),
+(5, 'វិទ្យាល័យ', 1, 1, 8.40, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:15:33', '2025-09-01 06:49:02'),
+(6, 'Kindergarten', 1, 3, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:16:37', '2025-09-01 06:49:07'),
+(7, 'Primary', 1, 2, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:18:18', '2025-09-01 06:49:15'),
+(8, 'Secondary', 1, 2, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:18:33', '2025-09-01 06:49:17'),
+(9, 'High School', 1, 2, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:18:56', '2025-09-01 06:49:20'),
+(10, 'មត្តេយ្យសិក្សា', 2, 1, 6.00, 1, '', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
+(11, 'បឋមសិក្សា', 2, 1, 11.00, 1, '', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
+(12, 'អនុវិទ្យាល័យ', 2, 1, 18.00, 1, '', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
+(13, 'អនុវិទ្យាល័យ ថ្នាក់ទី៩', 2, 1, 8.40, 1, 'ថ្នាក់ទី៩', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
+(14, 'វិទ្យាល័យ', 2, 1, 17.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-10-06 08:02:19'),
+(15, 'Kindergarten', 2, 3, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:34'),
+(16, 'Primary', 2, 2, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:37'),
+(17, 'Secondary', 2, 2, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:40'),
+(18, 'High School', 2, 2, 7.00, 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:43'),
+(28, 'មត្តេយ្យសិក្សា', 16, 1, 6.00, 1, '', 58, 58, '2026-06-11 00:37:58', '2026-06-11 00:37:58'),
+(29, 'បឋមសិក្សា', 16, 1, 11.00, 1, '', 58, 58, '2026-06-11 00:38:28', '2026-06-11 00:38:28'),
+(30, 'អនុវិទ្យាល័យ', 16, 1, 18.00, 1, '', 58, 58, '2026-06-11 00:38:53', '2026-06-11 00:38:53'),
+(31, 'អនុវិទ្យាល័យ ថ្នាក់ទី៩', 16, 1, 8.40, 1, '', 58, 58, '2026-06-11 00:39:15', '2026-06-11 00:39:15'),
+(32, 'វិទ្យាល័យ', 16, 1, 17.00, 1, '', 58, 58, '2026-06-11 00:39:30', '2026-06-11 00:39:30'),
+(33, 'Kindergarten', 16, 3, 7.00, 1, '', 58, 58, '2026-06-11 00:39:44', '2026-06-11 00:39:44'),
+(34, 'Primary', 16, 2, 7.00, 1, '', 58, 58, '2026-06-11 00:39:56', '2026-06-11 00:39:56'),
+(35, 'Secondary', 16, 2, 7.00, 1, '', 58, 58, '2026-06-11 00:40:03', '2026-06-11 00:40:03'),
+(36, 'High School', 16, 2, 7.00, 1, '', 58, 58, '2026-06-11 00:40:15', '2026-06-11 00:40:15');
+
+
+-- Data for table `grade` (163 rows)
+INSERT INTO `grade` (`id`, `grade_name`, `grade_name_us`, `grade_type_id`, `group_Id`, `program_id`, `branch_id`, `academic_id`, `noted`, `created_at`, `updated_by`, `created_by`, `updated_at`) VALUES
+(1, 'មត្តេយ្យកម្រិតទាប', 'Kindergarten I', '1,2', 1, 1, 1, 1, '', '2025-05-02 08:45:44', 19, 19, '2025-06-02 02:29:57'),
+(2, 'មត្តេយ្យកម្រិតមធ្យម', 'Kindergarten II', '1,2,3', 1, 1, 1, 1, '', '2025-05-02 08:47:28', 19, 19, '2025-06-02 02:30:11'),
+(3, 'មត្តេយ្យកម្រិតខ្ពស់', 'Kindergarten III', '1,2,3', 1, 1, 1, 1, '', '2025-05-02 08:48:03', 19, 19, '2025-06-02 02:30:21'),
+(4, 'ថ្នាក់ទី១', 'Level  1', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:48:37', 19, 19, '2025-06-02 08:58:24'),
+(5, 'ថ្នាក់ទី២', 'Level  2', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:48:49', 19, 19, '2025-06-02 08:57:16'),
+(6, 'ថ្នាក់ទី៣', 'Level  3', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:48:58', 19, 19, '2025-06-02 08:58:57'),
+(7, 'ថ្នាក់ទី៤', 'Level  4', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:49:06', 19, 19, '2025-06-02 08:59:06'),
+(8, 'ថ្នាក់ទី៥', 'Level 5', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:49:14', 19, 19, '2025-06-02 08:59:12'),
+(9, 'មត្តេយ្យកម្រិតទាប', 'Kindergarten I', '4,5,6,7,8,9', 1, 1, 2, 1, '', '2025-05-02 08:49:52', 19, 19, '2025-07-21 06:43:36'),
+(10, 'មត្តេយ្យកម្រិតមធ្យម', 'Kindergarten II', '4,5,6,7,8,9', 1, 1, 2, 1, '', '2025-05-02 08:50:06', 19, 19, '2025-07-21 06:43:26'),
+(11, 'មត្តេយ្យកម្រិតខ្ពស់', 'Kindergarten III', '4,5,6,7,8,9', 1, 1, 2, 1, '', '2025-05-02 08:51:25', 19, 19, '2025-07-21 06:43:46'),
+(12, 'ថ្នាក់ទី១', 'Level  1', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:52:29', 19, 19, '2025-07-21 06:43:54'),
+(13, 'ថ្នាក់ទី២', 'Level  2', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:53:52', 19, 19, '2025-07-21 06:44:03'),
+(14, 'ថ្នាក់ទី៣', 'Level  3', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:54:09', 19, 19, '2025-07-21 06:44:12'),
+(15, 'ថ្នាក់ទី៤', 'Level  4', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:54:22', 19, 19, '2025-07-21 06:44:22'),
+(16, 'ថ្នាក់ទី៥', 'Level  5', '4,5,6,7,8', 2, 1, 2, 1, '', '2025-05-02 08:54:31', 19, 19, '2025-07-21 06:44:33'),
+(17, 'ថ្នាក់ទី៦', 'Level  6', '4,5,7,8', 2, 1, 2, 1, '', '2025-05-02 08:54:38', 19, 19, '2025-07-21 06:44:44'),
+(18, 'ថ្នាក់ទី៧', 'Level  7', '4,5,7,8', 3, 1, 2, 1, '', '2025-05-02 08:55:33', 19, 19, '2025-07-21 06:44:52'),
+(19, 'ថ្នាក់ទី៨', 'Level  8', '4,5,7,8', 3, 1, 2, 1, '', '2025-05-02 08:55:55', 19, 19, '2025-07-21 06:45:01'),
+(20, 'ថ្នាក់ទី៩', 'Level  9', '4,5,7,8', 4, 1, 2, 1, '', '2025-05-02 08:56:07', 19, 19, '2025-07-21 06:45:09'),
+(21, 'ថ្នាក់ទី១០', 'Level  10', '4,5,7,8', 5, 1, 2, 1, '', '2025-05-02 08:56:18', 19, 19, '2025-08-08 01:13:03'),
+(22, 'Kindergarten I', 'មត្តេយ្យកម្រិតទាប', '10,11,12,13', 6, 3, 1, 1, '', '2025-05-02 08:57:00', 19, 19, '2025-07-21 03:01:23'),
+(23, 'Kindergarten II', 'មត្តេយ្យកម្រិតមធ្យម', '10,11,12,13', 6, 3, 1, 1, '', '2025-05-02 08:57:13', 19, 19, '2025-07-21 03:02:03'),
+(24, 'Pre-Primary', '', '19,20,22,23', 7, 2, 1, 1, '', '2025-05-02 08:58:46', 19, 19, '2025-07-21 03:53:58'),
+(25, 'Year 1', 'ថ្នាក់ទី១', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:04', 19, 19, '2025-07-21 03:53:48'),
+(26, 'Year 2', 'ថ្នាក់ទី២', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:10', 19, 19, '2025-07-21 03:53:37'),
+(27, 'Year 3', 'ថ្នាក់ទី៣', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:16', 19, 19, '2025-07-21 03:53:28'),
+(28, 'Year 4', 'ថ្នាក់ទី៤', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:22', 19, 19, '2025-07-21 03:53:13'),
+(29, 'Kindergarten I', 'មត្តេយ្យកម្រិតទាប', '14,15,16,17,18', 6, 3, 2, 1, '', '2025-05-02 08:59:54', 19, 19, '2025-07-21 06:47:19'),
+(30, 'Kindergarten II', 'មត្តេយ្យកម្រិតមធ្យម', '14,15,16,17,18', 6, 3, 2, 1, '', '2025-05-02 09:00:57', 19, 19, '2025-07-21 06:47:26'),
+(31, 'Pre-Primary', '', '46,47,48,49', 7, 2, 2, 1, '', '2025-05-02 09:02:37', 19, 19, '2025-07-21 06:45:40'),
+(32, 'Year 1', 'ថ្នាក់ទី១', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:01', 19, 19, '2025-07-21 06:45:50'),
+(33, 'Year 2', 'ថ្នាក់ទី២', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:12', 19, 19, '2025-07-21 06:46:00'),
+(34, 'Year 3', 'ថ្នាក់ទី៣', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:19', 19, 19, '2025-07-21 06:46:10'),
+(35, 'Year 4', 'ថ្នាក់ទី៤', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:24', 19, 19, '2025-07-21 06:46:18'),
+(36, 'Year 5', 'ថ្នាក់ទី៥', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:29', 19, 19, '2025-07-21 06:46:27'),
+(37, 'Year 6', 'ថ្នាក់ទី៦', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:34', 19, 19, '2025-07-21 06:46:36'),
+(38, 'Year 7', 'ថ្នាក់ទី៧', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:40', 19, 19, '2025-07-21 06:46:47'),
+(39, 'Year 8', 'ថ្នាក់ទី៨', '46,49,48,47', 8, 2, 2, 1, '', '2025-05-02 09:03:46', 19, 19, '2025-07-21 06:47:00'),
+(40, 'មត្តេយ្យទាប', 'Kindergarten I', '24,51', 10, 1, 1, 2, '', '2025-06-09 02:52:45', 19, 19, '2025-10-07 02:59:23'),
+(41, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '24,51', 10, 1, 1, 2, '', '2025-06-09 02:53:09', 19, 19, '2025-10-07 02:59:13'),
+(42, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '24,51,52', 10, 1, 1, 2, '', '2025-06-09 02:53:27', 19, 19, '2025-10-07 02:58:45'),
+(43, 'ថ្នាក់ទី១', 'Level 1', '24,51,52', 11, 1, 1, 2, '', '2025-06-09 02:54:03', 19, 19, '2025-08-08 02:34:28'),
+(44, 'ថ្នាក់ទី២', 'Level 2', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:17', 19, 19, '2025-08-08 02:34:36'),
+(45, 'ថ្នាក់ទី៣', 'Level 3', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:28', 19, 19, '2025-08-08 02:34:47'),
+(46, 'ថ្នាក់ទី៤', 'Level 4', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:39', 19, 19, '2025-08-08 02:34:53'),
+(47, 'ថ្នាក់ទី៥', 'Level 5', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:52', 19, 19, '2025-08-08 02:05:00'),
+(48, 'ថ្នាក់ទី៦', 'Level 6', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:55:09', 19, 19, '2025-08-08 02:34:59'),
+(52, 'មត្តេយ្យទាប', 'Kindergarten I', '27,28,30,31', 10, 1, 2, 2, '', '2025-06-09 02:57:56', 19, 19, '2025-10-07 03:00:04'),
+(53, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '27,28,30,31', 10, 1, 2, 2, '', '2025-06-09 02:58:06', 19, 19, '2025-10-07 02:59:51'),
+(54, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '27,28,29,30,31', 10, 1, 2, 2, '', '2025-06-09 02:58:38', 19, 19, '2025-10-07 02:59:39'),
+(55, 'ថ្នាក់ទី១', 'Level 1', '27,28,30,31', 11, 1, 2, 2, '', '2025-06-09 02:59:05', 19, 19, '2025-08-08 02:35:40'),
+(56, 'ថ្នាក់ទី២', 'Level 2', '27,28,30,31', 11, 1, 2, 2, '', '2025-06-09 02:59:24', 19, 19, '2025-08-08 02:36:04'),
+(57, 'ថ្នាក់ទី៣', 'Level 3', '27,30', 11, 1, 2, 2, '', '2025-06-09 02:59:35', 19, 19, '2025-08-08 02:36:11'),
+(58, 'ថ្នាក់ទី៤', 'Level 4', '27,30', 11, 1, 2, 2, '', '2025-06-09 02:59:44', 19, 19, '2025-08-08 02:36:17'),
+(59, 'ថ្នាក់ទី៥', 'Level 5', '27,30', 11, 1, 2, 2, '', '2025-06-09 02:59:54', 19, 19, '2025-08-08 02:36:24'),
+(60, 'ថ្នាក់ទី៦', 'Level 6', '27,30', 11, 1, 2, 2, '', '2025-06-09 03:00:03', 19, 19, '2025-08-08 02:36:32'),
+(63, 'ថ្នាក់ទី៩', 'Level 9', '27,30', 13, 1, 2, 2, '', '2025-06-09 03:01:09', 19, 19, '2025-08-08 02:36:50'),
+(67, 'Kindergarten I', 'មត្តេយ្យទាប', '37,38,39,40,41', 15, 3, 2, 2, '', '2025-06-09 03:05:12', 19, 19, '2025-10-07 03:05:08'),
+(68, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '37,38,39,40,41', 15, 3, 2, 2, '', '2025-06-09 03:05:30', 19, 19, '2025-10-07 03:05:18'),
+(69, 'Pre-Primary', '', '44,45,66,67', 16, 2, 2, 2, '', '2025-06-09 03:05:51', 19, 19, '2025-08-29 03:08:10'),
+(70, 'Year 1', 'ថ្នាក់ទី១', '44,66', 17, 2, 2, 2, '', '2025-06-09 03:06:04', 19, 19, '2025-08-08 02:29:23'),
+(72, 'Year 3', 'ថ្នាក់ទី៣', '44,66', 17, 2, 2, 2, '', '2025-06-09 03:07:08', 19, 19, '2025-08-08 02:31:25'),
+(73, 'Year 4', 'ថ្នាក់ទី៤', '44,66', 17, 2, 2, 2, '', '2025-06-09 03:07:22', 19, 19, '2025-08-08 02:31:45'),
+(78, 'ត្រៀមមត្តេយ្យ', 'Pre-Kindergarten', '1,2', 1, 1, 1, 1, '', '2025-06-09 03:20:54', 19, 19, '2025-06-09 03:20:54'),
+(79, 'Kindergarten I', 'មត្តេយ្យទាប', '33,35', 15, 3, 1, 2, '', '2025-06-09 03:45:51', 19, 19, '2025-10-07 02:58:09'),
+(80, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '33,35', 15, 3, 1, 2, '', '2025-06-09 03:46:03', 19, 19, '2025-10-07 02:58:30'),
+(81, 'Pre-Primary', '', '42,43', 16, 2, 1, 2, '', '2025-06-09 03:46:21', 19, 19, '2025-08-08 01:26:14'),
+(82, 'Year 1', 'ថ្នាក់ទី១', '42,43,68', 17, 2, 1, 2, '', '2025-06-09 03:46:42', 19, 19, '2025-10-28 09:33:52'),
+(83, 'Year 2', 'ថ្នាក់ទី២', '42,43', 17, 2, 1, 2, '', '2025-06-09 03:46:51', 19, 19, '2025-08-08 01:35:36'),
+(84, 'Year 3', 'ថ្នាក់ទី៣', '42,43', 17, 2, 1, 2, '', '2025-06-09 03:47:01', 19, 19, '2025-08-08 01:40:02'),
+(85, 'Year 4', 'ថ្នាក់ទី៤', '42,43', 17, 2, 1, 2, '', '2025-06-09 03:47:11', 19, 19, '2025-08-08 01:42:10'),
+(92, 'Year 11', 'ថ្នាក់ទី១១', '46,47,48,49', 9, 2, 2, 1, '', '2025-07-10 02:45:46', 19, 19, '2025-07-21 06:47:42'),
+(93, 'Year 12', 'ថ្នាក់ទី១២', '22,23', 9, 2, 2, 1, '', '2025-07-10 02:46:24', 19, 19, '2025-07-10 02:46:24'),
+(96, 'ត្រៀមមតេ្តយ្យ', 'Pre-Kindergarten', '4,5,7,8', 1, 1, 2, 1, '', '2025-07-10 07:12:49', 19, 87, '2025-07-21 06:48:11'),
+(97, 'ត្រៀមមត្តេយ្យ', 'Pre-Kindergarten', '54,56', 10, 1, 3, 2, '', '2025-08-05 02:39:44', 19, 19, '2025-08-05 02:43:51'),
+(98, 'មត្តេយ្យទាប', 'Kindergarten I', '54,55,56,57', 10, 1, 3, 2, '', '2025-08-05 02:40:29', 19, 19, '2025-10-07 03:00:47'),
+(99, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '54,55,56,57', 10, 1, 3, 2, '', '2025-08-05 02:41:54', 19, 19, '2025-10-07 03:00:37'),
+(100, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '54,55,56,57', 10, 1, 3, 2, '', '2025-08-05 02:43:17', 19, 19, '2025-10-07 03:00:27'),
+(101, 'ថ្នាក់ទី១', 'Level 1', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-05 02:44:39', 58, 19, '2026-06-25 07:52:32'),
+(102, 'ថ្នាក់ទី២', 'Level 2', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-05 02:45:00', 58, 19, '2026-06-25 07:52:59'),
+(103, 'ថ្នាក់ទី៣', 'Level 3', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-05 02:45:14', 58, 19, '2026-06-25 07:52:47'),
+(104, 'ថ្នាក់ទី៥', 'Level 5', '54,56', 11, 1, 3, 2, '', '2025-08-05 02:47:35', 58, 19, '2026-06-25 07:51:46'),
+(105, 'ថ្នាក់ទី៦', 'Level 6', '54,56', 11, 1, 3, 2, '', '2025-08-05 02:47:47', 58, 19, '2026-06-25 07:43:42'),
+(106, 'ថ្នាក់ទី៧', 'Level 7', '54,56', 12, 1, 3, 2, '', '2025-08-05 02:48:24', 58, 19, '2026-06-25 07:43:49'),
+(107, 'ថ្នាក់ទី៨', 'Level 8', '54,56', 12, 1, 3, 2, '', '2025-08-05 02:48:37', 58, 19, '2026-06-25 07:43:53'),
+(108, 'ថ្នាក់ទី៩', 'Level 9', '54,56', 13, 1, 3, 2, '', '2025-08-05 02:49:01', 58, 19, '2026-06-25 07:43:59'),
+(109, 'ថ្នាក់ទី១០', 'Level 10', '54,56', 14, 1, 3, 2, '', '2025-08-05 02:54:52', 58, 19, '2026-06-25 07:52:15'),
+(112, 'Kindergarten I', 'មត្តេយ្យទាប', '62,63,64,65', 15, 3, 3, 2, '', '2025-08-05 03:04:20', 19, 19, '2025-10-07 03:04:44'),
+(113, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '62,63,64,65', 15, 3, 3, 2, '', '2025-08-05 03:04:54', 19, 19, '2025-10-07 03:04:53'),
+(114, 'Year 1', 'ថ្នាក់ទី១', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:06:46', 19, 19, '2025-08-05 03:06:46'),
+(115, 'Year 2', 'ថ្នាក់ទី២', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:06:58', 19, 19, '2025-08-05 03:06:58'),
+(116, 'Year 3', 'ថ្នាក់ទី៣', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:07:09', 19, 19, '2025-08-05 03:07:09'),
+(117, 'Year 4', 'ថ្នាក់ទី៤', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:07:26', 19, 19, '2025-08-05 03:07:26'),
+(118, 'Year 5', 'ថ្នាក់ទី៥', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:07:40', 19, 19, '2025-08-05 03:07:40'),
+(119, 'Year 6', 'ថ្នាក់ទី៧', '58,59,60,61', 17, 2, 3, 2, '', '2025-08-05 03:07:52', 19, 19, '2025-08-05 03:10:34'),
+(120, 'Year 7', 'ថ្នាក់ទី៧', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:08:49', 19, 19, '2025-08-05 03:08:49'),
+(121, 'Year 8', 'ថ្នាក់ទី៨', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:09:02', 19, 19, '2025-08-05 03:09:02'),
+(126, 'Pre-Primary', '', '58,59,60,61', 16, 2, 3, 2, '', '2025-08-06 02:34:36', 19, 19, '2025-08-06 02:34:36'),
+(127, 'ថ្នាក់ទី៤', 'Level 4', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-06 07:16:45', 58, 19, '2026-06-25 07:51:55'),
+(128, 'មត្តេយ្យទាប', 'Kindergarten I', '69,70,72,73', 28, 1, 1, 16, '', '2026-06-11 01:13:08', 58, 58, '2026-06-11 01:13:08'),
+(129, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '69,70,72,73', 28, 1, 1, 16, '', '2026-06-11 01:15:24', 58, 58, '2026-06-11 01:15:24'),
+(130, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '69,70,72,73', 28, 1, 1, 16, '', '2026-06-11 01:15:34', 58, 58, '2026-06-11 01:15:34'),
+(132, 'ថ្នាក់ទី១', 'Level 1', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:31:59', 58, 58, '2026-06-11 01:31:59'),
+(133, 'ថ្នាក់ទី២', 'Level 2', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:00', 58, 58, '2026-06-11 01:32:00'),
+(134, 'ថ្នាក់ទី៣', 'Level 3', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:02', 58, 58, '2026-06-11 01:32:02'),
+(135, 'ថ្នាក់ទី៤', 'Level 4', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:04', 58, 58, '2026-06-11 01:32:04'),
+(136, 'ថ្នាក់ទី៥', 'Level 5', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:05', 58, 58, '2026-06-11 01:32:05'),
+(137, 'ថ្នាក់ទី៦', 'Level 6', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:06', 58, 58, '2026-06-11 01:32:06'),
+(138, 'Pre-Primary', 'Pre-Primary', '81,84,82,85', 34, 2, 1, 16, '', '2026-06-11 01:34:48', 58, 58, '2026-06-11 01:34:48'),
+(139, 'Year 1', 'ថ្នាក់ទី១', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:36', 58, 58, '2026-06-11 01:35:36'),
+(140, 'Year 2', 'ថ្នាក់ទី២', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:38', 58, 58, '2026-06-11 01:35:38'),
+(141, 'Year 3', 'ថ្នាក់ទី៣', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:40', 58, 58, '2026-06-11 01:35:40'),
+(142, 'Year 4', 'ថ្នាក់ទី៤', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:41', 58, 58, '2026-06-11 01:35:41'),
+(143, 'Year 5', 'ថ្នាក់ទី៥', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:58', 58, 58, '2026-06-11 01:35:58'),
+(144, 'Kindergarten I', 'មត្តេយ្យទាប', '75,76,78,79', 33, 3, 1, 16, '', '2026-06-11 01:36:49', 58, 58, '2026-06-11 01:36:49'),
+(145, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '75,76,78,79', 33, 3, 1, 16, '', '2026-06-11 01:37:02', 58, 58, '2026-06-11 01:37:02'),
+(146, 'Pre-Primary', 'Pre-Primary', '87,88,90,91,89,92', 34, 2, 2, 16, '', '2026-06-11 01:38:52', 58, 58, '2026-06-11 01:38:52'),
+(147, 'Year 1', 'ថ្នាក់ទី១', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:16', 58, 58, '2026-06-11 01:39:16'),
+(148, 'Year 2', 'ថ្នាក់ទី២', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:18', 58, 58, '2026-06-11 01:39:18'),
+(149, 'Year 3', 'ថ្នាក់ទី៣', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:19', 58, 58, '2026-06-11 01:39:19'),
+(150, 'Year 4', 'ថ្នាក់ទី៤', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:22', 58, 58, '2026-06-11 01:39:22'),
+(151, 'Year 5', 'ថ្នាក់ទី៥', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:24', 58, 58, '2026-06-11 01:39:24'),
+(152, 'Kindergarten I', 'មត្តេយ្យទាប', '93,94,95,96,97,98', 33, 3, 2, 16, '', '2026-06-11 01:40:37', 58, 58, '2026-06-11 01:40:37'),
+(153, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '93,94,95,96,97,98', 33, 3, 2, 16, '', '2026-06-11 01:40:43', 58, 58, '2026-06-11 01:40:43'),
+(154, 'មត្តេយ្យទាប', 'Kindergarten I', '99,100,101,102,103,104', 28, 1, 2, 16, '', '2026-06-11 01:41:58', 58, 58, '2026-06-11 01:41:58'),
+(155, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '99,100,101,102,103,104', 28, 1, 2, 16, '', '2026-06-11 01:42:08', 58, 58, '2026-06-11 01:42:08'),
+(156, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '99,100,101,102,103,104', 28, 1, 2, 16, '', '2026-06-11 01:42:13', 58, 58, '2026-06-11 01:42:13'),
+(157, 'ថ្នាក់ទី១', 'Level 1', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:44:41', 58, 58, '2026-06-11 01:44:41'),
+(158, 'ថ្នាក់ទី២', 'Level 2', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:44:46', 58, 58, '2026-06-11 01:44:46'),
+(159, 'ថ្នាក់ទី៣', 'Level 3', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:03', 58, 58, '2026-06-11 01:45:03'),
+(160, 'ថ្នាក់ទី៤', 'Level 4', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:05', 58, 58, '2026-06-11 01:45:05'),
+(161, 'ថ្នាក់ទី៥', 'Level 5', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:06', 58, 58, '2026-06-11 01:45:06'),
+(162, 'ថ្នាក់ទី៦', 'Level 6', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:08', 58, 58, '2026-06-11 01:45:08'),
+(163, 'Pre-Primary', 'Pre-Primary', '115,116,118,119', 34, 2, 3, 16, '', '2026-06-11 01:46:26', 58, 58, '2026-06-11 01:46:26'),
+(164, 'Year 1', 'ថ្នាក់ទី១', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:20', 58, 58, '2026-06-11 01:47:20'),
+(165, 'Year 2', 'ថ្នាក់ទី២', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:24', 58, 58, '2026-06-11 01:47:24'),
+(166, 'Year 3', 'ថ្នាក់ទី៣', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:26', 58, 58, '2026-06-11 01:47:26'),
+(167, 'Year 4', 'ថ្នាក់ទី៤', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:26', 58, 58, '2026-06-11 01:47:26'),
+(168, 'Year 5', 'ថ្នាក់ទី៥', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:27', 58, 58, '2026-06-11 01:47:27'),
+(169, 'Year 6', 'ថ្នាក់ទី៦', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:28', 58, 58, '2026-06-11 01:47:28'),
+(170, 'Year 7', 'ថ្នាក់ទី៧', '115,116,118,119', 35, 2, 3, 16, '', '2026-06-11 01:47:29', 58, 58, '2026-06-11 01:49:37'),
+(171, 'Year 8', 'ថ្នាក់ទី៨', '115,116,118,119', 35, 2, 3, 16, '', '2026-06-11 01:47:30', 58, 58, '2026-06-11 01:49:30'),
+(172, 'Year 9', 'ថ្នាក់ទី៩', '115,116,118,119', 35, 2, 3, 16, '', '2026-06-11 01:47:30', 58, 58, '2026-06-11 01:49:23'),
+(173, 'Kindergarten I', 'មត្តេយ្យទាប', '121,122,124,125,123,126', 33, 3, 3, 16, '', '2026-06-11 01:51:48', 58, 58, '2026-06-11 01:51:48'),
+(174, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '121,122,124,125,123,126', 33, 3, 3, 16, '', '2026-06-11 01:51:54', 58, 58, '2026-06-11 01:51:54'),
+(175, 'មត្តេយ្យទាប', 'Kindergarten I', '109,110,111,112,113,114', 28, 1, 3, 16, '', '2026-06-11 01:53:35', 58, 58, '2026-06-11 01:53:35'),
+(176, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '109,110,111,112,113,114', 28, 1, 3, 16, '', '2026-06-11 01:53:42', 58, 58, '2026-06-11 01:53:42'),
+(177, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '109,110,111,112,113,114', 28, 1, 3, 16, '', '2026-06-11 01:53:49', 58, 58, '2026-06-11 01:53:49'),
+(178, 'ថ្នាក់ទី១', 'Level 1', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:23', 58, 58, '2026-06-25 07:55:59'),
+(179, 'ថ្នាក់ទី២', 'Level 2', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:25', 58, 58, '2026-06-25 07:56:18'),
+(180, 'ថ្នាក់ទី៣', 'Level 3', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:26', 58, 58, '2026-06-25 07:56:22'),
+(181, 'ថ្នាក់ទី៤', 'Level 4', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:28', 58, 58, '2026-06-25 07:56:26'),
+(182, 'ថ្នាក់ទី៥', 'Level 5', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:29', 58, 58, '2026-06-25 07:56:30'),
+(183, 'ថ្នាក់ទី៦', 'Level 6', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:30', 58, 58, '2026-06-25 07:56:34'),
+(184, 'ថ្នាក់ទី៧', 'Level 7', '109,110,111,112,113,114', 30, 1, 3, 16, '', '2026-06-11 01:54:39', 58, 58, '2026-06-25 07:56:39'),
+(185, 'ថ្នាក់ទី៨', 'Level 8', '109,110,111,112,113,114', 30, 1, 3, 16, '', '2026-06-11 01:54:41', 58, 58, '2026-06-25 07:56:43'),
+(186, 'ថ្នាក់ទី៩', 'Level 9', '109,110,111,112,113,114', 31, 1, 3, 16, '', '2026-06-11 01:54:45', 58, 58, '2026-06-25 07:56:48'),
+(187, 'ថ្នាក់ទី១០', 'Level 10', '109,110,111,112,113,114', 32, 1, 3, 16, '', '2026-06-11 01:54:53', 58, 58, '2026-06-25 07:56:05'),
+(188, 'ថ្នាក់ទី១១', 'Level 11', '109,110,111,112,113,114', 32, 1, 3, 16, '', '2026-06-11 01:54:55', 58, 58, '2026-06-25 07:56:12'),
+(189, 'Year 10', 'ថ្នាក់ទី១០', '115,116,118,119', 35, 2, 3, 16, '', '2026-08-03 09:20:16', 19, 19, '2026-08-03 09:20:16'),
+(190, 'ត្រៀមមតេ្តយ្យ', 'Pre-Kindergarten', '99,102', 28, 1, 2, 16, '', '2026-08-27 04:35:54', 19, 19, '2026-08-27 04:35:54'),
+(191, 'ត្រៀមមត្តេយ្យ', 'Pre-Kindergarten', '109,112', 28, 1, 3, 16, '', '2026-08-27 06:19:17', 87, 87, '2026-08-27 06:19:17');
+
+
+-- Data for table `grade_type` (121 rows)
+INSERT INTO `grade_type` (`id`, `type_name`, `program_id`, `branch_id`, `academic_id`, `shift_id`, `noted`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '"ក១"', 1, 1, 1, 1, '', 19, 19, '2025-05-02 08:20:19', '2025-07-21 03:32:58'),
+(2, '"ខ១"', 1, 1, 1, 2, '', 19, 19, '2025-05-02 08:20:31', '2025-07-21 03:34:04'),
+(3, '"ខ២"', 1, 1, 1, 2, '', 19, 19, '2025-05-02 08:20:38', '2025-07-21 03:34:18'),
+(4, '"គ១"', 1, 2, 1, 1, '', 19, 19, '2025-05-02 08:20:56', '2025-07-21 03:34:29'),
+(5, '"គ២"', 1, 2, 1, 1, '', 19, 19, '2025-05-02 08:21:09', '2025-07-21 03:34:42'),
+(6, '"គ៣"', 1, 2, 1, 1, '', 19, 19, '2025-05-02 08:21:21', '2025-07-21 03:34:56'),
+(7, '"ឃ១"', 1, 2, 1, 2, '', 19, 19, '2025-05-02 08:21:30', '2025-07-21 03:35:18'),
+(8, '"ឃ២"', 1, 2, 1, 2, '', 19, 19, '2025-05-02 08:21:40', '2025-07-21 03:35:32'),
+(9, '"ឃ៣"', 1, 2, 1, 2, '', 19, 19, '2025-05-02 08:21:55', '2025-07-21 03:36:28'),
+(10, '"A1"', 3, 1, 1, 1, '', 19, 58, '2025-05-02 08:22:14', '2025-08-26 01:38:52'),
+(11, '"A2"', 3, 1, 1, 1, '', 19, 58, '2025-05-02 08:22:19', '2025-08-26 01:39:03'),
+(12, '"B1"', 3, 1, 1, 2, '', 19, 58, '2025-05-02 08:22:29', '2025-08-26 01:39:15'),
+(13, '"B2"', 3, 1, 1, 2, '', 19, 58, '2025-05-02 08:22:35', '2025-08-26 01:39:28'),
+(14, 'C"1"', 3, 2, 1, 1, '', 19, 19, '2025-05-02 08:22:44', '2025-07-21 03:27:20'),
+(15, 'C"2"', 3, 2, 1, 1, '', 19, 19, '2025-05-02 08:22:51', '2025-07-21 03:27:29'),
+(16, 'C"3"', 3, 2, 1, 1, '', 19, 19, '2025-05-02 08:23:00', '2025-07-21 03:30:13'),
+(17, 'D"1"', 3, 2, 1, 2, '', 19, 19, '2025-05-02 08:23:05', '2025-07-21 03:30:32'),
+(18, 'D"2"', 3, 2, 1, 2, '', 19, 19, '2025-05-02 08:23:12', '2025-07-21 03:31:03'),
+(19, '"A1"', 2, 1, 1, 1, '', 19, 58, '2025-05-02 08:36:37', '2025-08-26 01:40:04'),
+(20, '"A2"', 2, 1, 1, 1, '', 19, 58, '2025-05-02 08:37:11', '2025-08-26 01:41:09'),
+(22, '"B1"', 2, 1, 1, 2, '', 19, 58, '2025-05-02 09:01:59', '2025-08-26 01:40:14'),
+(23, '"B2"', 2, 1, 1, 2, '', 19, 58, '2025-05-02 09:02:05', '2025-08-26 01:40:24'),
+(24, '"ក១"', 1, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-20 09:08:49'),
+(25, '"ក២"', 1, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-20 09:08:57'),
+(26, '"ក៣"', 1, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-20 09:09:01'),
+(27, '"គ១"', 1, 2, 2, 1, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:47:44'),
+(28, '"គ២"', 1, 2, 2, 1, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:56:43'),
+(29, '"គ៣"', 1, 2, 2, 1, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:56:57'),
+(30, '"ឃ១"', 1, 2, 2, 2, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:57:11'),
+(31, '"ឃ២"', 1, 2, 2, 2, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:57:22'),
+(32, '"ឃ៣"', 1, 2, 2, 2, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:57:33'),
+(33, '"A1"', 3, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:45:40'),
+(34, '"A2"', 3, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:45:48'),
+(35, '"B1"', 3, 1, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:45:57'),
+(36, '"B2"', 3, 1, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:46:06'),
+(37, '"C1"', 3, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:49:30'),
+(38, '"C2"', 3, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:49:52'),
+(39, '"C3"', 3, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:08'),
+(40, '"D1"', 3, 2, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:29'),
+(41, '"D2"', 3, 2, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:38'),
+(42, '"A1"', 2, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:46:16'),
+(43, '"B1"', 2, 1, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:46:42'),
+(44, '"C1"', 2, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:49:38'),
+(45, '"C2"', 2, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:49'),
+(46, 'C"1"', 2, 2, 1, 1, NULL, 19, 19, '2025-07-21 06:33:58', '2025-07-21 06:33:58'),
+(47, 'C"2"', 2, 2, 1, 1, NULL, 19, 19, '2025-07-21 06:34:22', '2025-07-21 06:34:22'),
+(48, 'D"1"', 2, 2, 1, 2, NULL, 19, 19, '2025-07-21 06:34:38', '2025-07-21 06:34:38'),
+(49, 'D"2"', 2, 2, 1, 2, NULL, 19, 19, '2025-07-21 06:34:52', '2025-07-21 06:34:52'),
+(50, '"ក២"', 1, 1, 1, 1, NULL, 19, 19, '2025-07-21 06:36:11', '2025-07-21 06:36:11'),
+(51, '"ខ១"', 1, 1, 2, 2, NULL, 19, 19, '2025-07-22 06:58:19', '2025-07-22 06:58:19'),
+(52, '"ខ២"', 1, 1, 2, 2, NULL, 19, 19, '2025-07-22 06:58:39', '2025-07-22 06:58:39'),
+(53, '"ខ៣"', 1, 1, 2, 2, NULL, 19, 19, '2025-07-22 06:58:51', '2025-07-22 06:58:51'),
+(54, '"ង១"', 1, 3, 2, 1, '', 19, 19, '2025-08-05 02:25:41', '2025-08-07 03:20:56'),
+(55, '"ង២"', 1, 3, 2, 1, '', 19, 19, '2025-08-05 02:26:14', '2025-08-07 03:21:01'),
+(56, '"ច១"', 1, 3, 2, 2, '', 19, 19, '2025-08-05 02:26:34', '2025-08-07 03:21:08'),
+(57, '"ច២"', 1, 3, 2, 2, '', 19, 19, '2025-08-05 02:26:46', '2025-08-07 03:21:13'),
+(58, '"E1"', 2, 3, 2, 1, '', 19, 58, '2025-08-05 02:27:33', '2025-08-26 01:47:11'),
+(59, '"E2"', 2, 3, 2, 1, '', 19, 58, '2025-08-05 02:27:44', '2025-08-26 01:48:28'),
+(60, '"F1"', 2, 3, 2, 2, '', 19, 58, '2025-08-05 02:27:59', '2025-08-26 01:48:01'),
+(61, '"F2"', 2, 3, 2, 2, '', 19, 58, '2025-08-05 02:28:08', '2025-08-26 01:48:10'),
+(62, '"E1"', 3, 3, 2, 1, '', 19, 58, '2025-08-05 02:28:25', '2025-08-26 01:47:20'),
+(63, '"E2"', 3, 3, 2, 1, '', 19, 58, '2025-08-05 02:28:41', '2025-08-26 01:48:41'),
+(64, '"F1"', 3, 3, 2, 2, '', 19, 58, '2025-08-05 02:28:46', '2025-08-26 01:48:51'),
+(65, '"F2"', 3, 3, 2, 2, '', 19, 58, '2025-08-05 02:28:56', '2025-08-26 01:48:58'),
+(66, '"D1"', 2, 2, 2, 2, '', 19, 58, '2025-08-08 02:28:03', '2025-08-26 01:50:58'),
+(67, '"D2"', 2, 2, 2, 2, '', 19, 58, '2025-08-08 02:28:14', '2025-08-26 01:51:06'),
+(68, '"B2"', 2, 1, 2, 2, NULL, 19, 19, '2025-10-28 09:31:34', '2025-10-28 09:31:34'),
+(69, 'ក១', 1, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:42:26', '2026-06-11 00:42:26'),
+(70, 'ក២', 1, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:43:07', '2026-06-11 00:43:07'),
+(71, 'ក៣', 1, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:43:26', '2026-06-11 00:43:26'),
+(72, 'ខ១', 1, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:43:59', '2026-06-11 00:43:59'),
+(73, 'ខ២', 1, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:44:05', '2026-06-11 00:44:05'),
+(74, 'ខ៣', 1, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:44:14', '2026-06-11 00:44:14'),
+(75, 'A1', 3, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:45:04', '2026-06-11 00:45:04'),
+(76, 'A2', 3, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:45:16', '2026-06-11 00:45:16'),
+(77, 'A3', 3, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:45:27', '2026-06-11 00:45:27'),
+(78, 'B1', 3, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:45:42', '2026-06-11 00:45:42'),
+(79, 'B2', 3, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:45:48', '2026-06-11 00:45:48'),
+(80, 'B3', 3, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:45:53', '2026-06-11 00:45:53'),
+(81, 'A1', 2, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:46:39', '2026-06-11 00:46:39'),
+(82, 'A2', 2, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:46:47', '2026-06-11 00:46:47'),
+(83, 'A3', 2, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:46:53', '2026-06-11 00:46:53'),
+(84, 'B1', 2, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:46:58', '2026-06-11 00:46:58'),
+(85, 'B2', 2, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:47:03', '2026-06-11 00:47:03'),
+(86, 'B3', 2, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:47:07', '2026-06-11 00:47:07'),
+(87, 'C1', 2, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:05', '2026-06-11 00:48:05'),
+(88, 'C2', 2, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:09', '2026-06-11 00:48:09'),
+(89, 'C3', 2, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:13', '2026-06-11 00:48:13'),
+(90, 'D1', 2, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:48:24', '2026-06-11 00:48:24'),
+(91, 'D2', 2, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:48:31', '2026-06-11 00:48:31'),
+(92, 'D3', 2, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:48:35', '2026-06-11 00:48:35'),
+(93, 'C1', 3, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:43', '2026-06-11 00:48:43'),
+(94, 'C2', 3, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:53', '2026-06-11 00:48:53'),
+(95, 'C3', 3, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:49:03', '2026-06-11 00:49:03'),
+(96, 'D1', 3, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:49:29', '2026-06-11 00:49:29'),
+(97, 'D2', 3, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:49:35', '2026-06-11 00:49:35'),
+(98, 'D3', 3, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:49:40', '2026-06-11 00:49:40'),
+(99, 'គ១', 1, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:50:28', '2026-06-11 00:50:28'),
+(100, 'គ២', 1, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:50:32', '2026-06-11 00:50:32'),
+(101, 'គ៣', 1, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:50:40', '2026-06-11 00:50:40'),
+(102, 'ឃ១', 1, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:50:56', '2026-06-11 00:50:56'),
+(103, 'ឃ២', 1, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:51:00', '2026-06-11 00:51:00'),
+(104, 'ឃ៣', 1, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:51:05', '2026-06-11 00:51:05'),
+(109, 'ង១', 1, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:08:37', '2026-06-11 01:08:37'),
+(110, 'ង២', 1, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:08:39', '2026-06-11 01:08:39'),
+(111, 'ង៣', 1, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:08:40', '2026-06-11 01:08:40'),
+(112, 'ច១', 1, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:08:54', '2026-06-11 01:08:54'),
+(113, 'ច២', 1, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:08:55', '2026-06-11 01:08:55'),
+(114, 'ច៣', 1, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:08:56', '2026-06-11 01:08:56'),
+(115, 'E1', 2, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:09:46', '2026-06-11 01:09:46'),
+(116, 'E2', 2, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:09:47', '2026-06-11 01:09:47'),
+(117, 'E3', 2, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:09:48', '2026-06-11 01:09:48'),
+(118, 'F1', 2, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:09:57', '2026-06-11 01:09:57'),
+(119, 'F2', 2, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:09:57', '2026-06-11 01:09:57'),
+(120, 'F3', 2, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:09:58', '2026-06-11 01:09:58'),
+(121, 'F1', 3, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:10:12', '2026-06-11 01:10:12'),
+(122, 'F2', 3, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:10:13', '2026-06-11 01:10:13'),
+(123, 'F3', 3, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:10:13', '2026-06-11 01:10:13'),
+(124, 'E1', 3, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:10:21', '2026-06-11 01:10:21'),
+(125, 'E2', 3, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:10:23', '2026-06-11 01:10:23'),
+(126, 'E3', 3, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:10:25', '2026-06-11 01:10:25');
+
+
+-- Data for table `grade_scale` (125 rows)
+INSERT INTO `grade_scale` (`id`, `grade_group_id`, `academic_id`, `min_marks`, `max_marks`, `us_grade`, `nittes_id`, `scale_discount`, `kh_grade`, `created_at`, `updated_at`, `is_overall`) VALUES
+(1, 1, 1, 90.00, 100.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 08:24:50', '2025-05-19 08:24:50', 0),
+(2, 1, 1, 80.00, 89.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 08:52:44', '2025-07-22 02:35:24', 0),
+(3, 1, 1, 70.00, 79.99, 'C', NULL, NULL, 'ល្អ', '2025-05-19 08:54:11', '2025-07-22 02:35:09', 0),
+(4, 1, 1, 60.00, 69.99, 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 08:55:09', '2025-07-22 02:34:46', 0),
+(5, 1, 1, 50.00, 59.99, 'E', NULL, NULL, 'មធ្យម', '2025-05-19 08:56:00', '2025-07-22 02:35:38', 0),
+(6, 1, 1, 0.00, 49.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 08:58:38', '2025-05-19 09:00:44', 0),
+(7, 2, 1, 9.00, 10.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 09:02:56', '2025-05-19 09:02:56', 0),
+(8, 2, 1, 8.00, 8.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 09:03:27', '2025-07-22 02:36:24', 0),
+(9, 2, 1, 7.00, 7.99, 'C', NULL, NULL, 'ល្អ', '2025-05-19 09:06:58', '2025-08-22 04:22:11', 0),
+(10, 11, 2, 6.00, 6.99, 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 09:07:29', '2025-08-22 04:52:45', 0),
+(11, 2, 1, 0.00, 4.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 09:08:22', '2025-05-19 09:08:22', 0),
+(12, 3, 1, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 09:09:33', '2025-05-20 01:12:56', 0),
+(13, 3, 1, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 09:10:46', '2025-05-19 10:56:50', 0),
+(14, 3, 1, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2025-05-19 10:47:31', '2025-05-19 10:57:45', 0),
+(15, 3, 1, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 10:52:26', '2025-05-19 10:58:18', 0),
+(16, 3, 1, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2025-05-19 10:58:50', '2025-05-19 10:58:50', 0),
+(17, 3, 1, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 10:59:29', '2025-05-19 10:59:29', 0),
+(18, 13, 2, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 11:00:26', '2025-08-22 08:21:56', 0),
+(19, 4, 1, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 11:03:01', '2025-05-19 11:03:01', 0),
+(20, 4, 1, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2025-05-19 11:03:32', '2025-05-19 11:03:32', 0),
+(21, 4, 1, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 11:03:59', '2025-05-19 11:03:59', 0),
+(22, 4, 1, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2025-05-19 11:05:55', '2025-05-19 11:05:55', 0),
+(23, 4, 1, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 11:06:49', '2025-05-19 11:06:49', 0),
+(24, 1, 2, 90.00, 100.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 02:41:35', '2025-08-22 02:41:35', 0),
+(25, 10, 2, 90.00, 100.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 02:46:30', '2025-08-22 02:46:30', 0),
+(26, 10, 2, 80.00, 89.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 02:47:54', '2025-08-22 02:47:54', 0),
+(27, 10, 2, 70.00, 79.99, 'C', NULL, NULL, 'ល្អ', '2025-08-22 02:48:36', '2025-08-22 02:48:36', 0),
+(28, 10, 2, 60.00, 69.99, 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 02:49:29', '2025-08-22 02:49:29', 0),
+(29, 10, 2, 50.00, 59.99, 'E', NULL, NULL, 'មធ្យម', '2025-08-22 02:50:10', '2025-08-22 02:50:10', 0),
+(30, 10, 2, 0.00, 49.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-08-22 02:51:17', '2025-08-22 02:51:17', 0),
+(31, 11, 2, 9.00, 10.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 03:26:39', '2025-08-22 03:26:39', 0),
+(32, 11, 2, 8.00, 8.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 03:46:55', '2025-08-22 03:46:55', 0),
+(34, 11, 2, 7.00, 7.99, 'C', NULL, NULL, 'ល្អ', '2025-08-22 03:49:34', '2025-08-22 04:10:57', 0),
+(35, 11, 2, 5.00, 5.99, 'E', NULL, NULL, 'មធ្យម', '2025-08-22 03:49:55', '2025-08-22 04:08:16', 0),
+(36, 2, 2, 5.00, 5.99, 'E', NULL, NULL, 'មធ្យម', '2025-08-22 03:53:06', '2025-08-22 03:53:06', 0),
+(39, 2, 1, 6.00, 6.99, 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 04:23:40', '2025-08-22 04:23:40', 0),
+(41, 12, 2, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 04:44:17', '2025-08-22 04:44:17', 0),
+(42, 12, 2, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 04:46:45', '2025-08-22 04:47:13', 0),
+(43, 12, 2, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2025-08-22 04:49:09', '2025-08-22 04:49:09', 0),
+(44, 12, 2, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 04:50:06', '2025-08-22 04:50:06', 0),
+(45, 12, 2, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2025-08-22 04:50:41', '2025-09-03 03:05:36', 0),
+(46, 12, 2, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-08-22 06:53:42', '2025-08-22 06:55:23', 0),
+(47, 4, 2, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 08:18:59', '2025-08-22 08:18:59', 0),
+(48, 13, 2, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 08:24:41', '2025-08-22 08:24:41', 0),
+(49, 13, 2, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2025-08-22 08:25:23', '2025-08-22 08:25:23', 0),
+(50, 13, 2, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 08:25:58', '2025-08-22 08:25:58', 0),
+(51, 13, 2, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-08-22 08:27:35', '2025-08-22 08:27:35', 0),
+(52, 18, 2, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2025-09-01 01:53:48', '2025-09-08 11:17:40', 0),
+(53, 18, 2, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2025-09-01 01:55:23', '2025-09-08 11:18:17', 0),
+(54, 18, 2, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2025-09-01 01:56:11', '2025-09-08 11:19:23', 0),
+(55, 18, 2, 80.00, 89.99, 'B', NULL, NULL, 'High', '2025-09-01 01:56:32', '2025-09-08 11:19:51', 0),
+(56, 18, 2, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2025-09-01 01:56:57', '2025-09-08 11:20:35', 0),
+(57, 15, 2, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2025-09-01 01:58:11', '2025-09-08 11:17:43', 0),
+(58, 15, 2, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2025-09-01 01:58:30', '2025-09-08 11:18:22', 0),
+(59, 15, 2, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2025-09-01 01:58:42', '2025-09-08 11:19:26', 0),
+(60, 15, 2, 80.00, 89.99, 'B', NULL, NULL, 'High', '2025-09-01 01:59:04', '2025-09-08 11:19:54', 0),
+(61, 15, 2, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2025-09-01 01:59:28', '2025-09-08 11:20:38', 0),
+(62, 16, 2, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2025-09-01 01:59:58', '2025-09-08 11:17:46', 0),
+(63, 16, 2, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2025-09-01 02:00:10', '2025-09-08 11:18:24', 0),
+(64, 16, 2, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2025-09-01 02:00:22', '2025-09-08 11:19:28', 0),
+(65, 16, 2, 80.00, 89.99, 'B', NULL, NULL, 'High', '2025-09-01 02:00:42', '2025-09-08 11:19:57', 0),
+(66, 16, 2, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2025-09-01 02:00:56', '2025-09-08 11:20:41', 0),
+(67, 17, 2, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2025-09-01 02:08:00', '2025-09-08 11:20:43', 0),
+(68, 17, 2, 80.00, 89.99, 'B', NULL, NULL, 'High', '2025-09-01 02:08:31', '2025-09-08 11:20:01', 0),
+(69, 17, 2, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2025-09-01 02:08:51', '2025-09-08 11:19:30', 0),
+(70, 17, 2, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2025-09-01 02:22:31', '2025-09-08 11:18:27', 0),
+(71, 17, 2, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2025-09-01 02:22:45', '2025-09-08 11:17:49', 0),
+(72, 14, 2, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2025-09-14 09:30:20', '2025-09-14 09:30:20', 0),
+(73, 13, 2, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2025-09-14 09:30:51', '2025-09-14 09:30:51', 0),
+(74, 14, 2, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-09-14 09:32:06', '2025-09-14 09:32:06', 0),
+(75, 14, 2, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2025-09-14 09:32:40', '2025-09-14 09:32:40', 0),
+(76, 14, 2, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2025-09-14 09:33:12', '2025-09-14 09:33:12', 0),
+(77, 14, 2, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2025-09-14 09:33:59', '2025-09-14 09:33:59', 0),
+(78, 14, 2, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-09-18 07:46:30', '2025-09-18 07:46:30', 0),
+(79, 11, 2, 0.00, 4.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-09-18 14:52:23', '2025-09-18 14:52:23', 0),
+(80, 36, 16, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
+(81, 36, 16, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
+(82, 36, 16, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
+(83, 36, 16, 80.00, 89.99, 'B', NULL, NULL, 'High', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
+(84, 36, 16, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
+(85, 33, 16, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
+(86, 33, 16, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
+(87, 33, 16, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
+(88, 33, 16, 80.00, 89.99, 'B', NULL, NULL, 'High', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
+(89, 33, 16, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
+(90, 34, 16, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
+(91, 34, 16, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
+(92, 34, 16, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
+(93, 34, 16, 80.00, 89.99, 'B', NULL, NULL, 'High', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
+(94, 34, 16, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
+(95, 35, 16, 90.00, 100.00, 'A', NULL, NULL, 'Excelent', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
+(96, 35, 16, 80.00, 89.99, 'B', NULL, NULL, 'High', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
+(97, 35, 16, 60.00, 79.99, 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
+(98, 35, 16, 50.00, 59.99, 'D', NULL, NULL, 'Limited', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
+(99, 35, 16, 0.00, 49.99, 'E', NULL, NULL, 'Very low', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
+(100, 29, 16, 6.00, 6.99, 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
+(101, 29, 16, 9.00, 10.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
+(102, 29, 16, 8.00, 8.99, 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
+(103, 29, 16, 7.00, 7.99, 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
+(104, 29, 16, 5.00, 5.99, 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
+(105, 29, 16, 0.00, 4.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
+(106, 28, 16, 90.00, 100.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
+(107, 28, 16, 80.00, 89.99, 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
+(108, 28, 16, 70.00, 79.99, 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
+(109, 28, 16, 60.00, 69.99, 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
+(110, 28, 16, 50.00, 59.99, 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
+(111, 28, 16, 0.00, 49.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
+(112, 32, 16, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
+(113, 32, 16, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
+(114, 32, 16, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
+(115, 32, 16, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
+(116, 32, 16, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
+(117, 32, 16, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
+(118, 30, 16, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
+(119, 30, 16, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
+(120, 30, 16, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
+(121, 30, 16, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
+(122, 30, 16, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
+(123, 30, 16, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
+(124, 31, 16, 45.00, 50.00, 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
+(125, 31, 16, 40.00, 44.99, 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
+(126, 31, 16, 35.00, 39.99, 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
+(127, 31, 16, 30.00, 34.99, 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
+(128, 31, 16, 0.00, 24.99, 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
+(129, 31, 16, 25.00, 29.99, 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0);
+
+
+-- Data for table `subjects_group` (171 rows)
+INSERT INTO `subjects_group` (`id`, `grade_group_id`, `program_id`, `subject_id`, `full_marks`, `calculate_marks`, `academic_id`, `created_by`, `updated_by`, `noted`, `created_at`, `updated_at`) VALUES
+(1, 15, 3, 31, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
+(2, 15, 3, 32, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
+(3, 15, 3, 33, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
+(4, 15, 3, 34, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
+(5, 15, 3, 35, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
+(6, 15, 3, 36, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
+(7, 15, 3, 37, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
+(8, 16, 2, 38, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
+(9, 16, 2, 39, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
+(10, 16, 2, 40, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
+(11, 16, 2, 41, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
+(12, 16, 2, 42, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
+(13, 16, 2, 43, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
+(14, 17, 2, 38, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
+(15, 17, 2, 39, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
+(16, 17, 2, 40, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
+(17, 17, 2, 41, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
+(18, 17, 2, 42, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
+(19, 17, 2, 43, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
+(20, 17, 2, 44, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
+(21, 18, 2, 38, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
+(22, 18, 2, 39, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
+(23, 18, 2, 40, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
+(24, 18, 2, 41, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
+(25, 18, 2, 42, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
+(26, 18, 2, 43, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
+(27, 18, 2, 44, 100.00, 100.00, 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
+(28, 10, 1, 25, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
+(29, 10, 1, 26, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
+(30, 10, 1, 27, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
+(31, 10, 1, 28, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
+(32, 10, 1, 29, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
+(33, 10, 1, 30, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
+(34, 10, 1, 12, 100.00, 50.00, 2, 58, 58, '', '2025-09-11 15:31:33', '2025-09-11 15:31:33'),
+(35, 11, 1, 1, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(36, 11, 1, 2, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(37, 11, 1, 3, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(38, 11, 1, 4, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(39, 11, 1, 5, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(40, 11, 1, 6, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(41, 11, 1, 7, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(42, 11, 1, 8, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(43, 11, 1, 9, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(44, 11, 1, 10, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(45, 11, 1, 11, 10.00, 100.00, 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
+(47, 12, 1, 1, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(48, 12, 1, 3, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(49, 12, 1, 13, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(50, 12, 1, 14, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(51, 12, 1, 15, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(52, 12, 1, 16, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(53, 12, 1, 17, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(54, 12, 1, 18, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(55, 12, 1, 19, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(56, 12, 1, 20, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(57, 12, 1, 10, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(58, 12, 1, 21, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(59, 12, 1, 24, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(60, 12, 1, 7, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(61, 12, 1, 49, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
+(62, 13, 1, 1, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(63, 13, 1, 3, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(64, 13, 1, 13, 35.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(65, 13, 1, 14, 25.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(66, 13, 1, 15, 35.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(67, 13, 1, 16, 25.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(68, 13, 1, 17, 35.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(69, 13, 1, 10, 50.00, 50.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(70, 13, 1, 18, 32.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(71, 13, 1, 19, 33.00, 100.00, 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
+(72, 14, 1, 1, 150.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(73, 14, 1, 3, 150.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(74, 14, 1, 13, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(75, 14, 1, 14, 37.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(76, 14, 1, 15, 38.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(77, 14, 1, 16, 25.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(78, 14, 1, 17, 38.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(79, 14, 1, 18, 38.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(80, 14, 1, 19, 37.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(81, 14, 1, 20, 37.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 09:21:21'),
+(82, 14, 1, 10, 100.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(83, 14, 1, 21, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(84, 14, 1, 49, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(85, 14, 1, 7, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(86, 14, 1, 24, 50.00, 100.00, 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
+(87, 16, 2, 44, 100.00, 100.00, 2, 58, 58, '', '2025-09-29 16:41:18', '2025-09-29 16:41:18'),
+(130, 29, 1, 1, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(131, 29, 1, 2, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(132, 29, 1, 3, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(133, 29, 1, 4, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(134, 29, 1, 5, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(135, 29, 1, 6, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(136, 29, 1, 7, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(137, 29, 1, 8, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(138, 29, 1, 9, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(139, 29, 1, 10, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(140, 29, 1, 11, 10.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
+(141, 28, 1, 25, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
+(142, 28, 1, 26, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
+(143, 28, 1, 27, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
+(144, 28, 1, 28, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
+(145, 28, 1, 29, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
+(146, 28, 1, 30, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
+(147, 32, 1, 1, 150.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(148, 32, 1, 3, 150.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(149, 32, 1, 13, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(150, 32, 1, 14, 37.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(151, 32, 1, 15, 38.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(152, 32, 1, 16, 25.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(153, 32, 1, 17, 38.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(154, 32, 1, 18, 38.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(155, 32, 1, 19, 37.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(156, 32, 1, 20, 37.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(157, 32, 1, 10, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(158, 32, 1, 21, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(159, 32, 1, 49, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(160, 32, 1, 7, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(161, 32, 1, 24, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
+(162, 30, 1, 1, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(163, 30, 1, 3, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(164, 30, 1, 13, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(165, 30, 1, 14, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(166, 30, 1, 15, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(167, 30, 1, 16, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(168, 30, 1, 17, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(169, 30, 1, 18, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(170, 30, 1, 19, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(171, 30, 1, 20, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(172, 30, 1, 10, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(173, 30, 1, 21, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(174, 30, 1, 24, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(175, 30, 1, 7, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(176, 30, 1, 49, 50.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
+(177, 31, 1, 1, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(178, 31, 1, 3, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(179, 31, 1, 13, 35.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(180, 31, 1, 14, 25.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(181, 31, 1, 15, 35.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(182, 31, 1, 16, 25.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(183, 31, 1, 17, 35.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(184, 31, 1, 10, 50.00, 50.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(185, 31, 1, 18, 32.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(186, 31, 1, 19, 33.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
+(187, 33, 3, 31, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
+(188, 33, 3, 32, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
+(189, 33, 3, 33, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
+(190, 33, 3, 34, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
+(191, 33, 3, 35, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
+(192, 33, 3, 36, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
+(193, 33, 3, 37, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
+(194, 36, 2, 38, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
+(195, 36, 2, 39, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
+(196, 36, 2, 40, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
+(197, 36, 2, 41, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
+(198, 36, 2, 42, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
+(199, 36, 2, 43, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
+(200, 36, 2, 44, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
+(201, 34, 2, 38, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
+(202, 34, 2, 39, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
+(203, 34, 2, 40, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
+(204, 34, 2, 41, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
+(205, 34, 2, 42, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
+(206, 34, 2, 43, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
+(207, 34, 2, 44, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
+(208, 35, 2, 38, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
+(209, 35, 2, 39, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
+(210, 35, 2, 40, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
+(211, 35, 2, 41, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
+(212, 35, 2, 42, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
+(213, 35, 2, 43, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
+(214, 35, 2, 44, 100.00, 100.00, 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04');
+
+
+-- Data for table `subjects` (50 rows)
+INSERT INTO `subjects` (`id`, `subject_name`, `subject_name_us`, `program_id`, `academic_id`, `updated_at`, `created_at`, `created_by`, `updated_by`, `noted`, `short_code`) VALUES
+(1, 'ភាសាខ្មែរ', 'Khmer Language', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(2, 'សរសេរតាមអាន', 'Dictation', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(3, 'គណិតវិទ្យា', 'Mathematics', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(4, 'ប៉ាម៉ាគិតលេខរហ័ស', 'PAMA Programs', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(5, 'វិទ្យាសាស្ត្រអនុវត្ត', 'Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(6, 'សិក្សាសង្គម', 'Social Studies', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(7, 'កុំព្យូទ័រ', 'ICT', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(8, 'សិល្បៈ អប់រំកាយ កីឡា', 'Art, P.E & Sports', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(9, 'គំនូរ & ហត្ថកម្ម', 'Drawing & Handicraft', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(10, 'ភាសាអង់គ្លេស', 'English', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(11, 'អប់រំសុខភាព', 'Health Education', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(12, 'កំណត់ត្រាអំពើល្អ', 'Good Attitude', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(13, 'រូបវិទ្យា', 'Physics', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(14, 'គីមីវិទ្យា', 'Chemistry', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(15, 'ជីវវិទ្យា', 'Biology', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(16, 'ផែនដីវិទ្យា', 'Earth Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(17, 'សីលធម៌-ពលរដ្ឋវិជ្ជា', 'Moral Civics', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(18, 'ភូមិវិទ្យា', 'Geography', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(19, 'ប្រវត្តិវិទ្យា', 'History', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(20, 'គេហវិជ្ជា', 'Home Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(21, 'អប់រំកាយ និងកីឡា', 'P.E and Sports', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(22, 'Projects', NULL, 1, 1, '2025-05-02', '2025-05-02', 19, 19, '', NULL),
+(23, 'Media/Art', NULL, 1, 1, '2025-05-02', '2025-05-02', 19, 19, '', NULL),
+(24, 'អប់រំសុខភាព', 'Health Education', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(25, 'បុរេសំណេរ', 'Pre-Writing', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(26, 'បុរេគណិត', 'Pre-Math', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(27, 'ចិត្តចលភាព', 'Physical Education', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(28, 'វិទ្យាសាស្ដ្រ-សិក្សាសង្គម', 'Social and Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(29, 'អារម្មណ៍ បញ្ញា សង្គម', 'Emotional and Cognitive', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(30, 'អប់រំសុខភាព-អនាម័យ', 'Health- Hygiene', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
+(31, 'Eng', NULL, 3, 1, '2025-09-01', '2025-05-12', 19, 58, '', NULL),
+(32, 'Math', NULL, 3, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
+(33, 'HASS', '', 3, 1, '2025-10-10', '2025-05-12', 19, 58, '', NULL),
+(34, 'Science', NULL, 3, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
+(35, 'PE', '', 3, 1, '2026-03-02', '2025-05-12', 19, 19, '', NULL),
+(36, 'Art', NULL, 3, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
+(37, 'DT', NULL, 3, 1, '2025-09-01', '2025-05-12', 19, 58, '', NULL),
+(38, 'English', '', 2, 1, '2026-08-25', '2025-05-12', 19, 58, '', NULL),
+(39, 'Math', NULL, 2, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
+(40, 'HASS', '', 2, 1, '2025-10-10', '2025-05-12', 19, 58, '', NULL),
+(41, 'Science', NULL, 2, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
+(42, 'HPE', '', 2, 1, '2026-03-02', '2025-05-12', 19, 19, '', NULL),
+(43, 'The Arts', '', 2, 1, '2026-08-25', '2025-05-12', 19, 58, '', NULL),
+(44, 'Technologies', '', 2, 1, '2026-08-25', '2025-05-12', 19, 58, '', NULL),
+(45, 'កុំព្យូទ័រ-មេឌៀ', 'Computer/Media', 1, 2, '2025-09-29', '2025-09-01', 58, 19, '', NULL),
+(46, 'សុខភាព', 'Health', 1, 2, '2025-09-29', '2025-09-01', 58, 19, '', NULL),
+(47, 'កីឡា-សុខភាព', 'Sports & Health', 1, 2, '2025-09-29', '2025-09-01', 58, 19, '', NULL),
+(49, 'សិក្សាបែបគម្រោង/មេឌៀ', 'Projects/Media', 1, 2, '2025-09-29', '2025-09-11', 58, 19, '', NULL),
+(50, 'កីឡា', 'Sports', 1, 2, '2025-09-29', '2025-09-11', 58, 19, '', NULL),
+(52, 'Techcademy', 'Techcademy', 2, 16, '2026-08-25', '2026-08-25', 58, 58, '', NULL);
+
+
+-- Data for table `nittes_discount` (6 rows)
+INSERT INTO `nittes_discount` (`id`, `academic_id`, `branch_id`, `amount`, `nittes_id`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, 1, 2, 20.00, 1, '2025-06-11 14:05:33', '2025-07-03 10:26:00', 58),
+(2, 1, 2, 15.00, 2, '2025-06-11 15:11:13', '2025-07-03 10:26:11', 58),
+(3, 1, 2, 10.00, 3, '2025-07-03 10:29:42', '2025-07-03 10:29:42', 58),
+(4, 1, 1, 20.00, 1, '2025-07-03 10:30:23', '2025-07-03 10:30:23', 58),
+(5, 1, 1, 15.00, 2, '2025-07-03 10:30:23', '2025-07-03 10:30:23', 58),
+(6, 1, 1, 10.00, 3, '2025-07-03 10:31:15', '2025-07-03 10:31:15', 58);
+
+
+-- Data for table `exam_calculate_sign` (186 rows)
+INSERT INTO `exam_calculate_sign` (`id`, `program_id`, `grade_group_id`, `academic_id`, `marks_system_id`, `result_name`, `formula_expression`, `sign_code`, `divide_by_multiplier`, `exam_type`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, 10, 2, 1, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 6.00, 'input', 1, '2025-09-11 09:58:55', '2026-01-24 08:31:07'),
+(2, 1, 10, 2, 2, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 6.00, 'input', 1, '2025-09-11 09:58:55', '2026-01-24 08:31:08'),
+(3, 1, 10, 2, 3, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 6.00, 'input', 1, '2025-09-11 09:58:55', '2026-01-24 08:31:08'),
+(4, 1, 10, 2, 4, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 6.00, 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:18'),
+(5, 1, 10, 2, 5, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 6.00, 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:19'),
+(6, 1, 10, 2, 6, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 6.00, 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:20'),
+(7, 1, 10, 2, 7, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 6.00, 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:23'),
+(8, 1, 10, 2, 8, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 6.00, 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:22'),
+(9, 1, 10, 2, 9, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', 6.00, 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:24'),
+(10, 1, 10, 2, 10, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 6.00, 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:26'),
+(11, 1, 10, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2025-09-11 09:59:41', '2026-01-24 08:29:03'),
+(12, 1, 10, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2025-09-11 10:00:02', '2026-01-24 08:29:11'),
+(13, 1, 10, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2025-09-11 10:00:19', '2026-01-24 08:28:50'),
+(14, 1, 11, 2, 11, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 11.00, 'input', 1, '2025-09-11 10:01:30', '2026-01-24 08:34:51'),
+(15, 1, 11, 2, 12, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:52'),
+(16, 1, 11, 2, 13, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:53'),
+(17, 1, 11, 2, 14, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:55'),
+(18, 1, 11, 2, 15, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:56'),
+(19, 1, 11, 2, 16, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:57'),
+(20, 1, 11, 2, 17, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:58'),
+(21, 1, 11, 2, 18, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:59'),
+(22, 1, 11, 2, 19, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 11.00, 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:35:00'),
+(23, 1, 11, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2025-09-11 10:04:10', '2026-01-24 08:33:33'),
+(24, 1, 11, 2, 50, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 11.00, 'input', 1, '2025-09-11 10:06:50', '2026-01-24 08:35:01'),
+(25, 1, 11, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2025-09-11 10:08:03', '2026-01-24 08:33:37'),
+(26, 1, 11, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2025-09-11 10:08:18', '2026-01-24 08:33:26'),
+(27, 1, 12, 2, 20, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:36'),
+(28, 1, 12, 2, 21, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:38'),
+(29, 1, 12, 2, 22, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:40'),
+(30, 1, 12, 2, 23, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
+(31, 1, 12, 2, 24, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
+(32, 1, 12, 2, 25, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
+(33, 1, 12, 2, 26, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
+(34, 1, 12, 2, 27, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
+(35, 1, 12, 2, 28, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
+(36, 1, 12, 2, 29, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 17.00, 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
+(37, 1, 12, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2025-09-11 10:11:18', '2026-01-24 08:36:32'),
+(38, 1, 12, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2025-09-11 10:12:06', '2026-01-24 08:38:22'),
+(39, 1, 12, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2025-09-11 10:12:25', '2026-01-24 08:38:30'),
+(40, 1, 13, 2, 30, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
+(41, 1, 13, 2, 31, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
+(42, 1, 13, 2, 32, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
+(43, 1, 13, 2, 33, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
+(44, 1, 13, 2, 34, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
+(45, 1, 13, 2, 35, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
+(46, 1, 13, 2, 36, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
+(47, 1, 13, 2, 37, 'ប្រចាំ ខែកុម្ផៈ', 'exam_calculate_sign_subjects', 'MON5', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
+(48, 1, 13, 2, 38, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
+(49, 1, 13, 2, 39, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 8.40, 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
+(50, 1, 13, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2025-09-11 10:13:24', '2026-01-24 08:46:34'),
+(51, 1, 13, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2025-09-11 10:13:51', '2026-01-24 08:46:36'),
+(52, 1, 13, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2025-09-11 10:14:07', '2026-01-24 08:46:28'),
+(53, 1, 14, 2, 40, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:15'),
+(54, 1, 14, 2, 41, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:15'),
+(55, 1, 14, 2, 42, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(56, 1, 14, 2, 43, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(57, 1, 14, 2, 44, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(58, 1, 14, 2, 45, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(59, 1, 14, 2, 46, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(60, 1, 14, 2, 47, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(61, 1, 14, 2, 48, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(62, 1, 14, 2, 49, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 18.00, 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
+(63, 1, 14, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2025-09-11 10:15:24', '2026-01-24 08:48:57'),
+(64, 1, 14, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2025-09-11 10:15:56', '2026-01-24 08:48:52'),
+(65, 1, 14, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2025-09-11 10:16:08', '2026-01-24 08:48:46'),
+(66, 3, 15, 2, 59, 'Mid- 1st Quarter', 'exam_calculate_sign_subjects', 'MON1', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:50:51'),
+(67, 3, 15, 2, 60, 'Final- 1st Quarter', 'exam_calculate_sign_subjects', 'MON2', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:50:53'),
+(68, 3, 15, 2, 61, 'Mid- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON3', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
+(69, 3, 15, 2, 62, 'Final- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON4', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
+(70, 3, 15, 2, 63, 'Mid- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON5', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
+(71, 3, 15, 2, 64, 'Final- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON6', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
+(72, 3, 15, 2, 65, 'Mid- 4th Quarter', 'exam_calculate_sign_subjects', 'MON7', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
+(73, 3, 15, 2, 66, 'Final- 4th Quarter', 'exam_calculate_sign_subjects', 'MON8', 7.00, 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
+(74, 3, 15, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2025-09-30 02:00:15', '2026-01-24 17:15:22'),
+(75, 3, 15, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2025-09-30 02:01:24', '2026-01-24 17:15:35'),
+(76, 2, 16, 2, 67, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', 7.00, 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:27'),
+(77, 2, 16, 2, 68, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', 7.00, 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:31'),
+(78, 2, 16, 2, 69, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', 7.00, 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:33'),
+(79, 2, 16, 2, 70, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', 7.00, 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:38'),
+(80, 2, 16, 2, 71, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', 7.00, 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:42'),
+(81, 2, 16, 2, 72, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', 7.00, 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:46'),
+(82, 2, 16, 2, 73, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', 7.00, 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:49'),
+(83, 2, 16, 2, 74, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', 7.00, 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:52'),
+(84, 2, 16, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2025-09-30 02:12:51', '2026-01-24 17:15:30'),
+(85, 2, 16, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2025-09-30 02:13:32', '2026-01-24 17:15:39'),
+(86, 2, 17, 2, 75, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:44'),
+(87, 2, 17, 2, 76, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:46'),
+(88, 2, 17, 2, 77, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:50'),
+(89, 2, 17, 2, 78, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:54'),
+(90, 2, 17, 2, 79, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:57'),
+(91, 2, 17, 2, 80, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:54:00'),
+(92, 2, 17, 2, 81, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:54:04'),
+(93, 2, 17, 2, 82, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', 7.00, 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:54:07'),
+(94, 2, 17, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2025-09-30 02:22:56', '2026-01-24 17:15:32'),
+(95, 2, 17, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2025-09-30 02:23:08', '2026-01-24 17:15:40'),
+(96, 2, 18, 2, 51, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', 7.00, 'input', 1, '2025-09-30 02:23:39', '2026-01-24 08:54:42'),
+(97, 2, 18, 2, 52, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', 7.00, 'input', 1, '2025-09-30 02:23:39', '2026-01-24 08:54:45'),
+(98, 2, 18, 2, 53, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', 7.00, 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:49'),
+(99, 2, 18, 2, 54, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', 7.00, 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:52'),
+(100, 2, 18, 2, 55, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', 7.00, 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:56'),
+(101, 2, 18, 2, 56, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', 7.00, 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:59'),
+(102, 2, 18, 2, 57, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', 7.00, 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:55:03'),
+(103, 2, 18, 2, 58, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', 7.00, 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:55:06'),
+(104, 2, 18, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2025-09-30 02:24:11', '2026-01-24 17:15:33'),
+(105, 2, 18, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2025-09-30 02:24:34', '2026-01-24 17:15:43'),
+(106, 3, 15, 2, 0, 'Yearly', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2025-09-30 06:03:38', '2026-01-24 08:55:39'),
+(107, 1, 29, 16, 83, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(108, 1, 29, 16, 84, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(109, 1, 29, 16, 85, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(110, 1, 29, 16, 86, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(111, 1, 29, 16, 87, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(112, 1, 29, 16, 88, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(113, 1, 29, 16, 89, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(114, 1, 29, 16, 90, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(115, 1, 29, 16, 91, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(116, 1, 29, 16, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(117, 1, 29, 16, 92, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 11.00, 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(118, 1, 29, 16, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(119, 1, 29, 16, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(120, 1, 28, 16, 93, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(121, 1, 28, 16, 94, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(122, 1, 28, 16, 95, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(123, 1, 28, 16, 96, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(124, 1, 28, 16, 97, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(125, 1, 28, 16, 98, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(126, 1, 28, 16, 99, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(127, 1, 28, 16, 100, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(128, 1, 28, 16, 101, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(129, 1, 28, 16, 102, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 6.00, 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(130, 1, 28, 16, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(131, 1, 28, 16, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(132, 1, 28, 16, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(133, 1, 32, 16, 103, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(134, 1, 32, 16, 104, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(135, 1, 32, 16, 105, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(136, 1, 32, 16, 106, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(137, 1, 32, 16, 107, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(138, 1, 32, 16, 108, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(139, 1, 32, 16, 109, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(140, 1, 32, 16, 110, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(141, 1, 32, 16, 111, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(142, 1, 32, 16, 112, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', 18.00, 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(143, 1, 32, 16, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', 2.00, 'semester', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(144, 1, 32, 16, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', 2.00, 'semester', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(145, 1, 32, 16, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(146, 3, 33, 16, 113, 'Mid- 1st Quarter', 'exam_calculate_sign_subjects', 'MON1', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(147, 3, 33, 16, 114, 'Final- 1st Quarter', 'exam_calculate_sign_subjects', 'MON2', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(148, 3, 33, 16, 115, 'Mid- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON3', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(149, 3, 33, 16, 116, 'Final- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON4', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(150, 3, 33, 16, 117, 'Mid- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON5', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(151, 3, 33, 16, 118, 'Final- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON6', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(152, 3, 33, 16, 119, 'Mid- 4th Quarter', 'exam_calculate_sign_subjects', 'MON7', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(153, 3, 33, 16, 120, 'Final- 4th Quarter', 'exam_calculate_sign_subjects', 'MON8', 7.00, 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(154, 3, 33, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(155, 3, 33, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(156, 3, 33, 16, 0, 'Yearly', 'RSEM1+RSEM2', 'YEAR', 2.00, 'yearly', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(157, 2, 36, 16, 121, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(158, 2, 36, 16, 122, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(159, 2, 36, 16, 123, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(160, 2, 36, 16, 124, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(161, 2, 36, 16, 125, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(162, 2, 36, 16, 126, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(163, 2, 36, 16, 127, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(164, 2, 36, 16, 128, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', 7.00, 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(165, 2, 36, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(166, 2, 36, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(167, 2, 34, 16, 129, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(168, 2, 34, 16, 130, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(169, 2, 34, 16, 131, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(170, 2, 34, 16, 132, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(171, 2, 34, 16, 133, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(172, 2, 34, 16, 134, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(173, 2, 34, 16, 135, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(174, 2, 34, 16, 136, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', 7.00, 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(175, 2, 34, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(176, 2, 34, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(177, 2, 35, 16, 137, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(178, 2, 35, 16, 138, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(179, 2, 35, 16, 139, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(180, 2, 35, 16, 140, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(181, 2, 35, 16, 141, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(182, 2, 35, 16, 142, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(183, 2, 35, 16, 143, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(184, 2, 35, 16, 144, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', 7.00, 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(185, 2, 35, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', 4.00, 'semester', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(186, 2, 35, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', 4.00, 'semester', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04');
+
+
+-- Data for table `exam_calculate_sign_subjects` (447 rows)
+INSERT INTO `exam_calculate_sign_subjects` (`id`, `exam_calculate_sign_id`, `subject_id`, `created_at`, `updated_at`) VALUES
+(1041, 13, 1, '2026-01-24 08:28:50', '2026-01-24 08:28:50'),
+(1042, 13, 2, '2026-01-24 08:28:50', '2026-01-24 08:28:50'),
+(1044, 11, 1, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
+(1045, 11, 2, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
+(1046, 11, 3, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
+(1047, 11, 4, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
+(1048, 11, 1, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
+(1051, 12, 5, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
+(1052, 12, 6, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
+(1053, 12, 7, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
+(1054, 12, 8, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
+(1055, 12, 2, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
+(1082, 26, 1, '2026-01-24 08:33:26', '2026-01-24 08:33:26'),
+(1083, 26, 2, '2026-01-24 08:33:26', '2026-01-24 08:33:26'),
+(1085, 23, 1, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
+(1086, 23, 2, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
+(1087, 23, 3, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
+(1088, 23, 4, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
+(1089, 23, 1, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
+(1092, 25, 5, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
+(1093, 25, 6, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
+(1094, 25, 7, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
+(1095, 25, 8, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
+(1096, 25, 2, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
+(1431, 37, 1, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
+(1432, 37, 2, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
+(1433, 37, 3, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
+(1434, 37, 4, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
+(1435, 37, 1, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
+(1438, 38, 5, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
+(1439, 38, 6, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
+(1440, 38, 7, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
+(1441, 38, 8, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
+(1442, 38, 2, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
+(1445, 39, 1, '2026-01-24 08:38:30', '2026-01-24 08:38:30'),
+(1446, 39, 2, '2026-01-24 08:38:30', '2026-01-24 08:38:30'),
+(1659, 52, 1, '2026-01-24 08:46:28', '2026-01-24 08:46:28'),
+(1660, 52, 2, '2026-01-24 08:46:28', '2026-01-24 08:46:28'),
+(1662, 50, 1, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
+(1663, 50, 2, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
+(1664, 50, 3, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
+(1665, 50, 4, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
+(1666, 50, 1, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
+(1669, 51, 5, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
+(1670, 51, 6, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
+(1671, 51, 7, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
+(1672, 51, 8, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
+(1673, 51, 2, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
+(1873, 65, 1, '2026-01-24 08:48:46', '2026-01-24 08:48:46'),
+(1874, 65, 2, '2026-01-24 08:48:46', '2026-01-24 08:48:46'),
+(1876, 64, 5, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
+(1877, 64, 6, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
+(1878, 64, 7, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
+(1879, 64, 8, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
+(1880, 64, 2, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
+(1883, 63, 1, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
+(1884, 63, 2, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
+(1885, 63, 3, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
+(1886, 63, 4, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
+(1887, 63, 1, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
+(1960, 74, 1, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
+(1961, 74, 2, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
+(1962, 74, 3, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
+(1963, 74, 4, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
+(1967, 75, 5, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
+(1968, 75, 6, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
+(1969, 75, 7, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
+(1970, 75, 8, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
+(1981, 76, 38, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
+(1982, 76, 39, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
+(1983, 76, 40, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
+(1984, 76, 41, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
+(1985, 76, 42, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
+(1986, 76, 43, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
+(1987, 76, 44, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
+(1988, 77, 38, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
+(1989, 77, 39, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
+(1990, 77, 40, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
+(1991, 77, 41, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
+(1992, 77, 42, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
+(1993, 77, 43, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
+(1994, 77, 44, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
+(1995, 78, 38, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
+(1996, 78, 39, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
+(1997, 78, 40, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
+(1998, 78, 41, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
+(1999, 78, 42, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
+(2000, 78, 43, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
+(2001, 78, 44, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
+(2002, 79, 38, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
+(2003, 79, 39, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
+(2004, 79, 40, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
+(2005, 79, 41, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
+(2006, 79, 42, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
+(2007, 79, 43, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
+(2008, 79, 44, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
+(2009, 80, 38, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
+(2010, 80, 39, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
+(2011, 80, 40, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
+(2012, 80, 41, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
+(2013, 80, 42, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
+(2014, 80, 43, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
+(2015, 80, 44, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
+(2016, 81, 38, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
+(2017, 81, 39, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
+(2018, 81, 40, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
+(2019, 81, 41, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
+(2020, 81, 42, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
+(2021, 81, 43, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
+(2022, 81, 44, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
+(2023, 82, 38, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
+(2024, 82, 39, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
+(2025, 82, 40, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
+(2026, 82, 41, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
+(2027, 82, 42, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
+(2028, 82, 43, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
+(2029, 82, 44, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
+(2030, 83, 38, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
+(2031, 83, 39, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
+(2032, 83, 40, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
+(2033, 83, 41, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
+(2034, 83, 42, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
+(2035, 83, 43, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
+(2036, 83, 44, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
+(2051, 84, 1, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
+(2052, 84, 2, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
+(2053, 84, 3, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
+(2054, 84, 4, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
+(2058, 85, 5, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
+(2059, 85, 6, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
+(2060, 85, 7, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
+(2061, 85, 8, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
+(2065, 86, 38, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
+(2066, 86, 39, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
+(2067, 86, 40, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
+(2068, 86, 41, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
+(2069, 86, 42, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
+(2070, 86, 43, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
+(2071, 86, 44, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
+(2072, 87, 38, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
+(2073, 87, 39, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
+(2074, 87, 40, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
+(2075, 87, 41, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
+(2076, 87, 42, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
+(2077, 87, 43, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
+(2078, 87, 44, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
+(2079, 88, 38, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
+(2080, 88, 39, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
+(2081, 88, 40, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
+(2082, 88, 41, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
+(2083, 88, 42, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
+(2084, 88, 43, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
+(2085, 88, 44, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
+(2086, 89, 38, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
+(2087, 89, 39, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
+(2088, 89, 40, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
+(2089, 89, 41, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
+(2090, 89, 42, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
+(2091, 89, 43, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
+(2092, 89, 44, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
+(2093, 90, 38, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
+(2094, 90, 39, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
+(2095, 90, 40, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
+(2096, 90, 41, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
+(2097, 90, 42, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
+(2098, 90, 43, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
+(2099, 90, 44, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
+(2100, 91, 38, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
+(2101, 91, 39, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
+(2102, 91, 40, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
+(2103, 91, 41, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
+(2104, 91, 42, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
+(2105, 91, 43, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
+(2106, 91, 44, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
+(2107, 92, 38, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
+(2108, 92, 39, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
+(2109, 92, 40, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
+(2110, 92, 41, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
+(2111, 92, 42, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
+(2112, 92, 43, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
+(2113, 92, 44, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
+(2114, 93, 38, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
+(2115, 93, 39, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
+(2116, 93, 40, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
+(2117, 93, 41, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
+(2118, 93, 42, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
+(2119, 93, 43, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
+(2120, 93, 44, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
+(2135, 95, 5, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
+(2136, 95, 6, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
+(2137, 95, 7, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
+(2138, 95, 8, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
+(2142, 94, 1, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
+(2143, 94, 2, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
+(2144, 94, 3, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
+(2145, 94, 4, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
+(2149, 96, 38, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
+(2150, 96, 39, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
+(2151, 96, 40, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
+(2152, 96, 41, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
+(2153, 96, 42, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
+(2154, 96, 43, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
+(2155, 96, 44, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
+(2156, 97, 38, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
+(2157, 97, 39, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
+(2158, 97, 40, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
+(2159, 97, 41, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
+(2160, 97, 42, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
+(2161, 97, 43, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
+(2162, 97, 44, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
+(2163, 98, 38, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
+(2164, 98, 39, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
+(2165, 98, 40, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
+(2166, 98, 41, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
+(2167, 98, 42, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
+(2168, 98, 43, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
+(2169, 98, 44, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
+(2170, 99, 38, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
+(2171, 99, 39, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
+(2172, 99, 40, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
+(2173, 99, 41, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
+(2174, 99, 42, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
+(2175, 99, 43, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
+(2176, 99, 44, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
+(2177, 100, 38, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
+(2178, 100, 39, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
+(2179, 100, 40, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
+(2180, 100, 41, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
+(2181, 100, 42, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
+(2182, 100, 43, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
+(2183, 100, 44, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
+(2184, 101, 38, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
+(2185, 101, 39, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
+(2186, 101, 40, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
+(2187, 101, 41, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
+(2188, 101, 42, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
+(2189, 101, 43, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
+(2190, 101, 44, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
+(2191, 102, 38, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
+(2192, 102, 39, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
+(2193, 102, 40, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
+(2194, 102, 41, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
+(2195, 102, 42, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
+(2196, 102, 43, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
+(2197, 102, 44, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
+(2198, 103, 38, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
+(2199, 103, 39, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
+(2200, 103, 40, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
+(2201, 103, 41, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
+(2202, 103, 42, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
+(2203, 103, 43, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
+(2204, 103, 44, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
+(2229, 105, 5, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
+(2230, 105, 6, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
+(2231, 105, 7, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
+(2232, 105, 8, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
+(2236, 104, 1, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
+(2237, 104, 2, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
+(2238, 104, 3, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
+(2239, 104, 4, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
+(2243, 106, 1, '2026-01-24 08:55:39', '2026-01-24 08:55:39'),
+(2244, 106, 2, '2026-01-24 08:55:39', '2026-01-24 08:55:39'),
+(2245, 116, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2246, 116, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2247, 116, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2248, 116, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2249, 116, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2250, 118, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2251, 118, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2252, 118, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2253, 118, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2254, 118, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2255, 119, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2256, 119, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(2257, 143, 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(2258, 143, 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(2259, 143, 3, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(2260, 144, 7, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(2261, 145, 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
+(2262, 157, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2263, 157, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2264, 157, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2265, 157, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2266, 157, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2267, 157, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2268, 157, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2269, 158, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2270, 158, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2271, 158, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2272, 158, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2273, 158, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2274, 158, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2275, 158, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2276, 159, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2277, 159, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2278, 159, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2279, 159, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2280, 159, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2281, 159, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2282, 159, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2283, 160, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2284, 160, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2285, 160, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2286, 160, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2287, 160, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2288, 160, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2289, 160, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2290, 161, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2291, 161, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2292, 161, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2293, 161, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2294, 161, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2295, 161, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2296, 161, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2297, 162, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2298, 162, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2299, 162, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2300, 162, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2301, 162, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2302, 162, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2303, 162, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2304, 163, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2305, 163, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2306, 163, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2307, 163, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2308, 163, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2309, 163, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2310, 163, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2311, 164, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2312, 164, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2313, 164, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2314, 164, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2315, 164, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2316, 164, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2317, 164, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(2318, 167, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2319, 167, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2320, 167, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2321, 167, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2322, 167, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2323, 167, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2324, 167, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2325, 168, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2326, 168, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2327, 168, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2328, 168, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2329, 168, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2330, 168, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2331, 168, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2332, 169, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2333, 169, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2334, 169, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2335, 169, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2336, 169, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2337, 169, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2338, 169, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2339, 170, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2340, 170, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2341, 170, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2342, 170, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2343, 170, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2344, 170, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2345, 170, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2346, 171, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2347, 171, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2348, 171, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2349, 171, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2350, 171, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2351, 171, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2352, 171, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2353, 172, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2354, 172, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2355, 172, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2356, 172, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2357, 172, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2358, 172, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2359, 172, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2360, 173, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2361, 173, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2362, 173, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2363, 173, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2364, 173, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2365, 173, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2366, 173, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2367, 174, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2368, 174, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2369, 174, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2370, 174, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2371, 174, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2372, 174, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2373, 174, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(2374, 177, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2375, 177, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2376, 177, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2377, 177, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2378, 177, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2379, 177, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2380, 177, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2381, 178, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2382, 178, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2383, 178, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2384, 178, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2385, 178, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2386, 178, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2387, 178, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2388, 179, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2389, 179, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2390, 179, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2391, 179, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2392, 179, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2393, 179, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2394, 179, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2395, 180, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2396, 180, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2397, 180, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2398, 180, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2399, 180, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2400, 180, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2401, 180, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2402, 181, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2403, 181, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2404, 181, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2405, 181, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2406, 181, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2407, 181, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2408, 181, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2409, 182, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2410, 182, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2411, 182, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2412, 182, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2413, 182, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2414, 182, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2415, 182, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2416, 183, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2417, 183, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2418, 183, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2419, 183, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2420, 183, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2421, 183, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2422, 183, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2423, 184, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2424, 184, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2425, 184, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2426, 184, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2427, 184, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2428, 184, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(2429, 184, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04');
+
+
+-- Data for table `marks_system` (134 rows)
+INSERT INTO `marks_system` (`id`, `marks_name`, `marks_code`, `subjects_ids`, `grade_group_id`, `program_id`, `for_month`, `academic_id`, `created_by`, `updated_by`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'ខែកញ្ញា', 'MON1', '25,26,27,28,29,30,12', 10, 1, '2026-01-05', 2, 58, 58, '2025-09-11 16:31:09', '2026-01-24 12:11:11', 1),
+(2, 'ខែតុលា', 'MON2', '25,26,27,28,29,30,12', 10, 1, '2026-01-05', 2, 58, 58, '2025-09-11 16:32:08', '2026-01-24 12:18:46', 1),
+(3, 'ខែវិច្ឆិកា', 'MON3', '25,26,27,28,29,30,12', 10, 1, '2026-01-05', 2, 58, 58, '2025-09-11 16:32:29', '2026-01-24 12:19:13', 1),
+(4, 'ខែធ្នូ', 'MON4', '25,26,27,28,29,30,12', 10, 1, '2025-12-16', 2, 58, 19, '2025-09-11 16:32:49', '2026-01-30 11:07:02', 1),
+(5, 'ឆមាសទី១', 'SEM1', '25,26,27,28,29,30,12', 10, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:34:01', '2026-01-24 12:22:03', 1),
+(6, 'ខែមីនា', 'MON6', '25,26,27,28,29,30,12', 10, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:34:38', '2026-01-24 12:24:29', 1),
+(7, 'ខែមេសា', 'MON7', '25,26,27,28,29,30,12', 10, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:34:59', '2026-01-24 12:23:45', 1),
+(8, 'ខែឧសភា', 'MON8', '25,26,27,28,29,30,12', 10, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:35:40', '2026-01-24 12:21:33', 1),
+(9, 'ខែកុម្ភៈ', 'MON5', '25,26,27,28,29,30,12', 10, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:35:53', '2026-01-24 12:24:39', 1),
+(10, 'ឆមាសទី២', 'SEM2', '25,26,27,28,29,30,12', 10, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:36:15', '2026-01-24 12:22:28', 1),
+(11, 'ខែកញ្ញា', 'MON1', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:37:47', '2026-01-24 12:15:57', 1),
+(12, 'ខែតុលា', 'MON2', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:38:00', '2026-01-24 12:18:51', 1),
+(13, 'ខែធ្នូ', 'MON4', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2025-12-16', 2, 58, 19, '2025-09-11 16:38:09', '2026-01-30 11:06:51', 1),
+(14, 'ខែកុម្ភៈ', 'MON5', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:38:21', '2026-01-24 12:24:43', 1),
+(15, 'ខែមីនា', 'MON6', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:38:34', '2026-01-24 12:24:23', 1),
+(16, 'ខែមេសា', 'MON7', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:38:44', '2026-01-24 12:23:40', 1),
+(17, 'ខែវិច្ឆិកា', 'MON3', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-01-01', 2, 58, 58, '2025-09-11 16:39:29', '2026-01-24 12:19:17', 1),
+(18, 'ឆមាសទី១', 'SEM1', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:40:27', '2026-01-24 12:22:07', 1),
+(19, 'ឆមាសទី២', 'SEM2', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:40:39', '2026-01-24 12:22:33', 1),
+(20, 'ខែកញ្ញា', 'MON1', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:43:25', '2026-01-24 12:18:25', 1),
+(21, 'ខែតុលា', 'MON2', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:43:40', '2026-01-24 12:18:56', 1),
+(22, 'ខែធ្នូ', 'MON4', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-12-16', 2, 58, 58, '2025-09-11 16:43:57', '2026-01-24 12:19:52', 1),
+(23, 'ខែកុម្ភៈ', 'MON5', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:44:13', '2026-01-24 12:24:48', 1),
+(24, 'ខែមីនា', 'MON6', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:44:27', '2026-01-24 12:24:19', 1),
+(25, 'ខែមេសា', 'MON7', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:44:33', '2026-01-24 12:23:36', 1),
+(26, 'ខែវិច្ឆិកា', 'MON3', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-11-20', 2, 58, 58, '2025-09-11 16:44:50', '2026-01-24 12:19:21', 1),
+(27, 'ខែឧសភា', 'MON8', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:45:01', '2026-01-24 12:21:40', 1),
+(28, 'ឆមាសទី១', 'SEM1', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:45:26', '2026-01-24 12:22:12', 1),
+(29, 'ឆមាសទី២', 'SEM2', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:45:34', '2026-01-24 12:22:38', 1),
+(30, 'ខែកញ្ញា', 'MON1', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:48:28', '2026-01-24 12:18:31', 1),
+(31, 'ខែតុលា', 'MON2', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:48:42', '2026-01-24 12:19:01', 1),
+(32, 'ខែវិច្ឆិកា', 'MON3', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-11-20', 2, 58, 58, '2025-09-11 16:48:50', '2026-01-24 12:19:26', 1),
+(33, 'ខែធ្នូ', 'MON4', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-12-16', 2, 58, 58, '2025-09-11 16:48:56', '2026-01-24 12:19:58', 1),
+(34, 'ខែមីនា', 'MON6', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:49:14', '2026-01-24 12:24:14', 1),
+(35, 'ខែមេសា', 'MON7', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:49:39', '2026-01-24 12:23:31', 1),
+(36, 'ខែឧសភា', 'MON8', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:49:59', '2026-01-24 12:21:46', 1),
+(37, 'ខែកុម្ភៈ', 'MON5', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:51:17', '2026-01-24 12:24:52', 1),
+(38, 'ឆមាសទី១', 'SEM1', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:51:30', '2026-01-24 12:22:16', 1),
+(39, 'ឆមាសទី២', 'SEM2', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:51:37', '2026-01-24 12:22:43', 1),
+(40, 'ខែកញ្ញា', 'MON1', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:53:27', '2026-01-24 12:18:35', 1),
+(41, 'ខែតុលា', 'MON2', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:53:36', '2026-01-24 12:19:05', 1),
+(42, 'ខែធ្នូ', 'MON4', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-12-16', 2, 58, 58, '2025-09-11 16:53:45', '2026-01-24 12:20:02', 1),
+(43, 'ខែកុម្ភៈ', 'MON5', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:53:58', '2026-01-24 12:24:57', 1),
+(44, 'ខែមីនា', 'MON6', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:54:07', '2026-01-24 12:24:10', 1),
+(45, 'ខែមេសា', 'MON7', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:54:16', '2026-01-24 12:23:26', 1),
+(46, 'ខែវិច្ឆិកា', 'MON3', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-11-20', 2, 58, 58, '2025-09-11 16:54:27', '2026-01-24 12:19:36', 1),
+(47, 'ខែឧសភា', 'MON8', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:54:59', '2026-01-24 12:21:51', 1),
+(48, 'ឆមាសទី១', 'SEM1', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:57:25', '2026-01-24 12:22:21', 1),
+(49, 'ឆមាសទី២', 'SEM2', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:57:33', '2026-01-24 12:22:48', 1),
+(50, 'ខែឧសភា', 'MON8', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-05-21', 2, 58, 58, '2025-09-11 17:05:01', '2026-01-24 12:21:57', 1),
+(51, 'Mid- 1st Quarter', 'MON1', '38,39,40,41,42,43,44', 18, 2, '2025-11-03', 2, 58, 58, '2025-09-29 16:38:52', '2026-01-24 12:28:58', 1),
+(52, 'Final- 1st Quarter', 'MON2', '38,39,40,41,42,43,44', 18, 2, '2025-10-28', 2, 58, 58, '2025-09-29 16:39:02', '2026-01-24 12:29:08', 1),
+(53, 'Mid- 2nd Quarter', 'MON3', '38,39,40,41,42,43,44', 18, 2, '2025-12-16', 2, 58, 58, '2025-09-29 16:39:07', '2026-01-24 12:29:12', 1),
+(54, 'Final- 2nd Quarter', 'MON4', '38,39,40,41,42,43,44', 18, 2, '2026-01-20', 2, 58, 58, '2025-09-29 16:39:12', '2026-01-24 12:29:16', 1),
+(55, 'Mid- 3rd Quarter', 'MON5', '38,39,40,41,42,43,44', 18, 2, '2026-03-11', 2, 58, 58, '2025-09-29 16:39:20', '2026-01-24 12:29:21', 1),
+(56, 'Final- 3rd Quarter', 'MON6', '38,39,40,41,42,43,44', 18, 2, '2026-04-07', 2, 58, 58, '2025-09-29 16:39:26', '2026-01-24 12:29:26', 1),
+(57, 'Mid- 4th Quarter', 'MON7', '38,39,40,41,42,43,44', 18, 2, '2026-05-26', 2, 58, 72, '2025-09-29 16:39:31', '2026-05-28 10:01:38', 1),
+(58, 'Final- 4th Quarter', 'MON8', '38,39,40,41,42,43,44', 18, 2, '2026-06-22', 2, 58, 58, '2025-09-29 16:39:35', '2026-01-24 12:29:46', 1),
+(59, 'Mid- 1st Quarter', 'MON1', '31,32,33,34,35,36,37', 15, 3, '2025-09-29', 2, 58, 58, '2025-09-29 16:39:55', '2026-01-24 12:25:40', 1),
+(60, 'Final- 1st Quarter', 'MON2', '31,32,33,34,35,36,37', 15, 3, '2025-10-28', 2, 58, 58, '2025-09-29 16:40:00', '2026-01-24 12:25:49', 1),
+(61, 'Mid- 2nd Quarter', 'MON3', '31,32,33,34,35,36,37', 15, 3, '2025-12-16', 2, 58, 19, '2025-09-29 16:40:04', '2026-01-28 17:29:09', 1),
+(62, 'Final- 2nd Quarter', 'MON4', '31,32,33,34,35,36,37', 15, 3, '2026-01-20', 2, 58, 58, '2025-09-29 16:40:08', '2026-01-24 12:26:10', 1),
+(63, 'Mid- 3rd Quarter', 'MON5', '31,32,33,34,35,36,37', 15, 3, '2026-03-11', 2, 58, 58, '2025-09-29 16:40:13', '2026-01-24 12:26:21', 1),
+(64, 'Final- 3rd Quarter', 'MON6', '31,32,33,34,35,36,37', 15, 3, '2026-04-07', 2, 58, 58, '2025-09-29 16:40:17', '2026-01-24 12:26:27', 1),
+(65, 'Mid- 4th Quarter', 'MON7', '31,32,33,34,35,36,37', 15, 3, '2026-05-26', 2, 58, 72, '2025-09-29 16:40:21', '2026-05-28 10:02:43', 1),
+(66, 'Final- 4th Quarter', 'MON8', '31,32,33,34,35,36,37', 15, 3, '2026-06-22', 2, 58, 58, '2025-09-29 16:40:26', '2026-01-24 12:26:36', 1),
+(67, 'Mid- 1st Quarter', 'MON1', '38,39,40,41,42,43,44', 16, 2, '2025-09-29', 2, 58, 19, '2025-09-29 16:42:12', '2026-01-28 17:27:46', 1),
+(68, 'Final- 1st Quarter', 'MON2', '38,39,40,41,42,43,44', 16, 2, '2025-10-28', 2, 58, 19, '2025-09-29 16:42:18', '2026-01-28 17:28:30', 1),
+(69, 'Mid- 2nd Quarter', 'MON3', '38,39,40,41,42,43,44', 16, 2, '2025-12-16', 2, 58, 19, '2025-09-29 16:42:23', '2026-01-28 17:29:22', 1),
+(70, 'Final- 2nd Quarter', 'MON4', '38,39,40,41,42,43,44', 16, 2, '2026-01-20', 2, 58, 58, '2025-09-29 16:42:29', '2026-01-24 12:28:22', 1),
+(71, 'Mid- 3rd Quarter', 'MON5', '38,39,40,41,42,43,44', 16, 2, '2026-03-11', 2, 58, 58, '2025-09-29 16:42:35', '2026-01-24 12:28:32', 1),
+(72, 'Final- 3rd Quarter', 'MON6', '38,39,40,41,42,43,44', 16, 2, '2026-04-07', 2, 58, 58, '2025-09-29 16:42:39', '2026-01-24 12:28:36', 1),
+(73, 'Mid- 4th Quarter', 'MON7', '38,39,40,41,42,43,44', 16, 2, '2026-05-26', 2, 58, 72, '2025-09-29 16:42:44', '2026-05-28 10:01:53', 1),
+(74, 'Final- 4th Quarter', 'MON8', '38,39,40,41,42,43,44', 16, 2, '2026-06-22', 2, 58, 58, '2025-09-29 16:42:48', '2026-01-24 12:28:46', 1),
+(75, 'Mid- 1st Quarter', 'MON1', '38,39,40,41,42,43,44', 17, 2, '2025-09-29', 2, 58, 58, '2025-09-29 16:44:08', '2026-01-24 12:26:56', 1),
+(76, 'Final- 1st Quarter', 'MON2', '38,39,40,41,42,43,44', 17, 2, '2025-10-28', 2, 58, 58, '2025-09-29 16:44:14', '2026-01-24 12:27:03', 1),
+(77, 'Mid- 2nd Quarter', 'MON3', '38,39,40,41,42,43,44', 17, 2, '2025-12-16', 2, 58, 19, '2025-09-29 16:44:19', '2026-01-28 17:29:41', 1),
+(78, 'Final- 2nd Quarter', 'MON4', '38,39,40,41,42,43,44', 17, 2, '2026-01-20', 2, 58, 58, '2025-09-29 16:44:23', '2026-01-24 12:27:14', 1),
+(79, 'Mid- 3rd Quarter', 'MON5', '38,39,40,41,42,43,44', 17, 2, '2026-03-11', 2, 58, 58, '2025-09-29 16:44:28', '2026-01-24 12:27:19', 1),
+(80, 'Final- 3rd Quarter', 'MON6', '38,39,40,41,42,43,44', 17, 2, '2026-04-07', 2, 58, 58, '2025-09-29 16:44:32', '2026-01-24 12:27:24', 1),
+(81, 'Mid- 4th Quarter', 'MON7', '38,39,40,41,42,43,44', 17, 2, '2026-05-26', 2, 58, 72, '2025-09-29 16:44:37', '2026-05-28 10:02:09', 1),
+(82, 'Final- 4th Quarter', 'MON8', '38,39,40,41,42,43,44', 17, 2, '2026-06-22', 2, 58, 58, '2025-09-29 16:44:41', '2026-01-24 12:27:35', 1),
+(83, 'ខែកញ្ញា', 'MON1', NULL, 29, 1, '2026-09-17', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(84, 'ខែតុលា', 'MON2', NULL, 29, 1, '2026-10-22', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(85, 'ខែធ្នូ', 'MON4', NULL, 29, 1, '2026-12-15', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(86, 'ខែកុម្ភៈ', 'MON5', NULL, 29, 1, '2027-02-23', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(87, 'ខែមីនា', 'MON6', NULL, 29, 1, '2027-03-23', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(88, 'ខែមេសា', 'MON7', NULL, 29, 1, '2027-04-22', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(89, 'ខែវិច្ឆិកា', 'MON3', NULL, 29, 1, '2026-12-31', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(90, 'ឆមាសទី១', 'SEM1', NULL, 29, 1, '2027-01-11', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(91, 'ឆមាសទី២', 'SEM2', NULL, 29, 1, '2027-06-08', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(92, 'ខែឧសភា', 'MON8', NULL, 29, 1, '2027-05-20', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
+(93, 'ខែកញ្ញា', 'MON1', NULL, 28, 1, '2027-01-04', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(94, 'ខែតុលា', 'MON2', NULL, 28, 1, '2027-01-04', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(95, 'ខែវិច្ឆិកា', 'MON3', NULL, 28, 1, '2027-01-04', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(96, 'ខែធ្នូ', 'MON4', NULL, 28, 1, '2026-12-15', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(97, 'ឆមាសទី១', 'SEM1', NULL, 28, 1, '2027-01-11', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(98, 'ខែមីនា', 'MON6', NULL, 28, 1, '2027-03-23', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(99, 'ខែមេសា', 'MON7', NULL, 28, 1, '2027-04-22', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(100, 'ខែឧសភា', 'MON8', NULL, 28, 1, '2027-05-20', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(101, 'ខែកុម្ភៈ', 'MON5', NULL, 28, 1, '2027-02-23', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(102, 'ឆមាសទី២', 'SEM2', NULL, 28, 1, '2027-06-08', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
+(113, 'Mid- 1st Quarter', 'MON1', NULL, 33, 3, '2026-09-28', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(114, 'Final- 1st Quarter', 'MON2', NULL, 33, 3, '2026-10-27', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(115, 'Mid- 2nd Quarter', 'MON3', NULL, 33, 3, '2026-12-15', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(116, 'Final- 2nd Quarter', 'MON4', NULL, 33, 3, '2027-01-19', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(117, 'Mid- 3rd Quarter', 'MON5', NULL, 33, 3, '2027-03-10', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(118, 'Final- 3rd Quarter', 'MON6', NULL, 33, 3, '2027-04-06', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(119, 'Mid- 4th Quarter', 'MON7', NULL, 33, 3, '2027-05-25', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(120, 'Final- 4th Quarter', 'MON8', NULL, 33, 3, '2027-06-21', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
+(121, 'Mid- 1st Quarter', 'MON1', NULL, 36, 2, '2026-11-02', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
+(122, 'Final- 1st Quarter', 'MON2', NULL, 36, 2, '2026-10-27', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
+(123, 'Mid- 2nd Quarter', 'MON3', NULL, 36, 2, '2026-12-15', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
+(124, 'Final- 2nd Quarter', 'MON4', NULL, 36, 2, '2027-01-19', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
+(125, 'Mid- 3rd Quarter', 'MON5', NULL, 36, 2, '2027-03-10', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
+(126, 'Final- 3rd Quarter', 'MON6', NULL, 36, 2, '2027-04-06', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
+(127, 'Mid- 4th Quarter', 'MON7', NULL, 36, 2, '2027-05-25', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
+(128, 'Final- 4th Quarter', 'MON8', NULL, 36, 2, '2027-06-21', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
+(129, 'Mid- 1st Quarter', 'MON1', NULL, 34, 2, '2026-09-28', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(130, 'Final- 1st Quarter', 'MON2', NULL, 34, 2, '2026-10-27', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(131, 'Mid- 2nd Quarter', 'MON3', NULL, 34, 2, '2026-12-15', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(132, 'Final- 2nd Quarter', 'MON4', NULL, 34, 2, '2027-01-19', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(133, 'Mid- 3rd Quarter', 'MON5', NULL, 34, 2, '2027-03-10', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(134, 'Final- 3rd Quarter', 'MON6', NULL, 34, 2, '2027-04-06', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(135, 'Mid- 4th Quarter', 'MON7', NULL, 34, 2, '2027-05-25', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(136, 'Final- 4th Quarter', 'MON8', NULL, 34, 2, '2027-06-21', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
+(137, 'Mid- 1st Quarter', 'MON1', NULL, 35, 2, '2026-09-28', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
+(138, 'Final- 1st Quarter', 'MON2', NULL, 35, 2, '2026-10-27', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
+(139, 'Mid- 2nd Quarter', 'MON3', NULL, 35, 2, '2026-12-15', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
+(140, 'Final- 2nd Quarter', 'MON4', NULL, 35, 2, '2027-01-19', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
+(141, 'Mid- 3rd Quarter', 'MON5', NULL, 35, 2, '2027-03-10', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
+(142, 'Final- 3rd Quarter', 'MON6', NULL, 35, 2, '2027-04-06', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
+(143, 'Mid- 4th Quarter', 'MON7', NULL, 35, 2, '2027-05-25', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
+(144, 'Final- 4th Quarter', 'MON8', NULL, 35, 2, '2027-06-21', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1);
+
+
+-- Data for table `marks_system_subjects` (1198 rows)
+INSERT INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
+(1045, 1, 25, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
+(1046, 1, 26, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
+(1047, 1, 27, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
+(1048, 1, 28, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
+(1049, 1, 29, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
+(1050, 1, 30, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
+(1051, 1, 12, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
+(1067, 11, 1, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1068, 11, 2, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1069, 11, 3, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1070, 11, 4, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1071, 11, 5, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1072, 11, 6, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1073, 11, 7, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1074, 11, 8, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1075, 11, 9, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1076, 11, 10, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1077, 11, 11, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
+(1093, 20, 1, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1094, 20, 3, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1095, 20, 13, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1096, 20, 14, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1097, 20, 15, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1098, 20, 16, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1099, 20, 17, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1100, 20, 18, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1101, 20, 19, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1102, 20, 20, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1103, 20, 10, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1104, 20, 21, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1105, 20, 24, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1106, 20, 7, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1107, 20, 49, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
+(1123, 30, 1, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1124, 30, 3, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1125, 30, 13, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1126, 30, 14, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1127, 30, 15, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1128, 30, 16, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1129, 30, 17, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1130, 30, 10, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1131, 30, 18, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1132, 30, 19, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
+(1148, 40, 1, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1149, 40, 3, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1150, 40, 13, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1151, 40, 14, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1152, 40, 15, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1153, 40, 16, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1154, 40, 17, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1155, 40, 18, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1156, 40, 19, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1157, 40, 20, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1158, 40, 10, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1159, 40, 21, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1160, 40, 49, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1161, 40, 7, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1162, 40, 24, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
+(1170, 2, 25, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
+(1171, 2, 26, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
+(1172, 2, 27, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
+(1173, 2, 28, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
+(1174, 2, 29, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
+(1175, 2, 30, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
+(1176, 2, 12, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
+(1192, 12, 1, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1193, 12, 2, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1194, 12, 3, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1195, 12, 4, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1196, 12, 5, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1197, 12, 6, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1198, 12, 7, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1199, 12, 8, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1200, 12, 9, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1201, 12, 10, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1202, 12, 11, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
+(1218, 21, 1, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1219, 21, 3, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1220, 21, 13, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1221, 21, 14, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1222, 21, 15, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1223, 21, 16, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1224, 21, 17, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1225, 21, 18, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1226, 21, 19, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1227, 21, 20, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1228, 21, 10, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1229, 21, 21, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1230, 21, 24, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1231, 21, 7, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1232, 21, 49, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
+(1248, 31, 1, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1249, 31, 3, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1250, 31, 13, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1251, 31, 14, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1252, 31, 15, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1253, 31, 16, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1254, 31, 17, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1255, 31, 10, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1256, 31, 18, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1257, 31, 19, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
+(1273, 41, 1, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1274, 41, 3, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1275, 41, 13, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1276, 41, 14, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1277, 41, 15, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1278, 41, 16, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1279, 41, 17, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1280, 41, 18, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1281, 41, 19, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1282, 41, 20, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1283, 41, 10, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1284, 41, 21, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1285, 41, 49, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1286, 41, 7, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1287, 41, 24, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
+(1295, 3, 25, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
+(1296, 3, 26, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
+(1297, 3, 27, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
+(1298, 3, 28, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
+(1299, 3, 29, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
+(1300, 3, 30, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
+(1301, 3, 12, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
+(1317, 17, 1, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1318, 17, 2, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1319, 17, 3, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1320, 17, 4, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1321, 17, 5, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1322, 17, 6, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1323, 17, 7, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1324, 17, 8, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1325, 17, 9, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1326, 17, 10, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1327, 17, 11, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
+(1343, 26, 1, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1344, 26, 3, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1345, 26, 13, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1346, 26, 14, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1347, 26, 15, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1348, 26, 16, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1349, 26, 17, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1350, 26, 18, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1351, 26, 19, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1352, 26, 20, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1353, 26, 10, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1354, 26, 21, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1355, 26, 24, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1356, 26, 7, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1357, 26, 49, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
+(1373, 32, 1, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1374, 32, 3, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1375, 32, 13, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1376, 32, 14, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1377, 32, 15, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1378, 32, 16, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1379, 32, 17, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1380, 32, 10, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1381, 32, 18, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1382, 32, 19, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
+(1428, 46, 1, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1429, 46, 3, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1430, 46, 13, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1431, 46, 14, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1432, 46, 15, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1433, 46, 16, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1434, 46, 17, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1435, 46, 18, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1436, 46, 19, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1437, 46, 20, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1438, 46, 10, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1439, 46, 21, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1440, 46, 49, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1441, 46, 7, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1442, 46, 24, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
+(1498, 22, 1, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1499, 22, 3, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1500, 22, 13, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1501, 22, 14, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1502, 22, 15, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1503, 22, 16, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1504, 22, 17, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1505, 22, 18, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1506, 22, 19, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1507, 22, 20, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1508, 22, 10, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1509, 22, 21, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1510, 22, 24, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1511, 22, 7, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1512, 22, 49, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
+(1528, 33, 1, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1529, 33, 3, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1530, 33, 13, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1531, 33, 14, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1532, 33, 15, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1533, 33, 16, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1534, 33, 17, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1535, 33, 10, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1536, 33, 18, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1537, 33, 19, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
+(1553, 42, 1, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1554, 42, 3, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1555, 42, 13, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1556, 42, 14, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1557, 42, 15, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1558, 42, 16, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1559, 42, 17, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1560, 42, 18, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1561, 42, 19, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1562, 42, 20, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1563, 42, 10, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1564, 42, 21, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1565, 42, 49, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1566, 42, 7, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1567, 42, 24, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
+(1825, 8, 25, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
+(1826, 8, 26, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
+(1827, 8, 27, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
+(1828, 8, 28, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
+(1829, 8, 29, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
+(1830, 8, 30, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
+(1831, 8, 12, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
+(1847, 27, 1, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1848, 27, 3, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1849, 27, 13, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1850, 27, 14, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1851, 27, 15, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1852, 27, 16, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1853, 27, 17, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1854, 27, 18, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1855, 27, 19, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1856, 27, 20, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1857, 27, 10, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1858, 27, 21, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1859, 27, 24, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1860, 27, 7, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1861, 27, 49, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
+(1877, 36, 1, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1878, 36, 3, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1879, 36, 13, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1880, 36, 14, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1881, 36, 15, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1882, 36, 16, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1883, 36, 17, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1884, 36, 10, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1885, 36, 18, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1886, 36, 19, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
+(1902, 47, 1, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1903, 47, 3, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1904, 47, 13, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1905, 47, 14, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1906, 47, 15, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1907, 47, 16, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1908, 47, 17, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1909, 47, 18, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1910, 47, 19, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1911, 47, 20, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1912, 47, 10, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1913, 47, 21, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1914, 47, 49, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1915, 47, 7, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1916, 47, 24, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
+(1932, 50, 1, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1933, 50, 2, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1934, 50, 3, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1935, 50, 4, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1936, 50, 5, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1937, 50, 6, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1938, 50, 7, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1939, 50, 8, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1940, 50, 9, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1941, 50, 10, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1942, 50, 11, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
+(1950, 5, 25, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
+(1951, 5, 26, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
+(1952, 5, 27, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
+(1953, 5, 28, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
+(1954, 5, 29, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
+(1955, 5, 30, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
+(1956, 5, 12, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
+(1972, 18, 1, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1973, 18, 2, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1974, 18, 3, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1975, 18, 4, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1976, 18, 5, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1977, 18, 6, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1978, 18, 7, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1979, 18, 8, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1980, 18, 9, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1981, 18, 10, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1982, 18, 11, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
+(1998, 28, 1, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(1999, 28, 3, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2000, 28, 13, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2001, 28, 14, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2002, 28, 15, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2003, 28, 16, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2004, 28, 17, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2005, 28, 18, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2006, 28, 19, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2007, 28, 20, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2008, 28, 10, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2009, 28, 21, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2010, 28, 24, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2011, 28, 7, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2012, 28, 49, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
+(2028, 38, 1, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2029, 38, 3, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2030, 38, 13, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2031, 38, 14, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2032, 38, 15, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2033, 38, 16, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2034, 38, 17, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2035, 38, 10, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2036, 38, 18, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2037, 38, 19, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
+(2053, 48, 1, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2054, 48, 3, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2055, 48, 13, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2056, 48, 14, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2057, 48, 15, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2058, 48, 16, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2059, 48, 17, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2060, 48, 18, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2061, 48, 19, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2062, 48, 20, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2063, 48, 10, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2064, 48, 21, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2065, 48, 49, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2066, 48, 7, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2067, 48, 24, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
+(2075, 10, 25, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
+(2076, 10, 26, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
+(2077, 10, 27, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
+(2078, 10, 28, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
+(2079, 10, 29, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
+(2080, 10, 30, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
+(2081, 10, 12, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
+(2097, 19, 1, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2098, 19, 2, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2099, 19, 3, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2100, 19, 4, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2101, 19, 5, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2102, 19, 6, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2103, 19, 7, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2104, 19, 8, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2105, 19, 9, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2106, 19, 10, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2107, 19, 11, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
+(2123, 29, 1, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2124, 29, 3, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2125, 29, 13, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2126, 29, 14, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2127, 29, 15, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2128, 29, 16, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2129, 29, 17, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2130, 29, 18, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2131, 29, 19, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2132, 29, 20, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2133, 29, 10, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2134, 29, 21, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2135, 29, 24, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2136, 29, 7, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2137, 29, 49, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
+(2153, 39, 1, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2154, 39, 3, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2155, 39, 13, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2156, 39, 14, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2157, 39, 15, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2158, 39, 16, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2159, 39, 17, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2160, 39, 10, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2161, 39, 18, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2162, 39, 19, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
+(2178, 49, 1, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2179, 49, 3, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2180, 49, 13, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2181, 49, 14, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2182, 49, 15, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2183, 49, 16, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2184, 49, 17, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2185, 49, 18, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2186, 49, 19, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2187, 49, 20, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2188, 49, 10, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2189, 49, 21, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2190, 49, 49, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2191, 49, 7, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2192, 49, 24, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
+(2208, 45, 1, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2209, 45, 3, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2210, 45, 13, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2211, 45, 14, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2212, 45, 15, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2213, 45, 16, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2214, 45, 17, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2215, 45, 18, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2216, 45, 19, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2217, 45, 20, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2218, 45, 10, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2219, 45, 21, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2220, 45, 49, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2221, 45, 7, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2222, 45, 24, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
+(2238, 35, 1, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2239, 35, 3, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2240, 35, 13, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2241, 35, 14, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2242, 35, 15, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2243, 35, 16, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2244, 35, 17, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2245, 35, 10, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2246, 35, 18, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2247, 35, 19, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
+(2263, 25, 1, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2264, 25, 3, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2265, 25, 13, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2266, 25, 14, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2267, 25, 15, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2268, 25, 16, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2269, 25, 17, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2270, 25, 18, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2271, 25, 19, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2272, 25, 20, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2273, 25, 10, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2274, 25, 21, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2275, 25, 24, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2276, 25, 7, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2277, 25, 49, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
+(2293, 16, 1, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2294, 16, 2, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2295, 16, 3, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2296, 16, 4, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2297, 16, 5, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2298, 16, 6, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2299, 16, 7, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2300, 16, 8, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2301, 16, 9, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2302, 16, 10, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2303, 16, 11, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
+(2311, 7, 25, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
+(2312, 7, 26, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
+(2313, 7, 27, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
+(2314, 7, 28, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
+(2315, 7, 29, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
+(2316, 7, 30, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
+(2317, 7, 12, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
+(2333, 44, 1, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2334, 44, 3, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2335, 44, 13, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2336, 44, 14, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2337, 44, 15, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2338, 44, 16, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2339, 44, 17, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2340, 44, 18, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2341, 44, 19, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2342, 44, 20, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2343, 44, 10, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2344, 44, 21, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2345, 44, 49, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2346, 44, 7, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2347, 44, 24, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
+(2363, 34, 1, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2364, 34, 3, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2365, 34, 13, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2366, 34, 14, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2367, 34, 15, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2368, 34, 16, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2369, 34, 17, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2370, 34, 10, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2371, 34, 18, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2372, 34, 19, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
+(2388, 24, 1, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2389, 24, 3, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2390, 24, 13, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2391, 24, 14, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2392, 24, 15, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2393, 24, 16, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2394, 24, 17, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2395, 24, 18, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2396, 24, 19, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2397, 24, 20, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2398, 24, 10, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2399, 24, 21, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2400, 24, 24, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2401, 24, 7, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2402, 24, 49, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
+(2418, 15, 1, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2419, 15, 2, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2420, 15, 3, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2421, 15, 4, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2422, 15, 5, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2423, 15, 6, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2424, 15, 7, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2425, 15, 8, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2426, 15, 9, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2427, 15, 10, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2428, 15, 11, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
+(2436, 6, 25, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
+(2437, 6, 26, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
+(2438, 6, 27, '2025-09-11 16:34:38', '2026-01-24 12:24:29');
+INSERT INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
+(2439, 6, 28, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
+(2440, 6, 29, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
+(2441, 6, 30, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
+(2442, 6, 12, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
+(2450, 9, 25, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
+(2451, 9, 26, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
+(2452, 9, 27, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
+(2453, 9, 28, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
+(2454, 9, 29, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
+(2455, 9, 30, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
+(2456, 9, 12, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
+(2472, 14, 1, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2473, 14, 2, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2474, 14, 3, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2475, 14, 4, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2476, 14, 5, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2477, 14, 6, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2478, 14, 7, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2479, 14, 8, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2480, 14, 9, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2481, 14, 10, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2482, 14, 11, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
+(2498, 23, 1, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2499, 23, 3, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2500, 23, 13, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2501, 23, 14, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2502, 23, 15, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2503, 23, 16, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2504, 23, 17, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2505, 23, 18, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2506, 23, 19, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2507, 23, 20, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2508, 23, 10, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2509, 23, 21, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2510, 23, 24, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2511, 23, 7, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2512, 23, 49, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
+(2528, 37, 1, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2529, 37, 3, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2530, 37, 13, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2531, 37, 14, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2532, 37, 15, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2533, 37, 16, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2534, 37, 17, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2535, 37, 10, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2536, 37, 18, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2537, 37, 19, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
+(2553, 43, 1, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2554, 43, 3, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2555, 43, 13, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2556, 43, 14, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2557, 43, 15, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2558, 43, 16, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2559, 43, 17, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2560, 43, 18, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2561, 43, 19, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2562, 43, 20, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2563, 43, 10, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2564, 43, 21, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2565, 43, 49, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2566, 43, 7, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2567, 43, 24, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
+(2575, 59, 31, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
+(2576, 59, 32, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
+(2577, 59, 33, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
+(2578, 59, 34, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
+(2579, 59, 35, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
+(2580, 59, 36, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
+(2581, 59, 37, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
+(2589, 60, 31, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
+(2590, 60, 32, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
+(2591, 60, 33, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
+(2592, 60, 34, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
+(2593, 60, 35, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
+(2594, 60, 36, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
+(2595, 60, 37, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
+(2617, 62, 31, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
+(2618, 62, 32, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
+(2619, 62, 33, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
+(2620, 62, 34, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
+(2621, 62, 35, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
+(2622, 62, 36, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
+(2623, 62, 37, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
+(2645, 63, 31, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
+(2646, 63, 32, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
+(2647, 63, 33, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
+(2648, 63, 34, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
+(2649, 63, 35, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
+(2650, 63, 36, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
+(2651, 63, 37, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
+(2659, 64, 31, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
+(2660, 64, 32, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
+(2661, 64, 33, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
+(2662, 64, 34, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
+(2663, 64, 35, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
+(2664, 64, 36, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
+(2665, 64, 37, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
+(2687, 66, 31, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
+(2688, 66, 32, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
+(2689, 66, 33, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
+(2690, 66, 34, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
+(2691, 66, 35, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
+(2692, 66, 36, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
+(2693, 66, 37, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
+(2701, 75, 38, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
+(2702, 75, 39, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
+(2703, 75, 40, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
+(2704, 75, 41, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
+(2705, 75, 42, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
+(2706, 75, 43, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
+(2707, 75, 44, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
+(2715, 76, 38, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
+(2716, 76, 39, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
+(2717, 76, 40, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
+(2718, 76, 41, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
+(2719, 76, 42, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
+(2720, 76, 43, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
+(2721, 76, 44, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
+(2743, 78, 38, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
+(2744, 78, 39, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
+(2745, 78, 40, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
+(2746, 78, 41, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
+(2747, 78, 42, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
+(2748, 78, 43, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
+(2749, 78, 44, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
+(2757, 79, 38, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
+(2758, 79, 39, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
+(2759, 79, 40, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
+(2760, 79, 41, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
+(2761, 79, 42, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
+(2762, 79, 43, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
+(2763, 79, 44, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
+(2771, 80, 38, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
+(2772, 80, 39, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
+(2773, 80, 40, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
+(2774, 80, 41, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
+(2775, 80, 42, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
+(2776, 80, 43, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
+(2777, 80, 44, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
+(2799, 82, 38, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
+(2800, 82, 39, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
+(2801, 82, 40, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
+(2802, 82, 41, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
+(2803, 82, 42, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
+(2804, 82, 43, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
+(2805, 82, 44, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
+(2855, 70, 38, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
+(2856, 70, 39, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
+(2857, 70, 40, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
+(2858, 70, 41, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
+(2859, 70, 42, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
+(2860, 70, 43, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
+(2861, 70, 44, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
+(2869, 71, 38, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
+(2870, 71, 39, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
+(2871, 71, 40, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
+(2872, 71, 41, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
+(2873, 71, 42, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
+(2874, 71, 43, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
+(2875, 71, 44, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
+(2883, 72, 38, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
+(2884, 72, 39, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
+(2885, 72, 40, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
+(2886, 72, 41, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
+(2887, 72, 42, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
+(2888, 72, 43, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
+(2889, 72, 44, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
+(2911, 74, 38, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
+(2912, 74, 39, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
+(2913, 74, 40, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
+(2914, 74, 41, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
+(2915, 74, 42, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
+(2916, 74, 43, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
+(2917, 74, 44, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
+(2925, 51, 38, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
+(2926, 51, 39, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
+(2927, 51, 40, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
+(2928, 51, 41, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
+(2929, 51, 42, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
+(2930, 51, 43, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
+(2931, 51, 44, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
+(2939, 52, 38, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
+(2940, 52, 39, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
+(2941, 52, 40, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
+(2942, 52, 41, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
+(2943, 52, 42, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
+(2944, 52, 43, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
+(2945, 52, 44, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
+(2953, 53, 38, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
+(2954, 53, 39, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
+(2955, 53, 40, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
+(2956, 53, 41, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
+(2957, 53, 42, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
+(2958, 53, 43, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
+(2959, 53, 44, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
+(2967, 54, 38, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
+(2968, 54, 39, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
+(2969, 54, 40, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
+(2970, 54, 41, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
+(2971, 54, 42, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
+(2972, 54, 43, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
+(2973, 54, 44, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
+(2981, 55, 38, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
+(2982, 55, 39, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
+(2983, 55, 40, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
+(2984, 55, 41, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
+(2985, 55, 42, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
+(2986, 55, 43, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
+(2987, 55, 44, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
+(2995, 56, 38, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
+(2996, 56, 39, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
+(2997, 56, 40, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
+(2998, 56, 41, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
+(2999, 56, 42, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
+(3000, 56, 43, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
+(3001, 56, 44, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
+(3023, 58, 38, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
+(3024, 58, 39, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
+(3025, 58, 40, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
+(3026, 58, 41, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
+(3027, 58, 42, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
+(3028, 58, 43, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
+(3029, 58, 44, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
+(3030, 67, 38, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
+(3031, 67, 39, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
+(3032, 67, 40, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
+(3033, 67, 41, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
+(3034, 67, 42, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
+(3035, 67, 43, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
+(3036, 67, 44, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
+(3037, 68, 38, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
+(3038, 68, 39, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
+(3039, 68, 40, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
+(3040, 68, 41, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
+(3041, 68, 42, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
+(3042, 68, 43, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
+(3043, 68, 44, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
+(3044, 61, 31, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
+(3045, 61, 32, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
+(3046, 61, 33, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
+(3047, 61, 34, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
+(3048, 61, 35, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
+(3049, 61, 36, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
+(3050, 61, 37, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
+(3051, 69, 38, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
+(3052, 69, 39, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
+(3053, 69, 40, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
+(3054, 69, 41, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
+(3055, 69, 42, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
+(3056, 69, 43, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
+(3057, 69, 44, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
+(3058, 77, 38, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
+(3059, 77, 39, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
+(3060, 77, 40, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
+(3061, 77, 41, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
+(3062, 77, 42, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
+(3063, 77, 43, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
+(3064, 77, 44, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
+(3076, 13, 1, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3077, 13, 2, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3078, 13, 3, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3079, 13, 4, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3080, 13, 5, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3081, 13, 6, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3082, 13, 7, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3083, 13, 8, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3084, 13, 9, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3085, 13, 10, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3086, 13, 11, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
+(3087, 4, 25, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
+(3088, 4, 26, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
+(3089, 4, 27, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
+(3090, 4, 28, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
+(3091, 4, 29, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
+(3092, 4, 30, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
+(3093, 4, 12, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
+(3094, 57, 38, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
+(3095, 57, 39, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
+(3096, 57, 40, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
+(3097, 57, 41, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
+(3098, 57, 42, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
+(3099, 57, 43, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
+(3100, 57, 44, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
+(3101, 73, 38, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
+(3102, 73, 39, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
+(3103, 73, 40, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
+(3104, 73, 41, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
+(3105, 73, 42, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
+(3106, 73, 43, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
+(3107, 73, 44, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
+(3108, 81, 38, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
+(3109, 81, 39, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
+(3110, 81, 40, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
+(3111, 81, 41, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
+(3112, 81, 42, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
+(3113, 81, 43, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
+(3114, 81, 44, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
+(3115, 65, 31, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
+(3116, 65, 32, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
+(3117, 65, 33, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
+(3118, 65, 34, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
+(3119, 65, 35, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
+(3120, 65, 36, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
+(3121, 65, 37, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
+(3122, 83, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3123, 83, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3124, 83, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3125, 83, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3126, 83, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3127, 83, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3128, 83, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3129, 83, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3130, 83, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3131, 83, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3132, 83, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3133, 84, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3134, 84, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3135, 84, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3136, 84, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3137, 84, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3138, 84, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3139, 84, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3140, 84, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3141, 84, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3142, 84, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3143, 84, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3144, 85, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3145, 85, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3146, 85, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3147, 85, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3148, 85, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3149, 85, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3150, 85, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3151, 85, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3152, 85, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3153, 85, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3154, 85, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3155, 86, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3156, 86, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3157, 86, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3158, 86, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3159, 86, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3160, 86, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3161, 86, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3162, 86, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3163, 86, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3164, 86, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3165, 86, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3166, 87, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3167, 87, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3168, 87, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3169, 87, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3170, 87, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3171, 87, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3172, 87, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3173, 87, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3174, 87, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3175, 87, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3176, 87, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3177, 88, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3178, 88, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3179, 88, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3180, 88, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3181, 88, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3182, 88, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3183, 88, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3184, 88, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3185, 88, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3186, 88, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3187, 88, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3188, 89, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3189, 89, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3190, 89, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3191, 89, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3192, 89, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3193, 89, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3194, 89, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3195, 89, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3196, 89, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3197, 89, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3198, 89, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3199, 90, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3200, 90, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3201, 90, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3202, 90, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3203, 90, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3204, 90, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3205, 90, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3206, 90, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3207, 90, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3208, 90, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3209, 90, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3210, 91, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3211, 91, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3212, 91, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3213, 91, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3214, 91, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3215, 91, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3216, 91, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3217, 91, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3218, 91, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3219, 91, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3220, 91, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3221, 92, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3222, 92, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3223, 92, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3224, 92, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3225, 92, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3226, 92, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3227, 92, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3228, 92, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3229, 92, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3230, 92, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3231, 92, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
+(3232, 93, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3233, 93, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3234, 93, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3235, 93, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3236, 93, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3237, 93, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3238, 94, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3239, 94, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3240, 94, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3241, 94, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3242, 94, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3243, 94, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3244, 95, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3245, 95, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3246, 95, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3247, 95, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3248, 95, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3249, 95, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3250, 96, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3251, 96, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3252, 96, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3253, 96, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3254, 96, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3255, 96, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3256, 97, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3257, 97, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3258, 97, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3259, 97, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3260, 97, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3261, 97, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3262, 98, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3263, 98, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3264, 98, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3265, 98, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3266, 98, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3267, 98, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3268, 99, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3269, 99, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3270, 99, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3271, 99, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3272, 99, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3273, 99, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3274, 100, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3275, 100, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3276, 100, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3277, 100, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3278, 100, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3279, 100, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3280, 101, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3281, 101, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3282, 101, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3283, 101, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3284, 101, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3285, 101, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3286, 102, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3287, 102, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3288, 102, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3289, 102, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3290, 102, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3291, 102, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
+(3442, 113, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3443, 113, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3444, 113, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3445, 113, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3446, 113, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3447, 113, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3448, 113, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3449, 114, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3450, 114, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3451, 114, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3452, 114, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3453, 114, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3454, 114, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3455, 114, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3456, 115, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3457, 115, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3458, 115, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3459, 115, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3460, 115, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3461, 115, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3462, 115, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3463, 116, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3464, 116, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3465, 116, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3466, 116, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3467, 116, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09');
+INSERT INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
+(3468, 116, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3469, 116, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3470, 117, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3471, 117, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3472, 117, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3473, 117, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3474, 117, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3475, 117, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3476, 117, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3477, 118, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3478, 118, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3479, 118, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3480, 118, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3481, 118, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3482, 118, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3483, 118, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3484, 119, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3485, 119, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3486, 119, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3487, 119, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3488, 119, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3489, 119, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3490, 119, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3491, 120, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3492, 120, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3493, 120, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3494, 120, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3495, 120, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3496, 120, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3497, 120, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
+(3498, 121, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3499, 121, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3500, 121, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3501, 121, 41, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3502, 121, 42, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3503, 121, 43, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3504, 121, 44, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3505, 122, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3506, 122, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3507, 122, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3508, 122, 41, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3509, 122, 42, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3510, 122, 43, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3511, 122, 44, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3512, 123, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3513, 123, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3514, 123, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3515, 123, 41, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3516, 123, 42, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3517, 123, 43, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3518, 123, 44, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3519, 124, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3520, 124, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3521, 124, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
+(3522, 124, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3523, 124, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3524, 124, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3525, 124, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3526, 125, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3527, 125, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3528, 125, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3529, 125, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3530, 125, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3531, 125, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3532, 125, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3533, 126, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3534, 126, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3535, 126, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3536, 126, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3537, 126, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3538, 126, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3539, 126, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3540, 127, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3541, 127, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3542, 127, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3543, 127, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3544, 127, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3545, 127, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3546, 127, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3547, 128, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3548, 128, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3549, 128, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3550, 128, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3551, 128, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3552, 128, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3553, 128, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
+(3554, 129, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3555, 129, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3556, 129, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3557, 129, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3558, 129, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3559, 129, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3560, 129, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3561, 130, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3562, 130, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3563, 130, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3564, 130, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3565, 130, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3566, 130, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3567, 130, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3568, 131, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3569, 131, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3570, 131, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3571, 131, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3572, 131, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3573, 131, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3574, 131, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3575, 132, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3576, 132, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3577, 132, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3578, 132, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3579, 132, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3580, 132, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3581, 132, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3582, 133, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3583, 133, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3584, 133, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3585, 133, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3586, 133, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3587, 133, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3588, 133, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3589, 134, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3590, 134, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3591, 134, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3592, 134, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3593, 134, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3594, 134, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3595, 134, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3596, 135, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3597, 135, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3598, 135, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3599, 135, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3600, 135, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3601, 135, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3602, 135, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3603, 136, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3604, 136, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3605, 136, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3606, 136, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3607, 136, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3608, 136, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3609, 136, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
+(3610, 137, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3611, 137, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3612, 137, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3613, 137, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3614, 137, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3615, 137, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3616, 137, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3617, 138, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3618, 138, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3619, 138, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3620, 138, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3621, 138, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3622, 138, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3623, 138, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3624, 139, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3625, 139, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3626, 139, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3627, 139, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3628, 139, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3629, 139, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3630, 139, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3631, 140, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3632, 140, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3633, 140, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3634, 140, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3635, 140, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3636, 140, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3637, 140, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3638, 141, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3639, 141, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3640, 141, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3641, 141, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3642, 141, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3643, 141, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3644, 141, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3645, 142, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3646, 142, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3647, 142, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3648, 142, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3649, 142, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3650, 142, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3651, 142, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3652, 143, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3653, 143, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3654, 143, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3655, 143, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3656, 143, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3657, 143, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3658, 143, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3659, 144, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3660, 144, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3661, 144, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3662, 144, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3663, 144, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3664, 144, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
+(3665, 144, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04');
+
+
+-- Data for table `pickup_settings` (3 rows)
+INSERT INTO `pickup_settings` (`id`, `academic_id`, `repeat_count`, `cooldown_seconds`, `calling_enabled`, `updated_at`) VALUES
+(1, 1, 2, 60, 1, '2026-07-08 04:36:40'),
+(9, 2, 3, 300, 0, '2026-07-20 08:26:53'),
+(10, 16, 3, 300, 0, '2026-09-01 10:02:16');
+
+
+-- Data for table `pickup_branch_calling` (4 rows)
+INSERT INTO `pickup_branch_calling` (`academic_id`, `branch_id`, `calling_enabled`, `updated_at`) VALUES
+(1, 1, 0, '2026-07-08 04:36:40'),
+(1, 2, 1, '2026-04-01 07:26:42'),
+(1, 3, 1, '2026-06-06 08:20:40'),
+(16, 1, 0, '2026-09-01 10:02:16');
+
+
+-- Data for table `fee_services` (20 rows)
+INSERT INTO `fee_services` (`id`, `service_name`, `amount`, `branch_id`, `academic_id`, `special`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'សេវារដ្ឋបាល', 100.00, 1, 1, 1, 58, 58, '2025-05-17 11:41:23', '2025-07-18 23:25:38'),
+(2, 'ចុះឈ្មោះ', 50.00, 1, 1, NULL, 58, 58, '2025-05-17 11:41:41', '2025-05-17 11:41:41'),
+(3, 'សេវារដ្ឋបាល', 100.00, 1, 2, 1, 58, 58, '2025-06-19 10:55:49', '2025-07-18 23:25:35'),
+(4, 'ចុះឈ្មោះ', 50.00, 1, 2, NULL, 58, 58, '2025-06-19 10:55:49', '2025-06-19 03:55:49'),
+(5, 'សេវារដ្ឋបាល WAC', 380.00, 1, 1, NULL, 20, 20, '2025-06-20 16:34:08', '2025-07-18 23:25:51'),
+(7, 'KL-សេវារដ្ឋបាល', 100.00, 1, 16, NULL, 19, 19, '2026-08-10 15:13:48', '2026-08-10 15:42:09'),
+(8, 'KL-ចុះឈ្មោះ', 50.00, 1, 16, NULL, 19, 19, '2026-08-10 15:17:18', '2026-08-10 15:42:15'),
+(9, 'KL-License WCA/Pre-G6', 280.00, 1, 16, NULL, 19, 19, '2026-08-10 15:37:46', '2026-08-10 15:42:21'),
+(10, 'KL-License WCA/G7-G10', 330.00, 1, 16, NULL, 19, 19, '2026-08-10 15:38:39', '2026-08-10 15:42:26'),
+(11, 'KL-License WCA/G11-G12', 750.00, 1, 16, NULL, 19, 19, '2026-08-10 15:39:19', '2026-08-10 15:42:32'),
+(12, 'O2-សេវារដ្ឋបាល', 100.00, 2, 16, NULL, 19, 19, '2026-08-10 15:43:13', '2026-08-10 15:44:35'),
+(13, 'O2-ចុះឈ្មោះ', 50.00, 2, 16, NULL, 19, 19, '2026-08-10 15:43:31', '2026-08-10 15:44:24'),
+(14, 'O2-License WCA/Pre-G6', 280.00, 2, 16, NULL, 19, 19, '2026-08-10 15:45:15', '2026-08-10 15:45:53'),
+(15, 'O2-License WCA/G7-G10', 330.00, 2, 16, NULL, 19, 19, '2026-08-10 15:46:43', '2026-08-10 15:47:08'),
+(16, 'O2-License WCA/G11-G12', 750.00, 2, 16, NULL, 19, 19, '2026-08-10 15:47:01', '2026-08-10 15:47:17'),
+(17, 'PAMA3-សេវារដ្ឋបាល', 100.00, 3, 16, NULL, 19, 19, '2026-08-10 15:48:06', '2026-08-10 15:49:26'),
+(18, 'PAMA3-ចុះឈ្មោះ', 50.00, 3, 16, NULL, 19, 19, '2026-08-10 15:48:26', '2026-08-10 15:50:03'),
+(19, 'PAMA3-License WCA/Pre-G6', 280.00, 3, 16, NULL, 19, 19, '2026-08-10 15:48:45', '2026-08-10 15:49:40'),
+(20, 'PAMA3-License WCA/G7-G10', 330.00, 3, 16, NULL, 19, 19, '2026-08-10 15:49:04', '2026-08-10 15:49:46'),
+(21, 'PAMA3-License WCA/G11-G12', 750.00, 3, 16, NULL, 19, 19, '2026-08-10 15:49:18', '2026-08-10 15:49:57');
+
+
+-- Data for table `form_field_options` (41 rows)
+INSERT INTO `form_field_options` (`id`, `field_id`, `label`, `value`, `order`) VALUES
+(87, 25, 'ភេទស្រី', 'ភេទស្រី', 0),
+(88, 25, 'ភេទប្រុស', 'ភេទប្រុស', 1),
+(89, 38, 'ឃ្លាំងលើ', 'ឃ្លាំងលើ', 0),
+(90, 38, 'អូរពីរ', 'អូរពីរ', 1),
+(91, 38, 'ប៉ាម៉ា៣', 'ប៉ាម៉ា៣', 2),
+(92, 52, 'បឋមភូមិ', 'បឋមភូមិ', 0),
+(93, 52, 'ទុតិយភូមិ', 'ទុតិយភូមិ', 1),
+(94, 52, 'បរិញ្ញាបត្ររង', 'បរិញ្ញាបត្ររង', 2),
+(95, 52, 'បរិញ្ញាបត្រ', 'បរិញ្ញាបត្រ', 3),
+(96, 52, 'បរិញ្ញាបត្រជាន់ខ្ពស់', 'បរិញ្ញាបត្រជាន់ខ្ពស់', 4),
+(97, 52, 'បរិញ្ញាបត្របណ្ឌិត', 'បរិញ្ញាបត្របណ្ឌិត', 5),
+(98, 53, '0', '0', 0),
+(99, 53, '1C', '1c', 1),
+(100, 53, '2C', '2c', 2),
+(101, 53, '3C', '3c', 3),
+(102, 53, '6C', '6c', 4),
+(103, 53, '1Y Up', '1y_up', 5),
+(104, 54, '0', '0', 0),
+(105, 54, '1T', '1t', 1),
+(106, 54, '2T', '2t', 2),
+(107, 54, '3T', '3t', 3),
+(108, 54, '4T', '4t', 4),
+(109, 54, '5T', '5t', 5),
+(110, 55, '0', '0', 0),
+(111, 55, 'Begin', 'begin', 1),
+(112, 55, 'Ele', 'ele', 2),
+(113, 55, 'Pre-Inter', 'pre-inter', 3),
+(114, 55, 'Inter', 'inter', 4),
+(115, 55, 'Upper', 'upper', 5),
+(116, 56, 'Option 1', 'option_1', 0),
+(117, 56, 'Option 2', 'option_2', 1),
+(118, 56, 'Option 3', 'option_3', 2),
+(149, 60, 'S', 's', 0),
+(150, 60, 'M', 'm', 1),
+(151, 60, 'L', 'l', 2),
+(152, 60, 'XL', 'xl', 3),
+(153, 60, 'XXL', 'xxl', 4),
+(154, 60, 'IIXL', 'iixl', 5),
+(155, 60, 'IIIXL', 'iiixl', 6),
+(156, 60, 'XS', 'xs', 7),
+(157, 60, '3XL', '3xl', 8);
+
+
 
 -- ========================================================
--- 3. CAMBODIAN SCHOOL REFERENCE / PRESET LOOKUPS
+-- CLEAN ADMIN USERS (Super Admins)
 -- ========================================================
+INSERT INTO `users` (
+    `id`, `username`, `password`, `uniqueId`, `image`, `kName`, `eName`, 
+    `height`, `gender`, `dob`, `signature`, `nationality`, `religion`, 
+    `province`, `district`, `commune`, `village`, `email`, `phone`, 
+    `telegramId`, `pProvince`, `pDistrict`, `pCommune`, `pVillage`, 
+    `identityNumber`, `identityRegDate`, `identityEndDate`, `identityRegPlace`, 
+    `fatherName`, `motherName`, `departmentId`, `positionId`, `startWork`, 
+    `endWork`, `education`, `workplace`, `status`, `role`, `created_at`, 
+    `updated_at`, `isForeigner`, `bankAccountNumber`, `bankAccountName`, 
+    `bankName`, `baseSalary`, `nssfNumber`, `isNssf`, `isResident`, 
+    `hasSpouse`, `numberOfDependents`, `token_version`, `signatureImagePath`
+) VALUES
+(
+    9998, 'admin', '$2b$12$V/jgA5rPM/GyGUnmt6m5xeRosFpqHM3vnjPAbifdavtWDBwE8kwqi', 'ADMIN9998', '', 'អ្នកគ្រប់គ្រង', 'Admin User',
+    1.70, 'ប្រុស', '1990-01-01', '', 'ខ្មែរ', 'ព្រះពុទ្ធ',
+    'ភ្នំពេញ', 'ដូនពេញ', 'ផ្សារចាស់', 'ភូមិ១', 'admin@kampul.com', '012345678',
+    '', 'ភ្នំពេញ', 'ដូនពេញ', 'ផ្សារចាស់', '',
+    '000000001', '2015-01-01', '2030-01-01', 'ភ្នំពេញ',
+    '', '', 1, 1, '2025-01-01 00:00:00',
+    '', 'បរិញ្ញាបត្រ', 1, 1, 1, NOW(),
+    NOW(), 1, NULL, NULL,
+    NULL, NULL, NULL, 0, 1,
+    0, 0, 0, ''
+),
+(
+    9999, 'administrator', '$2b$12$V/jgA5rPM/GyGUnmt6m5xeVFbUAiSU7UkLt2XPjQeK6EIyUEWyR4q', 'ADMIN9999', '', 'អ្នកគ្រប់គ្រងប្រព័ន្ធ', 'System Administrator',
+    1.70, 'ប្រុស', '1990-01-01', '', 'ខ្មែរ', 'ព្រះពុទ្ធ',
+    'ភ្នំពេញ', 'ដូនពេញ', 'ផ្សារចាស់', 'ភូមិ១', 'administrator@kampul.com', '012345679',
+    '', 'ភ្នំពេញ', 'ដូនពេញ', 'ផ្សារចាស់', '',
+    '000000002', '2015-01-01', '2030-01-01', 'ភ្នំពេញ',
+    '', '', 1, 1, '2025-01-01 00:00:00',
+    '', 'បរិញ្ញាបត្រ', 1, 1, 1, NOW(),
+    NOW(), 1, NULL, NULL,
+    NULL, NULL, NULL, 0, 1,
+    0, 0, 0, ''
+),
+(
+    58, 'rpisith', '$2b$12$V/jgA5rPM/GyGUnmt6m5xesMbCm1S4AMnoAT3J..GMHpwJtxcYrbe', 'SOAZBX9Z', '', 'រ៉ន ពិសិទ្ធ', 'RORN Pisith',
+    1.72, 'ប្រុស', '1997-07-07', '', 'ខ្មែរ', 'ព្រះពុទ្ធ',
+    'ព្រះសីហនុ', 'ព្រះសីហនុ', 'លេខ ១', '១', 'rpisith.me@gmail.com', '0962514196',
+    '5591794523', 'កំពង់ធំ', 'ប្រាសាទបល្ល័ង្គ', 'សាលាវិស័យ', '',
+    '170913018', '2015-05-27', '2025-05-26', 'បាត់ដំបង អូរចារ',
+    'ពុធ រ៉ន', 'មិល ស្រី', 6, 24, '2025-03-07 00:00:00',
+    '', 'បរិញ្ញាបត្រ', 1, 1, 1, NOW(),
+    NOW(), 1, NULL, NULL,
+    NULL, NULL, NULL, 0, 1,
+    0, 0, 0, ''
+);
+
+-- Data for table `feature_locks` (15 rows)
+INSERT INTO `feature_locks` (`id`, `feature_id`, `feature_name`, `is_locked`, `locked_by`, `locked_at`, `created_at`, `updated_at`) VALUES
+(1, 'attendance_security', 'Attendance Security', 1, 58, '2026-07-21 16:14:07', '2026-04-24 21:09:06', '2026-07-21 16:14:07'),
+(2, 'work_locations', 'Work Locations', 0, NULL, NULL, '2026-04-24 21:09:11', '2026-07-29 10:12:59'),
+(3, 'telegram_notifications', 'Telegram Notifications', 0, NULL, NULL, '2026-04-24 21:09:29', '2026-07-31 01:22:27'),
+(4, 'company_settings', 'Company Settings', 1, 58, '2026-04-24 21:09:35', '2026-04-24 21:09:35', '2026-04-24 21:09:35'),
+(5, 'app_branding', 'App Branding', 0, NULL, NULL, '2026-04-24 21:09:38', '2026-04-28 05:10:16'),
+(6, 'hot_events', 'Hot Events', 0, NULL, NULL, '2026-04-24 21:09:50', '2026-04-25 10:48:22'),
+(7, 'manage_branches', 'Manage Branches', 1, 58, '2026-04-26 01:27:07', '2026-04-26 01:27:07', '2026-04-26 01:27:07'),
+(8, 'attendance_reports', 'Attendance Reports', 0, NULL, NULL, '2026-04-28 05:10:37', '2026-07-20 00:49:29'),
+(9, 'manage_forms', 'Manage Forms', 0, NULL, NULL, '2026-05-27 05:36:33', '2026-05-27 05:36:37'),
+(10, 'payroll_dashboard', 'Payroll Dashboard', 0, NULL, NULL, '2026-07-08 07:46:10', '2026-07-21 16:13:31'),
+(11, 'academic_programs', 'Academic Programs', 0, NULL, NULL, '2026-07-08 07:57:33', '2026-07-08 07:57:34'),
+(12, 'leave_setup', 'Leave Setup', 1, 58, '2026-07-18 03:37:30', '2026-07-18 03:37:26', '2026-07-18 03:37:30'),
+(13, 'leave_approvers', 'Leave Approvers', 1, 58, '2026-07-18 03:37:32', '2026-07-18 03:37:32', '2026-07-18 03:37:32'),
+(14, 'certificate_management', 'Certificate Management', 0, NULL, NULL, '2026-07-18 03:37:56', '2026-09-02 06:51:29'),
+(15, 'attendance_settings', 'Attendance Settings', 1, 58, '2026-07-21 16:14:00', '2026-07-21 16:14:00', '2026-07-21 16:14:00');
+
+
+-- Data for table `profile_frames` (5 rows)
+INSERT INTO `profile_frames` (`id`, `title`, `image_url`, `is_active`, `sort_order`, `status`, `publish_at`, `expires_at`, `user_id`, `is_public`, `is_featured`, `slug`, `created_at`, `deleted_at`) VALUES
+(11, '50% May', '/uploads/frames/0821a6d2-03a8-42a7-bfdf-615969b8fafb.png', 1, 0, 'published', NULL, NULL, NULL, 1, 1, 'pamaisdiscountvone', '2026-05-11 03:20:23', NULL),
+(15, '40% Discount', '/uploads/frames/d8125865-c417-4071-bcd1-3398f1f52414.png', 1, 0, 'published', NULL, NULL, NULL, 1, 1, 'discount_june', '2026-06-01 10:24:06', NULL),
+(16, '30% Discount', '/uploads/frames/61c9fb0e-95d4-4268-b186-1e040b2cef1f.png', 1, 0, 'published', NULL, NULL, NULL, 1, 1, 'discountjul', '2026-07-01 10:43:28', NULL),
+(17, 'My Custom Frame', '/uploads/frames/e8885dc5-23b2-4d8e-842c-9e1b39a6569d.png', 1, 0, 'published', NULL, NULL, NULL, 0, 0, NULL, '2026-07-01 10:49:11', NULL),
+(18, 'My Custom Frame', '/uploads/frames/b45a00de-05db-4275-99e7-119b5bcace66.png', 1, 0, 'published', NULL, NULL, NULL, 1, 0, NULL, '2026-08-22 09:39:37', NULL);
+
+
+
+-- ========================================================
+-- APP ADMINS
+-- ========================================================
+INSERT INTO `app_admins` (`id`, `user_id`, `is_super_admin`, `is_locked`, `locked_at`, `locked_by`, `created_at`, `updated_at`, `can_reset_attendance_devices`) VALUES
+(1, 58, 1, 0, NULL, NULL, NOW(), NOW(), 1),
+(2, 9998, 1, 0, NULL, NULL, NOW(), NOW(), 1),
+(3, 9999, 1, 0, NULL, NULL, NOW(), NOW(), 1);
+
+
+-- ========================================================
+-- SCHOOL SETTINGS (Clean Default Settings)
+-- ========================================================
+INSERT INTO `settings` (`id`, `enterpriseName`, `enterpriseType`, `eProvince`, `eDistrict`, `eCommune`, `eVillage`, `enterpriseAddress`, `ownerKname`, `ownerEname`, `ownerGender`, `ownerNationality`, `isForeigner`, `prefixid`, `suffix`, `digit_number`, `follow_type`, `academicid`, `startid`, `status_fixedexchange`, `default_exchange`, `telegrambot`, `parent_bot_token`, `chat_id`, `time_report`, `report_chat_id`, `report_status`, `skip_sat`, `skip_sun`, `time_allow_start`, `time_allow_end`, `marks_extraday`, `notify_parents`, `system_logo`, `system_name`, `secret_pass`, `created_at`, `updated_at`, `image_header`, `facebook_url`, `telegram_url`, `youtube_url`, `instagram_url`, `tiktok_url`, `active_storage_provider`, `cloudinary_cloud_name`, `cloudinary_api_key`, `cloudinary_api_secret`, `aws_access_key_id`, `aws_secret_access_key`, `aws_region_name`, `aws_bucket_name`, `firebase_storage_bucket`, `firebase_service_account_json`, `enable_schedule_reminders`, `ota_updates_enabled`, `phone_conflict_lock_enabled`) VALUES
+(1, 'Royal International School', 'គ្រឹះស្ថានអប់រំ', 'ភ្នំពេញ', 'ដូនពេញ', 'ផ្សារចាស់', 'ភូមិ១', 'រាជធានីភ្នំពេញ', 'រ៉ន ពិសិទ្ធ', 'RORN Pisith', 'ប្រុស', 'ខ្មែរ', 1, 'SIS-', '', 6, 'settings', 16, 100001, 'no', 4100, '', '', '', '16:30:00', '', NULL, 'yes', 'yes', '07:15:00', '21:15:00', '500', 'yes', '', 'SIS', '$2a$11$6pl0xaL1f4WDMjf67CDfMuwSqpBNQg1aaDfX.cy9FKXt9Ln2hHF5.', NOW(), NOW(), '', '', '', '', '', '', 'local', '', '', '', '', '', '', '', '', '', 'yes', 0, 0);
+
+
+-- ========================================================
+-- CLEAN CASH ACCOUNTS (USD & KHR, Balance 0.00)
+-- ========================================================
+INSERT INTO `accounts` (`id`, `account_name`, `account_number`, `qr_code`, `branch_id`, `academic_id`, `balance`, `currency`, `bank_name`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 'Main Cash USD', '000000001', '', 1, 16, 0.00, 'USD', 'Cash', NOW(), NOW(), 58, 58),
+(2, 'Main Cash KHR', '000000002', '', 1, 16, 0.00, 'KHR', 'Cash', NOW(), NOW(), 58, 58);
 
--- Preset seed data for `roles` (13 rows)
-INSERT IGNORE INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
-  (1, 'Super Admin', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (2, 'Teacher', '2025-07-21 19:27:26', '2025-08-04 10:57:01'),
-  (3, 'Admin', '2025-07-21 19:27:26', '2025-08-04 10:56:52'),
-  (4, 'Accountant', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (5, 'Reception', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (6, 'Viewer', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (7, 'Principal', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (8, 'Counselor', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (9, 'Librarian', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (10, 'Registrar', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (11, 'ITSupport', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (12, 'Parent', '2025-07-21 19:27:26', '2025-07-21 19:27:26'),
-  (13, 'Student', '2025-07-21 19:27:26', '2025-07-21 19:27:26');
-
--- Preset seed data for `permissions` (109 rows)
-INSERT IGNORE INTO `permissions` (`id`, `permission_name`, `description`, `created_at`, `updated_at`) VALUES
-  (1, 'ViewStudent', 'View student information', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (2, 'AddStudent', 'Add new students', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (3, 'UpdateStudent', 'Edit student details', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (4, 'DeleteStudent', 'Delete student records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (5, 'ViewTeacher', 'View teacher information', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (6, 'AddTeacher', 'Add new teachers', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (7, 'UpdateTeacher', 'Edit teacher details', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (8, 'DeleteTeacher', 'Remove teacher records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (9, 'ViewClass', 'View classes or courses', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (10, 'AddClass', 'Add new classes or courses', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (11, 'UpdateClass', 'Edit class/course details', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (12, 'DeleteClass', 'Delete classes', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (13, 'ViewAttendance', 'View attendance records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (14, 'AddAttendance', 'Add attendance records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (15, 'UpdateAttendance', 'Edit attendance', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (16, 'DeleteAttendance', 'Delete attendance records', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (17, 'ViewGrades', 'View student grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (18, 'AddGrades', 'Enter grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (19, 'UpdateGrades', 'Edit grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (20, 'DeleteGrades', 'Remove grades', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (21, 'ViewReports', 'View various reports', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (22, 'GenerateReports', 'Generate or export reports', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (23, 'ManageUsers', 'Manage user accounts and roles', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (24, 'ManageRoles', 'Create/edit/delete roles and permissions', '2025-07-21 19:18:39', '2025-07-21 19:18:39'),
-  (25, 'ViewAllBranches', 'View all Branch', '2025-07-21 20:37:25', '2025-07-21 20:37:25'),
-  (26, 'ViewAdminDashboard', NULL, '2025-07-21 21:05:16', '2025-07-21 21:05:16'),
-  (27, 'ViewTeacherDashboard', '', '2025-07-21 21:05:16', '2025-07-21 21:05:16'),
-  (28, 'DeleteReceipt', 'Delete invoice', '2025-07-29 07:40:49', '2025-07-29 07:41:42'),
-  (29, 'ViewAccounts', NULL, '2025-08-04 16:22:58', '2025-08-04 16:22:58'),
-  (30, 'ViewReceipt', NULL, '2025-08-04 16:25:51', '2025-08-04 16:25:51'),
-  (31, 'ChangeRole', NULL, '2025-08-04 17:13:43', '2025-08-04 17:13:43'),
-  (32, 'UserPassword', NULL, '2025-08-04 17:29:11', '2025-08-04 17:29:11'),
-  (34, 'ClearAccounts', NULL, '2025-08-04 17:44:14', '2025-08-04 17:44:14'),
-  (35, 'UpdateSettings', NULL, '2025-08-04 17:48:54', '2025-08-04 17:48:54'),
-  (36, 'DashboardBasic', NULL, '2025-08-10 20:55:34', '2025-08-10 20:55:34'),
-  (37, 'DashboardAccounting', NULL, '2025-08-10 20:55:55', '2025-08-10 20:55:55'),
-  (38, 'GeneralDelete', NULL, '2025-08-19 09:11:20', '2025-08-19 09:11:20'),
-  (39, 'GeneralUpdate', NULL, '2025-08-19 09:11:39', '2025-08-19 09:11:39'),
-  (40, 'GeneralAdd', NULL, '2025-08-19 09:11:59', '2025-08-19 09:11:59'),
-  (41, 'AdminViewApp', 'View App settings', '2026-01-13 02:30:00', '2026-01-13 02:30:00'),
-  (42, 'AdminUpdateApp', 'Update App settings', '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
-  (43, 'AdminDeleteApp', 'Delete App settings', '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
-  (44, 'ViewInvoices', NULL, '2026-06-15 02:47:21', '2026-06-15 02:47:21'),
-  (45, 'ViewUpcomingInvoices', NULL, '2026-06-15 02:47:22', '2026-06-15 02:47:22'),
-  (46, 'ViewInventories', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (47, 'ViewPricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (48, 'ViewFeeServices', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (49, 'AddAccount', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (50, 'EditAccount', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (51, 'EditInvoice', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (52, 'AddInventory', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (53, 'EditInventory', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (54, 'DeleteInventory', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (55, 'AddPricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (56, 'EditPricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (57, 'DeletePricing', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (58, 'AddFeeService', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (59, 'EditFeeService', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (60, 'DeleteFeeService', NULL, '2026-06-15 02:47:23', '2026-06-15 02:47:23'),
-  (61, 'AddDiscount', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
-  (62, 'EditDiscount', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
-  (63, 'DeleteDiscount', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
-  (64, 'ViewDashboard', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
-  (65, 'ViewStudents', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
-  (66, 'ViewStudentsByClass', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
-  (67, 'ViewStudentTeachers', NULL, '2026-06-15 02:47:24', '2026-06-15 02:47:24'),
-  (68, 'ViewStudentPrograms', NULL, '2026-06-15 02:47:26', '2026-06-15 02:47:26'),
-  (69, 'ViewScholarship', NULL, '2026-06-15 02:47:26', '2026-06-15 02:47:26'),
-  (70, 'ViewCertificate', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (71, 'ViewMedals', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (72, 'ViewAchievement', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (73, 'ViewStoppedStudents', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (74, 'ViewParents', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (75, 'ViewParentPayments', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (76, 'ViewParentPickupReport', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (77, 'ViewEmployees', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (78, 'ViewPendingEmployees', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (79, 'ViewStoppedEmployees', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (80, 'ViewDepartments', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (81, 'ViewClassTeacherAssignment', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (82, 'ViewCalendar', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (83, 'ViewAcademic', NULL, '2026-06-15 02:47:27', '2026-06-15 02:47:27'),
-  (84, 'ViewBranch', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
-  (85, 'ViewGradeTypes', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
-  (86, 'ViewGradeGroups', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
-  (87, 'ViewPrograms', NULL, '2026-06-15 02:47:28', '2026-06-15 02:47:28'),
-  (88, 'ViewShifts', NULL, '2026-06-15 02:47:29', '2026-06-15 02:47:29'),
-  (89, 'ViewExamSystem', NULL, '2026-06-15 02:47:29', '2026-06-15 02:47:29'),
-  (90, 'ViewMarksSystem', NULL, '2026-06-15 02:47:29', '2026-06-15 02:47:29'),
-  (91, 'ViewMarkSubjects', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (92, 'ViewSubjects', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (93, 'ViewSubjectGroups', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (94, 'ViewNites', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (95, 'ViewExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (96, 'ViewExpenseCategories', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (97, 'AddExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (98, 'EditExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (99, 'DeleteExpense', NULL, '2026-06-15 02:47:30', '2026-06-15 02:47:30'),
-  (100, 'AddExpenseCategory', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (101, 'EditExpenseCategory', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31');
-
-INSERT IGNORE INTO `permissions` (`id`, `permission_name`, `description`, `created_at`, `updated_at`) VALUES
-  (102, 'DeleteExpenseCategory', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (103, 'ViewBuses', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (104, 'ViewBusAttendance', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (105, 'ViewBusStops', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (106, 'ViewBusStopPrices', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (107, 'ViewBusDriverAssignment', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (108, 'ViewBusStudentEnrollment', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (109, 'ViewActivityLogs', NULL, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (110, 'ReviewStudentProfileEdits', NULL, '2026-08-24 02:44:41', '2026-08-24 02:44:41');
-
--- Preset seed data for `role_permissions` (213 rows)
-INSERT IGNORE INTO `role_permissions` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
-  (32, 2, 1, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (33, 2, 25, '2025-07-21 20:11:07', '2025-07-21 21:12:51'),
-  (34, 2, 3, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (35, 2, 4, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (36, 2, 5, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (37, 2, 6, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (38, 2, 7, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (39, 2, 8, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (40, 2, 9, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (41, 2, 10, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (42, 2, 11, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (120, 12, 13, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (121, 13, 14, '2025-07-21 20:11:07', '2025-07-21 20:11:07'),
-  (126, 2, 26, '2025-07-21 21:08:38', '2025-07-21 21:08:38'),
-  (248, 5, 2, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (249, 5, 22, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (250, 5, 3, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (251, 5, 26, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (252, 5, 9, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (253, 5, 17, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (254, 5, 30, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (255, 5, 21, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (256, 5, 1, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (257, 5, 5, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (258, 5, 36, '2025-08-10 14:01:17', '2025-08-10 14:01:17'),
-  (259, 6, 10, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
-  (260, 6, 6, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
-  (261, 6, 4, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
-  (262, 6, 11, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
-  (263, 6, 7, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
-  (264, 6, 5, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
-  (265, 6, 36, '2025-08-10 14:01:21', '2025-08-10 14:01:21'),
-  (291, 9, 11, '2025-08-10 14:01:45', '2025-08-10 14:01:45'),
-  (292, 9, 9, '2025-08-10 14:01:45', '2025-08-10 14:01:45'),
-  (293, 9, 36, '2025-08-10 14:01:45', '2025-08-10 14:01:45'),
-  (294, 8, 8, '2025-08-10 14:01:50', '2025-08-10 14:01:50'),
-  (295, 8, 11, '2025-08-10 14:01:50', '2025-08-10 14:01:50'),
-  (296, 8, 36, '2025-08-10 14:01:50', '2025-08-10 14:01:50'),
-  (297, 7, 10, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
-  (298, 7, 6, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
-  (299, 7, 7, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
-  (300, 7, 5, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
-  (301, 7, 37, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
-  (302, 7, 36, '2025-08-10 14:01:57', '2025-08-10 14:01:57'),
-  (303, 4, 2, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (304, 4, 6, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (305, 4, 22, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (306, 4, 11, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (307, 4, 3, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (308, 4, 29, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (309, 4, 26, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (310, 4, 25, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (311, 4, 9, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (312, 4, 30, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (313, 4, 21, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (314, 4, 1, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (315, 4, 5, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (316, 4, 36, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (317, 4, 37, '2025-08-10 14:02:08', '2025-08-10 14:02:08'),
-  (368, 3, 10, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (369, 3, 2, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (370, 3, 6, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (371, 3, 37, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (372, 3, 36, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (373, 3, 4, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (374, 3, 8, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (375, 3, 11, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (376, 3, 3, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (377, 3, 7, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (378, 3, 9, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (379, 3, 5, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (380, 3, 40, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (381, 3, 38, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (382, 3, 39, '2025-08-19 02:14:43', '2025-08-19 02:14:43'),
-  (468, 3, 41, '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
-  (469, 3, 42, '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
-  (470, 3, 43, '2026-01-13 02:30:01', '2026-01-13 02:30:01'),
-  (471, 1, 14, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (472, 1, 10, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (473, 1, 18, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (474, 1, 2, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (475, 1, 6, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (476, 1, 31, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (477, 1, 34, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (478, 1, 37, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (479, 1, 36, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (480, 1, 16, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (481, 1, 12, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (482, 1, 20, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (483, 1, 28, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (484, 1, 4, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (485, 1, 8, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (486, 1, 40, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (487, 1, 38, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (488, 1, 39, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (489, 1, 22, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (490, 1, 24, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (491, 1, 23, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (492, 1, 15, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (493, 1, 11, '2026-02-10 01:41:40', '2026-02-10 01:41:40');
-
-INSERT IGNORE INTO `role_permissions` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
-  (494, 1, 19, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (495, 1, 35, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (496, 1, 3, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (497, 1, 7, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (498, 1, 32, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (499, 1, 29, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (500, 1, 26, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (501, 1, 25, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (502, 1, 13, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (503, 1, 9, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (504, 1, 17, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (505, 1, 30, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (506, 1, 21, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (507, 1, 1, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (508, 1, 5, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (509, 1, 43, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (510, 1, 42, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (511, 1, 41, '2026-02-10 01:41:40', '2026-02-10 01:41:40'),
-  (512, 1, 44, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (513, 1, 45, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (514, 1, 46, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (515, 1, 47, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (516, 1, 48, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (517, 1, 49, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (518, 1, 50, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (519, 1, 51, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (520, 1, 52, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (521, 1, 53, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (522, 1, 54, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (523, 1, 55, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (524, 1, 56, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (525, 1, 57, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (526, 1, 58, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (527, 1, 59, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (528, 1, 60, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (529, 1, 61, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (530, 1, 62, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (531, 1, 63, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (532, 1, 64, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (533, 1, 65, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (534, 1, 66, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (535, 1, 67, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (536, 1, 68, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (537, 1, 69, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (538, 1, 70, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (539, 1, 71, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (540, 1, 72, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (541, 1, 73, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (542, 1, 74, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (543, 1, 75, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (544, 1, 76, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (545, 1, 77, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (546, 1, 78, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (547, 1, 79, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (548, 1, 80, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (549, 1, 81, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (550, 1, 82, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (551, 1, 83, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (552, 1, 84, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (553, 1, 85, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (554, 1, 86, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (555, 1, 87, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (556, 1, 88, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (557, 1, 89, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (558, 1, 90, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (559, 1, 91, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (560, 1, 92, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (561, 1, 93, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (562, 1, 94, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (563, 1, 95, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (564, 1, 96, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (565, 1, 97, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (566, 1, 98, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (567, 1, 99, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (568, 1, 100, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (569, 1, 101, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (570, 1, 102, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (571, 1, 103, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (572, 1, 104, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (573, 1, 105, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (574, 1, 106, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (575, 1, 107, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (576, 1, 108, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (577, 1, 109, '2026-06-15 02:47:31', '2026-06-15 02:47:31'),
-  (578, 1, 27, '2026-06-19 01:18:33', '2026-06-19 01:18:33'),
-  (579, 2, 64, '2026-08-18 10:18:36', '2026-08-18 10:18:36'),
-  (580, 3, 64, '2026-08-18 10:18:37', '2026-08-18 10:18:37'),
-  (581, 4, 64, '2026-08-18 10:18:37', '2026-08-18 10:18:37'),
-  (582, 5, 64, '2026-08-18 10:18:38', '2026-08-18 10:18:38'),
-  (583, 6, 64, '2026-08-18 10:18:38', '2026-08-18 10:18:38'),
-  (584, 7, 64, '2026-08-18 10:18:38', '2026-08-18 10:18:38'),
-  (585, 8, 64, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
-  (586, 9, 64, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
-  (587, 10, 64, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
-  (588, 10, 36, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
-  (589, 10, 65, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
-  (590, 10, 66, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
-  (591, 10, 68, '2026-08-18 10:18:39', '2026-08-18 10:18:39'),
-  (592, 10, 2, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (593, 10, 74, '2026-08-18 10:18:40', '2026-08-18 10:18:40');
-
-INSERT IGNORE INTO `role_permissions` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
-  (594, 10, 75, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (595, 10, 76, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (596, 10, 82, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (597, 10, 44, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (598, 10, 45, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (599, 10, 47, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (600, 10, 48, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (601, 11, 64, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (602, 11, 36, '2026-08-18 10:18:40', '2026-08-18 10:18:40'),
-  (603, 12, 64, '2026-08-18 10:18:41', '2026-08-18 10:18:41'),
-  (604, 13, 64, '2026-08-18 10:18:41', '2026-08-18 10:18:41'),
-  (605, 1, 110, '2026-08-24 02:44:48', '2026-08-24 02:44:48'),
-  (606, 3, 110, '2026-08-24 08:17:36', '2026-08-24 08:17:36');
-
--- Preset seed data for `department` (9 rows)
-INSERT IGNORE INTO `department` (`id`, `department`, `translate`, `code`, `updated_at`, `created_at`) VALUES
-  (1, 'Board of Directors', 'ក្រុមប្រឹក្សាភិបាល', 'BDD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (2, 'Management Team', 'គណៈគ្រប់គ្រង', 'MTD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (3, 'Human Resource​ ', 'ផ្នែកធនធានមនុស្ស', 'HRD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (4, 'Administrative', 'ផ្នែករដ្ឋបាល', 'AD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (5, 'Financial', 'ផ្នែកហិរញ្ញវត្ថុ', 'FD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (6, 'Information Technology', 'ផ្នែកព័ត៌មានវិទ្យា', 'ITD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (7, 'Marketing', 'ផ្នែកទីផ្សារ', 'MD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (8, 'Full Time Academic', 'ផ្នែកសិក្សាធិការ (ពេញម៉ោង)', 'FTD', '2025-03-31 14:22:09', '2025-06-10 13:10:54'),
-  (9, 'Part Time Academic', 'ផ្នែកសិក្សាធិការ (ក្រៅម៉ោង)', 'PTD', '2025-03-31 14:22:09', '2025-06-10 13:10:54');
-
--- Preset seed data for `position` (40 rows)
-INSERT IGNORE INTO `position` (`id`, `position`, `translate`, `departmentId`, `updated_at`, `created_at`) VALUES
-  (1, 'Chairman of Board of Directors', 'ប្រធានក្រុមប្រឹក្សាភិបាល', 1, '2025-07-05 15:14:31', '2025-06-10 13:13:25'),
-  (2, 'Member of Board of Director', 'សមាជិកក្រុមប្រឹក្សាភិបាល', 1, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (3, 'Director', 'នាយក', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (4, 'Vice Director', 'នាយករង', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (5, 'Senior Advisor of Academy', 'ទីប្រឹក្សាជាន់ខ្ពស់ផ្នែកសិក្សាធិការ', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (6, 'Senior Advisor of Curriculum Development', 'ទីប្រឹក្សាជាន់ខ្ពស់ផ្នែកអភិវឌ្ឍកម្មវិធីសិក្សា', 2, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (7, 'Head of HR', 'ប្រធានផ្នែកធនធានមនុស្ស', 3, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (8, 'Training Coordinator', 'ប្រធានផ្នែកបណ្តុះបណ្តាល', 3, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (9, 'Assistant to HR', 'ជំនួយការធនធានមនុស្ស', 3, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (10, 'Head of Admin', 'ប្រធានផ្នែករដ្ឋបាល', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (11, 'Admin Assistant', 'ជំនួយការរដ្ឋបាល', 4, '2025-04-22 11:10:51', '2025-06-10 13:13:25'),
-  (13, 'Cleaner and Gardener', 'អ្នកសម្អាត និងថែទាំសួន', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (14, 'Security Guard-Gardener-Cleaner', 'សន្តិសុខ ថែសួន និងសម្អាត', 4, '2025-06-03 08:09:26', '2025-06-10 13:13:25'),
-  (15, 'Driver-Security Guards', 'អ្នកបើកបរ និងសន្តិសុខ', 4, '2025-06-03 09:15:05', '2025-06-10 13:13:25'),
-  (16, 'Driver-Security Guards-Cleaner', 'អ្នកបើកបរ សន្តិសុខ និងសម្អាត', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (17, 'Security Guards-Cleaner', 'សន្តិសុខអនាម័យ', 4, '2025-06-03 08:08:14', '2025-06-10 13:13:25'),
-  (18, 'Gardener', 'មន្ត្រីផ្នែកកសិកម្ម', 4, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (19, 'Head of Finance', 'ប្រធានផ្នែកហិរញ្ញវត្តុ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (20, 'Cashier', 'បេឡាធិការ/បេឡាធិការិនី', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (21, 'Accountant', 'គណនេយ្យករ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (22, 'Financial assistant', 'ជំនួយការហិរញ្ញវត្ថុ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (23, 'Accounting Assistant', 'ជំនួយការគណនេយ្យ', 5, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (24, 'Head of IT', 'ប្រធានព័ត៌មានវិទ្យា', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (25, 'Digital Marketer', 'មន្ត្រីម៉ាឃីតធីងឌីជីថល', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (26, 'IT Supporter', 'ជំនួយការព័ត៌មានវិទ្យា', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (27, 'Camera Woman', 'មន្ត្រីផ្នែកថតរូប​ (ស្រី)', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (28, 'Camera Man', 'មន្ត្រីផ្នែកថតរូប (ប្រុស)', 6, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (29, 'Admin & Program Supporter', 'ជំនួយការរដ្ឋបាល និងដំណើរការកម្មវិធី', 7, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (30, 'Head of Academy', 'ប្រធានសិក្សាធិការ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (31, 'Head of Teacher', 'ប្រធានគ្រូ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (32, 'Academic Assistant', 'ជំនួយការសិក្សាធិការ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (33, 'Head Teacher Assistant', 'ជំំនួយការប្រធានគ្រូ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (34, 'Teacher', 'គ្រូបង្រៀន', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (35, 'Chinese Teacher', 'គ្រូបង្រៀនភាសាចិន', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (36, 'English Teacher', 'គ្រូបង្រៀនភាសាអង់គ្លេស', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (37, 'Teacher Assistant', 'ជំនួយការគ្រូ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (38, 'Internship Teacher', 'គ្រូបង្រៀនហាត់ការ', 8, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (39, 'Head of Part Time Teacher', 'ប្រធានគ្រូបង្រៀនក្រៅម៉ោង', 9, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (40, 'Assistant to Head of Part time Teacher', 'ជំនួយការប្រធានគ្រូបង្រៀនក្រៅម៉ោង', 9, '2025-03-31 14:22:28', '2025-06-10 13:13:25'),
-  (41, 'Part time Teacher', 'គ្រូបង្រៀនក្រៅម៉ោង', 9, '2025-03-31 14:22:28', '2025-06-10 13:13:25');
-
--- Preset seed data for `status` (5 rows)
-INSERT IGNORE INTO `status` (`id`, `status`, `updated_at`, `created_at`) VALUES
-  (1, 'Active', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
-  (2, 'Inactive', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
-  (3, 'Suspended', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
-  (4, 'Finished', '2025-03-31 09:45:02', '2026-01-06 07:11:39'),
-  (5, 'Banned', '2025-03-31 09:45:02', '2026-01-06 07:11:39');
-
--- Preset seed data for `shift` (2 rows)
-INSERT IGNORE INTO `shift` (`id`, `shift_name`, `shift_name_en`, `start_at`, `end_at`, `report_status`, `send_report_at`, `weeken_send`, `created_at`, `updated_at`) VALUES
-  (1, 'វេនព្រឹក (AM)', 'Morning (AM)', '7:15:00', '11:00:00', 'no', '8:15:00', 'no', '2025-10-01 01:36:29', '2025-10-28 00:49:17'),
-  (2, 'វេនរសៀល (PM)', 'Afternoon (PM)', '12:00:00', '18:00:00', 'no', '14:16:00', 'no', '2025-10-01 01:36:29', '2025-12-01 10:02:37');
-
--- Preset seed data for `units` (32 rows)
-INSERT IGNORE INTO `units` (`id`, `name`, `created_at`, `updated_at`) VALUES
-  (1, 'ប្រអប់', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (2, 'កេស', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (3, 'ក្បាល', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (4, 'ដុំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (5, 'ធុង', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (6, 'ឯកតា', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (7, 'ប្រអប់', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (8, 'កញ្ចប់', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (9, 'ញ៉ុង', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (10, 'កាបូប', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (11, 'ដប', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (12, 'កំប៉ុង', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (13, 'ការទុន', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (14, 'ប្រអប់ធំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (15, 'លីត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (16, 'មីលីលីត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (17, 'គីឡូក្រាម', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (18, 'ក្រាម', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (19, 'ម៉ែត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (20, 'សង់ទីម៉ែត្រ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (21, 'ដុសិន', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (22, 'សំណុំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (23, 'គូ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (24, 'មូល', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (25, 'មួក', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (26, 'រមៀល', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (27, 'ក្បាល', '2025-05-20 21:42:38', '2025-07-28 07:23:53'),
-  (28, 'ឈុត', '2025-05-20 21:42:38', '2025-07-28 07:23:47'),
-  (29, 'កញ្ចប់', '2025-05-20 21:42:38', '2025-07-28 07:23:57'),
-  (30, 'បាច់ធំ', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (31, 'សន្លឹក', '2025-05-20 21:42:38', '2025-05-20 21:42:38'),
-  (32, 'បំពង់', '2025-05-20 21:42:38', '2025-05-20 21:42:38');
-
--- Preset seed data for `category` (4 rows)
-INSERT IGNORE INTO `category` (`id`, `category_name`, `noted`, `created_at`, `updated_at`) VALUES
-  (1, 'សៀវភៅ', '', '2025-05-20 11:23:16', '2025-05-20 11:23:16'),
-  (2, 'សម្លៀកបំពាក់', '', '2025-05-20 11:30:29', '2025-05-20 11:30:29'),
-  (3, 'សម្ភារៈសិក្សា', '', '2025-05-20 11:30:49', '2025-05-20 11:30:49'),
-  (4, 'ផ្សេងៗ​(Other)', '', '2025-06-20 13:12:55', '2025-06-24 09:11:17');
-
--- Preset seed data for `items_group` (2 rows)
-INSERT IGNORE INTO `items_group` (`id`, `group_name`, `items_id`, `unit_id`, `created_at`, `updated_at`) VALUES
-  (1, 'សៀវភៅមតេ្តយ្យសិក្សាកម្រិតខ្ពស់', '45,46', -1, '2025-07-09 11:07:07', '2025-07-09 11:07:07'),
-  (2, 'សៀវភៅមតេ្តយ្យសិក្សាកម្រិតមធ្បម', '47,48', -1, '2025-07-09 11:11:29', '2025-07-09 11:11:29');
-
--- Preset seed data for `leave_types` (5 rows)
-INSERT IGNORE INTO `leave_types` (`id`, `name`, `description`, `max_days_per_year`, `is_paid`, `requires_approval`, `created_at`, `updated_at`, `requires_proof`, `is_active`, `display_order`, `color_hex`, `max_days_per_month`) VALUES
-  (1, 'Annual Leave', '', 0.0, 1, 1, '2026-07-02 19:32:06', '2026-09-02 09:40:01', 0, 1, 1, '#7C3AED', 1.0),
-  (2, 'Sick Leave', '', 0.0, 1, 1, '2026-07-03 02:22:31', '2026-08-03 07:22:42', 1, 1, 2, '#42A5F5', NULL),
-  (4, 'Marriage Leave', '', 0.0, 1, 1, '2026-07-03 02:24:05', '2026-08-03 07:22:54', 1, 1, 4, '#FFB300', NULL),
-  (5, 'Dead leave or Funeral', '', 0.0, 1, 1, '2026-07-03 02:24:52', '2026-08-03 07:23:05', 0, 1, 5, '#E91E63', NULL),
-  (9, 'Other leave', NULL, 10.0, 0, 1, '2026-08-21 02:24:23', '2026-08-24 08:20:03', 0, 1, 5, '#FFB300', NULL);
-
--- Preset seed data for `nittes` (6 rows)
-INSERT IGNORE INTO `nittes` (`id`, `name_us`, `name_kh`, `created_at`, `updated_at`) VALUES
-  (1, 'A', 'ល្អប្រសើរ', '2025-06-11 13:53:38', '2025-06-11 13:53:38'),
-  (2, 'B', 'ល្អណាស់', '2025-06-11 13:53:38', '2025-06-11 13:53:38'),
-  (3, 'C', 'ល្អ', '2025-06-11 13:54:33', '2025-06-11 13:54:33'),
-  (4, 'D', 'បង្គួរ', '2025-06-11 13:54:33', '2025-06-11 13:54:33'),
-  (5, 'E', 'មធ្យម', '2025-06-11 13:55:44', '2025-06-11 13:55:44'),
-  (6, 'F', 'ក្រោមមធ្យម', '2025-06-11 13:55:44', '2025-06-11 13:55:44');
-
--- Preset seed data for `nittes_discount` (6 rows)
-INSERT IGNORE INTO `nittes_discount` (`id`, `academic_id`, `branch_id`, `amount`, `nittes_id`, `created_at`, `updated_at`, `created_by`) VALUES
-  (1, 1, 2, '20.00', 1, '2025-06-11 14:05:33', '2025-07-03 10:26:00', 58),
-  (2, 1, 2, '15.00', 2, '2025-06-11 15:11:13', '2025-07-03 10:26:11', 58),
-  (3, 1, 2, '10.00', 3, '2025-07-03 10:29:42', '2025-07-03 10:29:42', 58),
-  (4, 1, 1, '20.00', 1, '2025-07-03 10:30:23', '2025-07-03 10:30:23', 58),
-  (5, 1, 1, '15.00', 2, '2025-07-03 10:30:23', '2025-07-03 10:30:23', 58),
-  (6, 1, 1, '10.00', 3, '2025-07-03 10:31:15', '2025-07-03 10:31:15', 58);
-
--- Preset seed data for `program` (3 rows)
-INSERT IGNORE INTO `program` (`id`, `program_name`, `program_name_us`, `mark_type`, `short_code`, `academic_id`, `report_status`, `head_user_id`, `time_report`, `created_at`, `created_by`, `updated_by`, `noted`, `updated_at`) VALUES
-  (1, 'ជាតិពិសេស ចំណេះទូទៅភាសាខ្មែរ (UNP)', 'Unique National Program (UNP)', 'kh', 'UNP', 1, 'no', 32, '16:16:15', '2025-04-23 14:11:36', 58, 58, 'ចំណេះដឹងទូទៅភាសាខ្មែរ', '2026-06-26 01:02:52'),
-  (2, 'WAC', 'WAC', 'en', 'WAC', 1, 'no', 27, '16:21:15', '2025-04-23 14:12:15', 58, 58, 'Western Australian', '2026-01-28 11:05:15'),
-  (3, 'ភាសាអង់គ្លេសអន្តរជាតិ (IEP)', 'International English Program (IEP)', 'iep', 'IEP', 1, 'no', 29, '16:26:15', '2025-04-23 14:12:32', 58, 58, '', '2026-06-23 11:07:30');
-
--- Preset seed data for `academic_programs` (11 rows)
-INSERT IGNORE INTO `academic_programs` (`id`, `program_name`, `icon_name`, `custom_logo_url`, `color_start`, `color_end`, `sort_order`, `is_active`, `description`, `contact_phone`, `contact_email`, `facebook_url`, `telegram_url`, `youtube_url`, `tiktok_url`, `registration_start_date`, `registration_end_date`, `created_at`, `updated_at`) VALUES
-  (4, 'UNP', 'school_rounded', '/uploads/academic_programs/prog_3e679b9afb.jpg', '0xFF0034FF', '0xFFA8ACFF', 1, 1, 'កម្មវិធីជាតិពិសេសចំណេះទូទៅភាសាខ្មែរ', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:18:07', '2026-03-29 18:32:23'),
-  (5, 'WAC', 'school_rounded', '/uploads/academic_programs/prog_386804ff6c.jpg', '0xFF3C3C3C', '0xFFF2BAFF', 4, 1, 'ជាកម្មវិធីភាសាអង់គ្លេសអន្តរជាតិដែលទទួលស្គាល់ពីប្រទេសអូស្ត្រាលី', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:18:46', '2026-03-29 18:32:33'),
-  (6, 'PAMA', 'school_rounded', '/uploads/academic_programs/prog_4dd9bddadf.jpg', '0xFF565656', '0xFFFF6500', 2, 1, 'កម្មវិធីប៉ាម៉ាគិតលេខរហ័សជួយឱ្យសិស្សឆ្លាត ចូលចិត្តរៀនគណិតវិទ្យានិងបង្កើតបំណិនគិតស៊ីជម្រៅ។', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:19:10', '2026-03-29 18:32:27'),
-  (7, 'Brain Scan', 'school_rounded', '/uploads/academic_programs/prog_4958dbcdf1.jpg', '0xFFFF5757', '0xFF007FEE', 5, 1, 'Brain Scan ជួយឱ្យកុមារទទួលបាននូវក្ដីស្រមៃត្រូវ ការអប់រំត្រូវ រៀនត្រូវ គិតត្រូវ ធ្វើត្រូវ ជ្រើសរើសជំនាញត្រូវ និងរស់ក្នុងជីវិតរឹងមាំរីករាយលេចធ្លោ។', '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:19:55', '2026-03-29 18:32:44'),
-  (8, 'Techcademy', 'school_rounded', '/uploads/academic_programs/prog_eb3ccd22fb.jpg', '0xFF8F00A6', '0xFFE7B0FF', 3, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:21:35', '2026-03-29 18:32:31'),
-  (9, 'Computer', 'school_rounded', '/uploads/academic_programs/prog_242b642068.jpg', '0xFF00589F', '0xFF008FFF', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:22:02', '2026-03-10 07:35:40'),
-  (10, 'Karate', 'school_rounded', '/uploads/academic_programs/prog_fdbac4589c.jpg', '0xFFFFD3D3', '0xFFFF686B', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:22:28', '2026-03-10 07:35:51'),
-  (11, 'ថ្នាក់បំប៉ន', 'category', '/uploads/academic_programs/prog_4d163f62a2.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:56:13', '2026-03-10 07:36:09'),
-  (12, 'GEP', 'menu_book_outlined', '/uploads/academic_programs/prog_0cfb3e22d6.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 08:58:41', '2026-03-10 07:36:19'),
-  (13, 'PAME', 'face_2', '/uploads/academic_programs/prog_9ec0991215.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-03 09:09:07', '2026-03-10 07:36:30'),
-  (14, 'Mermaid', 'school_rounded', '/uploads/academic_programs/prog_6ddf1bd7cc.jpg', '0xFF42A5F5', '0xFF1E88E5', 0, 1, NULL, '093746046', 'info@pamainternationalschool.com', 'https://www.facebook.com/pamainternationalschool', 'https://t.me/pamaisofficial', 'https://www.youtube.com/@pamainternationalschool', 'https://www.facebook.com/pamainternationalschool', NULL, NULL, '2026-03-04 02:34:43', '2026-03-10 07:36:46');
-
--- Preset seed data for `grade` (163 rows)
-INSERT IGNORE INTO `grade` (`id`, `grade_name`, `grade_name_us`, `grade_type_id`, `group_Id`, `program_id`, `branch_id`, `academic_id`, `noted`, `created_at`, `updated_by`, `created_by`, `updated_at`) VALUES
-  (1, 'មត្តេយ្យកម្រិតទាប', 'Kindergarten I', '1,2', 1, 1, 1, 1, '', '2025-05-02 08:45:44', 19, 19, '2025-06-02 02:29:57'),
-  (2, 'មត្តេយ្យកម្រិតមធ្យម', 'Kindergarten II', '1,2,3', 1, 1, 1, 1, '', '2025-05-02 08:47:28', 19, 19, '2025-06-02 02:30:11'),
-  (3, 'មត្តេយ្យកម្រិតខ្ពស់', 'Kindergarten III', '1,2,3', 1, 1, 1, 1, '', '2025-05-02 08:48:03', 19, 19, '2025-06-02 02:30:21'),
-  (4, 'ថ្នាក់ទី១', 'Level  1', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:48:37', 19, 19, '2025-06-02 08:58:24'),
-  (5, 'ថ្នាក់ទី២', 'Level  2', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:48:49', 19, 19, '2025-06-02 08:57:16'),
-  (6, 'ថ្នាក់ទី៣', 'Level  3', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:48:58', 19, 19, '2025-06-02 08:58:57'),
-  (7, 'ថ្នាក់ទី៤', 'Level  4', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:49:06', 19, 19, '2025-06-02 08:59:06'),
-  (8, 'ថ្នាក់ទី៥', 'Level 5', '1,2', 2, 1, 1, 1, '', '2025-05-02 08:49:14', 19, 19, '2025-06-02 08:59:12'),
-  (9, 'មត្តេយ្យកម្រិតទាប', 'Kindergarten I', '4,5,6,7,8,9', 1, 1, 2, 1, '', '2025-05-02 08:49:52', 19, 19, '2025-07-21 06:43:36'),
-  (10, 'មត្តេយ្យកម្រិតមធ្យម', 'Kindergarten II', '4,5,6,7,8,9', 1, 1, 2, 1, '', '2025-05-02 08:50:06', 19, 19, '2025-07-21 06:43:26'),
-  (11, 'មត្តេយ្យកម្រិតខ្ពស់', 'Kindergarten III', '4,5,6,7,8,9', 1, 1, 2, 1, '', '2025-05-02 08:51:25', 19, 19, '2025-07-21 06:43:46'),
-  (12, 'ថ្នាក់ទី១', 'Level  1', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:52:29', 19, 19, '2025-07-21 06:43:54'),
-  (13, 'ថ្នាក់ទី២', 'Level  2', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:53:52', 19, 19, '2025-07-21 06:44:03'),
-  (14, 'ថ្នាក់ទី៣', 'Level  3', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:54:09', 19, 19, '2025-07-21 06:44:12'),
-  (15, 'ថ្នាក់ទី៤', 'Level  4', '4,5,6,7,8,9', 2, 1, 2, 1, '', '2025-05-02 08:54:22', 19, 19, '2025-07-21 06:44:22'),
-  (16, 'ថ្នាក់ទី៥', 'Level  5', '4,5,6,7,8', 2, 1, 2, 1, '', '2025-05-02 08:54:31', 19, 19, '2025-07-21 06:44:33'),
-  (17, 'ថ្នាក់ទី៦', 'Level  6', '4,5,7,8', 2, 1, 2, 1, '', '2025-05-02 08:54:38', 19, 19, '2025-07-21 06:44:44'),
-  (18, 'ថ្នាក់ទី៧', 'Level  7', '4,5,7,8', 3, 1, 2, 1, '', '2025-05-02 08:55:33', 19, 19, '2025-07-21 06:44:52'),
-  (19, 'ថ្នាក់ទី៨', 'Level  8', '4,5,7,8', 3, 1, 2, 1, '', '2025-05-02 08:55:55', 19, 19, '2025-07-21 06:45:01'),
-  (20, 'ថ្នាក់ទី៩', 'Level  9', '4,5,7,8', 4, 1, 2, 1, '', '2025-05-02 08:56:07', 19, 19, '2025-07-21 06:45:09'),
-  (21, 'ថ្នាក់ទី១០', 'Level  10', '4,5,7,8', 5, 1, 2, 1, '', '2025-05-02 08:56:18', 19, 19, '2025-08-08 01:13:03'),
-  (22, 'Kindergarten I', 'មត្តេយ្យកម្រិតទាប', '10,11,12,13', 6, 3, 1, 1, '', '2025-05-02 08:57:00', 19, 19, '2025-07-21 03:01:23'),
-  (23, 'Kindergarten II', 'មត្តេយ្យកម្រិតមធ្យម', '10,11,12,13', 6, 3, 1, 1, '', '2025-05-02 08:57:13', 19, 19, '2025-07-21 03:02:03'),
-  (24, 'Pre-Primary', '', '19,20,22,23', 7, 2, 1, 1, '', '2025-05-02 08:58:46', 19, 19, '2025-07-21 03:53:58'),
-  (25, 'Year 1', 'ថ្នាក់ទី១', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:04', 19, 19, '2025-07-21 03:53:48'),
-  (26, 'Year 2', 'ថ្នាក់ទី២', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:10', 19, 19, '2025-07-21 03:53:37'),
-  (27, 'Year 3', 'ថ្នាក់ទី៣', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:16', 19, 19, '2025-07-21 03:53:28'),
-  (28, 'Year 4', 'ថ្នាក់ទី៤', '19,20,22,23', 8, 2, 1, 1, '', '2025-05-02 08:59:22', 19, 19, '2025-07-21 03:53:13'),
-  (29, 'Kindergarten I', 'មត្តេយ្យកម្រិតទាប', '14,15,16,17,18', 6, 3, 2, 1, '', '2025-05-02 08:59:54', 19, 19, '2025-07-21 06:47:19'),
-  (30, 'Kindergarten II', 'មត្តេយ្យកម្រិតមធ្យម', '14,15,16,17,18', 6, 3, 2, 1, '', '2025-05-02 09:00:57', 19, 19, '2025-07-21 06:47:26'),
-  (31, 'Pre-Primary', '', '46,47,48,49', 7, 2, 2, 1, '', '2025-05-02 09:02:37', 19, 19, '2025-07-21 06:45:40'),
-  (32, 'Year 1', 'ថ្នាក់ទី១', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:01', 19, 19, '2025-07-21 06:45:50'),
-  (33, 'Year 2', 'ថ្នាក់ទី២', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:12', 19, 19, '2025-07-21 06:46:00'),
-  (34, 'Year 3', 'ថ្នាក់ទី៣', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:19', 19, 19, '2025-07-21 06:46:10'),
-  (35, 'Year 4', 'ថ្នាក់ទី៤', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:24', 19, 19, '2025-07-21 06:46:18'),
-  (36, 'Year 5', 'ថ្នាក់ទី៥', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:29', 19, 19, '2025-07-21 06:46:27'),
-  (37, 'Year 6', 'ថ្នាក់ទី៦', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:34', 19, 19, '2025-07-21 06:46:36'),
-  (38, 'Year 7', 'ថ្នាក់ទី៧', '46,47,48,49', 8, 2, 2, 1, '', '2025-05-02 09:03:40', 19, 19, '2025-07-21 06:46:47'),
-  (39, 'Year 8', 'ថ្នាក់ទី៨', '46,49,48,47', 8, 2, 2, 1, '', '2025-05-02 09:03:46', 19, 19, '2025-07-21 06:47:00'),
-  (40, 'មត្តេយ្យទាប', 'Kindergarten I', '24,51', 10, 1, 1, 2, '', '2025-06-09 02:52:45', 19, 19, '2025-10-07 02:59:23'),
-  (41, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '24,51', 10, 1, 1, 2, '', '2025-06-09 02:53:09', 19, 19, '2025-10-07 02:59:13'),
-  (42, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '24,51,52', 10, 1, 1, 2, '', '2025-06-09 02:53:27', 19, 19, '2025-10-07 02:58:45'),
-  (43, 'ថ្នាក់ទី១', 'Level 1', '24,51,52', 11, 1, 1, 2, '', '2025-06-09 02:54:03', 19, 19, '2025-08-08 02:34:28'),
-  (44, 'ថ្នាក់ទី២', 'Level 2', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:17', 19, 19, '2025-08-08 02:34:36'),
-  (45, 'ថ្នាក់ទី៣', 'Level 3', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:28', 19, 19, '2025-08-08 02:34:47'),
-  (46, 'ថ្នាក់ទី៤', 'Level 4', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:39', 19, 19, '2025-08-08 02:34:53'),
-  (47, 'ថ្នាក់ទី៥', 'Level 5', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:54:52', 19, 19, '2025-08-08 02:05:00'),
-  (48, 'ថ្នាក់ទី៦', 'Level 6', '24,51', 11, 1, 1, 2, '', '2025-06-09 02:55:09', 19, 19, '2025-08-08 02:34:59'),
-  (52, 'មត្តេយ្យទាប', 'Kindergarten I', '27,28,30,31', 10, 1, 2, 2, '', '2025-06-09 02:57:56', 19, 19, '2025-10-07 03:00:04'),
-  (53, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '27,28,30,31', 10, 1, 2, 2, '', '2025-06-09 02:58:06', 19, 19, '2025-10-07 02:59:51'),
-  (54, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '27,28,29,30,31', 10, 1, 2, 2, '', '2025-06-09 02:58:38', 19, 19, '2025-10-07 02:59:39'),
-  (55, 'ថ្នាក់ទី១', 'Level 1', '27,28,30,31', 11, 1, 2, 2, '', '2025-06-09 02:59:05', 19, 19, '2025-08-08 02:35:40'),
-  (56, 'ថ្នាក់ទី២', 'Level 2', '27,28,30,31', 11, 1, 2, 2, '', '2025-06-09 02:59:24', 19, 19, '2025-08-08 02:36:04'),
-  (57, 'ថ្នាក់ទី៣', 'Level 3', '27,30', 11, 1, 2, 2, '', '2025-06-09 02:59:35', 19, 19, '2025-08-08 02:36:11'),
-  (58, 'ថ្នាក់ទី៤', 'Level 4', '27,30', 11, 1, 2, 2, '', '2025-06-09 02:59:44', 19, 19, '2025-08-08 02:36:17'),
-  (59, 'ថ្នាក់ទី៥', 'Level 5', '27,30', 11, 1, 2, 2, '', '2025-06-09 02:59:54', 19, 19, '2025-08-08 02:36:24'),
-  (60, 'ថ្នាក់ទី៦', 'Level 6', '27,30', 11, 1, 2, 2, '', '2025-06-09 03:00:03', 19, 19, '2025-08-08 02:36:32'),
-  (63, 'ថ្នាក់ទី៩', 'Level 9', '27,30', 13, 1, 2, 2, '', '2025-06-09 03:01:09', 19, 19, '2025-08-08 02:36:50'),
-  (67, 'Kindergarten I', 'មត្តេយ្យទាប', '37,38,39,40,41', 15, 3, 2, 2, '', '2025-06-09 03:05:12', 19, 19, '2025-10-07 03:05:08'),
-  (68, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '37,38,39,40,41', 15, 3, 2, 2, '', '2025-06-09 03:05:30', 19, 19, '2025-10-07 03:05:18'),
-  (69, 'Pre-Primary', '', '44,45,66,67', 16, 2, 2, 2, '', '2025-06-09 03:05:51', 19, 19, '2025-08-29 03:08:10'),
-  (70, 'Year 1', 'ថ្នាក់ទី១', '44,66', 17, 2, 2, 2, '', '2025-06-09 03:06:04', 19, 19, '2025-08-08 02:29:23'),
-  (72, 'Year 3', 'ថ្នាក់ទី៣', '44,66', 17, 2, 2, 2, '', '2025-06-09 03:07:08', 19, 19, '2025-08-08 02:31:25'),
-  (73, 'Year 4', 'ថ្នាក់ទី៤', '44,66', 17, 2, 2, 2, '', '2025-06-09 03:07:22', 19, 19, '2025-08-08 02:31:45'),
-  (78, 'ត្រៀមមត្តេយ្យ', 'Pre-Kindergarten', '1,2', 1, 1, 1, 1, '', '2025-06-09 03:20:54', 19, 19, '2025-06-09 03:20:54'),
-  (79, 'Kindergarten I', 'មត្តេយ្យទាប', '33,35', 15, 3, 1, 2, '', '2025-06-09 03:45:51', 19, 19, '2025-10-07 02:58:09'),
-  (80, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '33,35', 15, 3, 1, 2, '', '2025-06-09 03:46:03', 19, 19, '2025-10-07 02:58:30'),
-  (81, 'Pre-Primary', '', '42,43', 16, 2, 1, 2, '', '2025-06-09 03:46:21', 19, 19, '2025-08-08 01:26:14'),
-  (82, 'Year 1', 'ថ្នាក់ទី១', '42,43,68', 17, 2, 1, 2, '', '2025-06-09 03:46:42', 19, 19, '2025-10-28 09:33:52'),
-  (83, 'Year 2', 'ថ្នាក់ទី២', '42,43', 17, 2, 1, 2, '', '2025-06-09 03:46:51', 19, 19, '2025-08-08 01:35:36'),
-  (84, 'Year 3', 'ថ្នាក់ទី៣', '42,43', 17, 2, 1, 2, '', '2025-06-09 03:47:01', 19, 19, '2025-08-08 01:40:02'),
-  (85, 'Year 4', 'ថ្នាក់ទី៤', '42,43', 17, 2, 1, 2, '', '2025-06-09 03:47:11', 19, 19, '2025-08-08 01:42:10'),
-  (92, 'Year 11', 'ថ្នាក់ទី១១', '46,47,48,49', 9, 2, 2, 1, '', '2025-07-10 02:45:46', 19, 19, '2025-07-21 06:47:42'),
-  (93, 'Year 12', 'ថ្នាក់ទី១២', '22,23', 9, 2, 2, 1, '', '2025-07-10 02:46:24', 19, 19, '2025-07-10 02:46:24'),
-  (96, 'ត្រៀមមតេ្តយ្យ', 'Pre-Kindergarten', '4,5,7,8', 1, 1, 2, 1, '', '2025-07-10 07:12:49', 19, 87, '2025-07-21 06:48:11'),
-  (97, 'ត្រៀមមត្តេយ្យ', 'Pre-Kindergarten', '54,56', 10, 1, 3, 2, '', '2025-08-05 02:39:44', 19, 19, '2025-08-05 02:43:51'),
-  (98, 'មត្តេយ្យទាប', 'Kindergarten I', '54,55,56,57', 10, 1, 3, 2, '', '2025-08-05 02:40:29', 19, 19, '2025-10-07 03:00:47'),
-  (99, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '54,55,56,57', 10, 1, 3, 2, '', '2025-08-05 02:41:54', 19, 19, '2025-10-07 03:00:37'),
-  (100, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '54,55,56,57', 10, 1, 3, 2, '', '2025-08-05 02:43:17', 19, 19, '2025-10-07 03:00:27'),
-  (101, 'ថ្នាក់ទី១', 'Level 1', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-05 02:44:39', 58, 19, '2026-06-25 07:52:32'),
-  (102, 'ថ្នាក់ទី២', 'Level 2', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-05 02:45:00', 58, 19, '2026-06-25 07:52:59'),
-  (103, 'ថ្នាក់ទី៣', 'Level 3', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-05 02:45:14', 58, 19, '2026-06-25 07:52:47'),
-  (104, 'ថ្នាក់ទី៥', 'Level 5', '54,56', 11, 1, 3, 2, '', '2025-08-05 02:47:35', 58, 19, '2026-06-25 07:51:46'),
-  (105, 'ថ្នាក់ទី៦', 'Level 6', '54,56', 11, 1, 3, 2, '', '2025-08-05 02:47:47', 58, 19, '2026-06-25 07:43:42'),
-  (106, 'ថ្នាក់ទី៧', 'Level 7', '54,56', 12, 1, 3, 2, '', '2025-08-05 02:48:24', 58, 19, '2026-06-25 07:43:49'),
-  (107, 'ថ្នាក់ទី៨', 'Level 8', '54,56', 12, 1, 3, 2, '', '2025-08-05 02:48:37', 58, 19, '2026-06-25 07:43:53'),
-  (108, 'ថ្នាក់ទី៩', 'Level 9', '54,56', 13, 1, 3, 2, '', '2025-08-05 02:49:01', 58, 19, '2026-06-25 07:43:59'),
-  (109, 'ថ្នាក់ទី១០', 'Level 10', '54,56', 14, 1, 3, 2, '', '2025-08-05 02:54:52', 58, 19, '2026-06-25 07:52:15'),
-  (112, 'Kindergarten I', 'មត្តេយ្យទាប', '62,63,64,65', 15, 3, 3, 2, '', '2025-08-05 03:04:20', 19, 19, '2025-10-07 03:04:44'),
-  (113, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '62,63,64,65', 15, 3, 3, 2, '', '2025-08-05 03:04:54', 19, 19, '2025-10-07 03:04:53'),
-  (114, 'Year 1', 'ថ្នាក់ទី១', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:06:46', 19, 19, '2025-08-05 03:06:46'),
-  (115, 'Year 2', 'ថ្នាក់ទី២', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:06:58', 19, 19, '2025-08-05 03:06:58'),
-  (116, 'Year 3', 'ថ្នាក់ទី៣', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:07:09', 19, 19, '2025-08-05 03:07:09'),
-  (117, 'Year 4', 'ថ្នាក់ទី៤', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:07:26', 19, 19, '2025-08-05 03:07:26'),
-  (118, 'Year 5', 'ថ្នាក់ទី៥', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:07:40', 19, 19, '2025-08-05 03:07:40'),
-  (119, 'Year 6', 'ថ្នាក់ទី៧', '58,59,60,61', 17, 2, 3, 2, '', '2025-08-05 03:07:52', 19, 19, '2025-08-05 03:10:34'),
-  (120, 'Year 7', 'ថ្នាក់ទី៧', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:08:49', 19, 19, '2025-08-05 03:08:49'),
-  (121, 'Year 8', 'ថ្នាក់ទី៨', '60,59,58,61', 17, 2, 3, 2, '', '2025-08-05 03:09:02', 19, 19, '2025-08-05 03:09:02'),
-  (126, 'Pre-Primary', '', '58,59,60,61', 16, 2, 3, 2, '', '2025-08-06 02:34:36', 19, 19, '2025-08-06 02:34:36'),
-  (127, 'ថ្នាក់ទី៤', 'Level 4', '54,55,56,57', 11, 1, 3, 2, '', '2025-08-06 07:16:45', 58, 19, '2026-06-25 07:51:55');
-
-INSERT IGNORE INTO `grade` (`id`, `grade_name`, `grade_name_us`, `grade_type_id`, `group_Id`, `program_id`, `branch_id`, `academic_id`, `noted`, `created_at`, `updated_by`, `created_by`, `updated_at`) VALUES
-  (128, 'មត្តេយ្យទាប', 'Kindergarten I', '69,70,72,73', 28, 1, 1, 16, '', '2026-06-11 01:13:08', 58, 58, '2026-06-11 01:13:08'),
-  (129, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '69,70,72,73', 28, 1, 1, 16, '', '2026-06-11 01:15:24', 58, 58, '2026-06-11 01:15:24'),
-  (130, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '69,70,72,73', 28, 1, 1, 16, '', '2026-06-11 01:15:34', 58, 58, '2026-06-11 01:15:34'),
-  (132, 'ថ្នាក់ទី១', 'Level 1', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:31:59', 58, 58, '2026-06-11 01:31:59'),
-  (133, 'ថ្នាក់ទី២', 'Level 2', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:00', 58, 58, '2026-06-11 01:32:00'),
-  (134, 'ថ្នាក់ទី៣', 'Level 3', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:02', 58, 58, '2026-06-11 01:32:02'),
-  (135, 'ថ្នាក់ទី៤', 'Level 4', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:04', 58, 58, '2026-06-11 01:32:04'),
-  (136, 'ថ្នាក់ទី៥', 'Level 5', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:05', 58, 58, '2026-06-11 01:32:05'),
-  (137, 'ថ្នាក់ទី៦', 'Level 6', '69,70,72,73', 29, 1, 1, 16, '', '2026-06-11 01:32:06', 58, 58, '2026-06-11 01:32:06'),
-  (138, 'Pre-Primary', 'Pre-Primary', '81,84,82,85', 34, 2, 1, 16, '', '2026-06-11 01:34:48', 58, 58, '2026-06-11 01:34:48'),
-  (139, 'Year 1', 'ថ្នាក់ទី១', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:36', 58, 58, '2026-06-11 01:35:36'),
-  (140, 'Year 2', 'ថ្នាក់ទី២', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:38', 58, 58, '2026-06-11 01:35:38'),
-  (141, 'Year 3', 'ថ្នាក់ទី៣', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:40', 58, 58, '2026-06-11 01:35:40'),
-  (142, 'Year 4', 'ថ្នាក់ទី៤', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:41', 58, 58, '2026-06-11 01:35:41'),
-  (143, 'Year 5', 'ថ្នាក់ទី៥', '81,84,82,83,85,86', 35, 2, 1, 16, '', '2026-06-11 01:35:58', 58, 58, '2026-06-11 01:35:58'),
-  (144, 'Kindergarten I', 'មត្តេយ្យទាប', '75,76,78,79', 33, 3, 1, 16, '', '2026-06-11 01:36:49', 58, 58, '2026-06-11 01:36:49'),
-  (145, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '75,76,78,79', 33, 3, 1, 16, '', '2026-06-11 01:37:02', 58, 58, '2026-06-11 01:37:02'),
-  (146, 'Pre-Primary', 'Pre-Primary', '87,88,90,91,89,92', 34, 2, 2, 16, '', '2026-06-11 01:38:52', 58, 58, '2026-06-11 01:38:52'),
-  (147, 'Year 1', 'ថ្នាក់ទី១', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:16', 58, 58, '2026-06-11 01:39:16'),
-  (148, 'Year 2', 'ថ្នាក់ទី២', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:18', 58, 58, '2026-06-11 01:39:18'),
-  (149, 'Year 3', 'ថ្នាក់ទី៣', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:19', 58, 58, '2026-06-11 01:39:19'),
-  (150, 'Year 4', 'ថ្នាក់ទី៤', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:22', 58, 58, '2026-06-11 01:39:22'),
-  (151, 'Year 5', 'ថ្នាក់ទី៥', '87,88,90,91,89,92', 35, 2, 2, 16, '', '2026-06-11 01:39:24', 58, 58, '2026-06-11 01:39:24'),
-  (152, 'Kindergarten I', 'មត្តេយ្យទាប', '93,94,95,96,97,98', 33, 3, 2, 16, '', '2026-06-11 01:40:37', 58, 58, '2026-06-11 01:40:37'),
-  (153, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '93,94,95,96,97,98', 33, 3, 2, 16, '', '2026-06-11 01:40:43', 58, 58, '2026-06-11 01:40:43'),
-  (154, 'មត្តេយ្យទាប', 'Kindergarten I', '99,100,101,102,103,104', 28, 1, 2, 16, '', '2026-06-11 01:41:58', 58, 58, '2026-06-11 01:41:58'),
-  (155, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '99,100,101,102,103,104', 28, 1, 2, 16, '', '2026-06-11 01:42:08', 58, 58, '2026-06-11 01:42:08'),
-  (156, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '99,100,101,102,103,104', 28, 1, 2, 16, '', '2026-06-11 01:42:13', 58, 58, '2026-06-11 01:42:13'),
-  (157, 'ថ្នាក់ទី១', 'Level 1', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:44:41', 58, 58, '2026-06-11 01:44:41'),
-  (158, 'ថ្នាក់ទី២', 'Level 2', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:44:46', 58, 58, '2026-06-11 01:44:46'),
-  (159, 'ថ្នាក់ទី៣', 'Level 3', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:03', 58, 58, '2026-06-11 01:45:03'),
-  (160, 'ថ្នាក់ទី៤', 'Level 4', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:05', 58, 58, '2026-06-11 01:45:05'),
-  (161, 'ថ្នាក់ទី៥', 'Level 5', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:06', 58, 58, '2026-06-11 01:45:06'),
-  (162, 'ថ្នាក់ទី៦', 'Level 6', '99,100,101,102,103,104', 29, 1, 2, 16, '', '2026-06-11 01:45:08', 58, 58, '2026-06-11 01:45:08'),
-  (163, 'Pre-Primary', 'Pre-Primary', '115,116,118,119', 34, 2, 3, 16, '', '2026-06-11 01:46:26', 58, 58, '2026-06-11 01:46:26'),
-  (164, 'Year 1', 'ថ្នាក់ទី១', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:20', 58, 58, '2026-06-11 01:47:20'),
-  (165, 'Year 2', 'ថ្នាក់ទី២', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:24', 58, 58, '2026-06-11 01:47:24'),
-  (166, 'Year 3', 'ថ្នាក់ទី៣', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:26', 58, 58, '2026-06-11 01:47:26'),
-  (167, 'Year 4', 'ថ្នាក់ទី៤', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:26', 58, 58, '2026-06-11 01:47:26'),
-  (168, 'Year 5', 'ថ្នាក់ទី៥', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:27', 58, 58, '2026-06-11 01:47:27'),
-  (169, 'Year 6', 'ថ្នាក់ទី៦', '115,116,118,119,117,120', 35, 2, 3, 16, '', '2026-06-11 01:47:28', 58, 58, '2026-06-11 01:47:28'),
-  (170, 'Year 7', 'ថ្នាក់ទី៧', '115,116,118,119', 35, 2, 3, 16, '', '2026-06-11 01:47:29', 58, 58, '2026-06-11 01:49:37'),
-  (171, 'Year 8', 'ថ្នាក់ទី៨', '115,116,118,119', 35, 2, 3, 16, '', '2026-06-11 01:47:30', 58, 58, '2026-06-11 01:49:30'),
-  (172, 'Year 9', 'ថ្នាក់ទី៩', '115,116,118,119', 35, 2, 3, 16, '', '2026-06-11 01:47:30', 58, 58, '2026-06-11 01:49:23'),
-  (173, 'Kindergarten I', 'មត្តេយ្យទាប', '121,122,124,125,123,126', 33, 3, 3, 16, '', '2026-06-11 01:51:48', 58, 58, '2026-06-11 01:51:48'),
-  (174, 'Kindergarten II', 'មត្តេយ្យមធ្យម', '121,122,124,125,123,126', 33, 3, 3, 16, '', '2026-06-11 01:51:54', 58, 58, '2026-06-11 01:51:54'),
-  (175, 'មត្តេយ្យទាប', 'Kindergarten I', '109,110,111,112,113,114', 28, 1, 3, 16, '', '2026-06-11 01:53:35', 58, 58, '2026-06-11 01:53:35'),
-  (176, 'មត្តេយ្យមធ្យម', 'Kindergarten II', '109,110,111,112,113,114', 28, 1, 3, 16, '', '2026-06-11 01:53:42', 58, 58, '2026-06-11 01:53:42'),
-  (177, 'មត្តេយ្យខ្ពស់', 'Kindergarten III', '109,110,111,112,113,114', 28, 1, 3, 16, '', '2026-06-11 01:53:49', 58, 58, '2026-06-11 01:53:49'),
-  (178, 'ថ្នាក់ទី១', 'Level 1', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:23', 58, 58, '2026-06-25 07:55:59'),
-  (179, 'ថ្នាក់ទី២', 'Level 2', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:25', 58, 58, '2026-06-25 07:56:18'),
-  (180, 'ថ្នាក់ទី៣', 'Level 3', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:26', 58, 58, '2026-06-25 07:56:22'),
-  (181, 'ថ្នាក់ទី៤', 'Level 4', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:28', 58, 58, '2026-06-25 07:56:26'),
-  (182, 'ថ្នាក់ទី៥', 'Level 5', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:29', 58, 58, '2026-06-25 07:56:30'),
-  (183, 'ថ្នាក់ទី៦', 'Level 6', '109,110,111,112,113,114', 29, 1, 3, 16, '', '2026-06-11 01:54:30', 58, 58, '2026-06-25 07:56:34'),
-  (184, 'ថ្នាក់ទី៧', 'Level 7', '109,110,111,112,113,114', 30, 1, 3, 16, '', '2026-06-11 01:54:39', 58, 58, '2026-06-25 07:56:39'),
-  (185, 'ថ្នាក់ទី៨', 'Level 8', '109,110,111,112,113,114', 30, 1, 3, 16, '', '2026-06-11 01:54:41', 58, 58, '2026-06-25 07:56:43'),
-  (186, 'ថ្នាក់ទី៩', 'Level 9', '109,110,111,112,113,114', 31, 1, 3, 16, '', '2026-06-11 01:54:45', 58, 58, '2026-06-25 07:56:48'),
-  (187, 'ថ្នាក់ទី១០', 'Level 10', '109,110,111,112,113,114', 32, 1, 3, 16, '', '2026-06-11 01:54:53', 58, 58, '2026-06-25 07:56:05'),
-  (188, 'ថ្នាក់ទី១១', 'Level 11', '109,110,111,112,113,114', 32, 1, 3, 16, '', '2026-06-11 01:54:55', 58, 58, '2026-06-25 07:56:12'),
-  (189, 'Year 10', 'ថ្នាក់ទី១០', '115,116,118,119', 35, 2, 3, 16, '', '2026-08-03 09:20:16', 19, 19, '2026-08-03 09:20:16'),
-  (190, 'ត្រៀមមតេ្តយ្យ', 'Pre-Kindergarten', '99,102', 28, 1, 2, 16, '', '2026-08-27 04:35:54', 19, 19, '2026-08-27 04:35:54'),
-  (191, 'ត្រៀមមត្តេយ្យ', 'Pre-Kindergarten', '109,112', 28, 1, 3, 16, '', '2026-08-27 06:19:17', 87, 87, '2026-08-27 06:19:17');
-
--- Preset seed data for `grade_group` (27 rows)
-INSERT IGNORE INTO `grade_group` (`id`, `group_name`, `academic_id`, `program_id`, `multiplier`, `model_cer`, `noted`, `updated_by`, `created_by`, `created_at`, `updated_at`) VALUES
-  (1, 'មត្តេយ្យសិក្សា', 1, 1, '6.00', 1, '', 19, 19, '2025-05-02 08:12:01', '2025-05-02 08:12:01'),
-  (2, 'បឋមសិក្សា', 1, 1, '11.00', 1, '', 19, 19, '2025-05-02 08:12:38', '2025-05-02 08:12:38'),
-  (3, 'អនុវិទ្យាល័យ', 1, 1, '18.00', 1, '', 19, 19, '2025-05-02 08:13:47', '2025-05-02 08:13:47'),
-  (4, 'អនុវិទ្យាល័យ ថ្នាក់ទី៩', 1, 1, '8.40', 1, 'ថ្នាក់ទី៩', 58, 19, '2025-05-02 08:14:29', '2025-05-07 13:37:04'),
-  (5, 'វិទ្យាល័យ', 1, 1, '8.40', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:15:33', '2025-09-01 06:49:02'),
-  (6, 'Kindergarten', 1, 3, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:16:37', '2025-09-01 06:49:07'),
-  (7, 'Primary', 1, 2, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:18:18', '2025-09-01 06:49:15'),
-  (8, 'Secondary', 1, 2, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:18:33', '2025-09-01 06:49:17'),
-  (9, 'High School', 1, 2, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-02 08:18:56', '2025-09-01 06:49:20'),
-  (10, 'មត្តេយ្យសិក្សា', 2, 1, '6.00', 1, '', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
-  (11, 'បឋមសិក្សា', 2, 1, '11.00', 1, '', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
-  (12, 'អនុវិទ្យាល័យ', 2, 1, '18.00', 1, '', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
-  (13, 'អនុវិទ្យាល័យ ថ្នាក់ទី៩', 2, 1, '8.40', 1, 'ថ្នាក់ទី៩', 19, 19, '2025-05-27 11:38:29', '2025-05-27 11:38:29'),
-  (14, 'វិទ្យាល័យ', 2, 1, '17.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-10-06 08:02:19'),
-  (15, 'Kindergarten', 2, 3, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:34'),
-  (16, 'Primary', 2, 2, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:37'),
-  (17, 'Secondary', 2, 2, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:40'),
-  (18, 'High School', 2, 2, '7.00', 1, 'មិនអាចកំណត់បាន', 58, 19, '2025-05-27 11:38:29', '2025-09-01 06:46:43'),
-  (28, 'មត្តេយ្យសិក្សា', 16, 1, '6.00', 1, '', 58, 58, '2026-06-11 00:37:58', '2026-06-11 00:37:58'),
-  (29, 'បឋមសិក្សា', 16, 1, '11.00', 1, '', 58, 58, '2026-06-11 00:38:28', '2026-06-11 00:38:28'),
-  (30, 'អនុវិទ្យាល័យ', 16, 1, '18.00', 1, '', 58, 58, '2026-06-11 00:38:53', '2026-06-11 00:38:53'),
-  (31, 'អនុវិទ្យាល័យ ថ្នាក់ទី៩', 16, 1, '8.40', 1, '', 58, 58, '2026-06-11 00:39:15', '2026-06-11 00:39:15'),
-  (32, 'វិទ្យាល័យ', 16, 1, '17.00', 1, '', 58, 58, '2026-06-11 00:39:30', '2026-06-11 00:39:30'),
-  (33, 'Kindergarten', 16, 3, '7.00', 1, '', 58, 58, '2026-06-11 00:39:44', '2026-06-11 00:39:44'),
-  (34, 'Primary', 16, 2, '7.00', 1, '', 58, 58, '2026-06-11 00:39:56', '2026-06-11 00:39:56'),
-  (35, 'Secondary', 16, 2, '7.00', 1, '', 58, 58, '2026-06-11 00:40:03', '2026-06-11 00:40:03'),
-  (36, 'High School', 16, 2, '7.00', 1, '', 58, 58, '2026-06-11 00:40:15', '2026-06-11 00:40:15');
-
--- Preset seed data for `grade_type` (121 rows)
-INSERT IGNORE INTO `grade_type` (`id`, `type_name`, `program_id`, `branch_id`, `academic_id`, `shift_id`, `noted`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-  (1, '"ក១"', 1, 1, 1, 1, '', 19, 19, '2025-05-02 08:20:19', '2025-07-21 03:32:58'),
-  (2, '"ខ១"', 1, 1, 1, 2, '', 19, 19, '2025-05-02 08:20:31', '2025-07-21 03:34:04'),
-  (3, '"ខ២"', 1, 1, 1, 2, '', 19, 19, '2025-05-02 08:20:38', '2025-07-21 03:34:18'),
-  (4, '"គ១"', 1, 2, 1, 1, '', 19, 19, '2025-05-02 08:20:56', '2025-07-21 03:34:29'),
-  (5, '"គ២"', 1, 2, 1, 1, '', 19, 19, '2025-05-02 08:21:09', '2025-07-21 03:34:42'),
-  (6, '"គ៣"', 1, 2, 1, 1, '', 19, 19, '2025-05-02 08:21:21', '2025-07-21 03:34:56'),
-  (7, '"ឃ១"', 1, 2, 1, 2, '', 19, 19, '2025-05-02 08:21:30', '2025-07-21 03:35:18'),
-  (8, '"ឃ២"', 1, 2, 1, 2, '', 19, 19, '2025-05-02 08:21:40', '2025-07-21 03:35:32'),
-  (9, '"ឃ៣"', 1, 2, 1, 2, '', 19, 19, '2025-05-02 08:21:55', '2025-07-21 03:36:28'),
-  (10, '"A1"', 3, 1, 1, 1, '', 19, 58, '2025-05-02 08:22:14', '2025-08-26 01:38:52'),
-  (11, '"A2"', 3, 1, 1, 1, '', 19, 58, '2025-05-02 08:22:19', '2025-08-26 01:39:03'),
-  (12, '"B1"', 3, 1, 1, 2, '', 19, 58, '2025-05-02 08:22:29', '2025-08-26 01:39:15'),
-  (13, '"B2"', 3, 1, 1, 2, '', 19, 58, '2025-05-02 08:22:35', '2025-08-26 01:39:28'),
-  (14, 'C"1"', 3, 2, 1, 1, '', 19, 19, '2025-05-02 08:22:44', '2025-07-21 03:27:20'),
-  (15, 'C"2"', 3, 2, 1, 1, '', 19, 19, '2025-05-02 08:22:51', '2025-07-21 03:27:29'),
-  (16, 'C"3"', 3, 2, 1, 1, '', 19, 19, '2025-05-02 08:23:00', '2025-07-21 03:30:13'),
-  (17, 'D"1"', 3, 2, 1, 2, '', 19, 19, '2025-05-02 08:23:05', '2025-07-21 03:30:32'),
-  (18, 'D"2"', 3, 2, 1, 2, '', 19, 19, '2025-05-02 08:23:12', '2025-07-21 03:31:03'),
-  (19, '"A1"', 2, 1, 1, 1, '', 19, 58, '2025-05-02 08:36:37', '2025-08-26 01:40:04'),
-  (20, '"A2"', 2, 1, 1, 1, '', 19, 58, '2025-05-02 08:37:11', '2025-08-26 01:41:09'),
-  (22, '"B1"', 2, 1, 1, 2, '', 19, 58, '2025-05-02 09:01:59', '2025-08-26 01:40:14'),
-  (23, '"B2"', 2, 1, 1, 2, '', 19, 58, '2025-05-02 09:02:05', '2025-08-26 01:40:24'),
-  (24, '"ក១"', 1, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-20 09:08:49'),
-  (25, '"ក២"', 1, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-20 09:08:57'),
-  (26, '"ក៣"', 1, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-20 09:09:01'),
-  (27, '"គ១"', 1, 2, 2, 1, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:47:44'),
-  (28, '"គ២"', 1, 2, 2, 1, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:56:43'),
-  (29, '"គ៣"', 1, 2, 2, 1, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:56:57'),
-  (30, '"ឃ១"', 1, 2, 2, 2, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:57:11'),
-  (31, '"ឃ២"', 1, 2, 2, 2, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:57:22'),
-  (32, '"ឃ៣"', 1, 2, 2, 2, '', 19, 19, '2025-06-09 09:50:56', '2025-07-22 06:57:33'),
-  (33, '"A1"', 3, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:45:40'),
-  (34, '"A2"', 3, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:45:48'),
-  (35, '"B1"', 3, 1, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:45:57'),
-  (36, '"B2"', 3, 1, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:46:06'),
-  (37, '"C1"', 3, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:49:30'),
-  (38, '"C2"', 3, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:49:52'),
-  (39, '"C3"', 3, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:08'),
-  (40, '"D1"', 3, 2, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:29'),
-  (41, '"D2"', 3, 2, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:38'),
-  (42, '"A1"', 2, 1, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:46:16'),
-  (43, '"B1"', 2, 1, 2, 2, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:46:42'),
-  (44, '"C1"', 2, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:49:38'),
-  (45, '"C2"', 2, 2, 2, 1, '', 19, 58, '2025-06-09 09:50:56', '2025-08-26 01:50:49'),
-  (46, 'C"1"', 2, 2, 1, 1, NULL, 19, 19, '2025-07-21 06:33:58', '2025-07-21 06:33:58'),
-  (47, 'C"2"', 2, 2, 1, 1, NULL, 19, 19, '2025-07-21 06:34:22', '2025-07-21 06:34:22'),
-  (48, 'D"1"', 2, 2, 1, 2, NULL, 19, 19, '2025-07-21 06:34:38', '2025-07-21 06:34:38'),
-  (49, 'D"2"', 2, 2, 1, 2, NULL, 19, 19, '2025-07-21 06:34:52', '2025-07-21 06:34:52'),
-  (50, '"ក២"', 1, 1, 1, 1, NULL, 19, 19, '2025-07-21 06:36:11', '2025-07-21 06:36:11'),
-  (51, '"ខ១"', 1, 1, 2, 2, NULL, 19, 19, '2025-07-22 06:58:19', '2025-07-22 06:58:19'),
-  (52, '"ខ២"', 1, 1, 2, 2, NULL, 19, 19, '2025-07-22 06:58:39', '2025-07-22 06:58:39'),
-  (53, '"ខ៣"', 1, 1, 2, 2, NULL, 19, 19, '2025-07-22 06:58:51', '2025-07-22 06:58:51'),
-  (54, '"ង១"', 1, 3, 2, 1, '', 19, 19, '2025-08-05 02:25:41', '2025-08-07 03:20:56'),
-  (55, '"ង២"', 1, 3, 2, 1, '', 19, 19, '2025-08-05 02:26:14', '2025-08-07 03:21:01'),
-  (56, '"ច១"', 1, 3, 2, 2, '', 19, 19, '2025-08-05 02:26:34', '2025-08-07 03:21:08'),
-  (57, '"ច២"', 1, 3, 2, 2, '', 19, 19, '2025-08-05 02:26:46', '2025-08-07 03:21:13'),
-  (58, '"E1"', 2, 3, 2, 1, '', 19, 58, '2025-08-05 02:27:33', '2025-08-26 01:47:11'),
-  (59, '"E2"', 2, 3, 2, 1, '', 19, 58, '2025-08-05 02:27:44', '2025-08-26 01:48:28'),
-  (60, '"F1"', 2, 3, 2, 2, '', 19, 58, '2025-08-05 02:27:59', '2025-08-26 01:48:01'),
-  (61, '"F2"', 2, 3, 2, 2, '', 19, 58, '2025-08-05 02:28:08', '2025-08-26 01:48:10'),
-  (62, '"E1"', 3, 3, 2, 1, '', 19, 58, '2025-08-05 02:28:25', '2025-08-26 01:47:20'),
-  (63, '"E2"', 3, 3, 2, 1, '', 19, 58, '2025-08-05 02:28:41', '2025-08-26 01:48:41'),
-  (64, '"F1"', 3, 3, 2, 2, '', 19, 58, '2025-08-05 02:28:46', '2025-08-26 01:48:51'),
-  (65, '"F2"', 3, 3, 2, 2, '', 19, 58, '2025-08-05 02:28:56', '2025-08-26 01:48:58'),
-  (66, '"D1"', 2, 2, 2, 2, '', 19, 58, '2025-08-08 02:28:03', '2025-08-26 01:50:58'),
-  (67, '"D2"', 2, 2, 2, 2, '', 19, 58, '2025-08-08 02:28:14', '2025-08-26 01:51:06'),
-  (68, '"B2"', 2, 1, 2, 2, NULL, 19, 19, '2025-10-28 09:31:34', '2025-10-28 09:31:34'),
-  (69, 'ក១', 1, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:42:26', '2026-06-11 00:42:26'),
-  (70, 'ក២', 1, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:43:07', '2026-06-11 00:43:07'),
-  (71, 'ក៣', 1, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:43:26', '2026-06-11 00:43:26'),
-  (72, 'ខ១', 1, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:43:59', '2026-06-11 00:43:59'),
-  (73, 'ខ២', 1, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:44:05', '2026-06-11 00:44:05'),
-  (74, 'ខ៣', 1, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:44:14', '2026-06-11 00:44:14'),
-  (75, 'A1', 3, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:45:04', '2026-06-11 00:45:04'),
-  (76, 'A2', 3, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:45:16', '2026-06-11 00:45:16'),
-  (77, 'A3', 3, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:45:27', '2026-06-11 00:45:27'),
-  (78, 'B1', 3, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:45:42', '2026-06-11 00:45:42'),
-  (79, 'B2', 3, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:45:48', '2026-06-11 00:45:48'),
-  (80, 'B3', 3, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:45:53', '2026-06-11 00:45:53'),
-  (81, 'A1', 2, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:46:39', '2026-06-11 00:46:39'),
-  (82, 'A2', 2, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:46:47', '2026-06-11 00:46:47'),
-  (83, 'A3', 2, 1, 16, 1, NULL, 58, 58, '2026-06-11 00:46:53', '2026-06-11 00:46:53'),
-  (84, 'B1', 2, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:46:58', '2026-06-11 00:46:58'),
-  (85, 'B2', 2, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:47:03', '2026-06-11 00:47:03'),
-  (86, 'B3', 2, 1, 16, 2, NULL, 58, 58, '2026-06-11 00:47:07', '2026-06-11 00:47:07'),
-  (87, 'C1', 2, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:05', '2026-06-11 00:48:05'),
-  (88, 'C2', 2, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:09', '2026-06-11 00:48:09'),
-  (89, 'C3', 2, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:13', '2026-06-11 00:48:13'),
-  (90, 'D1', 2, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:48:24', '2026-06-11 00:48:24'),
-  (91, 'D2', 2, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:48:31', '2026-06-11 00:48:31'),
-  (92, 'D3', 2, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:48:35', '2026-06-11 00:48:35'),
-  (93, 'C1', 3, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:43', '2026-06-11 00:48:43'),
-  (94, 'C2', 3, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:48:53', '2026-06-11 00:48:53'),
-  (95, 'C3', 3, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:49:03', '2026-06-11 00:49:03'),
-  (96, 'D1', 3, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:49:29', '2026-06-11 00:49:29'),
-  (97, 'D2', 3, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:49:35', '2026-06-11 00:49:35'),
-  (98, 'D3', 3, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:49:40', '2026-06-11 00:49:40'),
-  (99, 'គ១', 1, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:50:28', '2026-06-11 00:50:28'),
-  (100, 'គ២', 1, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:50:32', '2026-06-11 00:50:32'),
-  (101, 'គ៣', 1, 2, 16, 1, NULL, 58, 58, '2026-06-11 00:50:40', '2026-06-11 00:50:40');
-
-INSERT IGNORE INTO `grade_type` (`id`, `type_name`, `program_id`, `branch_id`, `academic_id`, `shift_id`, `noted`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-  (102, 'ឃ១', 1, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:50:56', '2026-06-11 00:50:56'),
-  (103, 'ឃ២', 1, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:51:00', '2026-06-11 00:51:00'),
-  (104, 'ឃ៣', 1, 2, 16, 2, NULL, 58, 58, '2026-06-11 00:51:05', '2026-06-11 00:51:05'),
-  (109, 'ង១', 1, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:08:37', '2026-06-11 01:08:37'),
-  (110, 'ង២', 1, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:08:39', '2026-06-11 01:08:39'),
-  (111, 'ង៣', 1, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:08:40', '2026-06-11 01:08:40'),
-  (112, 'ច១', 1, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:08:54', '2026-06-11 01:08:54'),
-  (113, 'ច២', 1, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:08:55', '2026-06-11 01:08:55'),
-  (114, 'ច៣', 1, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:08:56', '2026-06-11 01:08:56'),
-  (115, 'E1', 2, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:09:46', '2026-06-11 01:09:46'),
-  (116, 'E2', 2, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:09:47', '2026-06-11 01:09:47'),
-  (117, 'E3', 2, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:09:48', '2026-06-11 01:09:48'),
-  (118, 'F1', 2, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:09:57', '2026-06-11 01:09:57'),
-  (119, 'F2', 2, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:09:57', '2026-06-11 01:09:57'),
-  (120, 'F3', 2, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:09:58', '2026-06-11 01:09:58'),
-  (121, 'F1', 3, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:10:12', '2026-06-11 01:10:12'),
-  (122, 'F2', 3, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:10:13', '2026-06-11 01:10:13'),
-  (123, 'F3', 3, 3, 16, 2, NULL, 58, 58, '2026-06-11 01:10:13', '2026-06-11 01:10:13'),
-  (124, 'E1', 3, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:10:21', '2026-06-11 01:10:21'),
-  (125, 'E2', 3, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:10:23', '2026-06-11 01:10:23'),
-  (126, 'E3', 3, 3, 16, 1, NULL, 58, 58, '2026-06-11 01:10:25', '2026-06-11 01:10:25');
-
--- Preset seed data for `grade_scale` (125 rows)
-INSERT IGNORE INTO `grade_scale` (`id`, `grade_group_id`, `academic_id`, `min_marks`, `max_marks`, `us_grade`, `nittes_id`, `scale_discount`, `kh_grade`, `created_at`, `updated_at`, `is_overall`) VALUES
-  (1, 1, 1, '90.00', '100.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 08:24:50', '2025-05-19 08:24:50', 0),
-  (2, 1, 1, '80.00', '89.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 08:52:44', '2025-07-22 02:35:24', 0),
-  (3, 1, 1, '70.00', '79.99', 'C', NULL, NULL, 'ល្អ', '2025-05-19 08:54:11', '2025-07-22 02:35:09', 0),
-  (4, 1, 1, '60.00', '69.99', 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 08:55:09', '2025-07-22 02:34:46', 0),
-  (5, 1, 1, '50.00', '59.99', 'E', NULL, NULL, 'មធ្យម', '2025-05-19 08:56:00', '2025-07-22 02:35:38', 0),
-  (6, 1, 1, '0.00', '49.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 08:58:38', '2025-05-19 09:00:44', 0),
-  (7, 2, 1, '9.00', '10.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 09:02:56', '2025-05-19 09:02:56', 0),
-  (8, 2, 1, '8.00', '8.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 09:03:27', '2025-07-22 02:36:24', 0),
-  (9, 2, 1, '7.00', '7.99', 'C', NULL, NULL, 'ល្អ', '2025-05-19 09:06:58', '2025-08-22 04:22:11', 0),
-  (10, 11, 2, '6.00', '6.99', 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 09:07:29', '2025-08-22 04:52:45', 0),
-  (11, 2, 1, '0.00', '4.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 09:08:22', '2025-05-19 09:08:22', 0),
-  (12, 3, 1, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 09:09:33', '2025-05-20 01:12:56', 0),
-  (13, 3, 1, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 09:10:46', '2025-05-19 10:56:50', 0),
-  (14, 3, 1, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2025-05-19 10:47:31', '2025-05-19 10:57:45', 0),
-  (15, 3, 1, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 10:52:26', '2025-05-19 10:58:18', 0),
-  (16, 3, 1, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2025-05-19 10:58:50', '2025-05-19 10:58:50', 0),
-  (17, 3, 1, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 10:59:29', '2025-05-19 10:59:29', 0),
-  (18, 13, 2, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-05-19 11:00:26', '2025-08-22 08:21:56', 0),
-  (19, 4, 1, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-05-19 11:03:01', '2025-05-19 11:03:01', 0),
-  (20, 4, 1, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2025-05-19 11:03:32', '2025-05-19 11:03:32', 0),
-  (21, 4, 1, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2025-05-19 11:03:59', '2025-05-19 11:03:59', 0),
-  (22, 4, 1, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2025-05-19 11:05:55', '2025-05-19 11:05:55', 0),
-  (23, 4, 1, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-05-19 11:06:49', '2025-05-19 11:06:49', 0),
-  (24, 1, 2, '90.00', '100.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 02:41:35', '2025-08-22 02:41:35', 0),
-  (25, 10, 2, '90.00', '100.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 02:46:30', '2025-08-22 02:46:30', 0),
-  (26, 10, 2, '80.00', '89.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 02:47:54', '2025-08-22 02:47:54', 0),
-  (27, 10, 2, '70.00', '79.99', 'C', NULL, NULL, 'ល្អ', '2025-08-22 02:48:36', '2025-08-22 02:48:36', 0),
-  (28, 10, 2, '60.00', '69.99', 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 02:49:29', '2025-08-22 02:49:29', 0),
-  (29, 10, 2, '50.00', '59.99', 'E', NULL, NULL, 'មធ្យម', '2025-08-22 02:50:10', '2025-08-22 02:50:10', 0),
-  (30, 10, 2, '0.00', '49.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-08-22 02:51:17', '2025-08-22 02:51:17', 0),
-  (31, 11, 2, '9.00', '10.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 03:26:39', '2025-08-22 03:26:39', 0),
-  (32, 11, 2, '8.00', '8.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 03:46:55', '2025-08-22 03:46:55', 0),
-  (34, 11, 2, '7.00', '7.99', 'C', NULL, NULL, 'ល្អ', '2025-08-22 03:49:34', '2025-08-22 04:10:57', 0),
-  (35, 11, 2, '5.00', '5.99', 'E', NULL, NULL, 'មធ្យម', '2025-08-22 03:49:55', '2025-08-22 04:08:16', 0),
-  (36, 2, 2, '5.00', '5.99', 'E', NULL, NULL, 'មធ្យម', '2025-08-22 03:53:06', '2025-08-22 03:53:06', 0),
-  (39, 2, 1, '6.00', '6.99', 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 04:23:40', '2025-08-22 04:23:40', 0),
-  (41, 12, 2, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 04:44:17', '2025-08-22 04:44:17', 0),
-  (42, 12, 2, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 04:46:45', '2025-08-22 04:47:13', 0),
-  (43, 12, 2, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2025-08-22 04:49:09', '2025-08-22 04:49:09', 0),
-  (44, 12, 2, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 04:50:06', '2025-08-22 04:50:06', 0),
-  (45, 12, 2, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2025-08-22 04:50:41', '2025-09-03 03:05:36', 0),
-  (46, 12, 2, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-08-22 06:53:42', '2025-08-22 06:55:23', 0),
-  (47, 4, 2, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-08-22 08:18:59', '2025-08-22 08:18:59', 0),
-  (48, 13, 2, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-08-22 08:24:41', '2025-08-22 08:24:41', 0),
-  (49, 13, 2, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2025-08-22 08:25:23', '2025-08-22 08:25:23', 0),
-  (50, 13, 2, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2025-08-22 08:25:58', '2025-08-22 08:25:58', 0),
-  (51, 13, 2, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-08-22 08:27:35', '2025-08-22 08:27:35', 0),
-  (52, 18, 2, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2025-09-01 01:53:48', '2025-09-08 11:17:40', 0),
-  (53, 18, 2, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2025-09-01 01:55:23', '2025-09-08 11:18:17', 0),
-  (54, 18, 2, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2025-09-01 01:56:11', '2025-09-08 11:19:23', 0),
-  (55, 18, 2, '80.00', '89.99', 'B', NULL, NULL, 'High', '2025-09-01 01:56:32', '2025-09-08 11:19:51', 0),
-  (56, 18, 2, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2025-09-01 01:56:57', '2025-09-08 11:20:35', 0),
-  (57, 15, 2, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2025-09-01 01:58:11', '2025-09-08 11:17:43', 0),
-  (58, 15, 2, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2025-09-01 01:58:30', '2025-09-08 11:18:22', 0),
-  (59, 15, 2, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2025-09-01 01:58:42', '2025-09-08 11:19:26', 0),
-  (60, 15, 2, '80.00', '89.99', 'B', NULL, NULL, 'High', '2025-09-01 01:59:04', '2025-09-08 11:19:54', 0),
-  (61, 15, 2, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2025-09-01 01:59:28', '2025-09-08 11:20:38', 0),
-  (62, 16, 2, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2025-09-01 01:59:58', '2025-09-08 11:17:46', 0),
-  (63, 16, 2, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2025-09-01 02:00:10', '2025-09-08 11:18:24', 0),
-  (64, 16, 2, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2025-09-01 02:00:22', '2025-09-08 11:19:28', 0),
-  (65, 16, 2, '80.00', '89.99', 'B', NULL, NULL, 'High', '2025-09-01 02:00:42', '2025-09-08 11:19:57', 0),
-  (66, 16, 2, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2025-09-01 02:00:56', '2025-09-08 11:20:41', 0),
-  (67, 17, 2, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2025-09-01 02:08:00', '2025-09-08 11:20:43', 0),
-  (68, 17, 2, '80.00', '89.99', 'B', NULL, NULL, 'High', '2025-09-01 02:08:31', '2025-09-08 11:20:01', 0),
-  (69, 17, 2, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2025-09-01 02:08:51', '2025-09-08 11:19:30', 0),
-  (70, 17, 2, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2025-09-01 02:22:31', '2025-09-08 11:18:27', 0),
-  (71, 17, 2, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2025-09-01 02:22:45', '2025-09-08 11:17:49', 0),
-  (72, 14, 2, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2025-09-14 09:30:20', '2025-09-14 09:30:20', 0),
-  (73, 13, 2, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2025-09-14 09:30:51', '2025-09-14 09:30:51', 0),
-  (74, 14, 2, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-09-14 09:32:06', '2025-09-14 09:32:06', 0),
-  (75, 14, 2, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2025-09-14 09:32:40', '2025-09-14 09:32:40', 0),
-  (76, 14, 2, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2025-09-14 09:33:12', '2025-09-14 09:33:12', 0),
-  (77, 14, 2, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2025-09-14 09:33:59', '2025-09-14 09:33:59', 0),
-  (78, 14, 2, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2025-09-18 07:46:30', '2025-09-18 07:46:30', 0),
-  (79, 11, 2, '0.00', '4.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2025-09-18 14:52:23', '2025-09-18 14:52:23', 0),
-  (80, 36, 16, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
-  (81, 36, 16, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
-  (82, 36, 16, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
-  (83, 36, 16, '80.00', '89.99', 'B', NULL, NULL, 'High', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
-  (84, 36, 16, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2026-08-25 09:11:15', '2026-08-25 09:11:15', 0),
-  (85, 33, 16, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
-  (86, 33, 16, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
-  (87, 33, 16, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
-  (88, 33, 16, '80.00', '89.99', 'B', NULL, NULL, 'High', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
-  (89, 33, 16, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2026-08-25 09:11:43', '2026-08-25 09:11:43', 0),
-  (90, 34, 16, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
-  (91, 34, 16, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
-  (92, 34, 16, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
-  (93, 34, 16, '80.00', '89.99', 'B', NULL, NULL, 'High', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
-  (94, 34, 16, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2026-08-25 09:11:51', '2026-08-25 09:11:51', 0),
-  (95, 35, 16, '90.00', '100.00', 'A', NULL, NULL, 'Excelent', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
-  (96, 35, 16, '80.00', '89.99', 'B', NULL, NULL, 'High', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
-  (97, 35, 16, '60.00', '79.99', 'C', NULL, NULL, 'Satisfactory', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
-  (98, 35, 16, '50.00', '59.99', 'D', NULL, NULL, 'Limited', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
-  (99, 35, 16, '0.00', '49.99', 'E', NULL, NULL, 'Very low', '2026-08-25 09:12:00', '2026-08-25 09:12:00', 0),
-  (100, 29, 16, '6.00', '6.99', 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
-  (101, 29, 16, '9.00', '10.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
-  (102, 29, 16, '8.00', '8.99', 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
-  (103, 29, 16, '7.00', '7.99', 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
-  (104, 29, 16, '5.00', '5.99', 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0);
-
-INSERT IGNORE INTO `grade_scale` (`id`, `grade_group_id`, `academic_id`, `min_marks`, `max_marks`, `us_grade`, `nittes_id`, `scale_discount`, `kh_grade`, `created_at`, `updated_at`, `is_overall`) VALUES
-  (105, 29, 16, '0.00', '4.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:14', '2026-08-25 09:12:14', 0),
-  (106, 28, 16, '90.00', '100.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
-  (107, 28, 16, '80.00', '89.99', 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
-  (108, 28, 16, '70.00', '79.99', 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
-  (109, 28, 16, '60.00', '69.99', 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
-  (110, 28, 16, '50.00', '59.99', 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
-  (111, 28, 16, '0.00', '49.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:24', '2026-08-25 09:12:24', 0),
-  (112, 32, 16, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
-  (113, 32, 16, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
-  (114, 32, 16, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
-  (115, 32, 16, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
-  (116, 32, 16, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
-  (117, 32, 16, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:33', '2026-08-25 09:12:33', 0),
-  (118, 30, 16, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
-  (119, 30, 16, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
-  (120, 30, 16, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
-  (121, 30, 16, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
-  (122, 30, 16, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
-  (123, 30, 16, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:45', '2026-08-25 09:12:45', 0),
-  (124, 31, 16, '45.00', '50.00', 'A', NULL, NULL, 'ល្អប្រសើរ', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
-  (125, 31, 16, '40.00', '44.99', 'B', NULL, NULL, 'ល្អណាស់', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
-  (126, 31, 16, '35.00', '39.99', 'C', NULL, NULL, 'ល្អ', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
-  (127, 31, 16, '30.00', '34.99', 'D', NULL, NULL, 'បង្គួរ', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
-  (128, 31, 16, '0.00', '24.99', 'F', NULL, NULL, 'ក្រោមមធ្យម', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0),
-  (129, 31, 16, '25.00', '29.99', 'E', NULL, NULL, 'មធ្យម', '2026-08-25 09:12:56', '2026-08-25 09:12:56', 0);
-
--- Preset seed data for `subjects` (50 rows)
-INSERT IGNORE INTO `subjects` (`id`, `subject_name`, `subject_name_us`, `program_id`, `academic_id`, `updated_at`, `created_at`, `created_by`, `updated_by`, `noted`, `short_code`) VALUES
-  (1, 'ភាសាខ្មែរ', 'Khmer Language', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (2, 'សរសេរតាមអាន', 'Dictation', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (3, 'គណិតវិទ្យា', 'Mathematics', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (4, 'ប៉ាម៉ាគិតលេខរហ័ស', 'PAMA Programs', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (5, 'វិទ្យាសាស្ត្រអនុវត្ត', 'Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (6, 'សិក្សាសង្គម', 'Social Studies', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (7, 'កុំព្យូទ័រ', 'ICT', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (8, 'សិល្បៈ អប់រំកាយ កីឡា', 'Art, P.E & Sports', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (9, 'គំនូរ & ហត្ថកម្ម', 'Drawing & Handicraft', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (10, 'ភាសាអង់គ្លេស', 'English', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (11, 'អប់រំសុខភាព', 'Health Education', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (12, 'កំណត់ត្រាអំពើល្អ', 'Good Attitude', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (13, 'រូបវិទ្យា', 'Physics', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (14, 'គីមីវិទ្យា', 'Chemistry', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (15, 'ជីវវិទ្យា', 'Biology', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (16, 'ផែនដីវិទ្យា', 'Earth Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (17, 'សីលធម៌-ពលរដ្ឋវិជ្ជា', 'Moral Civics', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (18, 'ភូមិវិទ្យា', 'Geography', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (19, 'ប្រវត្តិវិទ្យា', 'History', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (20, 'គេហវិជ្ជា', 'Home Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (21, 'អប់រំកាយ និងកីឡា', 'P.E and Sports', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (22, 'Projects', NULL, 1, 1, '2025-05-02', '2025-05-02', 19, 19, '', NULL),
-  (23, 'Media/Art', NULL, 1, 1, '2025-05-02', '2025-05-02', 19, 19, '', NULL),
-  (24, 'អប់រំសុខភាព', 'Health Education', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (25, 'បុរេសំណេរ', 'Pre-Writing', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (26, 'បុរេគណិត', 'Pre-Math', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (27, 'ចិត្តចលភាព', 'Physical Education', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (28, 'វិទ្យាសាស្ដ្រ-សិក្សាសង្គម', 'Social and Science', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (29, 'អារម្មណ៍ បញ្ញា សង្គម', 'Emotional and Cognitive', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (30, 'អប់រំសុខភាព-អនាម័យ', 'Health- Hygiene', 1, 1, '2025-09-29', '2025-05-02', 19, 19, '', NULL),
-  (31, 'Eng', NULL, 3, 1, '2025-09-01', '2025-05-12', 19, 58, '', NULL),
-  (32, 'Math', NULL, 3, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
-  (33, 'HASS', '', 3, 1, '2025-10-10', '2025-05-12', 19, 58, '', NULL),
-  (34, 'Science', NULL, 3, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
-  (35, 'PE', '', 3, 1, '2026-03-02', '2025-05-12', 19, 19, '', NULL),
-  (36, 'Art', NULL, 3, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
-  (37, 'DT', NULL, 3, 1, '2025-09-01', '2025-05-12', 19, 58, '', NULL),
-  (38, 'English', '', 2, 1, '2026-08-25', '2025-05-12', 19, 58, '', NULL),
-  (39, 'Math', NULL, 2, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
-  (40, 'HASS', '', 2, 1, '2025-10-10', '2025-05-12', 19, 58, '', NULL),
-  (41, 'Science', NULL, 2, 1, '2025-05-12', '2025-05-12', 19, 19, '', NULL),
-  (42, 'HPE', '', 2, 1, '2026-03-02', '2025-05-12', 19, 19, '', NULL),
-  (43, 'The Arts', '', 2, 1, '2026-08-25', '2025-05-12', 19, 58, '', NULL),
-  (44, 'Technologies', '', 2, 1, '2026-08-25', '2025-05-12', 19, 58, '', NULL),
-  (45, 'កុំព្យូទ័រ-មេឌៀ', 'Computer/Media', 1, 2, '2025-09-29', '2025-09-01', 58, 19, '', NULL),
-  (46, 'សុខភាព', 'Health', 1, 2, '2025-09-29', '2025-09-01', 58, 19, '', NULL),
-  (47, 'កីឡា-សុខភាព', 'Sports & Health', 1, 2, '2025-09-29', '2025-09-01', 58, 19, '', NULL),
-  (49, 'សិក្សាបែបគម្រោង/មេឌៀ', 'Projects/Media', 1, 2, '2025-09-29', '2025-09-11', 58, 19, '', NULL),
-  (50, 'កីឡា', 'Sports', 1, 2, '2025-09-29', '2025-09-11', 58, 19, '', NULL),
-  (52, 'Techcademy', 'Techcademy', 2, 16, '2026-08-25', '2026-08-25', 58, 58, '', NULL);
-
--- Preset seed data for `subjects_group` (171 rows)
-INSERT IGNORE INTO `subjects_group` (`id`, `grade_group_id`, `program_id`, `subject_id`, `full_marks`, `calculate_marks`, `academic_id`, `created_by`, `updated_by`, `noted`, `created_at`, `updated_at`) VALUES
-  (1, 15, 3, 31, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
-  (2, 15, 3, 32, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
-  (3, 15, 3, 33, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
-  (4, 15, 3, 34, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
-  (5, 15, 3, 35, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
-  (6, 15, 3, 36, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
-  (7, 15, 3, 37, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:24', '2025-09-02 09:00:24'),
-  (8, 16, 2, 38, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
-  (9, 16, 2, 39, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
-  (10, 16, 2, 40, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
-  (11, 16, 2, 41, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
-  (12, 16, 2, 42, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
-  (13, 16, 2, 43, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:00:47', '2025-09-02 09:00:47'),
-  (14, 17, 2, 38, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
-  (15, 17, 2, 39, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
-  (16, 17, 2, 40, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
-  (17, 17, 2, 41, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
-  (18, 17, 2, 42, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
-  (19, 17, 2, 43, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
-  (20, 17, 2, 44, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:05', '2025-09-02 09:01:05'),
-  (21, 18, 2, 38, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
-  (22, 18, 2, 39, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
-  (23, 18, 2, 40, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
-  (24, 18, 2, 41, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
-  (25, 18, 2, 42, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
-  (26, 18, 2, 43, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
-  (27, 18, 2, 44, '100.00', '100.00', 2, 58, 58, '', '2025-09-02 09:01:22', '2025-09-02 09:01:22'),
-  (28, 10, 1, 25, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
-  (29, 10, 1, 26, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
-  (30, 10, 1, 27, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
-  (31, 10, 1, 28, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
-  (32, 10, 1, 29, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
-  (33, 10, 1, 30, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:30:00', '2025-09-11 15:30:00'),
-  (34, 10, 1, 12, '100.00', '50.00', 2, 58, 58, '', '2025-09-11 15:31:33', '2025-09-11 15:31:33'),
-  (35, 11, 1, 1, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (36, 11, 1, 2, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (37, 11, 1, 3, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (38, 11, 1, 4, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (39, 11, 1, 5, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (40, 11, 1, 6, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (41, 11, 1, 7, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (42, 11, 1, 8, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (43, 11, 1, 9, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (44, 11, 1, 10, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (45, 11, 1, 11, '10.00', '100.00', 2, 58, 58, '', '2025-09-11 15:39:26', '2025-09-11 15:39:26'),
-  (47, 12, 1, 1, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (48, 12, 1, 3, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (49, 12, 1, 13, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (50, 12, 1, 14, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (51, 12, 1, 15, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (52, 12, 1, 16, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (53, 12, 1, 17, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (54, 12, 1, 18, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (55, 12, 1, 19, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (56, 12, 1, 20, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (57, 12, 1, 10, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (58, 12, 1, 21, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (59, 12, 1, 24, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (60, 12, 1, 7, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (61, 12, 1, 49, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 15:58:34', '2025-09-11 15:58:34'),
-  (62, 13, 1, 1, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (63, 13, 1, 3, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (64, 13, 1, 13, '35.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (65, 13, 1, 14, '25.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (66, 13, 1, 15, '35.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (67, 13, 1, 16, '25.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (68, 13, 1, 17, '35.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (69, 13, 1, 10, '50.00', '50.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (70, 13, 1, 18, '32.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (71, 13, 1, 19, '33.00', '100.00', 2, 58, 58, '', '2025-09-11 16:06:00', '2025-09-11 16:06:00'),
-  (72, 14, 1, 1, '150.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (73, 14, 1, 3, '150.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (74, 14, 1, 13, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (75, 14, 1, 14, '37.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (76, 14, 1, 15, '38.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (77, 14, 1, 16, '25.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (78, 14, 1, 17, '38.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (79, 14, 1, 18, '38.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (80, 14, 1, 19, '37.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (81, 14, 1, 20, '37.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 09:21:21'),
-  (82, 14, 1, 10, '100.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (83, 14, 1, 21, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (84, 14, 1, 49, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (85, 14, 1, 7, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (86, 14, 1, 24, '50.00', '100.00', 2, 58, 58, '', '2025-09-11 16:12:52', '2025-09-11 16:12:52'),
-  (87, 16, 2, 44, '100.00', '100.00', 2, 58, 58, '', '2025-09-29 16:41:18', '2025-09-29 16:41:18'),
-  (130, 29, 1, 1, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (131, 29, 1, 2, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (132, 29, 1, 3, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (133, 29, 1, 4, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (134, 29, 1, 5, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (135, 29, 1, 6, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (136, 29, 1, 7, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (137, 29, 1, 8, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (138, 29, 1, 9, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (139, 29, 1, 10, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (140, 29, 1, 11, '10.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:39:47', '2026-08-25 08:39:47'),
-  (141, 28, 1, 25, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
-  (142, 28, 1, 26, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
-  (143, 28, 1, 27, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00');
-
-INSERT IGNORE INTO `subjects_group` (`id`, `grade_group_id`, `program_id`, `subject_id`, `full_marks`, `calculate_marks`, `academic_id`, `created_by`, `updated_by`, `noted`, `created_at`, `updated_at`) VALUES
-  (144, 28, 1, 28, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
-  (145, 28, 1, 29, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
-  (146, 28, 1, 30, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:00', '2026-08-25 08:40:00'),
-  (147, 32, 1, 1, '150.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (148, 32, 1, 3, '150.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (149, 32, 1, 13, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (150, 32, 1, 14, '37.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (151, 32, 1, 15, '38.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (152, 32, 1, 16, '25.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (153, 32, 1, 17, '38.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (154, 32, 1, 18, '38.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (155, 32, 1, 19, '37.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (156, 32, 1, 20, '37.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (157, 32, 1, 10, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (158, 32, 1, 21, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (159, 32, 1, 49, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (160, 32, 1, 7, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (161, 32, 1, 24, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:13', '2026-08-25 08:40:13'),
-  (162, 30, 1, 1, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (163, 30, 1, 3, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (164, 30, 1, 13, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (165, 30, 1, 14, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (166, 30, 1, 15, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (167, 30, 1, 16, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (168, 30, 1, 17, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (169, 30, 1, 18, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (170, 30, 1, 19, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (171, 30, 1, 20, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (172, 30, 1, 10, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (173, 30, 1, 21, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (174, 30, 1, 24, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (175, 30, 1, 7, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (176, 30, 1, 49, '50.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:26', '2026-08-25 08:40:26'),
-  (177, 31, 1, 1, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (178, 31, 1, 3, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (179, 31, 1, 13, '35.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (180, 31, 1, 14, '25.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (181, 31, 1, 15, '35.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (182, 31, 1, 16, '25.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (183, 31, 1, 17, '35.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (184, 31, 1, 10, '50.00', '50.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (185, 31, 1, 18, '32.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (186, 31, 1, 19, '33.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:40:38', '2026-08-25 08:40:38'),
-  (187, 33, 3, 31, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
-  (188, 33, 3, 32, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
-  (189, 33, 3, 33, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
-  (190, 33, 3, 34, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
-  (191, 33, 3, 35, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
-  (192, 33, 3, 36, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
-  (193, 33, 3, 37, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:44:39', '2026-08-25 08:44:39'),
-  (194, 36, 2, 38, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
-  (195, 36, 2, 39, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
-  (196, 36, 2, 40, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
-  (197, 36, 2, 41, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
-  (198, 36, 2, 42, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
-  (199, 36, 2, 43, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
-  (200, 36, 2, 44, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:39', '2026-08-25 08:52:39'),
-  (201, 34, 2, 38, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
-  (202, 34, 2, 39, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
-  (203, 34, 2, 40, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
-  (204, 34, 2, 41, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
-  (205, 34, 2, 42, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
-  (206, 34, 2, 43, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
-  (207, 34, 2, 44, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:52:49', '2026-08-25 08:52:49'),
-  (208, 35, 2, 38, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
-  (209, 35, 2, 39, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
-  (210, 35, 2, 40, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
-  (211, 35, 2, 41, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
-  (212, 35, 2, 42, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
-  (213, 35, 2, 43, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04'),
-  (214, 35, 2, 44, '100.00', '100.00', 16, 58, 58, 'Cloned from academic 2', '2026-08-25 08:53:04', '2026-08-25 08:53:04');
-
--- Preset seed data for `exam_calculate_sign` (186 rows)
-INSERT IGNORE INTO `exam_calculate_sign` (`id`, `program_id`, `grade_group_id`, `academic_id`, `marks_system_id`, `result_name`, `formula_expression`, `sign_code`, `divide_by_multiplier`, `exam_type`, `is_active`, `created_at`, `updated_at`) VALUES
-  (1, 1, 10, 2, 1, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '6.00', 'input', 1, '2025-09-11 09:58:55', '2026-01-24 08:31:07'),
-  (2, 1, 10, 2, 2, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '6.00', 'input', 1, '2025-09-11 09:58:55', '2026-01-24 08:31:08'),
-  (3, 1, 10, 2, 3, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '6.00', 'input', 1, '2025-09-11 09:58:55', '2026-01-24 08:31:08'),
-  (4, 1, 10, 2, 4, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '6.00', 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:18'),
-  (5, 1, 10, 2, 5, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '6.00', 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:19'),
-  (6, 1, 10, 2, 6, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '6.00', 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:20'),
-  (7, 1, 10, 2, 7, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '6.00', 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:23'),
-  (8, 1, 10, 2, 8, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '6.00', 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:22'),
-  (9, 1, 10, 2, 9, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', '6.00', 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:24'),
-  (10, 1, 10, 2, 10, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '6.00', 'input', 1, '2025-09-11 09:58:56', '2026-01-24 08:31:26'),
-  (11, 1, 10, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2025-09-11 09:59:41', '2026-01-24 08:29:03'),
-  (12, 1, 10, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2025-09-11 10:00:02', '2026-01-24 08:29:11'),
-  (13, 1, 10, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2025-09-11 10:00:19', '2026-01-24 08:28:50'),
-  (14, 1, 11, 2, 11, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '11.00', 'input', 1, '2025-09-11 10:01:30', '2026-01-24 08:34:51'),
-  (15, 1, 11, 2, 12, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:52'),
-  (16, 1, 11, 2, 13, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:53'),
-  (17, 1, 11, 2, 14, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:55'),
-  (18, 1, 11, 2, 15, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:56'),
-  (19, 1, 11, 2, 16, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:57'),
-  (20, 1, 11, 2, 17, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:58'),
-  (21, 1, 11, 2, 18, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:34:59'),
-  (22, 1, 11, 2, 19, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '11.00', 'input', 1, '2025-09-11 10:01:31', '2026-01-24 08:35:00'),
-  (23, 1, 11, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2025-09-11 10:04:10', '2026-01-24 08:33:33'),
-  (24, 1, 11, 2, 50, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '11.00', 'input', 1, '2025-09-11 10:06:50', '2026-01-24 08:35:01'),
-  (25, 1, 11, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2025-09-11 10:08:03', '2026-01-24 08:33:37'),
-  (26, 1, 11, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2025-09-11 10:08:18', '2026-01-24 08:33:26'),
-  (27, 1, 12, 2, 20, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:36'),
-  (28, 1, 12, 2, 21, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:38'),
-  (29, 1, 12, 2, 22, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:40'),
-  (30, 1, 12, 2, 23, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
-  (31, 1, 12, 2, 24, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
-  (32, 1, 12, 2, 25, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
-  (33, 1, 12, 2, 26, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
-  (34, 1, 12, 2, 27, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
-  (35, 1, 12, 2, 28, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
-  (36, 1, 12, 2, 29, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '17.00', 'input', 1, '2025-09-11 10:10:27', '2026-01-24 08:38:49'),
-  (37, 1, 12, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2025-09-11 10:11:18', '2026-01-24 08:36:32'),
-  (38, 1, 12, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2025-09-11 10:12:06', '2026-01-24 08:38:22'),
-  (39, 1, 12, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2025-09-11 10:12:25', '2026-01-24 08:38:30'),
-  (40, 1, 13, 2, 30, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
-  (41, 1, 13, 2, 31, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
-  (42, 1, 13, 2, 32, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
-  (43, 1, 13, 2, 33, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:17'),
-  (44, 1, 13, 2, 34, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
-  (45, 1, 13, 2, 35, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
-  (46, 1, 13, 2, 36, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
-  (47, 1, 13, 2, 37, 'ប្រចាំ ខែកុម្ផៈ', 'exam_calculate_sign_subjects', 'MON5', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
-  (48, 1, 13, 2, 38, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
-  (49, 1, 13, 2, 39, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '8.40', 'input', 1, '2025-09-11 10:12:48', '2026-01-24 08:47:18'),
-  (50, 1, 13, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2025-09-11 10:13:24', '2026-01-24 08:46:34'),
-  (51, 1, 13, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2025-09-11 10:13:51', '2026-01-24 08:46:36'),
-  (52, 1, 13, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2025-09-11 10:14:07', '2026-01-24 08:46:28'),
-  (53, 1, 14, 2, 40, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:15'),
-  (54, 1, 14, 2, 41, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:15'),
-  (55, 1, 14, 2, 42, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (56, 1, 14, 2, 43, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (57, 1, 14, 2, 44, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (58, 1, 14, 2, 45, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (59, 1, 14, 2, 46, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (60, 1, 14, 2, 47, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (61, 1, 14, 2, 48, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (62, 1, 14, 2, 49, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '18.00', 'input', 1, '2025-09-11 10:14:51', '2026-01-24 08:49:16'),
-  (63, 1, 14, 2, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2025-09-11 10:15:24', '2026-01-24 08:48:57'),
-  (64, 1, 14, 2, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2025-09-11 10:15:56', '2026-01-24 08:48:52'),
-  (65, 1, 14, 2, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2025-09-11 10:16:08', '2026-01-24 08:48:46'),
-  (66, 3, 15, 2, 59, 'Mid- 1st Quarter', 'exam_calculate_sign_subjects', 'MON1', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:50:51'),
-  (67, 3, 15, 2, 60, 'Final- 1st Quarter', 'exam_calculate_sign_subjects', 'MON2', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:50:53'),
-  (68, 3, 15, 2, 61, 'Mid- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON3', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
-  (69, 3, 15, 2, 62, 'Final- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON4', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
-  (70, 3, 15, 2, 63, 'Mid- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON5', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
-  (71, 3, 15, 2, 64, 'Final- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON6', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
-  (72, 3, 15, 2, 65, 'Mid- 4th Quarter', 'exam_calculate_sign_subjects', 'MON7', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
-  (73, 3, 15, 2, 66, 'Final- 4th Quarter', 'exam_calculate_sign_subjects', 'MON8', '7.00', 'input', 1, '2025-09-30 01:58:25', '2026-01-24 08:51:03'),
-  (74, 3, 15, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2025-09-30 02:00:15', '2026-01-24 17:15:22'),
-  (75, 3, 15, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2025-09-30 02:01:24', '2026-01-24 17:15:35'),
-  (76, 2, 16, 2, 67, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', '7.00', 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:27'),
-  (77, 2, 16, 2, 68, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', '7.00', 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:31'),
-  (78, 2, 16, 2, 69, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', '7.00', 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:33'),
-  (79, 2, 16, 2, 70, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', '7.00', 'input', 1, '2025-09-30 02:10:36', '2026-01-24 08:52:38'),
-  (80, 2, 16, 2, 71, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', '7.00', 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:42'),
-  (81, 2, 16, 2, 72, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', '7.00', 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:46'),
-  (82, 2, 16, 2, 73, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', '7.00', 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:49'),
-  (83, 2, 16, 2, 74, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', '7.00', 'input', 1, '2025-09-30 02:10:37', '2026-01-24 08:52:52'),
-  (84, 2, 16, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2025-09-30 02:12:51', '2026-01-24 17:15:30'),
-  (85, 2, 16, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2025-09-30 02:13:32', '2026-01-24 17:15:39'),
-  (86, 2, 17, 2, 75, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:44'),
-  (87, 2, 17, 2, 76, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:46'),
-  (88, 2, 17, 2, 77, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:50'),
-  (89, 2, 17, 2, 78, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:54'),
-  (90, 2, 17, 2, 79, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:53:57'),
-  (91, 2, 17, 2, 80, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:54:00'),
-  (92, 2, 17, 2, 81, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:54:04'),
-  (93, 2, 17, 2, 82, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', '7.00', 'input', 1, '2025-09-30 02:21:53', '2026-01-24 08:54:07'),
-  (94, 2, 17, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2025-09-30 02:22:56', '2026-01-24 17:15:32'),
-  (95, 2, 17, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2025-09-30 02:23:08', '2026-01-24 17:15:40'),
-  (96, 2, 18, 2, 51, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', '7.00', 'input', 1, '2025-09-30 02:23:39', '2026-01-24 08:54:42'),
-  (97, 2, 18, 2, 52, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', '7.00', 'input', 1, '2025-09-30 02:23:39', '2026-01-24 08:54:45'),
-  (98, 2, 18, 2, 53, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', '7.00', 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:49'),
-  (99, 2, 18, 2, 54, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', '7.00', 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:52'),
-  (100, 2, 18, 2, 55, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', '7.00', 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:56');
-
-INSERT IGNORE INTO `exam_calculate_sign` (`id`, `program_id`, `grade_group_id`, `academic_id`, `marks_system_id`, `result_name`, `formula_expression`, `sign_code`, `divide_by_multiplier`, `exam_type`, `is_active`, `created_at`, `updated_at`) VALUES
-  (101, 2, 18, 2, 56, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', '7.00', 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:54:59'),
-  (102, 2, 18, 2, 57, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', '7.00', 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:55:03'),
-  (103, 2, 18, 2, 58, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', '7.00', 'input', 1, '2025-09-30 02:23:40', '2026-01-24 08:55:06'),
-  (104, 2, 18, 2, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2025-09-30 02:24:11', '2026-01-24 17:15:33'),
-  (105, 2, 18, 2, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2025-09-30 02:24:34', '2026-01-24 17:15:43'),
-  (106, 3, 15, 2, 0, 'Yearly', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2025-09-30 06:03:38', '2026-01-24 08:55:39'),
-  (107, 1, 29, 16, 83, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (108, 1, 29, 16, 84, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (109, 1, 29, 16, 85, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (110, 1, 29, 16, 86, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (111, 1, 29, 16, 87, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (112, 1, 29, 16, 88, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (113, 1, 29, 16, 89, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (114, 1, 29, 16, 90, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (115, 1, 29, 16, 91, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (116, 1, 29, 16, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (117, 1, 29, 16, 92, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '11.00', 'input', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (118, 1, 29, 16, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (119, 1, 29, 16, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (120, 1, 28, 16, 93, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (121, 1, 28, 16, 94, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (122, 1, 28, 16, 95, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (123, 1, 28, 16, 96, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (124, 1, 28, 16, 97, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (125, 1, 28, 16, 98, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (126, 1, 28, 16, 99, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (127, 1, 28, 16, 100, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (128, 1, 28, 16, 101, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (129, 1, 28, 16, 102, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '6.00', 'input', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (130, 1, 28, 16, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (131, 1, 28, 16, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (132, 1, 28, 16, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (133, 1, 32, 16, 103, 'ប្រចាំ​ ខែកញ្ញា', 'exam_calculate_sign_subjects', 'MON1', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (134, 1, 32, 16, 104, 'ប្រចាំ​ ខែតុលា', 'exam_calculate_sign_subjects', 'MON2', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (135, 1, 32, 16, 105, 'ប្រចាំ​ ខែធ្នូ', 'exam_calculate_sign_subjects', 'MON4', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (136, 1, 32, 16, 106, 'ប្រចាំ ខែកុម្ភៈ', 'exam_calculate_sign_subjects', 'MON5', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (137, 1, 32, 16, 107, 'ប្រចាំ​ ខែមីនា', 'exam_calculate_sign_subjects', 'MON6', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (138, 1, 32, 16, 108, 'ប្រចាំ​ ខែមេសា', 'exam_calculate_sign_subjects', 'MON7', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (139, 1, 32, 16, 109, 'ប្រចាំ​ ខែវិច្ឆិកា', 'exam_calculate_sign_subjects', 'MON3', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (140, 1, 32, 16, 110, 'ប្រចាំ​ ខែឧសភា', 'exam_calculate_sign_subjects', 'MON8', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (141, 1, 32, 16, 111, 'ប្រឡងឆមាសទី១', 'exam_calculate_sign_subjects', 'SEM1', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (142, 1, 32, 16, 112, 'ប្រឡងឆមាសទី២', 'exam_calculate_sign_subjects', 'SEM2', '18.00', 'input', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (143, 1, 32, 16, 0, 'លទ្ធផលឆមាសទី១', '(MON1+MON2+MON3+MON4)+SEM1', 'RSEM1', '2.00', 'semester', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (144, 1, 32, 16, 0, 'លទ្ធផលឆមាសទី២', '(MON5+MON6+MON7+MON8)+SEM2', 'RSEM2', '2.00', 'semester', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (145, 1, 32, 16, 0, 'លទ្ធផលប្រចាំឆ្នាំ', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (146, 3, 33, 16, 113, 'Mid- 1st Quarter', 'exam_calculate_sign_subjects', 'MON1', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (147, 3, 33, 16, 114, 'Final- 1st Quarter', 'exam_calculate_sign_subjects', 'MON2', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (148, 3, 33, 16, 115, 'Mid- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON3', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (149, 3, 33, 16, 116, 'Final- 2nd Quarter', 'exam_calculate_sign_subjects', 'MON4', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (150, 3, 33, 16, 117, 'Mid- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON5', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (151, 3, 33, 16, 118, 'Final- 3rd Quarter', 'exam_calculate_sign_subjects', 'MON6', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (152, 3, 33, 16, 119, 'Mid- 4th Quarter', 'exam_calculate_sign_subjects', 'MON7', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (153, 3, 33, 16, 120, 'Final- 4th Quarter', 'exam_calculate_sign_subjects', 'MON8', '7.00', 'input', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (154, 3, 33, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (155, 3, 33, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (156, 3, 33, 16, 0, 'Yearly', 'RSEM1+RSEM2', 'YEAR', '2.00', 'yearly', 1, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (157, 2, 36, 16, 121, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (158, 2, 36, 16, 122, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (159, 2, 36, 16, 123, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (160, 2, 36, 16, 124, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (161, 2, 36, 16, 125, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (162, 2, 36, 16, 126, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (163, 2, 36, 16, 127, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (164, 2, 36, 16, 128, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', '7.00', 'input', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (165, 2, 36, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (166, 2, 36, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (167, 2, 34, 16, 129, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (168, 2, 34, 16, 130, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (169, 2, 34, 16, 131, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (170, 2, 34, 16, 132, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (171, 2, 34, 16, 133, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (172, 2, 34, 16, 134, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (173, 2, 34, 16, 135, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (174, 2, 34, 16, 136, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', '7.00', 'input', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (175, 2, 34, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (176, 2, 34, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (177, 2, 35, 16, 137, 'Mid- 1st Quarter', '38+39+40+41+42+43+44', 'MON1', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (178, 2, 35, 16, 138, 'Final- 1st Quarter', '38+39+40+41+42+43+44', 'MON2', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (179, 2, 35, 16, 139, 'Mid- 2nd Quarter', '38+39+40+41+42+43+44', 'MON3', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (180, 2, 35, 16, 140, 'Final- 2nd Quarter', '38+39+40+41+42+43+44', 'MON4', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (181, 2, 35, 16, 141, 'Mid- 3rd Quarter', '38+39+40+41+42+43+44', 'MON5', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (182, 2, 35, 16, 142, 'Final- 3rd Quarter', '38+39+40+41+42+43+44', 'MON6', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (183, 2, 35, 16, 143, 'Mid- 4th Quarter', '38+39+40+41+42+43+44', 'MON7', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (184, 2, 35, 16, 144, 'Final- 4th Quarter', '38+39+40+41+42+43+44', 'MON8', '7.00', 'input', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (185, 2, 35, 16, 0, 'Semester I', 'MON1+MON2+MON3+MON4', 'RSEM1', '4.00', 'semester', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (186, 2, 35, 16, 0, 'Semester II', 'MON5+MON6+MON7+MON8', 'RSEM2', '4.00', 'semester', 1, '2026-08-25 10:29:04', '2026-08-25 10:29:04');
-
--- Preset seed data for `exam_calculate_sign_subjects` (447 rows)
-INSERT IGNORE INTO `exam_calculate_sign_subjects` (`id`, `exam_calculate_sign_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (1041, 13, 1, '2026-01-24 08:28:50', '2026-01-24 08:28:50'),
-  (1042, 13, 2, '2026-01-24 08:28:50', '2026-01-24 08:28:50'),
-  (1044, 11, 1, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
-  (1045, 11, 2, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
-  (1046, 11, 3, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
-  (1047, 11, 4, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
-  (1048, 11, 1, '2026-01-24 08:29:03', '2026-01-24 08:29:03'),
-  (1051, 12, 5, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
-  (1052, 12, 6, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
-  (1053, 12, 7, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
-  (1054, 12, 8, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
-  (1055, 12, 2, '2026-01-24 08:29:11', '2026-01-24 08:29:11'),
-  (1082, 26, 1, '2026-01-24 08:33:26', '2026-01-24 08:33:26'),
-  (1083, 26, 2, '2026-01-24 08:33:26', '2026-01-24 08:33:26'),
-  (1085, 23, 1, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
-  (1086, 23, 2, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
-  (1087, 23, 3, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
-  (1088, 23, 4, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
-  (1089, 23, 1, '2026-01-24 08:33:33', '2026-01-24 08:33:33'),
-  (1092, 25, 5, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
-  (1093, 25, 6, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
-  (1094, 25, 7, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
-  (1095, 25, 8, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
-  (1096, 25, 2, '2026-01-24 08:33:37', '2026-01-24 08:33:37'),
-  (1431, 37, 1, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
-  (1432, 37, 2, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
-  (1433, 37, 3, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
-  (1434, 37, 4, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
-  (1435, 37, 1, '2026-01-24 08:36:32', '2026-01-24 08:36:32'),
-  (1438, 38, 5, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
-  (1439, 38, 6, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
-  (1440, 38, 7, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
-  (1441, 38, 8, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
-  (1442, 38, 2, '2026-01-24 08:38:22', '2026-01-24 08:38:22'),
-  (1445, 39, 1, '2026-01-24 08:38:30', '2026-01-24 08:38:30'),
-  (1446, 39, 2, '2026-01-24 08:38:30', '2026-01-24 08:38:30'),
-  (1659, 52, 1, '2026-01-24 08:46:28', '2026-01-24 08:46:28'),
-  (1660, 52, 2, '2026-01-24 08:46:28', '2026-01-24 08:46:28'),
-  (1662, 50, 1, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
-  (1663, 50, 2, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
-  (1664, 50, 3, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
-  (1665, 50, 4, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
-  (1666, 50, 1, '2026-01-24 08:46:34', '2026-01-24 08:46:34'),
-  (1669, 51, 5, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
-  (1670, 51, 6, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
-  (1671, 51, 7, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
-  (1672, 51, 8, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
-  (1673, 51, 2, '2026-01-24 08:46:36', '2026-01-24 08:46:36'),
-  (1873, 65, 1, '2026-01-24 08:48:46', '2026-01-24 08:48:46'),
-  (1874, 65, 2, '2026-01-24 08:48:46', '2026-01-24 08:48:46'),
-  (1876, 64, 5, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
-  (1877, 64, 6, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
-  (1878, 64, 7, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
-  (1879, 64, 8, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
-  (1880, 64, 2, '2026-01-24 08:48:52', '2026-01-24 08:48:52'),
-  (1883, 63, 1, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
-  (1884, 63, 2, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
-  (1885, 63, 3, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
-  (1886, 63, 4, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
-  (1887, 63, 1, '2026-01-24 08:48:57', '2026-01-24 08:48:57'),
-  (1960, 74, 1, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
-  (1961, 74, 2, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
-  (1962, 74, 3, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
-  (1963, 74, 4, '2026-01-24 08:51:42', '2026-01-24 08:51:42'),
-  (1967, 75, 5, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
-  (1968, 75, 6, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
-  (1969, 75, 7, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
-  (1970, 75, 8, '2026-01-24 08:51:46', '2026-01-24 08:51:46'),
-  (1981, 76, 38, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
-  (1982, 76, 39, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
-  (1983, 76, 40, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
-  (1984, 76, 41, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
-  (1985, 76, 42, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
-  (1986, 76, 43, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
-  (1987, 76, 44, '2026-01-24 08:52:27', '2026-01-24 08:52:27'),
-  (1988, 77, 38, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
-  (1989, 77, 39, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
-  (1990, 77, 40, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
-  (1991, 77, 41, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
-  (1992, 77, 42, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
-  (1993, 77, 43, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
-  (1994, 77, 44, '2026-01-24 08:52:31', '2026-01-24 08:52:31'),
-  (1995, 78, 38, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
-  (1996, 78, 39, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
-  (1997, 78, 40, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
-  (1998, 78, 41, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
-  (1999, 78, 42, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
-  (2000, 78, 43, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
-  (2001, 78, 44, '2026-01-24 08:52:33', '2026-01-24 08:52:33'),
-  (2002, 79, 38, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
-  (2003, 79, 39, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
-  (2004, 79, 40, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
-  (2005, 79, 41, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
-  (2006, 79, 42, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
-  (2007, 79, 43, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
-  (2008, 79, 44, '2026-01-24 08:52:38', '2026-01-24 08:52:38'),
-  (2009, 80, 38, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
-  (2010, 80, 39, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
-  (2011, 80, 40, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
-  (2012, 80, 41, '2026-01-24 08:52:42', '2026-01-24 08:52:42');
-
-INSERT IGNORE INTO `exam_calculate_sign_subjects` (`id`, `exam_calculate_sign_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2013, 80, 42, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
-  (2014, 80, 43, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
-  (2015, 80, 44, '2026-01-24 08:52:42', '2026-01-24 08:52:42'),
-  (2016, 81, 38, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
-  (2017, 81, 39, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
-  (2018, 81, 40, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
-  (2019, 81, 41, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
-  (2020, 81, 42, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
-  (2021, 81, 43, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
-  (2022, 81, 44, '2026-01-24 08:52:46', '2026-01-24 08:52:46'),
-  (2023, 82, 38, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
-  (2024, 82, 39, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
-  (2025, 82, 40, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
-  (2026, 82, 41, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
-  (2027, 82, 42, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
-  (2028, 82, 43, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
-  (2029, 82, 44, '2026-01-24 08:52:49', '2026-01-24 08:52:49'),
-  (2030, 83, 38, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
-  (2031, 83, 39, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
-  (2032, 83, 40, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
-  (2033, 83, 41, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
-  (2034, 83, 42, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
-  (2035, 83, 43, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
-  (2036, 83, 44, '2026-01-24 08:52:52', '2026-01-24 08:52:52'),
-  (2051, 84, 1, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
-  (2052, 84, 2, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
-  (2053, 84, 3, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
-  (2054, 84, 4, '2026-01-24 08:53:29', '2026-01-24 08:53:29'),
-  (2058, 85, 5, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
-  (2059, 85, 6, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
-  (2060, 85, 7, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
-  (2061, 85, 8, '2026-01-24 08:53:31', '2026-01-24 08:53:31'),
-  (2065, 86, 38, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
-  (2066, 86, 39, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
-  (2067, 86, 40, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
-  (2068, 86, 41, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
-  (2069, 86, 42, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
-  (2070, 86, 43, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
-  (2071, 86, 44, '2026-01-24 08:53:44', '2026-01-24 08:53:44'),
-  (2072, 87, 38, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
-  (2073, 87, 39, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
-  (2074, 87, 40, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
-  (2075, 87, 41, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
-  (2076, 87, 42, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
-  (2077, 87, 43, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
-  (2078, 87, 44, '2026-01-24 08:53:46', '2026-01-24 08:53:46'),
-  (2079, 88, 38, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
-  (2080, 88, 39, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
-  (2081, 88, 40, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
-  (2082, 88, 41, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
-  (2083, 88, 42, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
-  (2084, 88, 43, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
-  (2085, 88, 44, '2026-01-24 08:53:50', '2026-01-24 08:53:50'),
-  (2086, 89, 38, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
-  (2087, 89, 39, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
-  (2088, 89, 40, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
-  (2089, 89, 41, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
-  (2090, 89, 42, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
-  (2091, 89, 43, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
-  (2092, 89, 44, '2026-01-24 08:53:54', '2026-01-24 08:53:54'),
-  (2093, 90, 38, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
-  (2094, 90, 39, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
-  (2095, 90, 40, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
-  (2096, 90, 41, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
-  (2097, 90, 42, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
-  (2098, 90, 43, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
-  (2099, 90, 44, '2026-01-24 08:53:57', '2026-01-24 08:53:57'),
-  (2100, 91, 38, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
-  (2101, 91, 39, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
-  (2102, 91, 40, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
-  (2103, 91, 41, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
-  (2104, 91, 42, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
-  (2105, 91, 43, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
-  (2106, 91, 44, '2026-01-24 08:54:00', '2026-01-24 08:54:00'),
-  (2107, 92, 38, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
-  (2108, 92, 39, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
-  (2109, 92, 40, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
-  (2110, 92, 41, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
-  (2111, 92, 42, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
-  (2112, 92, 43, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
-  (2113, 92, 44, '2026-01-24 08:54:04', '2026-01-24 08:54:04'),
-  (2114, 93, 38, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
-  (2115, 93, 39, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
-  (2116, 93, 40, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
-  (2117, 93, 41, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
-  (2118, 93, 42, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
-  (2119, 93, 43, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
-  (2120, 93, 44, '2026-01-24 08:54:07', '2026-01-24 08:54:07'),
-  (2135, 95, 5, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
-  (2136, 95, 6, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
-  (2137, 95, 7, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
-  (2138, 95, 8, '2026-01-24 08:54:26', '2026-01-24 08:54:26'),
-  (2142, 94, 1, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
-  (2143, 94, 2, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
-  (2144, 94, 3, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
-  (2145, 94, 4, '2026-01-24 08:54:28', '2026-01-24 08:54:28'),
-  (2149, 96, 38, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
-  (2150, 96, 39, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
-  (2151, 96, 40, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
-  (2152, 96, 41, '2026-01-24 08:54:42', '2026-01-24 08:54:42');
-
-INSERT IGNORE INTO `exam_calculate_sign_subjects` (`id`, `exam_calculate_sign_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2153, 96, 42, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
-  (2154, 96, 43, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
-  (2155, 96, 44, '2026-01-24 08:54:42', '2026-01-24 08:54:42'),
-  (2156, 97, 38, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
-  (2157, 97, 39, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
-  (2158, 97, 40, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
-  (2159, 97, 41, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
-  (2160, 97, 42, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
-  (2161, 97, 43, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
-  (2162, 97, 44, '2026-01-24 08:54:45', '2026-01-24 08:54:45'),
-  (2163, 98, 38, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
-  (2164, 98, 39, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
-  (2165, 98, 40, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
-  (2166, 98, 41, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
-  (2167, 98, 42, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
-  (2168, 98, 43, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
-  (2169, 98, 44, '2026-01-24 08:54:49', '2026-01-24 08:54:49'),
-  (2170, 99, 38, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
-  (2171, 99, 39, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
-  (2172, 99, 40, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
-  (2173, 99, 41, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
-  (2174, 99, 42, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
-  (2175, 99, 43, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
-  (2176, 99, 44, '2026-01-24 08:54:52', '2026-01-24 08:54:52'),
-  (2177, 100, 38, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
-  (2178, 100, 39, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
-  (2179, 100, 40, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
-  (2180, 100, 41, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
-  (2181, 100, 42, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
-  (2182, 100, 43, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
-  (2183, 100, 44, '2026-01-24 08:54:56', '2026-01-24 08:54:56'),
-  (2184, 101, 38, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
-  (2185, 101, 39, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
-  (2186, 101, 40, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
-  (2187, 101, 41, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
-  (2188, 101, 42, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
-  (2189, 101, 43, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
-  (2190, 101, 44, '2026-01-24 08:54:59', '2026-01-24 08:54:59'),
-  (2191, 102, 38, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
-  (2192, 102, 39, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
-  (2193, 102, 40, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
-  (2194, 102, 41, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
-  (2195, 102, 42, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
-  (2196, 102, 43, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
-  (2197, 102, 44, '2026-01-24 08:55:03', '2026-01-24 08:55:03'),
-  (2198, 103, 38, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
-  (2199, 103, 39, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
-  (2200, 103, 40, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
-  (2201, 103, 41, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
-  (2202, 103, 42, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
-  (2203, 103, 43, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
-  (2204, 103, 44, '2026-01-24 08:55:06', '2026-01-24 08:55:06'),
-  (2229, 105, 5, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
-  (2230, 105, 6, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
-  (2231, 105, 7, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
-  (2232, 105, 8, '2026-01-24 08:55:28', '2026-01-24 08:55:28'),
-  (2236, 104, 1, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
-  (2237, 104, 2, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
-  (2238, 104, 3, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
-  (2239, 104, 4, '2026-01-24 08:55:33', '2026-01-24 08:55:33'),
-  (2243, 106, 1, '2026-01-24 08:55:39', '2026-01-24 08:55:39'),
-  (2244, 106, 2, '2026-01-24 08:55:39', '2026-01-24 08:55:39'),
-  (2245, 116, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2246, 116, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2247, 116, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2248, 116, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2249, 116, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2250, 118, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2251, 118, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2252, 118, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2253, 118, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2254, 118, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2255, 119, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2256, 119, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (2257, 143, 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (2258, 143, 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (2259, 143, 3, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (2260, 144, 7, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (2261, 145, 1, '2026-08-25 10:15:21', '2026-08-25 10:15:21'),
-  (2262, 157, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2263, 157, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2264, 157, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2265, 157, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2266, 157, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2267, 157, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2268, 157, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2269, 158, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2270, 158, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2271, 158, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2272, 158, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2273, 158, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2274, 158, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2275, 158, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2276, 159, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2277, 159, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2278, 159, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2279, 159, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2280, 159, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2281, 159, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2282, 159, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21');
-
-INSERT IGNORE INTO `exam_calculate_sign_subjects` (`id`, `exam_calculate_sign_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2283, 160, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2284, 160, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2285, 160, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2286, 160, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2287, 160, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2288, 160, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2289, 160, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2290, 161, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2291, 161, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2292, 161, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2293, 161, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2294, 161, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2295, 161, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2296, 161, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2297, 162, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2298, 162, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2299, 162, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2300, 162, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2301, 162, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2302, 162, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2303, 162, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2304, 163, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2305, 163, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2306, 163, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2307, 163, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2308, 163, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2309, 163, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2310, 163, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2311, 164, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2312, 164, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2313, 164, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2314, 164, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2315, 164, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2316, 164, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2317, 164, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (2318, 167, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2319, 167, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2320, 167, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2321, 167, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2322, 167, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2323, 167, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2324, 167, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2325, 168, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2326, 168, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2327, 168, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2328, 168, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2329, 168, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2330, 168, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2331, 168, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2332, 169, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2333, 169, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2334, 169, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2335, 169, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2336, 169, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2337, 169, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2338, 169, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2339, 170, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2340, 170, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2341, 170, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2342, 170, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2343, 170, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2344, 170, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2345, 170, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2346, 171, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2347, 171, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2348, 171, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2349, 171, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2350, 171, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2351, 171, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2352, 171, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2353, 172, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2354, 172, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2355, 172, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2356, 172, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2357, 172, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2358, 172, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2359, 172, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2360, 173, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2361, 173, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2362, 173, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2363, 173, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2364, 173, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2365, 173, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2366, 173, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2367, 174, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2368, 174, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2369, 174, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2370, 174, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2371, 174, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2372, 174, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2373, 174, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (2374, 177, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2375, 177, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2376, 177, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2377, 177, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2378, 177, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2379, 177, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2380, 177, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2381, 178, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2382, 178, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04');
-
-INSERT IGNORE INTO `exam_calculate_sign_subjects` (`id`, `exam_calculate_sign_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2383, 178, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2384, 178, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2385, 178, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2386, 178, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2387, 178, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2388, 179, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2389, 179, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2390, 179, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2391, 179, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2392, 179, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2393, 179, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2394, 179, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2395, 180, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2396, 180, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2397, 180, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2398, 180, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2399, 180, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2400, 180, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2401, 180, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2402, 181, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2403, 181, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2404, 181, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2405, 181, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2406, 181, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2407, 181, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2408, 181, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2409, 182, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2410, 182, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2411, 182, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2412, 182, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2413, 182, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2414, 182, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2415, 182, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2416, 183, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2417, 183, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2418, 183, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2419, 183, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2420, 183, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2421, 183, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2422, 183, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2423, 184, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2424, 184, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2425, 184, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2426, 184, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2427, 184, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2428, 184, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (2429, 184, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04');
-
--- Preset seed data for `marks_system` (134 rows)
-INSERT IGNORE INTO `marks_system` (`id`, `marks_name`, `marks_code`, `subjects_ids`, `grade_group_id`, `program_id`, `for_month`, `academic_id`, `created_by`, `updated_by`, `created_at`, `updated_at`, `status`) VALUES
-  (1, 'ខែកញ្ញា', 'MON1', '25,26,27,28,29,30,12', 10, 1, '2026-01-05', 2, 58, 58, '2025-09-11 16:31:09', '2026-01-24 12:11:11', 1),
-  (2, 'ខែតុលា', 'MON2', '25,26,27,28,29,30,12', 10, 1, '2026-01-05', 2, 58, 58, '2025-09-11 16:32:08', '2026-01-24 12:18:46', 1),
-  (3, 'ខែវិច្ឆិកា', 'MON3', '25,26,27,28,29,30,12', 10, 1, '2026-01-05', 2, 58, 58, '2025-09-11 16:32:29', '2026-01-24 12:19:13', 1),
-  (4, 'ខែធ្នូ', 'MON4', '25,26,27,28,29,30,12', 10, 1, '2025-12-16', 2, 58, 19, '2025-09-11 16:32:49', '2026-01-30 11:07:02', 1),
-  (5, 'ឆមាសទី១', 'SEM1', '25,26,27,28,29,30,12', 10, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:34:01', '2026-01-24 12:22:03', 1),
-  (6, 'ខែមីនា', 'MON6', '25,26,27,28,29,30,12', 10, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:34:38', '2026-01-24 12:24:29', 1),
-  (7, 'ខែមេសា', 'MON7', '25,26,27,28,29,30,12', 10, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:34:59', '2026-01-24 12:23:45', 1),
-  (8, 'ខែឧសភា', 'MON8', '25,26,27,28,29,30,12', 10, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:35:40', '2026-01-24 12:21:33', 1),
-  (9, 'ខែកុម្ភៈ', 'MON5', '25,26,27,28,29,30,12', 10, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:35:53', '2026-01-24 12:24:39', 1),
-  (10, 'ឆមាសទី២', 'SEM2', '25,26,27,28,29,30,12', 10, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:36:15', '2026-01-24 12:22:28', 1),
-  (11, 'ខែកញ្ញា', 'MON1', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:37:47', '2026-01-24 12:15:57', 1),
-  (12, 'ខែតុលា', 'MON2', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:38:00', '2026-01-24 12:18:51', 1),
-  (13, 'ខែធ្នូ', 'MON4', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2025-12-16', 2, 58, 19, '2025-09-11 16:38:09', '2026-01-30 11:06:51', 1),
-  (14, 'ខែកុម្ភៈ', 'MON5', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:38:21', '2026-01-24 12:24:43', 1),
-  (15, 'ខែមីនា', 'MON6', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:38:34', '2026-01-24 12:24:23', 1),
-  (16, 'ខែមេសា', 'MON7', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:38:44', '2026-01-24 12:23:40', 1),
-  (17, 'ខែវិច្ឆិកា', 'MON3', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-01-01', 2, 58, 58, '2025-09-11 16:39:29', '2026-01-24 12:19:17', 1),
-  (18, 'ឆមាសទី១', 'SEM1', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:40:27', '2026-01-24 12:22:07', 1),
-  (19, 'ឆមាសទី២', 'SEM2', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:40:39', '2026-01-24 12:22:33', 1),
-  (20, 'ខែកញ្ញា', 'MON1', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:43:25', '2026-01-24 12:18:25', 1),
-  (21, 'ខែតុលា', 'MON2', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:43:40', '2026-01-24 12:18:56', 1),
-  (22, 'ខែធ្នូ', 'MON4', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-12-16', 2, 58, 58, '2025-09-11 16:43:57', '2026-01-24 12:19:52', 1),
-  (23, 'ខែកុម្ភៈ', 'MON5', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:44:13', '2026-01-24 12:24:48', 1),
-  (24, 'ខែមីនា', 'MON6', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:44:27', '2026-01-24 12:24:19', 1),
-  (25, 'ខែមេសា', 'MON7', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:44:33', '2026-01-24 12:23:36', 1),
-  (26, 'ខែវិច្ឆិកា', 'MON3', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2025-11-20', 2, 58, 58, '2025-09-11 16:44:50', '2026-01-24 12:19:21', 1),
-  (27, 'ខែឧសភា', 'MON8', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:45:01', '2026-01-24 12:21:40', 1),
-  (28, 'ឆមាសទី១', 'SEM1', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:45:26', '2026-01-24 12:22:12', 1),
-  (29, 'ឆមាសទី២', 'SEM2', '1,3,13,14,15,16,17,18,19,20,10,21,24,7,49', 12, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:45:34', '2026-01-24 12:22:38', 1),
-  (30, 'ខែកញ្ញា', 'MON1', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:48:28', '2026-01-24 12:18:31', 1),
-  (31, 'ខែតុលា', 'MON2', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:48:42', '2026-01-24 12:19:01', 1),
-  (32, 'ខែវិច្ឆិកា', 'MON3', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-11-20', 2, 58, 58, '2025-09-11 16:48:50', '2026-01-24 12:19:26', 1),
-  (33, 'ខែធ្នូ', 'MON4', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2025-12-16', 2, 58, 58, '2025-09-11 16:48:56', '2026-01-24 12:19:58', 1),
-  (34, 'ខែមីនា', 'MON6', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:49:14', '2026-01-24 12:24:14', 1),
-  (35, 'ខែមេសា', 'MON7', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:49:39', '2026-01-24 12:23:31', 1),
-  (36, 'ខែឧសភា', 'MON8', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:49:59', '2026-01-24 12:21:46', 1),
-  (37, 'ខែកុម្ភៈ', 'MON5', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:51:17', '2026-01-24 12:24:52', 1),
-  (38, 'ឆមាសទី១', 'SEM1', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:51:30', '2026-01-24 12:22:16', 1),
-  (39, 'ឆមាសទី២', 'SEM2', '1,3,13,14,15,16,17,10,18,19', 13, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:51:37', '2026-01-24 12:22:43', 1),
-  (40, 'ខែកញ្ញា', 'MON1', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-09-18', 2, 58, 58, '2025-09-11 16:53:27', '2026-01-24 12:18:35', 1),
-  (41, 'ខែតុលា', 'MON2', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-10-23', 2, 58, 58, '2025-09-11 16:53:36', '2026-01-24 12:19:05', 1),
-  (42, 'ខែធ្នូ', 'MON4', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-12-16', 2, 58, 58, '2025-09-11 16:53:45', '2026-01-24 12:20:02', 1),
-  (43, 'ខែកុម្ភៈ', 'MON5', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-02-24', 2, 58, 58, '2025-09-11 16:53:58', '2026-01-24 12:24:57', 1),
-  (44, 'ខែមីនា', 'MON6', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-03-24', 2, 58, 58, '2025-09-11 16:54:07', '2026-01-24 12:24:10', 1),
-  (45, 'ខែមេសា', 'MON7', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-04-23', 2, 58, 58, '2025-09-11 16:54:16', '2026-01-24 12:23:26', 1),
-  (46, 'ខែវិច្ឆិកា', 'MON3', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2025-11-20', 2, 58, 58, '2025-09-11 16:54:27', '2026-01-24 12:19:36', 1),
-  (47, 'ខែឧសភា', 'MON8', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-05-21', 2, 58, 58, '2025-09-11 16:54:59', '2026-01-24 12:21:51', 1),
-  (48, 'ឆមាសទី១', 'SEM1', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-01-12', 2, 58, 58, '2025-09-11 16:57:25', '2026-01-24 12:22:21', 1),
-  (49, 'ឆមាសទី២', 'SEM2', '1,3,13,14,15,16,17,18,19,20,10,21,49,7,24', 14, 1, '2026-06-09', 2, 58, 58, '2025-09-11 16:57:33', '2026-01-24 12:22:48', 1),
-  (50, 'ខែឧសភា', 'MON8', '1,2,3,4,5,6,7,8,9,10,11', 11, 1, '2026-05-21', 2, 58, 58, '2025-09-11 17:05:01', '2026-01-24 12:21:57', 1),
-  (51, 'Mid- 1st Quarter', 'MON1', '38,39,40,41,42,43,44', 18, 2, '2025-11-03', 2, 58, 58, '2025-09-29 16:38:52', '2026-01-24 12:28:58', 1),
-  (52, 'Final- 1st Quarter', 'MON2', '38,39,40,41,42,43,44', 18, 2, '2025-10-28', 2, 58, 58, '2025-09-29 16:39:02', '2026-01-24 12:29:08', 1),
-  (53, 'Mid- 2nd Quarter', 'MON3', '38,39,40,41,42,43,44', 18, 2, '2025-12-16', 2, 58, 58, '2025-09-29 16:39:07', '2026-01-24 12:29:12', 1),
-  (54, 'Final- 2nd Quarter', 'MON4', '38,39,40,41,42,43,44', 18, 2, '2026-01-20', 2, 58, 58, '2025-09-29 16:39:12', '2026-01-24 12:29:16', 1),
-  (55, 'Mid- 3rd Quarter', 'MON5', '38,39,40,41,42,43,44', 18, 2, '2026-03-11', 2, 58, 58, '2025-09-29 16:39:20', '2026-01-24 12:29:21', 1),
-  (56, 'Final- 3rd Quarter', 'MON6', '38,39,40,41,42,43,44', 18, 2, '2026-04-07', 2, 58, 58, '2025-09-29 16:39:26', '2026-01-24 12:29:26', 1),
-  (57, 'Mid- 4th Quarter', 'MON7', '38,39,40,41,42,43,44', 18, 2, '2026-05-26', 2, 58, 72, '2025-09-29 16:39:31', '2026-05-28 10:01:38', 1),
-  (58, 'Final- 4th Quarter', 'MON8', '38,39,40,41,42,43,44', 18, 2, '2026-06-22', 2, 58, 58, '2025-09-29 16:39:35', '2026-01-24 12:29:46', 1),
-  (59, 'Mid- 1st Quarter', 'MON1', '31,32,33,34,35,36,37', 15, 3, '2025-09-29', 2, 58, 58, '2025-09-29 16:39:55', '2026-01-24 12:25:40', 1),
-  (60, 'Final- 1st Quarter', 'MON2', '31,32,33,34,35,36,37', 15, 3, '2025-10-28', 2, 58, 58, '2025-09-29 16:40:00', '2026-01-24 12:25:49', 1),
-  (61, 'Mid- 2nd Quarter', 'MON3', '31,32,33,34,35,36,37', 15, 3, '2025-12-16', 2, 58, 19, '2025-09-29 16:40:04', '2026-01-28 17:29:09', 1),
-  (62, 'Final- 2nd Quarter', 'MON4', '31,32,33,34,35,36,37', 15, 3, '2026-01-20', 2, 58, 58, '2025-09-29 16:40:08', '2026-01-24 12:26:10', 1),
-  (63, 'Mid- 3rd Quarter', 'MON5', '31,32,33,34,35,36,37', 15, 3, '2026-03-11', 2, 58, 58, '2025-09-29 16:40:13', '2026-01-24 12:26:21', 1),
-  (64, 'Final- 3rd Quarter', 'MON6', '31,32,33,34,35,36,37', 15, 3, '2026-04-07', 2, 58, 58, '2025-09-29 16:40:17', '2026-01-24 12:26:27', 1),
-  (65, 'Mid- 4th Quarter', 'MON7', '31,32,33,34,35,36,37', 15, 3, '2026-05-26', 2, 58, 72, '2025-09-29 16:40:21', '2026-05-28 10:02:43', 1),
-  (66, 'Final- 4th Quarter', 'MON8', '31,32,33,34,35,36,37', 15, 3, '2026-06-22', 2, 58, 58, '2025-09-29 16:40:26', '2026-01-24 12:26:36', 1),
-  (67, 'Mid- 1st Quarter', 'MON1', '38,39,40,41,42,43,44', 16, 2, '2025-09-29', 2, 58, 19, '2025-09-29 16:42:12', '2026-01-28 17:27:46', 1),
-  (68, 'Final- 1st Quarter', 'MON2', '38,39,40,41,42,43,44', 16, 2, '2025-10-28', 2, 58, 19, '2025-09-29 16:42:18', '2026-01-28 17:28:30', 1),
-  (69, 'Mid- 2nd Quarter', 'MON3', '38,39,40,41,42,43,44', 16, 2, '2025-12-16', 2, 58, 19, '2025-09-29 16:42:23', '2026-01-28 17:29:22', 1),
-  (70, 'Final- 2nd Quarter', 'MON4', '38,39,40,41,42,43,44', 16, 2, '2026-01-20', 2, 58, 58, '2025-09-29 16:42:29', '2026-01-24 12:28:22', 1),
-  (71, 'Mid- 3rd Quarter', 'MON5', '38,39,40,41,42,43,44', 16, 2, '2026-03-11', 2, 58, 58, '2025-09-29 16:42:35', '2026-01-24 12:28:32', 1),
-  (72, 'Final- 3rd Quarter', 'MON6', '38,39,40,41,42,43,44', 16, 2, '2026-04-07', 2, 58, 58, '2025-09-29 16:42:39', '2026-01-24 12:28:36', 1),
-  (73, 'Mid- 4th Quarter', 'MON7', '38,39,40,41,42,43,44', 16, 2, '2026-05-26', 2, 58, 72, '2025-09-29 16:42:44', '2026-05-28 10:01:53', 1),
-  (74, 'Final- 4th Quarter', 'MON8', '38,39,40,41,42,43,44', 16, 2, '2026-06-22', 2, 58, 58, '2025-09-29 16:42:48', '2026-01-24 12:28:46', 1),
-  (75, 'Mid- 1st Quarter', 'MON1', '38,39,40,41,42,43,44', 17, 2, '2025-09-29', 2, 58, 58, '2025-09-29 16:44:08', '2026-01-24 12:26:56', 1),
-  (76, 'Final- 1st Quarter', 'MON2', '38,39,40,41,42,43,44', 17, 2, '2025-10-28', 2, 58, 58, '2025-09-29 16:44:14', '2026-01-24 12:27:03', 1),
-  (77, 'Mid- 2nd Quarter', 'MON3', '38,39,40,41,42,43,44', 17, 2, '2025-12-16', 2, 58, 19, '2025-09-29 16:44:19', '2026-01-28 17:29:41', 1),
-  (78, 'Final- 2nd Quarter', 'MON4', '38,39,40,41,42,43,44', 17, 2, '2026-01-20', 2, 58, 58, '2025-09-29 16:44:23', '2026-01-24 12:27:14', 1),
-  (79, 'Mid- 3rd Quarter', 'MON5', '38,39,40,41,42,43,44', 17, 2, '2026-03-11', 2, 58, 58, '2025-09-29 16:44:28', '2026-01-24 12:27:19', 1),
-  (80, 'Final- 3rd Quarter', 'MON6', '38,39,40,41,42,43,44', 17, 2, '2026-04-07', 2, 58, 58, '2025-09-29 16:44:32', '2026-01-24 12:27:24', 1),
-  (81, 'Mid- 4th Quarter', 'MON7', '38,39,40,41,42,43,44', 17, 2, '2026-05-26', 2, 58, 72, '2025-09-29 16:44:37', '2026-05-28 10:02:09', 1),
-  (82, 'Final- 4th Quarter', 'MON8', '38,39,40,41,42,43,44', 17, 2, '2026-06-22', 2, 58, 58, '2025-09-29 16:44:41', '2026-01-24 12:27:35', 1),
-  (83, 'ខែកញ្ញា', 'MON1', NULL, 29, 1, '2026-09-17', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (84, 'ខែតុលា', 'MON2', NULL, 29, 1, '2026-10-22', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (85, 'ខែធ្នូ', 'MON4', NULL, 29, 1, '2026-12-15', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (86, 'ខែកុម្ភៈ', 'MON5', NULL, 29, 1, '2027-02-23', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (87, 'ខែមីនា', 'MON6', NULL, 29, 1, '2027-03-23', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (88, 'ខែមេសា', 'MON7', NULL, 29, 1, '2027-04-22', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (89, 'ខែវិច្ឆិកា', 'MON3', NULL, 29, 1, '2026-12-31', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (90, 'ឆមាសទី១', 'SEM1', NULL, 29, 1, '2027-01-11', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (91, 'ឆមាសទី២', 'SEM2', NULL, 29, 1, '2027-06-08', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (92, 'ខែឧសភា', 'MON8', NULL, 29, 1, '2027-05-20', 16, 58, 58, '2026-08-25 10:00:12', '2026-08-25 10:00:12', 1),
-  (93, 'ខែកញ្ញា', 'MON1', NULL, 28, 1, '2027-01-04', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (94, 'ខែតុលា', 'MON2', NULL, 28, 1, '2027-01-04', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (95, 'ខែវិច្ឆិកា', 'MON3', NULL, 28, 1, '2027-01-04', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (96, 'ខែធ្នូ', 'MON4', NULL, 28, 1, '2026-12-15', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (97, 'ឆមាសទី១', 'SEM1', NULL, 28, 1, '2027-01-11', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (98, 'ខែមីនា', 'MON6', NULL, 28, 1, '2027-03-23', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (99, 'ខែមេសា', 'MON7', NULL, 28, 1, '2027-04-22', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (100, 'ខែឧសភា', 'MON8', NULL, 28, 1, '2027-05-20', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1);
-
-INSERT IGNORE INTO `marks_system` (`id`, `marks_name`, `marks_code`, `subjects_ids`, `grade_group_id`, `program_id`, `for_month`, `academic_id`, `created_by`, `updated_by`, `created_at`, `updated_at`, `status`) VALUES
-  (101, 'ខែកុម្ភៈ', 'MON5', NULL, 28, 1, '2027-02-23', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (102, 'ឆមាសទី២', 'SEM2', NULL, 28, 1, '2027-06-08', 16, 58, 58, '2026-08-25 10:11:23', '2026-08-25 10:11:23', 1),
-  (113, 'Mid- 1st Quarter', 'MON1', NULL, 33, 3, '2026-09-28', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (114, 'Final- 1st Quarter', 'MON2', NULL, 33, 3, '2026-10-27', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (115, 'Mid- 2nd Quarter', 'MON3', NULL, 33, 3, '2026-12-15', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (116, 'Final- 2nd Quarter', 'MON4', NULL, 33, 3, '2027-01-19', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (117, 'Mid- 3rd Quarter', 'MON5', NULL, 33, 3, '2027-03-10', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (118, 'Final- 3rd Quarter', 'MON6', NULL, 33, 3, '2027-04-06', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (119, 'Mid- 4th Quarter', 'MON7', NULL, 33, 3, '2027-05-25', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (120, 'Final- 4th Quarter', 'MON8', NULL, 33, 3, '2027-06-21', 16, 58, 58, '2026-08-25 10:27:09', '2026-08-25 10:27:09', 1),
-  (121, 'Mid- 1st Quarter', 'MON1', NULL, 36, 2, '2026-11-02', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
-  (122, 'Final- 1st Quarter', 'MON2', NULL, 36, 2, '2026-10-27', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
-  (123, 'Mid- 2nd Quarter', 'MON3', NULL, 36, 2, '2026-12-15', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
-  (124, 'Final- 2nd Quarter', 'MON4', NULL, 36, 2, '2027-01-19', 16, 58, 58, '2026-08-25 10:28:20', '2026-08-25 10:28:20', 1),
-  (125, 'Mid- 3rd Quarter', 'MON5', NULL, 36, 2, '2027-03-10', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
-  (126, 'Final- 3rd Quarter', 'MON6', NULL, 36, 2, '2027-04-06', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
-  (127, 'Mid- 4th Quarter', 'MON7', NULL, 36, 2, '2027-05-25', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
-  (128, 'Final- 4th Quarter', 'MON8', NULL, 36, 2, '2027-06-21', 16, 58, 58, '2026-08-25 10:28:21', '2026-08-25 10:28:21', 1),
-  (129, 'Mid- 1st Quarter', 'MON1', NULL, 34, 2, '2026-09-28', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (130, 'Final- 1st Quarter', 'MON2', NULL, 34, 2, '2026-10-27', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (131, 'Mid- 2nd Quarter', 'MON3', NULL, 34, 2, '2026-12-15', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (132, 'Final- 2nd Quarter', 'MON4', NULL, 34, 2, '2027-01-19', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (133, 'Mid- 3rd Quarter', 'MON5', NULL, 34, 2, '2027-03-10', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (134, 'Final- 3rd Quarter', 'MON6', NULL, 34, 2, '2027-04-06', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (135, 'Mid- 4th Quarter', 'MON7', NULL, 34, 2, '2027-05-25', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (136, 'Final- 4th Quarter', 'MON8', NULL, 34, 2, '2027-06-21', 16, 58, 58, '2026-08-25 10:28:49', '2026-08-25 10:28:49', 1),
-  (137, 'Mid- 1st Quarter', 'MON1', NULL, 35, 2, '2026-09-28', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
-  (138, 'Final- 1st Quarter', 'MON2', NULL, 35, 2, '2026-10-27', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
-  (139, 'Mid- 2nd Quarter', 'MON3', NULL, 35, 2, '2026-12-15', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
-  (140, 'Final- 2nd Quarter', 'MON4', NULL, 35, 2, '2027-01-19', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
-  (141, 'Mid- 3rd Quarter', 'MON5', NULL, 35, 2, '2027-03-10', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
-  (142, 'Final- 3rd Quarter', 'MON6', NULL, 35, 2, '2027-04-06', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
-  (143, 'Mid- 4th Quarter', 'MON7', NULL, 35, 2, '2027-05-25', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1),
-  (144, 'Final- 4th Quarter', 'MON8', NULL, 35, 2, '2027-06-21', 16, 58, 58, '2026-08-25 10:29:04', '2026-08-25 10:29:04', 1);
-
--- Preset seed data for `marks_system_subjects` (1198 rows)
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (1045, 1, 25, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
-  (1046, 1, 26, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
-  (1047, 1, 27, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
-  (1048, 1, 28, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
-  (1049, 1, 29, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
-  (1050, 1, 30, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
-  (1051, 1, 12, '2025-09-11 16:31:09', '2026-01-24 12:11:11'),
-  (1067, 11, 1, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1068, 11, 2, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1069, 11, 3, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1070, 11, 4, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1071, 11, 5, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1072, 11, 6, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1073, 11, 7, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1074, 11, 8, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1075, 11, 9, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1076, 11, 10, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1077, 11, 11, '2025-09-11 16:37:47', '2026-01-24 12:15:57'),
-  (1093, 20, 1, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1094, 20, 3, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1095, 20, 13, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1096, 20, 14, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1097, 20, 15, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1098, 20, 16, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1099, 20, 17, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1100, 20, 18, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1101, 20, 19, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1102, 20, 20, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1103, 20, 10, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1104, 20, 21, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1105, 20, 24, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1106, 20, 7, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1107, 20, 49, '2025-09-11 16:43:25', '2026-01-24 12:18:25'),
-  (1123, 30, 1, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1124, 30, 3, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1125, 30, 13, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1126, 30, 14, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1127, 30, 15, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1128, 30, 16, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1129, 30, 17, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1130, 30, 10, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1131, 30, 18, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1132, 30, 19, '2025-09-11 16:48:28', '2026-01-24 12:18:31'),
-  (1148, 40, 1, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1149, 40, 3, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1150, 40, 13, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1151, 40, 14, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1152, 40, 15, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1153, 40, 16, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1154, 40, 17, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1155, 40, 18, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1156, 40, 19, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1157, 40, 20, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1158, 40, 10, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1159, 40, 21, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1160, 40, 49, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1161, 40, 7, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1162, 40, 24, '2025-09-11 16:53:27', '2026-01-24 12:18:35'),
-  (1170, 2, 25, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
-  (1171, 2, 26, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
-  (1172, 2, 27, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
-  (1173, 2, 28, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
-  (1174, 2, 29, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
-  (1175, 2, 30, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
-  (1176, 2, 12, '2025-09-11 16:32:08', '2026-01-24 12:18:46'),
-  (1192, 12, 1, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1193, 12, 2, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1194, 12, 3, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1195, 12, 4, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1196, 12, 5, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1197, 12, 6, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1198, 12, 7, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1199, 12, 8, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1200, 12, 9, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1201, 12, 10, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1202, 12, 11, '2025-09-11 16:38:00', '2026-01-24 12:18:51'),
-  (1218, 21, 1, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1219, 21, 3, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1220, 21, 13, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1221, 21, 14, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1222, 21, 15, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1223, 21, 16, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1224, 21, 17, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1225, 21, 18, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1226, 21, 19, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1227, 21, 20, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1228, 21, 10, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1229, 21, 21, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1230, 21, 24, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1231, 21, 7, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1232, 21, 49, '2025-09-11 16:43:40', '2026-01-24 12:18:56'),
-  (1248, 31, 1, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1249, 31, 3, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1250, 31, 13, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1251, 31, 14, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1252, 31, 15, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1253, 31, 16, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1254, 31, 17, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1255, 31, 10, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1256, 31, 18, '2025-09-11 16:48:42', '2026-01-24 12:19:01');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (1257, 31, 19, '2025-09-11 16:48:42', '2026-01-24 12:19:01'),
-  (1273, 41, 1, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1274, 41, 3, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1275, 41, 13, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1276, 41, 14, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1277, 41, 15, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1278, 41, 16, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1279, 41, 17, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1280, 41, 18, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1281, 41, 19, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1282, 41, 20, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1283, 41, 10, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1284, 41, 21, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1285, 41, 49, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1286, 41, 7, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1287, 41, 24, '2025-09-11 16:53:36', '2026-01-24 12:19:05'),
-  (1295, 3, 25, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
-  (1296, 3, 26, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
-  (1297, 3, 27, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
-  (1298, 3, 28, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
-  (1299, 3, 29, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
-  (1300, 3, 30, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
-  (1301, 3, 12, '2025-09-11 16:32:29', '2026-01-24 12:19:13'),
-  (1317, 17, 1, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1318, 17, 2, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1319, 17, 3, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1320, 17, 4, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1321, 17, 5, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1322, 17, 6, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1323, 17, 7, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1324, 17, 8, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1325, 17, 9, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1326, 17, 10, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1327, 17, 11, '2025-09-11 16:39:29', '2026-01-24 12:19:17'),
-  (1343, 26, 1, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1344, 26, 3, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1345, 26, 13, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1346, 26, 14, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1347, 26, 15, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1348, 26, 16, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1349, 26, 17, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1350, 26, 18, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1351, 26, 19, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1352, 26, 20, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1353, 26, 10, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1354, 26, 21, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1355, 26, 24, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1356, 26, 7, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1357, 26, 49, '2025-09-11 16:44:50', '2026-01-24 12:19:21'),
-  (1373, 32, 1, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1374, 32, 3, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1375, 32, 13, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1376, 32, 14, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1377, 32, 15, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1378, 32, 16, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1379, 32, 17, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1380, 32, 10, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1381, 32, 18, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1382, 32, 19, '2025-09-11 16:48:50', '2026-01-24 12:19:26'),
-  (1428, 46, 1, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1429, 46, 3, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1430, 46, 13, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1431, 46, 14, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1432, 46, 15, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1433, 46, 16, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1434, 46, 17, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1435, 46, 18, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1436, 46, 19, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1437, 46, 20, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1438, 46, 10, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1439, 46, 21, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1440, 46, 49, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1441, 46, 7, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1442, 46, 24, '2025-09-11 16:54:27', '2026-01-24 12:19:36'),
-  (1498, 22, 1, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1499, 22, 3, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1500, 22, 13, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1501, 22, 14, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1502, 22, 15, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1503, 22, 16, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1504, 22, 17, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1505, 22, 18, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1506, 22, 19, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1507, 22, 20, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1508, 22, 10, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1509, 22, 21, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1510, 22, 24, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1511, 22, 7, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1512, 22, 49, '2025-09-11 16:43:57', '2026-01-24 12:19:52'),
-  (1528, 33, 1, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1529, 33, 3, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1530, 33, 13, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1531, 33, 14, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1532, 33, 15, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1533, 33, 16, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1534, 33, 17, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1535, 33, 10, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1536, 33, 18, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1537, 33, 19, '2025-09-11 16:48:56', '2026-01-24 12:19:58'),
-  (1553, 42, 1, '2025-09-11 16:53:45', '2026-01-24 12:20:02');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (1554, 42, 3, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1555, 42, 13, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1556, 42, 14, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1557, 42, 15, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1558, 42, 16, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1559, 42, 17, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1560, 42, 18, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1561, 42, 19, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1562, 42, 20, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1563, 42, 10, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1564, 42, 21, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1565, 42, 49, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1566, 42, 7, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1567, 42, 24, '2025-09-11 16:53:45', '2026-01-24 12:20:02'),
-  (1825, 8, 25, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
-  (1826, 8, 26, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
-  (1827, 8, 27, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
-  (1828, 8, 28, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
-  (1829, 8, 29, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
-  (1830, 8, 30, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
-  (1831, 8, 12, '2025-09-11 16:35:40', '2026-01-24 12:21:33'),
-  (1847, 27, 1, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1848, 27, 3, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1849, 27, 13, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1850, 27, 14, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1851, 27, 15, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1852, 27, 16, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1853, 27, 17, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1854, 27, 18, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1855, 27, 19, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1856, 27, 20, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1857, 27, 10, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1858, 27, 21, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1859, 27, 24, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1860, 27, 7, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1861, 27, 49, '2025-09-11 16:45:01', '2026-01-24 12:21:40'),
-  (1877, 36, 1, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1878, 36, 3, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1879, 36, 13, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1880, 36, 14, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1881, 36, 15, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1882, 36, 16, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1883, 36, 17, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1884, 36, 10, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1885, 36, 18, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1886, 36, 19, '2025-09-11 16:49:59', '2026-01-24 12:21:46'),
-  (1902, 47, 1, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1903, 47, 3, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1904, 47, 13, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1905, 47, 14, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1906, 47, 15, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1907, 47, 16, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1908, 47, 17, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1909, 47, 18, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1910, 47, 19, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1911, 47, 20, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1912, 47, 10, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1913, 47, 21, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1914, 47, 49, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1915, 47, 7, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1916, 47, 24, '2025-09-11 16:54:59', '2026-01-24 12:21:51'),
-  (1932, 50, 1, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1933, 50, 2, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1934, 50, 3, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1935, 50, 4, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1936, 50, 5, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1937, 50, 6, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1938, 50, 7, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1939, 50, 8, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1940, 50, 9, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1941, 50, 10, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1942, 50, 11, '2025-09-11 17:05:01', '2026-01-24 12:21:57'),
-  (1950, 5, 25, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
-  (1951, 5, 26, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
-  (1952, 5, 27, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
-  (1953, 5, 28, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
-  (1954, 5, 29, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
-  (1955, 5, 30, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
-  (1956, 5, 12, '2025-09-11 16:34:01', '2026-01-24 12:22:03'),
-  (1972, 18, 1, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1973, 18, 2, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1974, 18, 3, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1975, 18, 4, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1976, 18, 5, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1977, 18, 6, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1978, 18, 7, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1979, 18, 8, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1980, 18, 9, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1981, 18, 10, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1982, 18, 11, '2025-09-11 16:40:27', '2026-01-24 12:22:07'),
-  (1998, 28, 1, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (1999, 28, 3, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2000, 28, 13, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2001, 28, 14, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2002, 28, 15, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2003, 28, 16, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2004, 28, 17, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2005, 28, 18, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2006, 28, 19, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2007, 28, 20, '2025-09-11 16:45:26', '2026-01-24 12:22:12');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2008, 28, 10, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2009, 28, 21, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2010, 28, 24, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2011, 28, 7, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2012, 28, 49, '2025-09-11 16:45:26', '2026-01-24 12:22:12'),
-  (2028, 38, 1, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2029, 38, 3, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2030, 38, 13, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2031, 38, 14, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2032, 38, 15, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2033, 38, 16, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2034, 38, 17, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2035, 38, 10, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2036, 38, 18, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2037, 38, 19, '2025-09-11 16:51:30', '2026-01-24 12:22:16'),
-  (2053, 48, 1, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2054, 48, 3, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2055, 48, 13, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2056, 48, 14, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2057, 48, 15, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2058, 48, 16, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2059, 48, 17, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2060, 48, 18, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2061, 48, 19, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2062, 48, 20, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2063, 48, 10, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2064, 48, 21, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2065, 48, 49, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2066, 48, 7, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2067, 48, 24, '2025-09-11 16:57:25', '2026-01-24 12:22:21'),
-  (2075, 10, 25, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
-  (2076, 10, 26, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
-  (2077, 10, 27, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
-  (2078, 10, 28, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
-  (2079, 10, 29, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
-  (2080, 10, 30, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
-  (2081, 10, 12, '2025-09-11 16:36:15', '2026-01-24 12:22:28'),
-  (2097, 19, 1, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2098, 19, 2, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2099, 19, 3, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2100, 19, 4, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2101, 19, 5, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2102, 19, 6, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2103, 19, 7, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2104, 19, 8, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2105, 19, 9, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2106, 19, 10, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2107, 19, 11, '2025-09-11 16:40:39', '2026-01-24 12:22:33'),
-  (2123, 29, 1, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2124, 29, 3, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2125, 29, 13, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2126, 29, 14, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2127, 29, 15, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2128, 29, 16, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2129, 29, 17, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2130, 29, 18, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2131, 29, 19, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2132, 29, 20, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2133, 29, 10, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2134, 29, 21, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2135, 29, 24, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2136, 29, 7, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2137, 29, 49, '2025-09-11 16:45:34', '2026-01-24 12:22:38'),
-  (2153, 39, 1, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2154, 39, 3, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2155, 39, 13, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2156, 39, 14, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2157, 39, 15, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2158, 39, 16, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2159, 39, 17, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2160, 39, 10, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2161, 39, 18, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2162, 39, 19, '2025-09-11 16:51:37', '2026-01-24 12:22:43'),
-  (2178, 49, 1, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2179, 49, 3, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2180, 49, 13, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2181, 49, 14, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2182, 49, 15, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2183, 49, 16, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2184, 49, 17, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2185, 49, 18, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2186, 49, 19, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2187, 49, 20, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2188, 49, 10, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2189, 49, 21, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2190, 49, 49, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2191, 49, 7, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2192, 49, 24, '2025-09-11 16:57:33', '2026-01-24 12:22:48'),
-  (2208, 45, 1, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2209, 45, 3, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2210, 45, 13, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2211, 45, 14, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2212, 45, 15, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2213, 45, 16, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2214, 45, 17, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2215, 45, 18, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2216, 45, 19, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2217, 45, 20, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2218, 45, 10, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2219, 45, 21, '2025-09-11 16:54:16', '2026-01-24 12:23:26');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2220, 45, 49, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2221, 45, 7, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2222, 45, 24, '2025-09-11 16:54:16', '2026-01-24 12:23:26'),
-  (2238, 35, 1, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2239, 35, 3, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2240, 35, 13, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2241, 35, 14, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2242, 35, 15, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2243, 35, 16, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2244, 35, 17, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2245, 35, 10, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2246, 35, 18, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2247, 35, 19, '2025-09-11 16:49:39', '2026-01-24 12:23:31'),
-  (2263, 25, 1, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2264, 25, 3, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2265, 25, 13, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2266, 25, 14, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2267, 25, 15, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2268, 25, 16, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2269, 25, 17, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2270, 25, 18, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2271, 25, 19, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2272, 25, 20, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2273, 25, 10, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2274, 25, 21, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2275, 25, 24, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2276, 25, 7, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2277, 25, 49, '2025-09-11 16:44:33', '2026-01-24 12:23:36'),
-  (2293, 16, 1, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2294, 16, 2, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2295, 16, 3, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2296, 16, 4, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2297, 16, 5, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2298, 16, 6, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2299, 16, 7, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2300, 16, 8, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2301, 16, 9, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2302, 16, 10, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2303, 16, 11, '2025-09-11 16:38:44', '2026-01-24 12:23:40'),
-  (2311, 7, 25, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
-  (2312, 7, 26, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
-  (2313, 7, 27, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
-  (2314, 7, 28, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
-  (2315, 7, 29, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
-  (2316, 7, 30, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
-  (2317, 7, 12, '2025-09-11 16:34:59', '2026-01-24 12:23:45'),
-  (2333, 44, 1, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2334, 44, 3, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2335, 44, 13, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2336, 44, 14, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2337, 44, 15, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2338, 44, 16, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2339, 44, 17, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2340, 44, 18, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2341, 44, 19, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2342, 44, 20, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2343, 44, 10, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2344, 44, 21, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2345, 44, 49, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2346, 44, 7, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2347, 44, 24, '2025-09-11 16:54:07', '2026-01-24 12:24:10'),
-  (2363, 34, 1, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2364, 34, 3, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2365, 34, 13, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2366, 34, 14, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2367, 34, 15, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2368, 34, 16, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2369, 34, 17, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2370, 34, 10, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2371, 34, 18, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2372, 34, 19, '2025-09-11 16:49:14', '2026-01-24 12:24:14'),
-  (2388, 24, 1, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2389, 24, 3, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2390, 24, 13, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2391, 24, 14, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2392, 24, 15, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2393, 24, 16, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2394, 24, 17, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2395, 24, 18, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2396, 24, 19, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2397, 24, 20, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2398, 24, 10, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2399, 24, 21, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2400, 24, 24, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2401, 24, 7, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2402, 24, 49, '2025-09-11 16:44:27', '2026-01-24 12:24:19'),
-  (2418, 15, 1, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2419, 15, 2, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2420, 15, 3, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2421, 15, 4, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2422, 15, 5, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2423, 15, 6, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2424, 15, 7, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2425, 15, 8, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2426, 15, 9, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2427, 15, 10, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2428, 15, 11, '2025-09-11 16:38:34', '2026-01-24 12:24:23'),
-  (2436, 6, 25, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
-  (2437, 6, 26, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
-  (2438, 6, 27, '2025-09-11 16:34:38', '2026-01-24 12:24:29');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2439, 6, 28, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
-  (2440, 6, 29, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
-  (2441, 6, 30, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
-  (2442, 6, 12, '2025-09-11 16:34:38', '2026-01-24 12:24:29'),
-  (2450, 9, 25, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
-  (2451, 9, 26, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
-  (2452, 9, 27, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
-  (2453, 9, 28, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
-  (2454, 9, 29, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
-  (2455, 9, 30, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
-  (2456, 9, 12, '2025-09-11 16:35:53', '2026-01-24 12:24:39'),
-  (2472, 14, 1, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2473, 14, 2, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2474, 14, 3, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2475, 14, 4, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2476, 14, 5, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2477, 14, 6, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2478, 14, 7, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2479, 14, 8, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2480, 14, 9, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2481, 14, 10, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2482, 14, 11, '2025-09-11 16:38:21', '2026-01-24 12:24:43'),
-  (2498, 23, 1, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2499, 23, 3, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2500, 23, 13, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2501, 23, 14, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2502, 23, 15, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2503, 23, 16, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2504, 23, 17, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2505, 23, 18, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2506, 23, 19, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2507, 23, 20, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2508, 23, 10, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2509, 23, 21, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2510, 23, 24, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2511, 23, 7, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2512, 23, 49, '2025-09-11 16:44:13', '2026-01-24 12:24:48'),
-  (2528, 37, 1, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2529, 37, 3, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2530, 37, 13, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2531, 37, 14, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2532, 37, 15, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2533, 37, 16, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2534, 37, 17, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2535, 37, 10, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2536, 37, 18, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2537, 37, 19, '2025-09-11 16:51:17', '2026-01-24 12:24:52'),
-  (2553, 43, 1, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2554, 43, 3, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2555, 43, 13, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2556, 43, 14, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2557, 43, 15, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2558, 43, 16, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2559, 43, 17, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2560, 43, 18, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2561, 43, 19, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2562, 43, 20, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2563, 43, 10, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2564, 43, 21, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2565, 43, 49, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2566, 43, 7, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2567, 43, 24, '2025-09-11 16:53:58', '2026-01-24 12:24:57'),
-  (2575, 59, 31, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
-  (2576, 59, 32, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
-  (2577, 59, 33, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
-  (2578, 59, 34, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
-  (2579, 59, 35, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
-  (2580, 59, 36, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
-  (2581, 59, 37, '2025-09-29 16:39:55', '2026-01-24 12:25:40'),
-  (2589, 60, 31, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
-  (2590, 60, 32, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
-  (2591, 60, 33, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
-  (2592, 60, 34, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
-  (2593, 60, 35, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
-  (2594, 60, 36, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
-  (2595, 60, 37, '2025-09-29 16:40:00', '2026-01-24 12:25:49'),
-  (2617, 62, 31, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
-  (2618, 62, 32, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
-  (2619, 62, 33, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
-  (2620, 62, 34, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
-  (2621, 62, 35, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
-  (2622, 62, 36, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
-  (2623, 62, 37, '2025-09-29 16:40:08', '2026-01-24 12:26:10'),
-  (2645, 63, 31, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
-  (2646, 63, 32, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
-  (2647, 63, 33, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
-  (2648, 63, 34, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
-  (2649, 63, 35, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
-  (2650, 63, 36, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
-  (2651, 63, 37, '2025-09-29 16:40:13', '2026-01-24 12:26:21'),
-  (2659, 64, 31, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
-  (2660, 64, 32, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
-  (2661, 64, 33, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
-  (2662, 64, 34, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
-  (2663, 64, 35, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
-  (2664, 64, 36, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
-  (2665, 64, 37, '2025-09-29 16:40:17', '2026-01-24 12:26:27'),
-  (2687, 66, 31, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
-  (2688, 66, 32, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
-  (2689, 66, 33, '2025-09-29 16:40:26', '2026-01-24 12:26:36');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2690, 66, 34, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
-  (2691, 66, 35, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
-  (2692, 66, 36, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
-  (2693, 66, 37, '2025-09-29 16:40:26', '2026-01-24 12:26:36'),
-  (2701, 75, 38, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
-  (2702, 75, 39, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
-  (2703, 75, 40, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
-  (2704, 75, 41, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
-  (2705, 75, 42, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
-  (2706, 75, 43, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
-  (2707, 75, 44, '2025-09-29 16:44:08', '2026-01-24 12:26:56'),
-  (2715, 76, 38, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
-  (2716, 76, 39, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
-  (2717, 76, 40, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
-  (2718, 76, 41, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
-  (2719, 76, 42, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
-  (2720, 76, 43, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
-  (2721, 76, 44, '2025-09-29 16:44:14', '2026-01-24 12:27:03'),
-  (2743, 78, 38, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
-  (2744, 78, 39, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
-  (2745, 78, 40, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
-  (2746, 78, 41, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
-  (2747, 78, 42, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
-  (2748, 78, 43, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
-  (2749, 78, 44, '2025-09-29 16:44:23', '2026-01-24 12:27:14'),
-  (2757, 79, 38, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
-  (2758, 79, 39, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
-  (2759, 79, 40, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
-  (2760, 79, 41, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
-  (2761, 79, 42, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
-  (2762, 79, 43, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
-  (2763, 79, 44, '2025-09-29 16:44:28', '2026-01-24 12:27:19'),
-  (2771, 80, 38, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
-  (2772, 80, 39, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
-  (2773, 80, 40, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
-  (2774, 80, 41, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
-  (2775, 80, 42, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
-  (2776, 80, 43, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
-  (2777, 80, 44, '2025-09-29 16:44:32', '2026-01-24 12:27:24'),
-  (2799, 82, 38, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
-  (2800, 82, 39, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
-  (2801, 82, 40, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
-  (2802, 82, 41, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
-  (2803, 82, 42, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
-  (2804, 82, 43, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
-  (2805, 82, 44, '2025-09-29 16:44:41', '2026-01-24 12:27:35'),
-  (2855, 70, 38, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
-  (2856, 70, 39, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
-  (2857, 70, 40, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
-  (2858, 70, 41, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
-  (2859, 70, 42, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
-  (2860, 70, 43, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
-  (2861, 70, 44, '2025-09-29 16:42:29', '2026-01-24 12:28:22'),
-  (2869, 71, 38, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
-  (2870, 71, 39, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
-  (2871, 71, 40, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
-  (2872, 71, 41, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
-  (2873, 71, 42, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
-  (2874, 71, 43, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
-  (2875, 71, 44, '2025-09-29 16:42:35', '2026-01-24 12:28:32'),
-  (2883, 72, 38, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
-  (2884, 72, 39, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
-  (2885, 72, 40, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
-  (2886, 72, 41, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
-  (2887, 72, 42, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
-  (2888, 72, 43, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
-  (2889, 72, 44, '2025-09-29 16:42:39', '2026-01-24 12:28:36'),
-  (2911, 74, 38, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
-  (2912, 74, 39, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
-  (2913, 74, 40, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
-  (2914, 74, 41, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
-  (2915, 74, 42, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
-  (2916, 74, 43, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
-  (2917, 74, 44, '2025-09-29 16:42:48', '2026-01-24 12:28:46'),
-  (2925, 51, 38, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
-  (2926, 51, 39, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
-  (2927, 51, 40, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
-  (2928, 51, 41, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
-  (2929, 51, 42, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
-  (2930, 51, 43, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
-  (2931, 51, 44, '2025-09-29 16:38:52', '2026-01-24 12:28:58'),
-  (2939, 52, 38, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
-  (2940, 52, 39, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
-  (2941, 52, 40, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
-  (2942, 52, 41, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
-  (2943, 52, 42, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
-  (2944, 52, 43, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
-  (2945, 52, 44, '2025-09-29 16:39:02', '2026-01-24 12:29:08'),
-  (2953, 53, 38, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
-  (2954, 53, 39, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
-  (2955, 53, 40, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
-  (2956, 53, 41, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
-  (2957, 53, 42, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
-  (2958, 53, 43, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
-  (2959, 53, 44, '2025-09-29 16:39:07', '2026-01-24 12:29:12'),
-  (2967, 54, 38, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
-  (2968, 54, 39, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
-  (2969, 54, 40, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
-  (2970, 54, 41, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
-  (2971, 54, 42, '2025-09-29 16:39:12', '2026-01-24 12:29:16');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (2972, 54, 43, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
-  (2973, 54, 44, '2025-09-29 16:39:12', '2026-01-24 12:29:16'),
-  (2981, 55, 38, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
-  (2982, 55, 39, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
-  (2983, 55, 40, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
-  (2984, 55, 41, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
-  (2985, 55, 42, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
-  (2986, 55, 43, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
-  (2987, 55, 44, '2025-09-29 16:39:20', '2026-01-24 12:29:21'),
-  (2995, 56, 38, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
-  (2996, 56, 39, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
-  (2997, 56, 40, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
-  (2998, 56, 41, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
-  (2999, 56, 42, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
-  (3000, 56, 43, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
-  (3001, 56, 44, '2025-09-29 16:39:26', '2026-01-24 12:29:26'),
-  (3023, 58, 38, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
-  (3024, 58, 39, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
-  (3025, 58, 40, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
-  (3026, 58, 41, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
-  (3027, 58, 42, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
-  (3028, 58, 43, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
-  (3029, 58, 44, '2025-09-29 16:39:35', '2026-01-24 12:29:46'),
-  (3030, 67, 38, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
-  (3031, 67, 39, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
-  (3032, 67, 40, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
-  (3033, 67, 41, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
-  (3034, 67, 42, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
-  (3035, 67, 43, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
-  (3036, 67, 44, '2025-09-29 16:42:12', '2026-01-28 17:27:46'),
-  (3037, 68, 38, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
-  (3038, 68, 39, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
-  (3039, 68, 40, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
-  (3040, 68, 41, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
-  (3041, 68, 42, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
-  (3042, 68, 43, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
-  (3043, 68, 44, '2025-09-29 16:42:18', '2026-01-28 17:28:30'),
-  (3044, 61, 31, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
-  (3045, 61, 32, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
-  (3046, 61, 33, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
-  (3047, 61, 34, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
-  (3048, 61, 35, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
-  (3049, 61, 36, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
-  (3050, 61, 37, '2025-09-29 16:40:04', '2026-01-28 17:29:09'),
-  (3051, 69, 38, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
-  (3052, 69, 39, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
-  (3053, 69, 40, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
-  (3054, 69, 41, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
-  (3055, 69, 42, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
-  (3056, 69, 43, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
-  (3057, 69, 44, '2025-09-29 16:42:23', '2026-01-28 17:29:22'),
-  (3058, 77, 38, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
-  (3059, 77, 39, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
-  (3060, 77, 40, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
-  (3061, 77, 41, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
-  (3062, 77, 42, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
-  (3063, 77, 43, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
-  (3064, 77, 44, '2025-09-29 16:44:19', '2026-01-28 17:29:41'),
-  (3076, 13, 1, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3077, 13, 2, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3078, 13, 3, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3079, 13, 4, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3080, 13, 5, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3081, 13, 6, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3082, 13, 7, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3083, 13, 8, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3084, 13, 9, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3085, 13, 10, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3086, 13, 11, '2025-09-11 16:38:09', '2026-01-30 11:06:51'),
-  (3087, 4, 25, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
-  (3088, 4, 26, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
-  (3089, 4, 27, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
-  (3090, 4, 28, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
-  (3091, 4, 29, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
-  (3092, 4, 30, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
-  (3093, 4, 12, '2025-09-11 16:32:49', '2026-01-30 11:07:02'),
-  (3094, 57, 38, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
-  (3095, 57, 39, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
-  (3096, 57, 40, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
-  (3097, 57, 41, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
-  (3098, 57, 42, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
-  (3099, 57, 43, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
-  (3100, 57, 44, '2025-09-29 16:39:31', '2026-05-28 10:01:38'),
-  (3101, 73, 38, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
-  (3102, 73, 39, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
-  (3103, 73, 40, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
-  (3104, 73, 41, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
-  (3105, 73, 42, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
-  (3106, 73, 43, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
-  (3107, 73, 44, '2025-09-29 16:42:44', '2026-05-28 10:01:53'),
-  (3108, 81, 38, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
-  (3109, 81, 39, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
-  (3110, 81, 40, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
-  (3111, 81, 41, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
-  (3112, 81, 42, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
-  (3113, 81, 43, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
-  (3114, 81, 44, '2025-09-29 16:44:37', '2026-05-28 10:02:09'),
-  (3115, 65, 31, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
-  (3116, 65, 32, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
-  (3117, 65, 33, '2025-09-29 16:40:21', '2026-05-28 10:02:43');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (3118, 65, 34, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
-  (3119, 65, 35, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
-  (3120, 65, 36, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
-  (3121, 65, 37, '2025-09-29 16:40:21', '2026-05-28 10:02:43'),
-  (3122, 83, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3123, 83, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3124, 83, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3125, 83, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3126, 83, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3127, 83, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3128, 83, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3129, 83, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3130, 83, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3131, 83, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3132, 83, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3133, 84, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3134, 84, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3135, 84, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3136, 84, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3137, 84, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3138, 84, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3139, 84, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3140, 84, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3141, 84, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3142, 84, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3143, 84, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3144, 85, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3145, 85, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3146, 85, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3147, 85, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3148, 85, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3149, 85, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3150, 85, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3151, 85, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3152, 85, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3153, 85, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3154, 85, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3155, 86, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3156, 86, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3157, 86, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3158, 86, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3159, 86, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3160, 86, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3161, 86, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3162, 86, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3163, 86, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3164, 86, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3165, 86, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3166, 87, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3167, 87, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3168, 87, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3169, 87, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3170, 87, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3171, 87, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3172, 87, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3173, 87, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3174, 87, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3175, 87, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3176, 87, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3177, 88, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3178, 88, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3179, 88, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3180, 88, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3181, 88, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3182, 88, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3183, 88, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3184, 88, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3185, 88, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3186, 88, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3187, 88, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3188, 89, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3189, 89, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3190, 89, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3191, 89, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3192, 89, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3193, 89, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3194, 89, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3195, 89, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3196, 89, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3197, 89, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3198, 89, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3199, 90, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3200, 90, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3201, 90, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3202, 90, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3203, 90, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3204, 90, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3205, 90, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3206, 90, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3207, 90, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3208, 90, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3209, 90, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3210, 91, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3211, 91, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3212, 91, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3213, 91, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3214, 91, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3215, 91, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3216, 91, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3217, 91, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (3218, 91, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3219, 91, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3220, 91, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3221, 92, 1, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3222, 92, 2, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3223, 92, 3, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3224, 92, 4, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3225, 92, 5, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3226, 92, 6, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3227, 92, 7, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3228, 92, 8, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3229, 92, 9, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3230, 92, 10, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3231, 92, 11, '2026-08-25 10:00:12', '2026-08-25 10:00:12'),
-  (3232, 93, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3233, 93, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3234, 93, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3235, 93, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3236, 93, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3237, 93, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3238, 94, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3239, 94, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3240, 94, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3241, 94, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3242, 94, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3243, 94, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3244, 95, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3245, 95, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3246, 95, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3247, 95, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3248, 95, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3249, 95, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3250, 96, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3251, 96, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3252, 96, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3253, 96, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3254, 96, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3255, 96, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3256, 97, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3257, 97, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3258, 97, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3259, 97, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3260, 97, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3261, 97, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3262, 98, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3263, 98, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3264, 98, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3265, 98, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3266, 98, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3267, 98, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3268, 99, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3269, 99, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3270, 99, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3271, 99, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3272, 99, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3273, 99, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3274, 100, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3275, 100, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3276, 100, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3277, 100, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3278, 100, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3279, 100, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3280, 101, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3281, 101, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3282, 101, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3283, 101, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3284, 101, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3285, 101, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3286, 102, 25, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3287, 102, 26, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3288, 102, 27, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3289, 102, 28, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3290, 102, 29, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3291, 102, 30, '2026-08-25 10:11:23', '2026-08-25 10:11:23'),
-  (3442, 113, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3443, 113, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3444, 113, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3445, 113, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3446, 113, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3447, 113, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3448, 113, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3449, 114, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3450, 114, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3451, 114, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3452, 114, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3453, 114, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3454, 114, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3455, 114, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3456, 115, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3457, 115, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3458, 115, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3459, 115, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3460, 115, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3461, 115, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3462, 115, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3463, 116, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3464, 116, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3465, 116, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3466, 116, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3467, 116, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (3468, 116, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3469, 116, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3470, 117, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3471, 117, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3472, 117, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3473, 117, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3474, 117, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3475, 117, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3476, 117, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3477, 118, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3478, 118, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3479, 118, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3480, 118, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3481, 118, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3482, 118, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3483, 118, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3484, 119, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3485, 119, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3486, 119, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3487, 119, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3488, 119, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3489, 119, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3490, 119, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3491, 120, 31, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3492, 120, 32, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3493, 120, 33, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3494, 120, 34, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3495, 120, 35, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3496, 120, 36, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3497, 120, 37, '2026-08-25 10:27:09', '2026-08-25 10:27:09'),
-  (3498, 121, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3499, 121, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3500, 121, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3501, 121, 41, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3502, 121, 42, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3503, 121, 43, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3504, 121, 44, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3505, 122, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3506, 122, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3507, 122, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3508, 122, 41, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3509, 122, 42, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3510, 122, 43, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3511, 122, 44, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3512, 123, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3513, 123, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3514, 123, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3515, 123, 41, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3516, 123, 42, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3517, 123, 43, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3518, 123, 44, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3519, 124, 38, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3520, 124, 39, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3521, 124, 40, '2026-08-25 10:28:20', '2026-08-25 10:28:20'),
-  (3522, 124, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3523, 124, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3524, 124, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3525, 124, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3526, 125, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3527, 125, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3528, 125, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3529, 125, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3530, 125, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3531, 125, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3532, 125, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3533, 126, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3534, 126, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3535, 126, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3536, 126, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3537, 126, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3538, 126, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3539, 126, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3540, 127, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3541, 127, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3542, 127, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3543, 127, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3544, 127, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3545, 127, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3546, 127, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3547, 128, 38, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3548, 128, 39, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3549, 128, 40, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3550, 128, 41, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3551, 128, 42, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3552, 128, 43, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3553, 128, 44, '2026-08-25 10:28:21', '2026-08-25 10:28:21'),
-  (3554, 129, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3555, 129, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3556, 129, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3557, 129, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3558, 129, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3559, 129, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3560, 129, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3561, 130, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3562, 130, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3563, 130, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3564, 130, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3565, 130, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3566, 130, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3567, 130, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49');
-
-INSERT IGNORE INTO `marks_system_subjects` (`id`, `marks_system_id`, `subject_id`, `created_at`, `updated_at`) VALUES
-  (3568, 131, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3569, 131, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3570, 131, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3571, 131, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3572, 131, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3573, 131, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3574, 131, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3575, 132, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3576, 132, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3577, 132, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3578, 132, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3579, 132, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3580, 132, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3581, 132, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3582, 133, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3583, 133, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3584, 133, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3585, 133, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3586, 133, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3587, 133, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3588, 133, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3589, 134, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3590, 134, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3591, 134, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3592, 134, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3593, 134, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3594, 134, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3595, 134, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3596, 135, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3597, 135, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3598, 135, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3599, 135, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3600, 135, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3601, 135, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3602, 135, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3603, 136, 38, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3604, 136, 39, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3605, 136, 40, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3606, 136, 41, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3607, 136, 42, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3608, 136, 43, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3609, 136, 44, '2026-08-25 10:28:49', '2026-08-25 10:28:49'),
-  (3610, 137, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3611, 137, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3612, 137, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3613, 137, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3614, 137, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3615, 137, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3616, 137, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3617, 138, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3618, 138, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3619, 138, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3620, 138, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3621, 138, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3622, 138, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3623, 138, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3624, 139, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3625, 139, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3626, 139, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3627, 139, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3628, 139, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3629, 139, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3630, 139, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3631, 140, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3632, 140, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3633, 140, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3634, 140, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3635, 140, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3636, 140, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3637, 140, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3638, 141, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3639, 141, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3640, 141, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3641, 141, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3642, 141, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3643, 141, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3644, 141, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3645, 142, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3646, 142, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3647, 142, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3648, 142, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3649, 142, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3650, 142, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3651, 142, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3652, 143, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3653, 143, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3654, 143, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3655, 143, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3656, 143, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3657, 143, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3658, 143, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3659, 144, 38, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3660, 144, 39, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3661, 144, 40, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3662, 144, 41, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3663, 144, 42, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3664, 144, 43, '2026-08-25 10:29:04', '2026-08-25 10:29:04'),
-  (3665, 144, 44, '2026-08-25 10:29:04', '2026-08-25 10:29:04');
-
--- Preset seed data for `decimal_marks_allow` (4 rows)
-INSERT IGNORE INTO `decimal_marks_allow` (`id`, `program_id`, `allow`, `created_at`, `updated_at`) VALUES
-  (1, 1, '0.25', '2025-12-10 06:45:03', '2025-12-10 06:45:03'),
-  (2, 1, '0.50', '2025-12-10 06:45:03', '2025-12-10 06:45:03'),
-  (3, 1, '0.75', '2025-12-10 06:45:03', '2025-12-10 06:45:03'),
-  (4, 1, '0.00', '2025-12-16 02:38:49', '2025-12-16 02:38:49');
-
--- Preset seed data for `learning_time_slots` (48 rows)
-INSERT IGNORE INTO `learning_time_slots` (`id`, `slot_name`, `start_time`, `end_time`, `duration_minutes`, `sort_order`, `is_active`, `is_global`, `created_at`, `updated_at`, `grade_group_id`, `grade_id`) VALUES
-  (1, 'M-Session 1', '7:30:00', '8:10:00', NULL, 1, 1, 1, '2026-02-12 00:31:24', '2026-02-12 01:48:18', NULL, NULL),
-  (2, 'M-Session 2', '8:10:00', '8:50:00', NULL, 2, 1, 1, '2026-02-12 00:32:01', '2026-02-12 01:49:04', NULL, NULL),
-  (3, 'M-Session 3', '9:10:00', '9:50:00', NULL, 3, 1, 1, '2026-02-12 00:32:57', '2026-02-12 01:49:28', NULL, NULL),
-  (4, 'M-Session 4', '9:50:00', '10:30:00', NULL, 4, 1, 1, '2026-02-12 01:51:03', '2026-02-12 01:51:03', NULL, NULL),
-  (5, 'M-Session 5', '10:30:00', '11:00:00', NULL, 5, 1, 1, '2026-02-12 01:51:50', '2026-02-12 01:51:50', NULL, NULL),
-  (6, 'M-Session 6', '11:00:00', '12:00:00', NULL, 6, 1, 1, '2026-02-17 03:19:20', '2026-02-17 03:19:20', NULL, NULL),
-  (7, 'PM-Session 1', '12:00:00', '13:00:00', NULL, 7, 1, 1, '2026-02-17 03:20:04', '2026-02-17 03:20:04', NULL, NULL),
-  (8, 'PM-Session 2', '13:00:00', '14:40:00', NULL, 8, 1, 1, '2026-02-17 03:20:37', '2026-02-23 04:01:59', NULL, NULL),
-  (9, 'PM-Session 3', '13:40:00', '14:20:00', NULL, 9, 1, 1, '2026-02-17 03:20:59', '2026-02-23 04:06:52', NULL, NULL),
-  (10, 'PM-Session 4', '14:40:00', '15:20:00', NULL, 10, 1, 1, '2026-02-17 03:21:17', '2026-02-23 04:08:29', NULL, NULL),
-  (11, 'PM-Session 5', '15:20:00', '16:00:00', NULL, 11, 1, 1, '2026-02-17 03:21:52', '2026-02-23 04:09:43', NULL, NULL),
-  (12, 'PM-Session 6', '16:00:00', '16:40:00', NULL, 12, 1, 1, '2026-02-17 03:22:43', '2026-02-23 04:10:37', NULL, NULL),
-  (13, 'MK-Session 1', '7:30:00', '8:00:00', NULL, 13, 1, 1, '2026-02-25 03:12:37', '2026-02-25 03:12:37', NULL, NULL),
-  (14, 'MK-Session 2', '8:00:00', '8:30:00', NULL, 14, 1, 1, '2026-02-25 03:13:10', '2026-02-25 03:13:10', NULL, NULL),
-  (15, 'MK-Session 3', '8:45:00', '9:15:00', NULL, 15, 1, 1, '2026-02-25 03:13:52', '2026-02-25 03:13:52', NULL, NULL),
-  (16, 'MK-Session 4', '9:15:00', '9:45:00', NULL, 16, 1, 1, '2026-02-25 03:14:37', '2026-02-25 03:14:37', NULL, NULL),
-  (17, 'MK-Session 5', '10:00:00', '10:45:00', NULL, 17, 1, 1, '2026-02-25 03:15:13', '2026-02-25 03:15:13', NULL, NULL),
-  (18, 'PK-Session 1', '13:00:00', '13:30:00', NULL, 18, 1, 1, '2026-02-25 03:18:56', '2026-02-25 03:18:56', NULL, NULL),
-  (19, 'PK-Session 2', '13:30:00', '14:00:00', NULL, 19, 1, 1, '2026-02-25 03:19:51', '2026-02-25 03:19:51', NULL, NULL),
-  (20, 'PK-Session 3', '14:15:00', '14:45:00', NULL, 20, 1, 1, '2026-02-25 03:20:44', '2026-02-25 03:20:44', NULL, NULL),
-  (21, 'PK-Session 4', '14:45:00', '15:15:00', NULL, 21, 1, 1, '2026-02-25 03:21:56', '2026-02-25 03:21:56', NULL, NULL),
-  (22, 'PK-Session 5', '15:30:00', '16:15:00', NULL, 22, 1, 1, '2026-02-25 03:23:09', '2026-02-25 03:23:09', NULL, NULL),
-  (23, 'MI-Session 1', '7:30:00', '8:30:00', NULL, 23, 1, 1, '2026-02-27 03:11:23', '2026-02-27 03:17:01', NULL, NULL),
-  (24, 'MI-Session 2', '8:45:00', '9:25:00', NULL, 24, 1, 1, '2026-02-27 03:17:49', '2026-02-27 03:17:49', NULL, NULL),
-  (25, 'MI-Session 3', '9:40:00', '10:20:00', NULL, 25, 1, 1, '2026-02-27 03:18:27', '2026-02-27 03:18:27', NULL, NULL),
-  (26, 'MI-Session 4', '10:20:00', '11:00:00', NULL, 26, 1, 1, '2026-02-27 03:18:56', '2026-02-27 03:18:56', NULL, NULL),
-  (27, 'PI-Session 1', '13:00:00', '14:00:00', NULL, 27, 1, 1, '2026-02-27 03:21:00', '2026-02-27 03:21:00', NULL, NULL),
-  (28, 'PI-Session 2', '14:15:00', '14:55:00', NULL, 28, 1, 1, '2026-02-27 03:21:39', '2026-02-27 03:21:39', NULL, NULL),
-  (29, 'PI-Session 3', '15:10:00', '15:50:00', NULL, 29, 1, 1, '2026-02-27 03:22:27', '2026-02-27 03:22:27', NULL, NULL),
-  (30, 'PI-Session 4', '15:50:00', '16:30:00', NULL, 30, 1, 1, '2026-02-27 03:23:02', '2026-02-27 03:23:02', NULL, NULL),
-  (31, 'MW-Session 1', '7:30:00', '8:15:00', NULL, 31, 1, 1, '2026-02-27 03:24:17', '2026-02-27 03:24:17', NULL, NULL),
-  (32, 'MW-Session 2', '8:15:00', '9:00:00', NULL, 32, 1, 1, '2026-02-27 03:26:18', '2026-02-27 03:26:18', NULL, NULL),
-  (33, 'MW-Session 3', '9:30:00', '10:15:00', NULL, 33, 1, 1, '2026-02-27 03:26:51', '2026-02-27 03:26:51', NULL, NULL),
-  (34, 'MW-Session 4', '10:15:00', '11:00:00', NULL, 34, 1, 1, '2026-02-27 03:27:13', '2026-02-27 03:27:13', NULL, NULL),
-  (35, 'PW-Session 1', '13:00:00', '13:45:00', NULL, 35, 1, 1, '2026-02-27 03:28:09', '2026-02-27 03:28:09', NULL, NULL),
-  (36, 'PW-Session 2', '13:45:00', '14:30:00', NULL, 36, 1, 1, '2026-02-27 03:28:33', '2026-02-27 03:28:33', NULL, NULL),
-  (37, 'PW-Session 3', '15:00:00', '15:45:00', NULL, 37, 1, 1, '2026-02-27 03:29:22', '2026-02-27 03:29:22', NULL, NULL),
-  (38, 'PW-Session 4', '15:45:00', '16:45:00', NULL, 38, 1, 1, '2026-02-27 03:30:00', '2026-02-27 03:30:00', NULL, NULL),
-  (39, 'PH-Session 1', '12:00:00', '12:50:00', NULL, 39, 1, 1, '2026-03-19 03:47:00', '2026-03-19 03:48:39', NULL, NULL),
-  (40, 'PH-Session 2', '13:00:00', '13:50:00', NULL, 40, 1, 1, '2026-03-19 03:49:12', '2026-03-19 03:49:12', NULL, NULL),
-  (41, 'PH-Session 3', '14:00:00', '14:50:00', NULL, 41, 1, 1, '2026-03-19 03:49:39', '2026-03-19 03:49:39', NULL, NULL),
-  (42, 'PH-Session 4', '15:00:00', '15:50:00', NULL, 42, 1, 1, '2026-03-19 03:50:22', '2026-03-19 03:50:22', NULL, NULL),
-  (43, 'PH-Session 5', '16:00:00', '16:50:00', NULL, 43, 1, 1, '2026-03-19 03:50:58', '2026-03-19 03:50:58', NULL, NULL),
-  (44, 'PH-Session 6', '17:00:00', '17:50:00', NULL, 44, 1, 1, '2026-03-19 03:51:38', '2026-03-19 03:51:38', NULL, NULL),
-  (45, 'MH-Session 1', '8:00:00', '8:50:00', NULL, 45, 1, 1, '2026-03-19 11:02:23', '2026-03-19 11:02:23', NULL, NULL),
-  (46, 'MH-Session 2', '9:00:00', '9:50:00', NULL, 46, 1, 1, '2026-03-19 11:03:09', '2026-03-19 11:03:09', NULL, NULL),
-  (47, 'MH-Session 3', '10:00:00', '10:50:00', NULL, 47, 1, 1, '2026-03-19 11:04:04', '2026-03-19 11:04:04', NULL, NULL),
-  (48, 'MH-Session 4', '11:00:00', '11:50:00', NULL, 48, 1, 1, '2026-03-19 11:04:41', '2026-03-19 11:04:41', NULL, NULL);
-
--- Preset seed data for `learning_time_slot_scopes` (352 rows)
-INSERT IGNORE INTO `learning_time_slot_scopes` (`id`, `time_slot_id`, `scope_type`, `scope_id`, `created_at`, `shift_id`) VALUES
-  (42, 1, 'grade', 43, '2026-02-17 03:24:34', 1),
-  (43, 1, 'grade', 44, '2026-02-17 03:24:34', 1),
-  (44, 1, 'grade', 45, '2026-02-17 03:24:35', 1),
-  (45, 1, 'grade', 46, '2026-02-17 03:24:35', 1),
-  (46, 1, 'grade', 47, '2026-02-17 03:24:35', 1),
-  (47, 1, 'grade', 48, '2026-02-17 03:24:35', 1),
-  (48, 1, 'grade', 55, '2026-02-17 03:24:36', 1),
-  (49, 1, 'grade', 56, '2026-02-17 03:24:36', 1),
-  (50, 1, 'grade', 58, '2026-02-17 03:24:36', 1),
-  (51, 2, 'grade', 43, '2026-02-17 03:24:37', 1),
-  (52, 2, 'grade', 44, '2026-02-17 03:24:37', 1),
-  (53, 2, 'grade', 45, '2026-02-17 03:24:37', 1),
-  (54, 2, 'grade', 46, '2026-02-17 03:24:38', 1),
-  (55, 2, 'grade', 47, '2026-02-17 03:24:38', 1),
-  (56, 2, 'grade', 48, '2026-02-17 03:24:53', 1),
-  (57, 2, 'grade', 55, '2026-02-17 03:24:54', 1),
-  (58, 2, 'grade', 56, '2026-02-17 03:24:54', 1),
-  (59, 2, 'grade', 58, '2026-02-17 03:24:54', 1),
-  (60, 3, 'grade', 43, '2026-02-17 03:24:55', 1),
-  (61, 3, 'grade', 44, '2026-02-17 03:24:55', 1),
-  (62, 3, 'grade', 45, '2026-02-17 03:24:55', 1),
-  (63, 3, 'grade', 46, '2026-02-17 03:24:55', 1),
-  (64, 3, 'grade', 47, '2026-02-17 03:24:56', 1),
-  (65, 3, 'grade', 48, '2026-02-17 03:24:56', 1),
-  (66, 3, 'grade', 55, '2026-02-17 03:24:56', 1),
-  (67, 3, 'grade', 56, '2026-02-17 03:24:57', 1),
-  (68, 3, 'grade', 58, '2026-02-17 03:24:57', 1),
-  (69, 4, 'grade', 43, '2026-02-17 03:24:57', 1),
-  (70, 4, 'grade', 44, '2026-02-17 03:24:57', 1),
-  (71, 4, 'grade', 45, '2026-02-17 03:24:58', 1),
-  (72, 4, 'grade', 46, '2026-02-17 03:24:58', 1),
-  (73, 4, 'grade', 47, '2026-02-17 03:24:58', 1),
-  (74, 4, 'grade', 48, '2026-02-17 03:24:58', 1),
-  (75, 4, 'grade', 55, '2026-02-17 03:24:58', 1),
-  (76, 4, 'grade', 56, '2026-02-17 03:24:59', 1),
-  (77, 4, 'grade', 58, '2026-02-17 03:24:59', 1),
-  (78, 5, 'grade', 43, '2026-02-17 03:25:00', 1),
-  (79, 5, 'grade', 44, '2026-02-17 03:25:00', 1),
-  (80, 5, 'grade', 45, '2026-02-17 03:25:00', 1),
-  (81, 5, 'grade', 46, '2026-02-17 03:25:00', 1),
-  (82, 5, 'grade', 47, '2026-02-17 03:25:01', 1),
-  (83, 5, 'grade', 48, '2026-02-17 03:25:01', 1),
-  (84, 5, 'grade', 55, '2026-02-17 03:25:01', 1),
-  (85, 5, 'grade', 56, '2026-02-17 03:25:02', 1),
-  (86, 5, 'grade', 58, '2026-02-17 03:25:02', 1),
-  (101, 13, 'grade', 42, '2026-02-25 09:19:59', 1),
-  (102, 14, 'grade', 42, '2026-02-25 09:19:59', 1),
-  (103, 15, 'grade', 42, '2026-02-25 09:19:59', 1),
-  (104, 16, 'grade', 42, '2026-02-25 09:19:59', 1),
-  (105, 17, 'grade', 42, '2026-02-25 09:20:00', 1),
-  (106, 18, 'grade', 42, '2026-02-25 09:27:33', 2),
-  (107, 19, 'grade', 42, '2026-02-25 09:27:34', 2),
-  (108, 20, 'grade', 42, '2026-02-25 09:27:34', 2),
-  (109, 21, 'grade', 42, '2026-02-25 09:27:34', 2),
-  (110, 22, 'grade', 42, '2026-02-25 09:27:34', 2),
-  (111, 8, 'grade', 43, '2026-02-25 09:29:13', 2),
-  (112, 9, 'grade', 43, '2026-02-25 09:29:13', 2),
-  (113, 10, 'grade', 43, '2026-02-25 09:29:14', 2),
-  (114, 11, 'grade', 43, '2026-02-25 09:29:14', 2),
-  (115, 12, 'grade', 43, '2026-02-25 09:29:14', 2),
-  (116, 13, 'grade', 40, '2026-02-25 09:31:08', 1),
-  (117, 13, 'grade', 41, '2026-02-25 09:31:08', 1),
-  (118, 13, 'grade', 97, '2026-02-25 09:31:08', 1),
-  (119, 13, 'grade', 100, '2026-02-25 09:31:08', 1),
-  (120, 13, 'grade', 98, '2026-02-25 09:31:08', 1),
-  (121, 13, 'grade', 99, '2026-02-25 09:31:09', 1),
-  (122, 13, 'grade', 54, '2026-02-25 09:31:09', 1),
-  (123, 13, 'grade', 52, '2026-02-25 09:31:09', 1),
-  (124, 13, 'grade', 53, '2026-02-25 09:31:09', 1),
-  (125, 14, 'grade', 40, '2026-02-25 09:31:10', 1),
-  (126, 14, 'grade', 41, '2026-02-25 09:31:10', 1),
-  (127, 14, 'grade', 97, '2026-02-25 09:31:10', 1),
-  (128, 14, 'grade', 100, '2026-02-25 09:31:11', 1),
-  (129, 14, 'grade', 98, '2026-02-25 09:31:11', 1),
-  (130, 14, 'grade', 99, '2026-02-25 09:31:11', 1),
-  (131, 14, 'grade', 54, '2026-02-25 09:31:11', 1),
-  (132, 14, 'grade', 52, '2026-02-25 09:31:11', 1),
-  (133, 14, 'grade', 53, '2026-02-25 09:31:12', 1),
-  (134, 15, 'grade', 40, '2026-02-25 09:31:12', 1),
-  (135, 15, 'grade', 41, '2026-02-25 09:31:13', 1),
-  (136, 15, 'grade', 97, '2026-02-25 09:31:13', 1),
-  (137, 15, 'grade', 100, '2026-02-25 09:31:13', 1),
-  (138, 15, 'grade', 98, '2026-02-25 09:31:13', 1),
-  (139, 15, 'grade', 99, '2026-02-25 09:31:13', 1),
-  (140, 15, 'grade', 54, '2026-02-25 09:31:14', 1),
-  (141, 15, 'grade', 52, '2026-02-25 09:31:14', 1),
-  (143, 16, 'grade', 40, '2026-02-25 09:31:15', 1),
-  (144, 16, 'grade', 41, '2026-02-25 09:31:15', 1),
-  (145, 16, 'grade', 97, '2026-02-25 09:31:15', 1),
-  (146, 16, 'grade', 100, '2026-02-25 09:31:15', 1),
-  (147, 16, 'grade', 98, '2026-02-25 09:31:16', 1),
-  (148, 16, 'grade', 99, '2026-02-25 09:31:16', 1),
-  (149, 16, 'grade', 54, '2026-02-25 09:31:16', 1),
-  (150, 16, 'grade', 52, '2026-02-25 09:31:17', 1),
-  (151, 16, 'grade', 53, '2026-02-25 09:31:17', 1),
-  (152, 17, 'grade', 40, '2026-02-25 09:31:18', 1),
-  (153, 17, 'grade', 41, '2026-02-25 09:31:18', 1),
-  (154, 17, 'grade', 97, '2026-02-25 09:31:18', 1),
-  (155, 17, 'grade', 100, '2026-02-25 09:31:18', 1),
-  (156, 17, 'grade', 98, '2026-02-25 09:31:19', 1);
-
-INSERT IGNORE INTO `learning_time_slot_scopes` (`id`, `time_slot_id`, `scope_type`, `scope_id`, `created_at`, `shift_id`) VALUES
-  (157, 17, 'grade', 99, '2026-02-25 09:31:19', 1),
-  (158, 17, 'grade', 54, '2026-02-25 09:31:19', 1),
-  (159, 17, 'grade', 52, '2026-02-25 09:31:19', 1),
-  (160, 17, 'grade', 53, '2026-02-25 09:31:20', 1),
-  (161, 18, 'grade', 40, '2026-02-27 02:29:16', 2),
-  (162, 18, 'grade', 100, '2026-02-27 02:29:17', 2),
-  (163, 18, 'grade', 98, '2026-02-27 02:29:17', 2),
-  (164, 18, 'grade', 99, '2026-02-27 02:29:17', 2),
-  (165, 18, 'grade', 54, '2026-02-27 02:29:17', 2),
-  (166, 18, 'grade', 52, '2026-02-27 02:29:18', 2),
-  (167, 18, 'grade', 53, '2026-02-27 02:29:18', 2),
-  (168, 19, 'grade', 40, '2026-02-27 02:29:19', 2),
-  (169, 19, 'grade', 100, '2026-02-27 02:29:19', 2),
-  (170, 19, 'grade', 98, '2026-02-27 02:29:19', 2),
-  (171, 19, 'grade', 99, '2026-02-27 02:29:19', 2),
-  (172, 19, 'grade', 54, '2026-02-27 02:29:19', 2),
-  (173, 19, 'grade', 52, '2026-02-27 02:29:20', 2),
-  (174, 19, 'grade', 53, '2026-02-27 02:29:20', 2),
-  (175, 20, 'grade', 40, '2026-02-27 02:29:21', 2),
-  (176, 20, 'grade', 100, '2026-02-27 02:29:21', 2),
-  (177, 20, 'grade', 98, '2026-02-27 02:29:21', 2),
-  (178, 20, 'grade', 99, '2026-02-27 02:29:21', 2),
-  (179, 20, 'grade', 54, '2026-02-27 02:29:21', 2),
-  (180, 20, 'grade', 52, '2026-02-27 02:29:22', 2),
-  (181, 20, 'grade', 53, '2026-02-27 02:29:22', 2),
-  (182, 21, 'grade', 40, '2026-02-27 02:29:23', 2),
-  (183, 21, 'grade', 100, '2026-02-27 02:29:23', 2),
-  (184, 21, 'grade', 98, '2026-02-27 02:29:23', 2),
-  (185, 21, 'grade', 99, '2026-02-27 02:29:23', 2),
-  (186, 21, 'grade', 54, '2026-02-27 02:29:23', 2),
-  (187, 21, 'grade', 52, '2026-02-27 02:29:24', 2),
-  (188, 21, 'grade', 53, '2026-02-27 02:29:24', 2),
-  (189, 22, 'grade', 40, '2026-02-27 02:29:25', 2),
-  (190, 22, 'grade', 100, '2026-02-27 02:29:25', 2),
-  (191, 22, 'grade', 98, '2026-02-27 02:29:25', 2),
-  (192, 22, 'grade', 99, '2026-02-27 02:29:25', 2),
-  (193, 22, 'grade', 54, '2026-02-27 02:29:26', 2),
-  (194, 22, 'grade', 52, '2026-02-27 02:29:26', 2),
-  (195, 22, 'grade', 53, '2026-02-27 02:29:26', 2),
-  (196, 27, 'grade', 79, '2026-02-27 03:30:26', 2),
-  (197, 27, 'grade', 80, '2026-02-27 03:30:26', 2),
-  (198, 27, 'grade', 112, '2026-02-27 03:30:26', 2),
-  (199, 27, 'grade', 67, '2026-02-27 03:30:26', 2),
-  (200, 27, 'grade', 68, '2026-02-27 03:30:27', 2),
-  (201, 28, 'grade', 79, '2026-02-27 03:30:27', 2),
-  (202, 28, 'grade', 80, '2026-02-27 03:30:27', 2),
-  (203, 28, 'grade', 112, '2026-02-27 03:30:28', 2),
-  (204, 28, 'grade', 67, '2026-02-27 03:30:28', 2),
-  (205, 28, 'grade', 68, '2026-02-27 03:30:28', 2),
-  (206, 29, 'grade', 79, '2026-02-27 03:30:29', 2),
-  (207, 29, 'grade', 80, '2026-02-27 03:30:29', 2),
-  (208, 29, 'grade', 112, '2026-02-27 03:30:29', 2),
-  (209, 29, 'grade', 67, '2026-02-27 03:30:29', 2),
-  (210, 29, 'grade', 68, '2026-02-27 03:30:29', 2),
-  (211, 30, 'grade', 79, '2026-02-27 03:30:30', 2),
-  (212, 30, 'grade', 80, '2026-02-27 03:30:30', 2),
-  (213, 30, 'grade', 112, '2026-02-27 03:30:30', 2),
-  (214, 30, 'grade', 67, '2026-02-27 03:30:30', 2),
-  (215, 30, 'grade', 68, '2026-02-27 03:30:31', 2),
-  (216, 35, 'grade', 81, '2026-02-27 03:53:38', 2),
-  (217, 35, 'grade', 69, '2026-02-27 03:53:38', 2),
-  (218, 36, 'grade', 81, '2026-02-27 03:53:38', 2),
-  (219, 36, 'grade', 69, '2026-02-27 03:53:39', 2),
-  (220, 37, 'grade', 81, '2026-02-27 03:53:39', 2),
-  (221, 37, 'grade', 69, '2026-02-27 03:53:39', 2),
-  (222, 38, 'grade', 81, '2026-02-27 03:53:40', 2),
-  (223, 38, 'grade', 69, '2026-02-27 03:53:40', 2),
-  (224, 35, 'grade', 82, '2026-02-27 04:17:49', 2),
-  (225, 35, 'grade', 83, '2026-02-27 04:17:50', 2),
-  (226, 35, 'grade', 84, '2026-02-27 04:17:50', 2),
-  (227, 35, 'grade', 85, '2026-02-27 04:17:50', 2),
-  (228, 36, 'grade', 82, '2026-02-27 04:17:50', 2),
-  (229, 36, 'grade', 83, '2026-02-27 04:17:51', 2),
-  (230, 36, 'grade', 84, '2026-02-27 04:17:51', 2),
-  (231, 36, 'grade', 85, '2026-02-27 04:17:51', 2),
-  (232, 37, 'grade', 82, '2026-02-27 04:17:52', 2),
-  (233, 37, 'grade', 83, '2026-02-27 04:17:52', 2),
-  (234, 37, 'grade', 84, '2026-02-27 04:17:52', 2),
-  (235, 37, 'grade', 85, '2026-02-27 04:17:52', 2),
-  (236, 38, 'grade', 82, '2026-02-27 04:17:53', 2),
-  (237, 38, 'grade', 83, '2026-02-27 04:17:53', 2),
-  (238, 38, 'grade', 84, '2026-02-27 04:17:53', 2),
-  (239, 38, 'grade', 85, '2026-02-27 04:17:53', 2),
-  (241, 8, 'grade', 101, '2026-03-03 11:22:34', 2),
-  (242, 8, 'grade', 102, '2026-03-03 11:22:34', 2),
-  (243, 8, 'grade', 103, '2026-03-03 11:22:34', 2),
-  (244, 8, 'grade', 127, '2026-03-03 11:22:35', 2),
-  (245, 8, 'grade', 104, '2026-03-03 11:22:35', 2),
-  (246, 8, 'grade', 105, '2026-03-03 11:22:35', 2),
-  (247, 8, 'grade', 55, '2026-03-03 11:22:35', 2),
-  (248, 8, 'grade', 56, '2026-03-03 11:22:35', 2),
-  (249, 8, 'grade', 57, '2026-03-03 11:22:36', 2),
-  (250, 8, 'grade', 58, '2026-03-03 11:22:36', 2),
-  (251, 8, 'grade', 59, '2026-03-03 11:22:36', 2),
-  (252, 8, 'grade', 60, '2026-03-03 11:22:36', 2),
-  (253, 9, 'grade', 101, '2026-03-03 11:22:37', 2),
-  (254, 9, 'grade', 102, '2026-03-03 11:22:37', 2),
-  (255, 9, 'grade', 103, '2026-03-03 11:22:37', 2),
-  (256, 9, 'grade', 127, '2026-03-03 11:22:37', 2),
-  (257, 9, 'grade', 104, '2026-03-03 11:22:37', 2);
-
-INSERT IGNORE INTO `learning_time_slot_scopes` (`id`, `time_slot_id`, `scope_type`, `scope_id`, `created_at`, `shift_id`) VALUES
-  (258, 9, 'grade', 105, '2026-03-03 11:22:37', 2),
-  (259, 9, 'grade', 55, '2026-03-03 11:22:38', 2),
-  (260, 9, 'grade', 56, '2026-03-03 11:22:38', 2),
-  (261, 9, 'grade', 57, '2026-03-03 11:22:38', 2),
-  (262, 9, 'grade', 58, '2026-03-03 11:22:38', 2),
-  (263, 9, 'grade', 59, '2026-03-03 11:22:39', 2),
-  (264, 9, 'grade', 60, '2026-03-03 11:22:39', 2),
-  (265, 10, 'grade', 101, '2026-03-03 11:22:39', 2),
-  (266, 10, 'grade', 102, '2026-03-03 11:22:39', 2),
-  (267, 10, 'grade', 103, '2026-03-03 11:22:40', 2),
-  (268, 10, 'grade', 127, '2026-03-03 11:22:40', 2),
-  (269, 10, 'grade', 104, '2026-03-03 11:22:40', 2),
-  (270, 10, 'grade', 105, '2026-03-03 11:22:40', 2),
-  (271, 10, 'grade', 55, '2026-03-03 11:22:40', 2),
-  (272, 10, 'grade', 56, '2026-03-03 11:22:41', 2),
-  (273, 10, 'grade', 57, '2026-03-03 11:22:41', 2),
-  (274, 10, 'grade', 58, '2026-03-03 11:22:41', 2),
-  (275, 10, 'grade', 59, '2026-03-03 11:22:41', 2),
-  (276, 10, 'grade', 60, '2026-03-03 11:22:42', 2),
-  (277, 11, 'grade', 101, '2026-03-03 11:22:42', 2),
-  (278, 11, 'grade', 102, '2026-03-03 11:22:42', 2),
-  (279, 11, 'grade', 103, '2026-03-03 11:22:42', 2),
-  (280, 11, 'grade', 127, '2026-03-03 11:22:43', 2),
-  (281, 11, 'grade', 104, '2026-03-03 11:22:43', 2),
-  (282, 11, 'grade', 105, '2026-03-03 11:22:43', 2),
-  (283, 11, 'grade', 55, '2026-03-03 11:22:43', 2),
-  (284, 11, 'grade', 56, '2026-03-03 11:22:44', 2),
-  (285, 11, 'grade', 57, '2026-03-03 11:22:44', 2),
-  (286, 11, 'grade', 58, '2026-03-03 11:22:44', 2),
-  (287, 11, 'grade', 59, '2026-03-03 11:22:44', 2),
-  (288, 11, 'grade', 60, '2026-03-03 11:22:44', 2),
-  (289, 12, 'grade', 101, '2026-03-03 11:22:45', 2),
-  (290, 12, 'grade', 102, '2026-03-03 11:22:45', 2),
-  (291, 12, 'grade', 103, '2026-03-03 11:22:45', 2),
-  (292, 12, 'grade', 127, '2026-03-03 11:22:45', 2),
-  (293, 12, 'grade', 104, '2026-03-03 11:22:45', 2),
-  (294, 12, 'grade', 105, '2026-03-03 11:22:46', 2),
-  (295, 12, 'grade', 55, '2026-03-03 11:22:46', 2),
-  (296, 12, 'grade', 56, '2026-03-03 11:22:46', 2),
-  (297, 12, 'grade', 57, '2026-03-03 11:22:46', 2),
-  (298, 12, 'grade', 58, '2026-03-03 11:22:46', 2),
-  (299, 12, 'grade', 59, '2026-03-03 11:22:47', 2),
-  (300, 12, 'grade', 60, '2026-03-03 11:22:47', 2),
-  (301, 15, 'grade', 53, '2026-03-12 01:42:35', 1),
-  (302, 23, 'grade', 112, '2026-03-12 03:53:12', 1),
-  (303, 23, 'grade', 113, '2026-03-12 03:53:12', 1),
-  (304, 23, 'grade', 67, '2026-03-12 03:53:12', 1),
-  (305, 23, 'grade', 68, '2026-03-12 03:53:13', 1),
-  (306, 24, 'grade', 112, '2026-03-12 03:53:13', 1),
-  (307, 24, 'grade', 113, '2026-03-12 03:53:14', 1),
-  (308, 24, 'grade', 67, '2026-03-12 03:53:14', 1),
-  (309, 24, 'grade', 68, '2026-03-12 03:53:14', 1),
-  (310, 25, 'grade', 112, '2026-03-12 03:53:15', 1),
-  (311, 25, 'grade', 113, '2026-03-12 03:53:15', 1),
-  (312, 25, 'grade', 67, '2026-03-12 03:53:15', 1),
-  (313, 25, 'grade', 68, '2026-03-12 03:53:15', 1),
-  (314, 26, 'grade', 112, '2026-03-12 03:53:16', 1),
-  (315, 26, 'grade', 113, '2026-03-12 03:53:16', 1),
-  (316, 26, 'grade', 67, '2026-03-12 03:53:17', 1),
-  (317, 26, 'grade', 68, '2026-03-12 03:53:17', 1),
-  (318, 31, 'grade', 126, '2026-03-13 01:31:19', 1),
-  (319, 31, 'grade', 69, '2026-03-13 01:31:19', 1),
-  (320, 32, 'grade', 126, '2026-03-13 01:31:20', 1),
-  (321, 32, 'grade', 69, '2026-03-13 01:31:20', 1),
-  (322, 33, 'grade', 126, '2026-03-13 01:31:20', 1),
-  (323, 33, 'grade', 69, '2026-03-13 01:31:20', 1),
-  (324, 34, 'grade', 126, '2026-03-13 01:31:21', 1),
-  (325, 34, 'grade', 69, '2026-03-13 01:31:21', 1),
-  (326, 31, 'grade', 114, '2026-03-13 02:08:20', 1),
-  (327, 31, 'grade', 115, '2026-03-13 02:08:21', 1),
-  (328, 31, 'grade', 116, '2026-03-13 02:08:21', 1),
-  (329, 31, 'grade', 117, '2026-03-13 02:08:22', 1),
-  (330, 31, 'grade', 118, '2026-03-13 02:08:22', 1),
-  (331, 31, 'grade', 119, '2026-03-13 02:08:22', 1),
-  (332, 31, 'grade', 120, '2026-03-13 02:08:23', 1),
-  (333, 31, 'grade', 121, '2026-03-13 02:08:23', 1),
-  (334, 31, 'grade', 70, '2026-03-13 02:08:23', 1),
-  (335, 31, 'grade', 72, '2026-03-13 02:08:23', 1),
-  (336, 31, 'grade', 73, '2026-03-13 02:08:24', 1),
-  (337, 32, 'grade', 114, '2026-03-13 02:08:25', 1),
-  (338, 32, 'grade', 115, '2026-03-13 02:08:25', 1),
-  (339, 32, 'grade', 116, '2026-03-13 02:08:25', 1),
-  (340, 32, 'grade', 117, '2026-03-13 02:08:26', 1),
-  (341, 32, 'grade', 118, '2026-03-13 02:08:26', 1),
-  (342, 32, 'grade', 119, '2026-03-13 02:08:26', 1),
-  (343, 32, 'grade', 120, '2026-03-13 02:08:26', 1),
-  (344, 32, 'grade', 121, '2026-03-13 02:08:26', 1),
-  (345, 32, 'grade', 70, '2026-03-13 02:08:27', 1),
-  (346, 32, 'grade', 72, '2026-03-13 02:08:27', 1),
-  (347, 32, 'grade', 73, '2026-03-13 02:08:27', 1),
-  (348, 33, 'grade', 114, '2026-03-13 02:08:27', 1),
-  (349, 33, 'grade', 115, '2026-03-13 02:08:28', 1),
-  (350, 33, 'grade', 116, '2026-03-13 02:08:28', 1),
-  (351, 33, 'grade', 117, '2026-03-13 02:08:28', 1),
-  (352, 33, 'grade', 118, '2026-03-13 02:08:28', 1),
-  (353, 33, 'grade', 119, '2026-03-13 02:08:28', 1),
-  (354, 33, 'grade', 120, '2026-03-13 02:08:29', 1),
-  (355, 33, 'grade', 121, '2026-03-13 02:08:29', 1),
-  (356, 33, 'grade', 70, '2026-03-13 02:08:29', 1),
-  (357, 33, 'grade', 72, '2026-03-13 02:08:29', 1);
-
-INSERT IGNORE INTO `learning_time_slot_scopes` (`id`, `time_slot_id`, `scope_type`, `scope_id`, `created_at`, `shift_id`) VALUES
-  (358, 33, 'grade', 73, '2026-03-13 02:08:29', 1),
-  (359, 34, 'grade', 114, '2026-03-13 02:08:30', 1),
-  (360, 34, 'grade', 115, '2026-03-13 02:08:30', 1),
-  (361, 34, 'grade', 116, '2026-03-13 02:08:30', 1),
-  (362, 34, 'grade', 117, '2026-03-13 02:08:31', 1),
-  (363, 34, 'grade', 118, '2026-03-13 02:08:31', 1),
-  (364, 34, 'grade', 119, '2026-03-13 02:08:31', 1),
-  (365, 34, 'grade', 120, '2026-03-13 02:08:32', 1),
-  (366, 34, 'grade', 121, '2026-03-13 02:08:32', 1),
-  (367, 34, 'grade', 70, '2026-03-13 02:08:32', 1),
-  (368, 34, 'grade', 72, '2026-03-13 02:08:32', 1),
-  (369, 34, 'grade', 73, '2026-03-13 02:08:33', 1),
-  (370, 40, 'grade', 106, '2026-03-19 03:52:26', 2),
-  (371, 40, 'grade', 107, '2026-03-19 03:52:26', 2),
-  (372, 41, 'grade', 106, '2026-03-19 03:52:26', 2),
-  (373, 41, 'grade', 107, '2026-03-19 03:52:27', 2),
-  (374, 42, 'grade', 106, '2026-03-19 03:52:27', 2),
-  (375, 42, 'grade', 107, '2026-03-19 03:52:27', 2),
-  (376, 43, 'grade', 106, '2026-03-19 03:52:28', 2),
-  (377, 43, 'grade', 107, '2026-03-19 03:52:28', 2),
-  (378, 44, 'grade', 106, '2026-03-19 03:52:28', 2),
-  (379, 44, 'grade', 107, '2026-03-19 03:52:28', 2),
-  (380, 39, 'grade', 106, '2026-03-19 03:53:16', 2),
-  (381, 39, 'grade', 107, '2026-03-19 03:53:16', 2),
-  (382, 45, 'grade', 106, '2026-03-19 11:05:11', 2),
-  (383, 45, 'grade', 107, '2026-03-19 11:05:11', 2),
-  (384, 46, 'grade', 106, '2026-03-19 11:05:11', 2),
-  (385, 46, 'grade', 107, '2026-03-19 11:05:11', 2),
-  (386, 47, 'grade', 106, '2026-03-19 11:05:12', 2),
-  (387, 47, 'grade', 107, '2026-03-19 11:05:12', 2),
-  (388, 48, 'grade', 106, '2026-03-19 11:05:13', 2),
-  (389, 48, 'grade', 107, '2026-03-19 11:05:13', 2),
-  (390, 39, 'grade', 108, '2026-03-19 11:28:31', 2),
-  (391, 40, 'grade', 108, '2026-03-19 11:28:31', 2),
-  (392, 41, 'grade', 108, '2026-03-19 11:28:32', 2),
-  (393, 42, 'grade', 108, '2026-03-19 11:28:32', 2),
-  (394, 43, 'grade', 108, '2026-03-19 11:28:32', 2),
-  (395, 44, 'grade', 108, '2026-03-19 11:28:33', 2),
-  (396, 45, 'grade', 108, '2026-03-19 11:28:33', 2),
-  (397, 46, 'grade', 108, '2026-03-19 11:28:34', 2),
-  (398, 47, 'grade', 108, '2026-03-19 11:28:34', 2),
-  (399, 48, 'grade', 108, '2026-03-19 11:28:34', 2),
-  (400, 39, 'grade', 109, '2026-03-20 02:56:42', 2),
-  (401, 40, 'grade', 109, '2026-03-20 02:56:42', 2),
-  (402, 41, 'grade', 109, '2026-03-20 02:56:43', 2),
-  (403, 42, 'grade', 109, '2026-03-20 02:56:43', 2),
-  (404, 43, 'grade', 109, '2026-03-20 02:56:44', 2),
-  (405, 44, 'grade', 109, '2026-03-20 02:56:44', 2),
-  (406, 45, 'grade', 109, '2026-03-20 02:56:44', 2),
-  (407, 46, 'grade', 109, '2026-03-20 02:56:45', 2),
-  (408, 47, 'grade', 109, '2026-03-20 02:56:45', 2),
-  (409, 48, 'grade', 109, '2026-03-20 02:56:46', 2);
-
--- Preset seed data for `medalname` (93 rows)
-INSERT IGNORE INTO `medalname` (`id`, `medal_name`, `created_at`, `updated_at`) VALUES
-  (1, 'កម្មវិធីប៉ាម៉ា', '2025-07-25 13:04:17', '2025-07-25 13:04:17'),
-  (2, 'ប្រកបពាក្យ និងអក្ខរវិញ្ញាស', '2025-07-25 13:04:17', '2025-07-28 02:40:46'),
-  (3, 'អំណាន និងកំណាព្យ', '2025-07-28 02:35:26', '2025-07-28 02:35:26'),
-  (4, 'ប្រកួតនិទានរឿង', '2025-07-28 02:35:56', '2025-07-28 02:35:56'),
-  (5, 'បទបង្ហាញអមដោយរូបភាព', '2025-07-28 02:36:31', '2025-07-28 02:36:31'),
-  (6, 'និយាយជាសាធារណៈ', '2025-07-28 02:37:10', '2025-07-28 02:37:10'),
-  (7, 'តែងសេក្ដី', '2025-07-28 02:41:08', '2025-07-28 02:41:08'),
-  (8, 'សិស្សឆ្នើម', '2025-07-28 02:41:25', '2025-07-28 02:41:25'),
-  (9, 'Picture Prompts', '2025-07-28 02:43:26', '2025-08-28 03:29:50'),
-  (10, 'Outstanding students', '2025-07-28 02:44:20', '2025-07-28 02:44:20'),
-  (11, 'Story Telling', '2025-07-28 02:45:57', '2025-07-29 02:45:15'),
-  (12, 'Show and Tell', '2025-07-28 02:46:25', '2025-07-28 02:46:25'),
-  (13, 'Public Speaking', '2025-07-28 02:47:00', '2025-07-28 02:47:00'),
-  (14, 'Reading Contest', '2025-07-28 02:47:18', '2025-07-29 09:36:07'),
-  (17, 'ISOCSEA NR SCI', '2025-07-28 03:06:58', '2026-07-31 03:57:19'),
-  (18, 'សំណេរ និងអត្ថន័យពាក្យ', '2025-07-28 03:14:16', '2025-07-28 03:14:16'),
-  (19, 'ប្រកួតអំណាន និងស្មូត្រកំណាព្យ', '2025-07-28 03:14:23', '2025-07-28 03:14:23'),
-  (20, 'IMOCSEA NR MATH', '2025-07-28 03:20:47', '2026-07-31 03:55:50'),
-  (21, 'SMC', '2025-07-28 03:22:41', '2025-07-28 03:22:41'),
-  (23, 'SEAMO', '2025-07-28 03:23:33', '2025-07-28 03:23:33'),
-  (24, 'AMO', '2025-07-28 03:23:47', '2025-07-28 03:23:47'),
-  (25, 'TEENEAGLE', '2025-07-28 03:24:10', '2025-07-28 03:24:10'),
-  (26, 'TIMO', '2025-07-28 03:24:24', '2025-07-28 03:24:24'),
-  (27, 'AMC FINAL', '2025-07-28 03:24:46', '2025-07-28 03:24:46'),
-  (28, 'IGC', '2025-07-28 03:25:17', '2025-07-28 03:25:17'),
-  (35, 'PIMSO NR MATH', '2025-07-28 03:32:34', '2026-07-31 06:36:42'),
-  (36, 'PIMSO NR SCI', '2025-07-28 03:32:50', '2026-07-31 06:36:57'),
-  (37, 'WMI', '2025-07-28 03:33:02', '2025-07-28 03:33:02'),
-  (38, 'SASMO', '2025-07-28 03:33:13', '2025-07-28 03:33:13'),
-  (39, 'BBB', '2025-07-28 03:33:42', '2025-07-28 03:33:42'),
-  (42, 'IMEC', '2025-07-28 03:34:37', '2025-07-28 03:34:37'),
-  (43, 'MPCH', '2025-07-28 03:34:50', '2025-07-28 03:34:50'),
-  (44, 'BMC', '2025-07-28 03:35:02', '2025-07-28 03:35:02'),
-  (46, 'Dream', '2025-08-13 03:35:24', '2025-08-13 03:35:24'),
-  (48, 'CIMOC PRE', '2025-10-25 01:50:24', '2026-07-03 10:12:50'),
-  (51, 'VIAMC', '2026-01-19 00:58:49', '2026-01-19 00:58:49'),
-  (52, 'SEAMOX IR', '2026-01-26 02:44:38', '2026-07-31 06:46:11'),
-  (53, 'BEBRAS', '2026-03-18 02:52:18', '2026-03-18 02:52:18'),
-  (54, 'SIMSO/MATH', '2026-03-24 07:19:19', '2026-03-24 07:19:19'),
-  (55, 'SIMSO/SCIENCE', '2026-03-24 07:19:50', '2026-03-24 07:19:50'),
-  (57, 'WMC', '2026-04-21 07:29:48', '2026-04-21 07:29:48'),
-  (58, 'WEC', '2026-04-21 07:30:51', '2026-04-21 07:30:51'),
-  (59, 'Math Kangaroo', '2026-04-21 08:09:38', '2026-04-21 08:09:38'),
-  (60, 'Romdul Scholars Challenge', '2026-05-18 02:44:21', '2026-06-10 02:20:31'),
-  (61, 'WSC/Scholar\'s Bowl', '2026-06-01 06:53:33', '2026-06-01 06:53:33'),
-  (62, 'WSC/Writing', '2026-06-01 06:54:30', '2026-06-01 06:54:30'),
-  (63, 'WSC/Debate', '2026-06-01 06:56:18', '2026-06-01 06:56:18'),
-  (64, 'WSC/Scholar\'s Challenge', '2026-06-01 06:57:07', '2026-06-01 06:57:07'),
-  (65, 'WSC/TEAM WRITING', '2026-06-01 07:02:06', '2026-07-31 08:13:12'),
-  (66, 'WSC/TEAM DEBATE', '2026-06-01 07:02:27', '2026-06-01 07:02:27'),
-  (67, 'KOALA/ENGLISH', '2026-06-09 03:08:19', '2026-06-09 03:08:19'),
-  (68, 'KOALA/MATH', '2026-06-09 03:08:42', '2026-06-09 03:08:42'),
-  (69, 'KOALA/SCIENCE', '2026-06-09 03:09:10', '2026-06-09 03:09:10'),
-  (70, 'KOALA/ARTS', '2026-06-09 03:09:22', '2026-06-09 03:11:43'),
-  (71, 'IESO NR SCI', '2026-06-09 08:29:26', '2026-07-30 09:38:43'),
-  (73, 'Linker Scientia Cup', '2026-06-13 01:24:55', '2026-06-13 01:24:55'),
-  (74, 'Linker/Math', '2026-06-15 03:37:07', '2026-06-15 03:37:07'),
-  (75, 'Linker/Bio', '2026-06-15 03:39:34', '2026-06-15 03:39:34'),
-  (76, 'Linker/Chemistry', '2026-06-15 03:44:56', '2026-06-15 03:44:56'),
-  (77, 'Linker/Physic', '2026-06-15 03:54:02', '2026-06-15 03:54:02'),
-  (78, 'Romdul/Math', '2026-06-20 02:03:38', '2026-06-20 02:03:38'),
-  (79, 'Romdul/science', '2026-06-20 02:04:15', '2026-06-20 02:04:15'),
-  (80, 'Romdul/Geo', '2026-06-20 02:06:00', '2026-06-20 02:06:00'),
-  (81, 'Romdul/History', '2026-06-20 02:06:22', '2026-06-20 02:06:22'),
-  (82, 'Romdul/Art', '2026-06-20 02:06:37', '2026-06-20 02:06:37'),
-  (83, 'CIMOC FINAL', '2026-07-03 10:26:37', '2026-07-03 10:26:37'),
-  (85, 'PHIMO NR MATH', '2026-07-08 10:13:41', '2026-07-31 04:09:09'),
-  (86, 'COPERNICUS MATH', '2026-07-09 08:42:48', '2026-07-09 08:42:48'),
-  (90, 'GMC', '2026-07-09 08:47:04', '2026-07-09 08:47:04'),
-  (91, 'IESO IR', '2026-07-09 08:49:15', '2026-07-30 09:36:03'),
-  (92, 'PHIMO IR', '2026-07-09 08:52:19', '2026-07-31 04:08:06'),
-  (93, 'SMGF', '2026-07-09 08:54:51', '2026-07-09 08:54:51'),
-  (94, 'WSC IR SCI', '2026-07-09 08:58:11', '2026-07-31 08:09:44'),
-  (95, 'ESB PRELIMINARY', '2026-07-09 09:45:48', '2026-07-09 09:45:48'),
-  (96, 'ESB FINAL', '2026-07-09 09:46:13', '2026-07-09 09:46:13'),
-  (97, 'FISO IR ARTS', '2026-07-30 08:08:51', '2026-07-30 08:08:51'),
-  (98, 'FISO IR ENG', '2026-07-30 08:09:03', '2026-07-30 08:09:03'),
-  (99, 'FISO IR IQ', '2026-07-30 08:09:16', '2026-07-30 08:09:16'),
-  (100, 'FISO IR MATH', '2026-07-30 08:10:14', '2026-07-30 08:10:14'),
-  (101, 'FISO IR SCI', '2026-07-30 08:10:19', '2026-07-30 08:10:19'),
-  (102, 'FISO NR ART', '2026-07-30 08:10:46', '2026-07-30 08:10:46'),
-  (103, 'FISO NR ENG', '2026-07-30 08:10:52', '2026-07-30 08:10:52'),
-  (104, 'FISO NR IQ', '2026-07-30 08:10:58', '2026-07-30 08:10:58'),
-  (105, 'FISO NR MATH', '2026-07-30 08:11:06', '2026-07-30 08:11:06'),
-  (106, 'FISO NR SCI', '2026-07-30 08:11:12', '2026-07-30 08:11:12'),
-  (107, 'FISO NR TECH', '2026-07-30 08:11:42', '2026-07-30 08:11:42'),
-  (108, 'HKIMO IR', '2026-07-30 09:19:32', '2026-07-30 09:19:32'),
-  (109, 'HKIMO NR', '2026-07-30 09:19:37', '2026-07-30 09:19:37'),
-  (110, 'IEMO NR ENG', '2026-07-30 09:29:01', '2026-07-30 09:29:01'),
-  (111, 'PIMSO IR MATH', '2026-07-31 06:37:05', '2026-07-31 06:37:05'),
-  (112, 'PIMSO IR SCI', '2026-07-31 06:37:12', '2026-07-31 06:37:12'),
-  (113, 'TIMO IR', '2026-07-31 07:58:34', '2026-07-31 07:58:34'),
-  (114, 'VIAMC IR', '2026-07-31 08:00:36', '2026-07-31 08:00:36');
-
--- Preset seed data for `medal_points_setup` (96 rows)
-INSERT IGNORE INTO `medal_points_setup` (`program_name`, `gold_pts`, `silver_pts`, `bronze_pts`, `diamond_pts`, `participation_pts`) VALUES
-  ('AMC FINAL', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('AMO', 4.0, 3.0, 2.0, 0.0, 0.5),
-  ('BBB', 5.0, 4.0, 3.0, 0.0, 1.0),
-  ('BEBRAS', 5.0, 4.0, 3.0, 0.0, 0.0),
-  ('BMC', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('CIMOC FINAL', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('CIMOC PRE', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('COPERNICUS MATH', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('Dream', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('ESB FINAL', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('ESB PRELIMINARY', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('FISO GR ENG', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO GR MATH', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO GR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO IR ARTS', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO IR ENG', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO IR IQ', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO IR MATH', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO IR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('FISO NR ART', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('FISO NR ENG', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('FISO NR IQ', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('FISO NR MATH', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('FISO NR SCI', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('FISO NR TECH', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('GMC', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('HKIMO', 0.0, 0.0, 0.0, 0.0, 0.0),
-  ('HKIMO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('HKIMO NR', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('IEMO NR ENG', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('IESO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('IESO NR SCI', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('IMOCSEA NR MATH', 4.0, 3.0, 2.0, 5.0, 1.0),
-  ('ISOCSEA NR SCI', 4.0, 3.0, 2.0, 5.0, 1.0),
-  ('KOALA/ARTS', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('KOALA/ENGLISH', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('KOALA/MATH', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('KOALA/SCIENCE', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('Linker Scientia Cup', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Linker/Bio', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Linker/Chemistry', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Linker/Math', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Linker/Physic', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Math Kangaroo', 3.0, 2.0, 1.0, 0.0, 0.5),
-  ('MPCH', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Outstanding students', 3.0, 2.0, 1.0, 0.0, 0.0),
-  ('PHIMO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('PHIMO NR MATH', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('Picture Prompts', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('PIMSO IR MATH', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('PIMSO IR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('PIMSO NR MATH', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('PIMSO NR SCI', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('Public Speaking', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Reading Contest', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Romdul Scholars Challenge', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Romdul/Art', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Romdul/Geo', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Romdul/History', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Romdul/Math', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Romdul/science', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('SASMO', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('SEAMO', 4.0, 3.0, 2.0, 0.0, 0.5),
-  ('SEAMOX IR', 7.0, 6.0, 5.0, 0.0, 3.0),
-  ('Show and Tell', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('SIMSO/MATH', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('SIMSO/SCIENCE', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('SMC', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('SMGF', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('Spelling Bee', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('Story Telling', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('TEENEAGLE', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('TIMO', 4.0, 3.0, 2.0, 0.0, 1.0),
-  ('TIMO IR', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('VIAMC', 4.0, 3.0, 2.0, 0.0, 0.5),
-  ('VIAMC IR', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('WEC', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('WMC', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('WMI', 4.0, 3.0, 2.0, 0.0, 0.5),
-  ('WSC IR SCI', 5.0, 4.0, 3.0, 0.0, 2.0),
-  ('WSC/Debate', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('WSC/Scholar\'s Bowl', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('WSC/Scholar\'s Challenge', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('WSC/TEAM DEBATE', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('WSC/TEAM WRITING', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('WSC/Writing', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('កម្មវិធីប៉ាម៉ា', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('តែងសេក្ដី', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('និយាយជាសាធារណៈ', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('បទបង្ហាញអមដោយរូបភាព', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('ប្រកបពាក្យ និងអក្ខរវិញ្ញាស', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('ប្រកួតនិទានរឿង', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('ប្រកួតអំណាន និងស្មូត្រកំណាព្យ', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('សំណេរ និងអត្ថន័យពាក្យ', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('សិស្សឆ្នើម', 2.0, 1.0, 0.5, 0.0, 0.0),
-  ('អំណាន និងកំណាព្យ', 2.0, 1.0, 0.5, 0.0, 0.0);
-
--- Preset seed data for `medal_price` (11 rows)
-INSERT IGNORE INTO `medal_price` (`id`, `name_us`, `name_kh`, `amount`, `academic_id`, `created_at`, `updated_at`) VALUES
-  (1, 'Gold', 'មាស', '20.00', 1, '2025-07-25 13:34:45', '2025-07-25 13:34:45'),
-  (2, 'Silver', 'ប្រាក់', '15.00', 1, '2025-07-25 13:34:45', '2025-07-25 13:34:45'),
-  (3, 'Bronze', 'សំរិទ្ធ', '10.00', 1, '2025-07-25 13:35:37', '2025-07-25 13:35:37'),
-  (4, 'Gold', 'មាស', '20.00', 2, '2025-08-27 01:59:57', '2025-08-27 01:59:57'),
-  (5, 'Silver', 'ប្រាក់', '15.00', 2, '2025-08-27 02:00:21', '2025-08-27 02:00:21'),
-  (6, 'Bronze', 'សំរិទ្ធ', '10.00', 2, '2025-08-27 02:00:50', '2025-08-27 02:00:50'),
-  (7, 'Dimond', 'ពេជ្រ', '20.00', 2, '2025-11-12 06:45:16', '2025-11-12 06:45:16'),
-  (8, 'Gold', 'មាស', '20.00', 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
-  (9, 'Silver', 'ប្រាក់', '15.00', 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
-  (10, 'Bronze', 'សំរិទ្ធ', '10.00', 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
-  (11, 'Dimond', 'ពេជ្រ', '20.00', 16, '2026-09-09 06:47:59', '2026-09-09 06:47:59');
-
--- Preset seed data for `app_branding_settings` (1 rows)
-INSERT IGNORE INTO `app_branding_settings` (`id`, `icon_name`, `top_text`, `bottom_text`, `icon_background_color`, `icon_color`, `top_text_color`, `bottom_text_color`, `created_at`, `updated_at`, `icon_background_color_dark`, `icon_color_dark`, `top_text_color_dark`, `bottom_text_color_dark`, `use_logo_image`, `logo_image_url`, `logo_image_url_dark`) VALUES
-  (1, 'school_rounded', 'PAMA', 'INTERNATIONAL SCHOOL', '#1E5BD8', '#FFFFFF', '#22252A', '#6F7280', '2026-03-17 19:57:09', '2026-04-25 12:11:07', '#1E5BD8', '#FFFFFF', '#FFFFFF', '#B7C0D1', 1, '/uploads/branding/branding_logo_light_24700c3b24.jpg', '/uploads/branding/branding_logo_dark_7419206d06.jpg');
-
--- Preset seed data for `app_quick_action_settings` (1 rows)
-INSERT IGNORE INTO `app_quick_action_settings` (`id`, `items_json`, `updated_at`) VALUES
-  (1, '[{"id":"website_1784808728018332","kind":"website","title_en":"The One News","title_km":"The One News","title_zh":"","url":"https://theonenewsasia.com/","icon_name":"newspaper","color_hex":"#E11D48","visible":true,"sort_order":0,"open_mode":"embedded","highlight_new":true,"icon_image_url":""},{"id":"website_1784939001066138","kind":"website","title_en":"Facebook","title_km":"ហ្វេសបុក","title_zh":"","url":"https://www.facebook.com/share/1EZEcrB9LS/","icon_name":"school","color_hex":"#1677F2","visible":false,"sort_order":1,"open_mode":"embedded","highlight_new":true,"icon_image_url":""},{"id":"contact","kind":"contact","title_en":"Contact & map","title_km":"ទំនាក់ទំនង និងផែនទី","title_zh":"联系与地图","url":null,"icon_name":"contact_phone","color_hex":"#1677F2","visible":true,"sort_order":2,"open_mode":"embedded","highlight_new":false,"icon_image_url":""},{"id":"admissions","kind":"admissions","title_en":"Admissions","title_km":"ចុះឈ្មោះសិស្ស","title_zh":"招生","url":null,"icon_name":"assignment","color_hex":"#1677F2","visible":true,"sort_order":3,"open_mode":"embedded","highlight_new":false,"icon_image_url":""},{"id":"fees","kind":"fees","title_en":"Fees","title_km":"ថ្លៃសិក្សា","title_zh":"费用","url":null,"icon_name":"payments","color_hex":"#1677F2","visible":true,"sort_order":4,"open_mode":"embedded","highlight_new":false,"icon_image_url":""}]', '2026-07-25 00:58:23');
-
--- Preset seed data for `attendance_system_settings` (1 rows)
-INSERT IGNORE INTO `attendance_system_settings` (`id`, `require_location`, `block_mock_location`, `block_developer_options`, `allowed_ip_ranges`, `allow_early_clock_in_mins`, `allow_late_clock_out_mins`, `late_grace_minutes`, `updated_at`, `created_at`, `per_session_early_clock_in_mins`, `min_minutes_before_checkout`, `allow_early_leave_mins`, `allow_makeup_missing_sessions`, `notify_enable_before`, `notify_minutes_before`, `notify_enable_after`, `notify_minutes_after`, `notify_enable_before_checkout`, `notify_minutes_before_checkout`, `notify_enable_after_checkout`, `notify_minutes_after_checkout`, `session_transition_wait_mins`) VALUES
-  (1, 1, 1, 0, '', 120, 480, 15, '2026-09-11', '2026-01-09 04:29:31', '[190, 40]', 30, 0, 0, 1, '[10]', 1, '[5]', 0, '[0]', 1, '[5]', 10);
-
--- Preset seed data for `certificate_settings` (2 rows)
-INSERT IGNORE INTO `certificate_settings` (`id`, `academic_id`, `prefix`, `surfix`, `digit`, `year`, `created_at`, `updated_at`, `orientation`) VALUES
-  (1, 1, '', '/25PAMAIS', 4, NULL, '2026-06-03 18:06:49', '2026-06-03 18:06:49', 'landscape'),
-  (2, 2, '', '/26PAMAIS', 4, NULL, '2026-06-03 18:07:03', '2026-06-03 18:07:03', 'landscape');
-
--- Preset seed data for `pickup_settings` (3 rows)
-INSERT IGNORE INTO `pickup_settings` (`id`, `academic_id`, `repeat_count`, `cooldown_seconds`, `calling_enabled`, `updated_at`) VALUES
-  (1, 1, 2, 60, 1, '2026-07-08 04:36:40'),
-  (9, 2, 3, 300, 0, '2026-07-20 08:26:53'),
-  (10, 16, 3, 300, 0, '2026-09-01 10:02:16');
-
--- Preset seed data for `price_visibility_settings` (1 rows)
-INSERT IGNORE INTO `price_visibility_settings` (`id`, `branch_id`, `program_id`, `show_monthly`, `show_quarter`, `show_semester`, `show_oneyear`, `created_at`, `updated_at`) VALUES
-  (1, NULL, NULL, 1, 1, 1, 1, '2026-03-17 01:43:26', '2026-08-25 11:17:07');
-
--- Preset seed data for `results_top_students_display_settings` (1 rows)
-INSERT IGNORE INTO `results_top_students_display_settings` (`id`, `avatar_chip_mode`, `hide_section`, `updated_at`, `hide_medals_section`) VALUES
-  (1, 'grade', 0, '2026-07-25 00:21:56', 0);
-
--- Preset seed data for `telegram_attendance_settings` (1 rows)
-INSERT IGNORE INTO `telegram_attendance_settings` (`id`, `bot_token`, `chat_id`, `enabled`, `created_at`, `updated_at`, `notify_leave_requests`, `notify_leave_decisions`, `leave_routing_mode`, `leave_chat_id`, `branch_routing_mode`) VALUES
-  (3, '8686190656:AAEl84Nkz7WwDe1SMn323iNV93BnIUeTvfw', '-1003926360219', 1, '2026-04-23 17:43:37', '2026-07-23 02:47:42', 1, 1, 'separate', '-1004357357756', NULL);
-
--- Preset seed data for `telegram_chat_moderation_settings` (3 rows)
-INSERT IGNORE INTO `telegram_chat_moderation_settings` (`chat_id`, `enabled`, `file_policy`, `blocked_extensions`, `allowed_extensions`, `link_policy`, `allowed_domains`, `exempt_admins`, `send_warning`, `updated_by`, `created_at`, `updated_at`) VALUES
-  ('-1002222013522', 1, 'blocklist', '[".7z", ".apk", ".app", ".bat", ".bz2", ".cmd", ".com", ".cpl", ".deb", ".dll", ".dmg", ".docm", ".exe", ".gz", ".hta", ".ipa", ".iso", ".jar", ".js", ".lnk", ".msi", ".pkg", ".pptm", ".ps1", ".rar", ".reg", ".rpm", ".scr", ".sh", ".so", ".tar", ".tar.gz", ".tgz", ".vbs", ".xlsm", ".xz", ".zip"]', '[".csv", ".doc", ".docx", ".gif", ".jpeg", ".jpg", ".m4a", ".mov", ".mp3", ".mp4", ".pdf", ".png", ".ppt", ".pptx", ".txt", ".wav", ".webp", ".xls", ".xlsx"]', 'allowlist', '["google.com", "googleusercontent.com", "gstatic.com", "maps.app.goo.gl", "t.me", "youtu.be", "youtube.com"]', 1, 1, 58, '2026-07-20 10:25:28', '2026-08-06 09:38:13'),
-  ('-1002491545022', 1, 'allow_all', '[".7z", ".apk", ".app", ".bat", ".bz2", ".cmd", ".com", ".cpl", ".deb", ".dll", ".dmg", ".docm", ".exe", ".gz", ".hta", ".ipa", ".iso", ".jar", ".js", ".lnk", ".msi", ".pkg", ".pptm", ".ps1", ".rar", ".reg", ".rpm", ".scr", ".sh", ".so", ".tar", ".tar.gz", ".tgz", ".vbs", ".xlsm", ".xz", ".zip"]', '[".csv", ".doc", ".docx", ".gif", ".jpeg", ".jpg", ".m4a", ".mov", ".mp3", ".mp4", ".pdf", ".png", ".ppt", ".pptx", ".txt", ".wav", ".webp", ".xls", ".xlsx"]', 'allowlist', '["apps.apple.com", "forms.gle", "g.co", "goo.gl", "google.com", "googleapis.com", "googleusercontent.com", "googlevideo.com", "gstatic.com", "maps.app.goo.gl", "microsoft.com", "office.com", "pamainternationalschool.com", "pamais.duckdns.org", "t.me", "telegram.org", "wikipedia.org", "youtu.be", "youtube-nocookie.com", "youtube.com", "ytimg.com", "zoom.us"]', 0, 1, 58, '2026-08-04 07:36:51', '2026-08-04 07:36:51'),
-  ('-1004402180493', 1, 'allowlist', '[".7z", ".apk", ".app", ".bat", ".bz2", ".cmd", ".com", ".cpl", ".deb", ".dll", ".dmg", ".docm", ".exe", ".gz", ".hta", ".ipa", ".iso", ".jar", ".js", ".lnk", ".msi", ".pkg", ".pptm", ".ps1", ".rar", ".reg", ".rpm", ".scr", ".sh", ".so", ".tar", ".tar.gz", ".tgz", ".vbs", ".xlsm", ".xz", ".zip"]', '[".csv", ".doc", ".docx", ".gif", ".jpeg", ".jpg", ".m4a", ".mov", ".mp3", ".mp4", ".pdf", ".png", ".ppt", ".pptx", ".txt", ".wav", ".webp", ".xls", ".xlsx"]', 'allowlist', '["apps.apple.com", "forms.gle", "g.co", "goo.gl", "google.com", "googleapis.com", "googleusercontent.com", "googlevideo.com", "gstatic.com", "maps.app.goo.gl", "microsoft.com", "office.com", "pamainternationalschool.com", "pamais.duckdns.org", "t.me", "telegram.org", "wikipedia.org", "youtu.be", "youtube-nocookie.com", "youtube.com", "ytimg.com", "zoom.us"]', 0, 1, 58, '2026-07-22 03:51:37', '2026-07-22 03:51:37');
-
--- Preset seed data for `market_categories` (5 rows)
-INSERT IGNORE INTO `market_categories` (`id`, `name`, `name_en`, `name_km`, `icon_key`, `sort_order`, `created_at`) VALUES
-  (1, 'Books', 'Books', 'សៀវភៅ', 'books', 1, '2026-06-28 15:33:06'),
-  (2, 'Uniform', 'Uniform', 'ឯកសណ្ឋាន', 'uniform', 2, '2026-06-28 15:33:06'),
-  (3, 'Food', 'Food', 'អាហារ', 'food', 3, '2026-06-28 15:33:06'),
-  (4, 'Electronics', 'Electronics', 'អេឡិចត្រូនិច', 'electronics', 4, '2026-06-28 15:33:06'),
-  (5, 'Other', 'Other', 'ផ្សេងៗ', 'other', 99, '2026-06-28 15:33:06');
-
--- Preset seed data for `market_settings` (1 rows)
-INSERT IGNORE INTO `market_settings` (`id`, `welcome_enabled`, `welcome_skip_seconds`, `welcome_version`, `updated_at`) VALUES
-  (1, 0, 30, 1, '2026-07-23 15:04:43');
-
--- Preset seed data for `feature_locks` (15 rows)
-INSERT IGNORE INTO `feature_locks` (`id`, `feature_id`, `feature_name`, `is_locked`, `locked_by`, `locked_at`, `created_at`, `updated_at`) VALUES
-  (1, 'attendance_security', 'Attendance Security', 1, 58, '2026-07-21 16:14:07', '2026-04-24 21:09:06', '2026-07-21 16:14:07'),
-  (2, 'work_locations', 'Work Locations', 0, NULL, NULL, '2026-04-24 21:09:11', '2026-07-29 10:12:59'),
-  (3, 'telegram_notifications', 'Telegram Notifications', 0, NULL, NULL, '2026-04-24 21:09:29', '2026-07-31 01:22:27'),
-  (4, 'company_settings', 'Company Settings', 1, 58, '2026-04-24 21:09:35', '2026-04-24 21:09:35', '2026-04-24 21:09:35'),
-  (5, 'app_branding', 'App Branding', 0, NULL, NULL, '2026-04-24 21:09:38', '2026-04-28 05:10:16'),
-  (6, 'hot_events', 'Hot Events', 0, NULL, NULL, '2026-04-24 21:09:50', '2026-04-25 10:48:22'),
-  (7, 'manage_branches', 'Manage Branches', 1, 58, '2026-04-26 01:27:07', '2026-04-26 01:27:07', '2026-04-26 01:27:07'),
-  (8, 'attendance_reports', 'Attendance Reports', 0, NULL, NULL, '2026-04-28 05:10:37', '2026-07-20 00:49:29'),
-  (9, 'manage_forms', 'Manage Forms', 0, NULL, NULL, '2026-05-27 05:36:33', '2026-05-27 05:36:37'),
-  (10, 'payroll_dashboard', 'Payroll Dashboard', 0, NULL, NULL, '2026-07-08 07:46:10', '2026-07-21 16:13:31'),
-  (11, 'academic_programs', 'Academic Programs', 0, NULL, NULL, '2026-07-08 07:57:33', '2026-07-08 07:57:34'),
-  (12, 'leave_setup', 'Leave Setup', 1, 58, '2026-07-18 03:37:30', '2026-07-18 03:37:26', '2026-07-18 03:37:30'),
-  (13, 'leave_approvers', 'Leave Approvers', 1, 58, '2026-07-18 03:37:32', '2026-07-18 03:37:32', '2026-07-18 03:37:32'),
-  (14, 'certificate_management', 'Certificate Management', 0, NULL, NULL, '2026-07-18 03:37:56', '2026-09-02 06:51:29'),
-  (15, 'attendance_settings', 'Attendance Settings', 1, 58, '2026-07-21 16:14:00', '2026-07-21 16:14:00', '2026-07-21 16:14:00');
-
--- Preset seed data for `work_locations` (3 rows)
-INSERT IGNORE INTO `work_locations` (`id`, `name`, `latitude`, `longitude`, `radius_meters`, `branch_id`, `is_active`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-  (2, 'ប៉ាម៉ា៣ (PAMA3)', 10.6202898, 103.52033997, 50, 3, 1, '2026-03-17 00:31:38', '2026-04-23 00:28:02', 58, 87),
-  (3, 'អូរពីរ (O2)', 10.61149216, 103.53865814, 50, 2, 1, '2026-03-17 00:31:45', '2026-07-29 23:56:45', 58, 58),
-  (5, 'ឃ្លាំងលើ (KL)', 10.6315918, 103.55739594, 25, 1, 1, '2026-07-23 23:55:44', '2026-08-25 00:08:15', 58, 58);
-
--- Preset seed data for `user_home_app_permissions` (70 rows)
-INSERT IGNORE INTO `user_home_app_permissions` (`id`, `user_id`, `feature_id`, `is_allowed`, `created_at`, `updated_at`) VALUES
-  (1, 145, 'reports', 0, '2026-04-23 01:12:51', '2026-04-23 01:12:51'),
-  (2, 145, 'attendance', 0, '2026-04-23 01:12:51', '2026-04-23 01:12:51'),
-  (3, 145, 'marking', 0, '2026-04-23 01:12:51', '2026-04-23 01:12:51'),
-  (4, 145, 'students', 0, '2026-04-23 01:12:51', '2026-04-23 01:12:51'),
-  (5, 145, 'classes', 0, '2026-04-23 01:12:51', '2026-04-23 01:12:51'),
-  (6, 145, 'exam_result', 0, '2026-04-23 01:12:51', '2026-04-23 01:12:51'),
-  (7, 145, 'teachers', 0, '2026-04-23 01:12:51', '2026-04-23 01:12:51'),
-  (8, 43, 'reports', 0, '2026-04-23 01:15:05', '2026-04-23 01:15:05'),
-  (9, 43, 'attendance', 0, '2026-04-23 01:15:05', '2026-04-23 01:15:05'),
-  (10, 43, 'marking', 0, '2026-04-23 01:15:05', '2026-04-23 01:15:05'),
-  (11, 43, 'students', 0, '2026-04-23 01:15:05', '2026-04-23 01:15:05'),
-  (12, 43, 'classes', 0, '2026-04-23 01:15:05', '2026-04-23 01:15:05'),
-  (13, 43, 'exam_result', 0, '2026-04-23 01:15:05', '2026-04-23 01:15:05'),
-  (14, 43, 'teachers', 0, '2026-04-23 01:15:05', '2026-04-23 01:15:05'),
-  (15, 18, 'reports', 0, '2026-04-23 01:15:36', '2026-04-23 01:15:36'),
-  (16, 18, 'attendance', 0, '2026-04-23 01:15:36', '2026-04-23 01:15:36'),
-  (17, 18, 'marking', 0, '2026-04-23 01:15:36', '2026-04-23 01:15:36'),
-  (18, 18, 'students', 0, '2026-04-23 01:15:36', '2026-04-23 01:15:36'),
-  (19, 18, 'classes', 0, '2026-04-23 01:15:36', '2026-04-23 01:15:36'),
-  (20, 18, 'exam_result', 0, '2026-04-23 01:15:36', '2026-04-23 01:15:36'),
-  (21, 18, 'teachers', 0, '2026-04-23 01:15:36', '2026-04-23 01:15:36'),
-  (22, 75, 'reports', 0, '2026-04-24 02:10:38', '2026-04-24 02:10:38'),
-  (23, 75, 'marking', 0, '2026-04-24 02:10:38', '2026-04-24 02:10:38'),
-  (24, 75, 'teachers', 0, '2026-04-24 02:10:38', '2026-04-24 02:10:38'),
-  (25, 75, 'attendance', 0, '2026-04-24 02:10:38', '2026-04-24 02:10:38'),
-  (26, 75, 'classes', 0, '2026-04-24 02:10:38', '2026-04-24 02:10:38'),
-  (27, 75, 'students', 0, '2026-04-24 02:10:38', '2026-04-24 02:10:38'),
-  (28, 75, 'exam_result', 0, '2026-04-24 02:10:38', '2026-04-24 02:10:38'),
-  (36, 147, 'students', 0, '2026-04-28 03:13:54', '2026-04-28 03:13:54'),
-  (37, 147, 'reports', 0, '2026-04-28 03:13:54', '2026-04-28 03:13:54'),
-  (38, 147, 'teachers', 0, '2026-04-28 03:13:54', '2026-04-28 03:13:54'),
-  (39, 147, 'attendance', 0, '2026-04-28 03:13:54', '2026-04-28 03:13:54'),
-  (40, 147, 'exam_result', 0, '2026-04-28 03:13:54', '2026-04-28 03:13:54'),
-  (41, 147, 'marking', 0, '2026-04-28 03:13:54', '2026-04-28 03:13:54'),
-  (42, 147, 'classes', 0, '2026-04-28 03:13:54', '2026-04-28 03:13:54'),
-  (43, 146, 'students', 0, '2026-04-28 03:14:01', '2026-04-28 03:14:01'),
-  (44, 146, 'reports', 0, '2026-04-28 03:14:01', '2026-04-28 03:14:01'),
-  (45, 146, 'teachers', 0, '2026-04-28 03:14:01', '2026-04-28 03:14:01'),
-  (46, 146, 'attendance', 0, '2026-04-28 03:14:01', '2026-04-28 03:14:01'),
-  (47, 146, 'exam_result', 0, '2026-04-28 03:14:01', '2026-04-28 03:14:01'),
-  (48, 146, 'marking', 0, '2026-04-28 03:14:01', '2026-04-28 03:14:01'),
-  (49, 146, 'classes', 0, '2026-04-28 03:14:01', '2026-04-28 03:14:01'),
-  (50, 148, 'teachers', 0, '2026-04-29 01:45:52', '2026-04-29 01:45:52'),
-  (51, 148, 'reports', 0, '2026-04-29 01:45:52', '2026-04-29 01:45:52'),
-  (52, 148, 'classes', 0, '2026-04-29 01:45:52', '2026-04-29 01:45:52'),
-  (53, 148, 'attendance', 0, '2026-04-29 01:45:52', '2026-04-29 01:45:52'),
-  (54, 148, 'exam_result', 0, '2026-04-29 01:45:52', '2026-04-29 01:45:52'),
-  (55, 148, 'students', 0, '2026-04-29 01:45:52', '2026-04-29 01:45:52'),
-  (56, 148, 'marking', 0, '2026-04-29 01:45:52', '2026-04-29 01:45:52'),
-  (57, 149, 'reports', 0, '2026-05-04 02:14:54', '2026-05-04 02:14:54'),
-  (58, 149, 'classes', 0, '2026-05-04 02:14:54', '2026-05-04 02:14:54'),
-  (59, 149, 'marking', 0, '2026-05-04 02:14:54', '2026-05-04 02:14:54'),
-  (60, 149, 'students', 0, '2026-05-04 02:14:54', '2026-05-04 02:14:54'),
-  (61, 149, 'exam_result', 0, '2026-05-04 02:14:54', '2026-05-04 02:14:54'),
-  (62, 149, 'attendance', 0, '2026-05-04 02:14:55', '2026-05-04 02:14:55'),
-  (63, 149, 'teachers', 0, '2026-05-04 02:14:55', '2026-05-04 02:14:55'),
-  (64, 150, 'reports', 0, '2026-05-04 09:33:25', '2026-05-04 09:33:25'),
-  (65, 150, 'classes', 0, '2026-05-04 09:33:25', '2026-05-04 09:33:25'),
-  (66, 150, 'marking', 0, '2026-05-04 09:33:25', '2026-05-04 09:33:25'),
-  (67, 150, 'students', 0, '2026-05-04 09:33:25', '2026-05-04 09:33:25'),
-  (68, 150, 'exam_result', 0, '2026-05-04 09:33:25', '2026-05-04 09:33:25'),
-  (69, 150, 'attendance', 0, '2026-05-04 09:33:25', '2026-05-04 09:33:25'),
-  (70, 150, 'teachers', 0, '2026-05-04 09:33:25', '2026-05-04 09:33:25'),
-  (71, 124, 'attendance', 0, '2026-05-06 03:28:10', '2026-05-06 03:28:10'),
-  (72, 124, 'classes', 0, '2026-05-06 03:28:10', '2026-05-06 03:28:10'),
-  (73, 124, 'teachers', 0, '2026-05-06 03:28:10', '2026-05-06 03:28:10'),
-  (74, 124, 'reports', 0, '2026-05-06 03:28:10', '2026-05-06 03:28:10'),
-  (75, 124, 'exam_result', 0, '2026-05-06 03:28:10', '2026-05-06 03:28:10'),
-  (76, 124, 'marking', 0, '2026-05-06 03:28:10', '2026-05-06 03:28:10'),
-  (77, 124, 'students', 0, '2026-05-06 03:28:10', '2026-05-06 03:28:10');
 
 SET FOREIGN_KEY_CHECKS = 1;
