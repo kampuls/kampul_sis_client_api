@@ -284,14 +284,9 @@ class Settings(BaseSettings):
         default="https://nominatim.openstreetmap.org/search",
         alias="DESKTOP_GEOCODING_URL",
     )
-    desktop_required_version_url: str = Field(
-        default="https://raw.githubusercontent.com/pamais-school/version/main/checking.txt",
-        alias="DESKTOP_REQUIRED_VERSION_URL",
-    )
-    desktop_update_manifest_url: str = Field(
-        default="https://github.com/pamais/asdupdate/releases/latest/download/update.txt",
-        alias="DESKTOP_UPDATE_MANIFEST_URL",
-    )
+    kampul_release_api_url: str = Field(default="https://sis.kampul.com", alias="KAMPUL_RELEASE_API_URL")
+    kampul_release_service_token: str = Field(default="", alias="KAMPUL_RELEASE_SERVICE_TOKEN")
+    kampul_school_slug: str = Field(default="", alias="KAMPUL_SCHOOL_SLUG")
     # Public browser origin used for Telegram/app links and public assets.
     # Change these deployment variables when the server domain changes; no
     # source-code update is required. PAMA_APP_LINK_BASE_URL may point app

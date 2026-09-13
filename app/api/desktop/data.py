@@ -127,11 +127,16 @@ def _decode_desktop_token(token: str, db: Session) -> User:
     return user
 
 
-def get_current_desktop_user(
+async def get_current_desktop_user(
+    request: Request,
     credentials: HTTPAuthorizationCredentials = Depends(security),
     db: Session = Depends(get_db),
 ) -> User:
-    return _decode_desktop_token(credentials.credentials, db)
+    user = _decode_desktop_token(credentials.credentials, db)
+    if not request.url.path.startswith('/api/desktop/integrations/update/') and not request.url.path.endswith('/required-version'):
+        from ...services.kampul_releases import enforce_version
+        await enforce_version(db, request.headers)
+    return user
 
 
 def _find_matching_paren(text: str, start_idx: int) -> int:
@@ -482,6 +487,8 @@ async def desktop_transaction_socket(websocket: WebSocket):
                 detail="A desktop bearer token is required",
             )
         user = _decode_desktop_token(token, db)
+        from ...services.kampul_releases import enforce_version
+        await enforce_version(db, websocket.headers)
         await websocket.accept()
         tenant_engine = factory.kw.get("bind") or engine
         connection = tenant_engine.connect()

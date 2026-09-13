@@ -310,93 +310,57 @@ async def _fetch_text(
 
 
 @router.get("/required-version", response_model=TextValueResponse)
-async def get_required_version(
-    current_user: User = Depends(get_current_desktop_user),
-) -> TextValueResponse:
-    del current_user
-    value = "".join((await _fetch_text(
-        settings.desktop_required_version_url,
-        "Version check",
-        timeout_seconds=_FAST_FETCH_TIMEOUT_SECONDS,
-        use_cache=True,
-    )).split())
-    if not value:
-        raise HTTPException(status_code=502, detail="Version service returned no value")
-    return TextValueResponse(value=value)
+async def get_required_version(current_user: User = Depends(get_current_desktop_user), db: Session = Depends(get_db)):
+    from ...services.kampul_releases import catalog
+    return TextValueResponse(value=(await catalog(db))["minimumVersion"])
 
 
-async def _update_manifest() -> str:
-    content = await _fetch_text(
-        settings.desktop_update_manifest_url,
-        "Update manifest",
-        timeout_seconds=_FAST_FETCH_TIMEOUT_SECONDS,
-        use_cache=True,
-    )
-    if not content.startswith(";aiu;"):
-        raise HTTPException(status_code=502, detail="Update manifest is invalid")
-    return content
+@router.get("/update/releases")
+async def available_releases(current_user: User = Depends(get_current_desktop_user), db: Session = Depends(get_db)):
+    from ...services.kampul_releases import catalog
+    return await catalog(db)
 
 
 @router.get("/update/manifest", response_model=TextValueResponse)
-async def get_update_manifest(
-    current_user: User = Depends(get_current_desktop_user),
-) -> TextValueResponse:
-    del current_user
-    return TextValueResponse(value=await _update_manifest())
-
-
-def _manifest_value(manifest: str, key: str) -> str:
-    prefix = key.lower() + "="
-    for raw_line in manifest.splitlines():
-        line = raw_line.strip()
-        if line.lower().startswith(prefix):
-            return line[len(prefix):].strip()
-    return ""
+async def get_update_manifest(current_user: User = Depends(get_current_desktop_user), db: Session = Depends(get_db)):
+    from ...services.kampul_releases import catalog
+    policy = await catalog(db)
+    release = policy["releases"][0]
+    version = release['version']
+    value = (f";aiu;\n[Update]\nProductVersion={version}\n"
+             f"URL=https://sis.kampul.com/api/desktop-releases/{version}/download\n"
+             f"ServerFileName=Kampul-SIS-{version}.exe\nSHA256={release['sha256']}\n"
+             f"Size={release['size']}\nMinimumVersion={policy['minimumVersion']}\n"
+             f"[Changelog]\n{release.get('notes', '')}")
+    return TextValueResponse(value=value)
 
 
 @router.get("/update/download")
-async def download_update(
-    current_user: User = Depends(get_current_desktop_user),
-):
-    del current_user
-    manifest = await _update_manifest()
-    download_url = _manifest_value(manifest, "URL")
-    parsed = urlparse(download_url)
-    if parsed.scheme != "https" or not parsed.hostname:
-        raise HTTPException(status_code=502, detail="Update download URL must use HTTPS")
-
-    filename = _manifest_value(manifest, "ServerFileName")
-    if not filename:
-        filename = PurePath(parsed.path).name
-    filename = re.sub(r"[^A-Za-z0-9._-]+", "_", filename) or "AD-School-Update.exe"
-
-    client = httpx.AsyncClient(timeout=None, follow_redirects=True)
+async def download_update(version: str | None = None, current_user: User = Depends(get_current_desktop_user), db: Session = Depends(get_db)):
+    from ...services.kampul_releases import catalog, release_connection, check_response, version_tuple
+    policy = await catalog(db)
+    version = version or policy['releases'][0]['version']
+    version_tuple(version)
+    release = next((r for r in policy['releases'] if r['version'] == version), None)
+    if release is None:
+        raise HTTPException(404, 'Release is no longer available')
+    base, headers = release_connection(db)
+    client = httpx.AsyncClient(timeout=httpx.Timeout(300, connect=15), follow_redirects=False)
     try:
-        request = client.build_request(
-            "GET",
-            download_url,
-            headers={"User-Agent": "PAMAIS-Desktop-API/1.0"},
-        )
-        response = await client.send(request, stream=True)
-        response.raise_for_status()
-    except httpx.HTTPError as exc:
+        response = await client.send(client.build_request('GET', f'{base}/{version}/download', headers=headers), stream=True)
+        check_response(response)
+    except Exception:
         await client.aclose()
-        raise _external_error("Update download", exc) from exc
-
-    async def body() -> AsyncIterator[bytes]:
+        raise
+    async def body():
         try:
             async for chunk in response.aiter_bytes():
                 yield chunk
         finally:
             await response.aclose()
             await client.aclose()
-
-    headers = {"Content-Disposition": f'attachment; filename="{filename}"'}
-    content_length = response.headers.get("content-length")
-    if content_length:
-        headers["Content-Length"] = content_length
-    return StreamingResponse(
-        body(),
-        media_type=response.headers.get("content-type", "application/octet-stream"),
-        headers=headers,
-    )
+    return StreamingResponse(body(), media_type='application/octet-stream', headers={
+        'Content-Disposition': f'attachment; filename="Kampul-SIS-{version}.exe"',
+        'Content-Length': str(release['size']), 'Cache-Control': 'private, no-store',
+        'X-Checksum-SHA256': release['sha256'],
+    })

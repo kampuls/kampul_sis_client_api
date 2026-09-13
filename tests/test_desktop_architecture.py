@@ -207,9 +207,13 @@ def test_desktop_update_download_url_is_server_selected():
         encoding="utf-8"
     )
 
-    assert "download_url = _manifest_value(manifest, \"URL\")" in integrations
+    gateway = (API_ROOT / "app" / "services" / "kampul_releases.py").read_text(encoding="utf-8")
     assert "download_url: str" not in integrations
-    assert 'parsed.scheme != "https"' in integrations
+    assert "f'{base}/{version}/download'" in integrations
+    assert "follow_redirects=False" in integrations
+    assert "parsed.hostname != 'sis.kampul.com'" in gateway
+    assert "X-Kampul-Service-Token" in gateway
+    assert "await catalog(db)" in integrations
 
 
 def test_large_api_responses_enable_transport_compression():
