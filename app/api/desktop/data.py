@@ -38,6 +38,7 @@ from ...models import User
 from ...services.desktop_sql import (
     DesktopSqlRejected,
     bind_named_parameters,
+    blank_desktop_media_value,
     decode_desktop_parameters,
     encode_desktop_value,
     extract_mutation_tables,
@@ -214,6 +215,8 @@ def _reads_legacy_student_image(sql: str, column_name: str) -> bool:
 def _encode_result_value(value: Any, column_name: str, sql: str) -> Any:
     if is_sensitive_credential_column(column_name):
         return "[REDACTED]"
+    if blank_desktop_media_value(column_name, value):
+        return None
     if isinstance(value, memoryview):
         value = value.tobytes()
     if isinstance(value, (bytes, bytearray)) and _reads_legacy_student_image(sql, column_name):

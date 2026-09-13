@@ -15,6 +15,7 @@ _SPEC.loader.exec_module(_MODULE)
 
 DesktopSqlRejected = _MODULE.DesktopSqlRejected
 bind_named_parameters = _MODULE.bind_named_parameters
+blank_desktop_media_value = _MODULE.blank_desktop_media_value
 decode_desktop_parameters = _MODULE.decode_desktop_parameters
 encode_desktop_value = _MODULE.encode_desktop_value
 rewrite_student_image_reads = _MODULE.rewrite_student_image_reads
@@ -242,6 +243,27 @@ def test_sensitive_credential_columns_are_redacted():
     assert is_sensitive_credential_column("username") is False
     assert is_sensitive_credential_column("id") is False
     assert is_sensitive_credential_column("email") is False
+
+
+@pytest.mark.parametrize(
+    "column",
+    ["system_logo", "image_header", "receipt_header", "qr_code", "account_qr_code",
+     "stamp", "director_signature", "headTeacher_signature", "image", "front_image"],
+)
+def test_empty_legacy_media_values_reach_the_desktop_as_null(column):
+    # The desktop casts any non-path string in these columns to byte[].
+    assert blank_desktop_media_value(column, "") is True
+    assert blank_desktop_media_value(column, "   ") is True
+    assert blank_desktop_media_value(column, "/uploads/branding/logo.png") is False
+    assert blank_desktop_media_value(column, None) is False
+
+
+def test_blank_media_rule_leaves_text_and_url_columns_alone():
+    assert blank_desktop_media_value("signature_url", "") is False
+    assert blank_desktop_media_value("image_header_path", "") is False
+    assert blank_desktop_media_value("background_url", "") is False
+    assert blank_desktop_media_value("branch_name", "") is False
+    assert blank_desktop_media_value("contact", "") is False
 
 
 def test_validate_safe_mutation_blocks_unbounded_update_or_delete():

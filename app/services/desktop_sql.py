@@ -467,6 +467,29 @@ def is_sensitive_credential_column(column_name: str) -> bool:
     return str(column_name).strip().lower() in _SENSITIVE_CREDENTIAL_COLUMNS
 
 
+# Same tokens as the WinForms DesktopApiDataReader.IsMediaColumn. For these
+# columns the desktop downloads URL/path values into byte[] and returns any
+# other string unchanged, which its forms then cast to byte[] and crash on.
+_DESKTOP_MEDIA_COLUMN_TOKENS = (
+    "image", "signature", "stamp", "logo", "header", "qr_code", "qrcode", "background",
+)
+
+
+def blank_desktop_media_value(column_name: str, value: Any) -> bool:
+    """Return True for an empty legacy media value the desktop must receive as NULL.
+
+    NOT NULL legacy media columns (settings.system_logo, branch.image_header,
+    branch.receipt_header, accounts.qr_code) hold '' when no file was uploaded.
+    URL-only fields (*_url, *_path) are read as text and keep their value.
+    """
+    if not isinstance(value, str) or value.strip():
+        return False
+    name = str(column_name).strip().lower()
+    if name.endswith(("_url", "_path")):
+        return False
+    return any(token in name for token in _DESKTOP_MEDIA_COLUMN_TOKENS)
+
+
 _UPDATE_OR_DELETE_RE = re.compile(
     r"\b(?:update\s+`?[A-Za-z0-9_]+`?|delete\s+from\s+`?[A-Za-z0-9_]+`?)\b",
     re.I,
