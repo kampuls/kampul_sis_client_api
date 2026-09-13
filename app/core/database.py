@@ -125,7 +125,7 @@ def resolve_tenant_db_name(request: Optional[Request] = None) -> str:
     # 2. Subdomain header override
     explicit_sub = request.headers.get("x-tenant-subdomain") or request.headers.get("x-school-slug")
     if explicit_sub:
-        clean_sub = re.sub(r"[^a-zA-Z0-9_]", "", explicit_sub.strip().lower())
+        clean_sub = re.sub(r"[^a-z0-9]", "_", explicit_sub.strip().lower()).strip("_")
         candidate = f"sis_{clean_sub}"
         if is_valid_database(candidate):
             return candidate
@@ -138,7 +138,7 @@ def resolve_tenant_db_name(request: Optional[Request] = None) -> str:
         subdomain = host.split(".")[0]
         # Skip generic and central management hostnames
         if subdomain not in ("sis", "api", "www", "admin", "central", "mail", "localhost", "royal"):
-            clean_sub = re.sub(r"[^a-zA-Z0-9_]", "", subdomain)
+            clean_sub = re.sub(r"[^a-z0-9]", "_", subdomain).strip("_")
             candidate = f"sis_{clean_sub}"
             if is_valid_database(candidate):
                 return candidate
