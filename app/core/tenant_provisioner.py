@@ -26,6 +26,28 @@ SUPER_ADMIN_ROLE_ID = 1
 DEFAULT_BRANCH_ID = 1
 
 
+def validate_school_defaults(cur):
+    """Fail provisioning before exposing a school with unusable defaults."""
+    for table in ("branch", "academic", "settings"):
+        cur.execute(f"SELECT id FROM `{table}`")
+        if cur.fetchall() != ((1,),):
+            raise ValueError(f"School template must contain exactly one {table} with id 1")
+    cur.execute("SELECT academicid FROM settings WHERE id = 1")
+    if cur.fetchone()[0] != 1:
+        raise ValueError("School settings must select academic 1")
+    cur.execute("SELECT status FROM academic WHERE id = 1")
+    if cur.fetchone()[0] != 1:
+        raise ValueError("Default academic year must be active")
+    for table in ("users", "app_admins", "students", "parents"):
+        cur.execute(f"SELECT COUNT(*) FROM `{table}`")
+        if cur.fetchone()[0]:
+            raise ValueError(f"School template must not contain source {table}")
+    cur.execute("SELECT role_name FROM roles WHERE id = 1")
+    role = cur.fetchone()
+    if not role or role[0] not in ("Super Admin", "Admin"):
+        raise ValueError("School template is missing administrator role 1")
+
+
 def generate_random_admin_password(length: int = 12) -> str:
     """
     Generates a cryptographically strong, human-readable random password.
@@ -104,6 +126,8 @@ def provision_tenant_database(
 
             for stmt in template_statements(template):
                 cur.execute(stmt)
+
+            validate_school_defaults(cur)
 
             cur.execute("SET FOREIGN_KEY_CHECKS = 0")
             cur.execute(

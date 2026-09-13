@@ -27,13 +27,13 @@ ADMIN_USER_ID = 1  # created by app/core/tenant_provisioner.py
 
 # Global reference presets, copied as-is.
 COPY_ALL = [
-    "_schema_patches", "alembic_version",
+    "alembic_version",
     "roles", "permissions", "role_permissions",
     "department", "position", "status", "shift", "units", "category", "items_group",
-    "nittes", "leave_types", "holidays", "learning_time_slots", "program",
+    "nittes", "leave_types", "program",
     "decimal_marks_allow", "medalname", "medal_points_setup",
     "market_categories", "market_settings",
-    "attendance_system_settings", "results_top_students_display_settings",
+    "results_top_students_display_settings",
     "price_visibility_settings", "feature_locks",
 ]
 
@@ -60,8 +60,7 @@ SCOPED = {
         " OR id IN (SELECT s.subject_id FROM exam_calculate_sign_subjects s"
         "           JOIN exam_calculate_sign e ON e.id = s.exam_calculate_sign_id WHERE e.academic_id = {acad})"
     ),
-    "medal_price": "academic_id = {acad}",
-    "leave_type_allocations": "academic_id = {acad}",
+    "learning_time_slots": "is_global = 1 AND grade_id IS NULL AND grade_group_id IS NULL",
     "pickup_settings": "academic_id = {acad}",
     "pickup_branch_calling": "academic_id = {acad} AND branch_id = {branch}",
 }
@@ -71,6 +70,8 @@ SINGLETONS = {
     "settings": {
         "enterpriseName": "School Name", "eProvince": "", "eDistrict": "", "eCommune": "",
         "eVillage": "", "enterpriseAddress": "", "ownerKname": "", "ownerEname": "",
+        "ownerNationality": "", "isForeigner": 0, "report_status": "no",
+        "notify_parents": "no", "enable_schedule_reminders": "no",
         "ownerGender": "", "prefixid": "SIS-", "suffix": "", "startid": 1,
         "telegrambot": "", "parent_bot_token": "", "chat_id": "", "report_chat_id": "",
         "system_logo": "", "system_name": "SIS", "secret_pass": "", "image_header": "",
@@ -87,6 +88,7 @@ SINGLETONS = {
 }
 
 BRANCH_OVERRIDES = {
+    "id": TEMPLATE_BRANCH_ID, "id_start_number": 1, "invoice_start_number": 1,
     "branch_name": "Main Campus", "app_display_name": "Main Campus",
     "contact": None, "address_khmer": None, "address_english": None, "email": None,
     "website": None, "id_prefix": "", "invoice_prefix": "", "receipt_prefix": "",
@@ -128,6 +130,10 @@ def remap(table, row):
     if table == "academic":
         row["id"] = TEMPLATE_ACADEMIC_ID
         row["status"] = 1
+        row["isUsed"] = 0
+        row["isUsed_at"] = None
+    if table in ("pickup_settings", "pickup_branch_calling"):
+        row["calling_enabled"] = 0
     if table == "branch":
         row.update(BRANCH_OVERRIDES)
     if table == "feature_locks":
@@ -163,7 +169,7 @@ def insert_sql(conn, table, cols, rows, batch=100):
 
 def build(conn, source, academic_id, branch_id):
     cur = conn.cursor()
-    cur.execute(f"USE `{source}`")
+    cur.execute("USE `" + source.replace("`", "``") + "`")
 
     cur.execute("SELECT COUNT(*) FROM information_schema.views WHERE table_schema = %s", (source,))
     views = cur.fetchone()[0]
@@ -179,7 +185,10 @@ def build(conn, source, academic_id, branch_id):
             sys.exit("Source has no active academic year (academic.status = 1); pass --academic-id.")
         academic_id = found[0]
     cur.execute("SELECT academic_us_name FROM academic WHERE id = %s", (academic_id,))
-    academic_label = (cur.fetchone() or ["?"])[0]
+    academic = cur.fetchone()
+    if not academic:
+        raise ValueError(f"Source academic id {academic_id} not found")
+    academic_label = academic[0]
 
     cur.execute("SHOW FULL TABLES WHERE Table_type = 'BASE TABLE'")
     tables = sorted(r[0] for r in cur.fetchall())
@@ -216,6 +225,8 @@ def build(conn, source, academic_id, branch_id):
                 sys.exit(f"{t}: generated columns missing from schema: {sorted(unknown)}")
         elif t in SINGLETONS:
             cols, rows = fetch(cur, f"SELECT * FROM `{t}` ORDER BY id LIMIT 1")
+            if not rows:
+                raise ValueError(f"Required default settings missing: {t}")
             for r in rows:
                 r.update(SINGLETONS[t], id=1)
         elif t in SCOPED:

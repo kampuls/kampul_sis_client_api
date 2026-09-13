@@ -3948,13 +3948,9 @@ CREATE TABLE `zing_surveys` (
 -- Preset data
 -- ========================================================
 
--- _schema_patches: 1 rows
-INSERT INTO `_schema_patches` (`patch_id`, `applied_at`) VALUES
-('branch_pickup_radius_null_to_100_v1', '2026-03-23 18:42:55');
-
 -- academic: 1 rows
 INSERT INTO `academic` (`id`, `academic_name`, `academic_us_name`, `academic_start`, `academic_end`, `quarter_one_start`, `quarter_one_end`, `quarter_two_start`, `quarter_two_end`, `quarter_three_start`, `quarter_three_end`, `quarter_four_start`, `quarter_four_end`, `semester_one_start`, `semester_one_end`, `semester_two_start`, `semester_two_end`, `status`, `isUsed`, `isUsed_at`, `updated_at`, `created_at`) VALUES
-(1, '២០២៦-២០២៧', '2026-2027', '2026-08-24', '2027-07-08', '2026-08-24', '2026-11-05', '2026-11-06', '2027-01-29', '2027-02-08', '2027-04-23', '2027-04-26', '2027-07-08', '2026-08-24', '2027-01-29', '2027-02-08', '2027-07-08', 1, 1, '2026-07-22 01:19:55', '2026-07-22 01:19:55', '2026-06-11 00:35:30');
+(1, '២០២៦-២០២៧', '2026-2027', '2026-08-24', '2027-07-08', '2026-08-24', '2026-11-05', '2026-11-06', '2027-01-29', '2027-02-08', '2027-04-23', '2027-04-26', '2027-07-08', '2026-08-24', '2027-01-29', '2027-02-08', '2027-07-08', 1, 0, NULL, '2026-07-22 01:19:55', '2026-06-11 00:35:30');
 
 -- accounts: 2 rows
 INSERT INTO `accounts` (`id`, `account_name`, `account_number`, `qr_code`, `branch_id`, `academic_id`, `balance`, `currency`, `bank_name`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
@@ -3972,10 +3968,6 @@ INSERT INTO `app_branding_settings` (`id`, `icon_name`, `top_text`, `bottom_text
 -- app_quick_action_settings: 1 rows
 INSERT INTO `app_quick_action_settings` (`id`, `items_json`, `updated_at`) VALUES
 (1, '[]', NULL);
-
--- attendance_system_settings: 1 rows
-INSERT INTO `attendance_system_settings` (`id`, `require_location`, `block_mock_location`, `block_developer_options`, `allowed_ip_ranges`, `allow_early_clock_in_mins`, `allow_late_clock_out_mins`, `late_grace_minutes`, `updated_at`, `created_at`, `per_session_early_clock_in_mins`, `min_minutes_before_checkout`, `allow_early_leave_mins`, `allow_makeup_missing_sessions`, `notify_enable_before`, `notify_minutes_before`, `notify_enable_after`, `notify_minutes_after`, `notify_enable_before_checkout`, `notify_minutes_before_checkout`, `notify_enable_after_checkout`, `notify_minutes_after_checkout`, `session_transition_wait_mins`) VALUES
-(1, 1, 1, 0, '', 120, 480, 15, '2026-09-11', '2026-01-09 04:29:31', '[190, 40]', 30, 0, 0, 1, '[10]', 1, '[5]', 0, '[0]', 1, '[5]', 10);
 
 -- branch: 1 rows
 INSERT INTO `branch` (`id`, `branch_name`, `contact`, `address_khmer`, `address_english`, `email`, `website`, `id_prefix`, `id_start_number`, `id_digit`, `id_reset_option`, `report_time`, `users_id`, `report_weekend`, `report_status`, `invoice_prefix`, `invoice_digit`, `invoice_start_number`, `invoice_reset_december`, `vatin_number`, `receipt_digit`, `receipt_prefix`, `receipt_start_number`, `receipt_reset_option`, `receipt_header`, `image_header`, `director_kName`, `director_eName`, `director_signature`, `stamp`, `headTeacher_kName`, `headTeacher_eName`, `headTeacher_signature`, `created_at`, `updated_at`, `app_display_name`, `app_branch_cover`, `app_branch_facebook_url`, `app_branch_telegram_url`, `app_branch_youtube_url`, `app_branch_tiktok_url`, `app_branch_google_map_url`, `map_latitude`, `map_longitude`, `open_at`, `close_at`, `pickup_radius_meters`, `image_header_path`, `director_signature_path`, `headTeacher_signature_path`, `stamp_path`, `signature_url`, `stamp_url`) VALUES
@@ -4403,114 +4395,6 @@ INSERT INTO `grade_type` (`id`, `type_name`, `program_id`, `branch_id`, `academi
 (85, 'B2', 2, 1, 1, 2, NULL, 1, 1, '2026-06-11 00:47:03', '2026-06-11 00:47:03'),
 (86, 'B3', 2, 1, 1, 2, NULL, 1, 1, '2026-06-11 00:47:07', '2026-06-11 00:47:07');
 
--- holidays: 104 rows
-INSERT INTO `holidays` (`id`, `name`, `date`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Constitution Day', '2024-09-24', '', '2025-05-05 14:39:29', '2025-05-05 14:39:29'),
-(2, 'Pchumben Festival', '2024-09-30', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
-(3, 'Pchumben Festival', '2024-10-01', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
-(4, 'Pchumben Festival', '2024-10-02', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
-(5, 'Pchumben Festival', '2024-10-03', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
-(6, 'Pchumben Festival', '2024-10-04', 'Extra 2 Day', '2025-05-05 14:40:50', '2025-05-05 14:40:50'),
-(7, 'King\'s Father Commemoration Day', '2024-10-15', '', '2025-05-05 14:42:01', '2025-05-05 14:42:01'),
-(8, 'King\'s Coronation Day', '2024-10-29', '', '2025-05-05 14:42:53', '2025-05-05 14:42:53'),
-(9, 'Independence Day', '2024-11-09', '', '2025-05-05 14:44:03', '2025-05-05 14:44:03'),
-(10, 'Water Festival', '2024-11-14', '', '2025-05-05 14:45:33', '2025-05-05 14:45:33'),
-(11, 'Water Festival', '2024-11-15', '', '2025-05-05 14:45:33', '2025-05-05 14:45:33'),
-(12, 'Water Festival', '2024-11-16', '', '2025-05-05 14:45:33', '2025-05-05 14:45:33'),
-(13, 'Chrismas Day', '2024-12-23', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(14, 'Chrismas Day', '2024-12-24', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(15, 'Chrismas Day', '2024-12-25', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(16, 'Chrismas Day', '2024-12-26', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(17, 'Chrismas Day', '2024-12-27', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(18, 'Chrismas Day', '2024-12-28', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(20, 'Chrismas Day', '2024-12-30', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(21, 'Chrismas Day', '2024-12-31', 'Extra 8 days', '2025-05-05 14:53:52', '2025-05-05 14:53:52'),
-(22, 'New Year\'s day', '2025-01-01', '', '2025-05-05 14:54:45', '2025-05-05 14:54:45'),
-(23, 'Victory Day', '2025-01-07', '', '2025-05-05 14:55:24', '2025-05-05 14:55:24'),
-(24, 'Chinese New Year', '2025-01-28', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
-(25, 'Chinese New Year', '2025-01-29', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
-(26, 'Chinese New Year', '2025-01-30', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
-(27, 'Chinese New Year', '2025-01-31', 'Extra 4 Days', '2025-05-05 14:56:46', '2025-05-05 14:56:46'),
-(28, 'International Woman\'s Day', '2025-03-08', '', '2025-05-05 14:58:21', '2025-05-05 14:58:21'),
-(29, 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-04-12', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:04:35', '2025-05-05 15:04:35'),
-(30, 'Khmer New Year', '2025-04-14', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:05:20', '2025-05-05 15:05:20'),
-(31, 'Khmer New Year', '2025-04-15', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:05:20', '2025-05-05 15:05:20'),
-(32, 'Khmer New Year', '2025-04-16', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:05:20', '2025-05-05 15:05:20'),
-(33, 'សម្រាកបន្ថែមចូលឆ្នាំខ្មែរ', '2025-04-17', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:11:32', '2025-05-05 15:11:32'),
-(34, 'សម្រាកបន្ថែមចូលឆ្នាំខ្មែរ', '2025-04-18', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:11:32', '2025-05-05 15:11:32'),
-(35, 'សម្រាកបន្ថែមចូលឆ្នាំខ្មែរ', '2025-04-19', 'សម្រាកចូលឆ្នាំខ្មែរ', '2025-05-05 15:11:32', '2025-05-05 15:11:32'),
-(36, 'International Labor Day', '2025-05-01', '', '2025-05-05 15:13:23', '2025-05-05 15:19:57'),
-(37, 'King\'s Sihamony Birthday', '2025-05-14', '', '2025-05-05 15:21:25', '2025-05-05 15:21:25'),
-(38, 'Royal Ploughing Ceremony', '2025-05-15', '', '2025-05-05 15:21:53', '2025-05-05 15:21:53'),
-(39, 'King\'s Mother Birthday', '2025-06-18', '', '2025-05-05 15:23:18', '2025-05-05 15:23:18'),
-(40, 'Semeter Break', '2025-02-24', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
-(41, 'Semeter Break', '2025-02-25', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
-(42, 'Semeter Break', '2025-02-26', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
-(43, 'Semeter Break', '2025-02-27', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
-(44, 'Semeter Break', '2025-02-28', 'Semeter Break', '2025-05-06 08:30:03', '2025-05-06 08:30:03'),
-(45, 'ពិធីបុណ្យភ្ជុំបិណ្ឌ (Pchum Ben Festival)', '2025-09-21', '3 day', '2025-06-19 10:56:04', '2025-06-19 10:56:04'),
-(46, 'ពិធីបុណ្យភ្ជុំបិណ្ឌ (Pchum Ben Festival)', '2025-09-22', '3 day', '2025-06-19 10:56:04', '2025-06-19 10:56:04'),
-(47, 'ពិធីបុណ្យភ្ជុំបិណ្ឌ (Pchum Ben Festival)', '2025-09-23', '3 day', '2025-06-19 10:56:04', '2025-06-19 10:56:04'),
-(48, 'ទិវាប្រកាសរដ្ឋធម្មនុញ្ញខួបលើកទី៣២ (Constitution Day)', '2025-09-24', '(Constitution Day)', '2025-06-19 10:56:32', '2025-06-19 10:56:32'),
-(49, '(King Father\'s Commemoration Day)', '2025-10-15', '(King Father\'s Commemoration Day)', '2025-06-19 10:56:54', '2025-06-19 10:56:54'),
-(50, '(King\'s Coronation Day)', '2025-10-29', '(King\'s Coronation Day)', '2025-06-19 10:58:00', '2025-06-19 10:58:00'),
-(51, 'ព្រះរាជពិធីបុណ្យអុំទូក (Water Festival)', '2025-11-04', '3day', '2025-06-19 11:00:31', '2025-06-19 11:00:31'),
-(52, 'ព្រះរាជពិធីបុណ្យអុំទូក (Water Festival)', '2025-11-05', '3day', '2025-06-19 11:00:31', '2025-06-19 11:00:31'),
-(53, 'ព្រះរាជពិធីបុណ្យអុំទូក (Water Festival)', '2025-11-06', '3day', '2025-06-19 11:00:31', '2025-06-19 11:00:31'),
-(54, 'ទិវាសន្តិភាពនៅកម្ពុជា (Peace Day in Cambodia)', '2025-12-29', '(Peace Day in Cambodia)', '2025-06-19 11:01:20', '2025-06-19 11:01:20'),
-(55, 'ទិវាចូលឆ្នាំសាកល (New Year\'s Day)', '2026-01-01', '(New Year\'s Day)', '2025-06-19 11:04:00', '2025-06-19 11:04:00'),
-(56, 'ទិវាជ័យជម្នះលើរបបប្រល័យពូជសាសន៍ខួបលើកទី៤៧', '2026-01-07', 'ទិវាជ័យជម្នះលើរបបប្រល័យពូជសាសន៍ខួបលើកទី៤៧', '2025-06-19 11:04:46', '2025-06-19 11:04:46'),
-(57, 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2026-04-14', 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2025-06-19 11:05:45', '2025-06-19 11:05:45'),
-(58, 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2026-04-15', 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2025-06-19 11:05:45', '2025-06-19 11:05:45'),
-(59, 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2026-04-16', 'ពិធីបុណ្យចូលឆ្នាំថ្មីប្រពៃណីជាតិ', '2025-06-19 11:05:45', '2025-06-19 11:05:45'),
-(60, 'ទិវាពលកម្មអន្តរជាតិខួបលើកទី១៤០', '2026-05-01', 'ទិវាពលកម្មអន្តរជាតិខួបលើកទី១៤០', '2025-06-19 11:06:22', '2025-06-19 11:06:22'),
-(61, 'ព្រះរាជពិធីច្រត់ព្រះនង្គ័ល (Royal Ploughing Ceremony)', '2026-05-05', '(Royal Ploughing Ceremony)', '2025-06-19 11:07:04', '2025-06-19 11:07:04'),
-(62, 'ព្រះរាជពិធីបុណ្យចម្រើនព្រះជន្មសម្តេចព្រះបរមនាថនរោត្តមសីហមុនី', '2026-05-14', '(King Sihamoni\'s Birthday)', '2025-06-19 11:08:03', '2025-06-19 11:08:03'),
-(63, 'ព្រះ​រាជ​ពិធី​បុណ្យ​ចម្រើន​ព្រះជន្មសម្តេចព្រះមហាក្សត្រីនរោត្តមមុនិនាថសីហនុ', '2026-06-18', '(Queen Mother\'s Birthday)', '2025-06-19 11:08:55', '2025-06-19 11:08:55'),
-(68, 'Extra Day', '2026-02-02', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
-(69, 'Extra Day', '2026-02-03', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
-(70, 'Extra Day', '2026-02-04', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
-(71, 'Extra Day', '2026-02-05', '4 day', '2025-06-30 16:39:08', '2025-06-30 16:39:08'),
-(72, 'ចូលឆ្នាំចិន', '2026-02-16', '', '2025-06-30 16:40:01', '2025-06-30 16:40:01'),
-(73, 'Christmas Day', '2025-12-25', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
-(74, 'Christmas Day', '2025-12-26', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
-(75, 'Christmas Day', '2025-12-30', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
-(76, 'Christmas Day', '2025-12-31', '', '2025-06-30 17:00:42', '2025-06-30 17:00:42'),
-(77, 'Extra day khmer new​ year', '2026-04-13', '', '2025-06-30 17:04:20', '2026-03-13 08:22:13'),
-(78, 'Extra day khmer new year', '2026-04-17', '', '2025-06-30 17:04:20', '2026-03-13 08:21:53'),
-(81, 'ទិវារដ្ឋធម្មនុញ្ញ-Constitution Day', '2026-09-24', '', '2026-05-28 14:42:55', '2026-05-28 14:42:55'),
-(82, 'បុណ្យភ្ជុំបិណ្ឌ-Pchum Ben Day', '2026-10-10', '', '2026-05-28 14:47:28', '2026-05-28 14:47:28'),
-(83, 'បុណ្យភ្ជុំបិណ្ឌ-Pchum Ben Day', '2026-10-11', '', '2026-05-28 14:47:28', '2026-05-28 14:47:28'),
-(84, 'បុណ្យភ្ជុំបិណ្ឌ-Pchum Ben Day', '2026-10-12', '', '2026-05-28 14:47:28', '2026-05-28 14:47:28'),
-(85, 'ទិវាប្រារព្ធពិធីកាន់ទុក្ខព្រះវររាជបិតាជាតិ-Commemoration Day of the King Father', '2026-10-15', '', '2026-05-28 14:48:55', '2026-05-28 14:48:55'),
-(86, 'ព្រះរាជពិធីគ្រងព្រះបរមរាជសម្បត្តិ-King\'s Coronation Day', '2026-10-29', '', '2026-05-28 14:50:01', '2026-05-28 14:50:01'),
-(87, 'ពិធីបុណ្យឯករាជ្យជាតិ-National Independence Day', '2026-11-09', '', '2026-05-28 14:50:52', '2026-05-28 14:50:52'),
-(88, 'ពិធីបុណ្យអុំទូក បណ្តែតប្រទីប និងសំពះព្រះខែ អកអំបុក-Water Festival Ceremony', '2026-11-23', '', '2026-05-28 14:52:36', '2026-05-28 14:52:36'),
-(89, 'ពិធីបុណ្យអុំទូក បណ្តែតប្រទីប និងសំពះព្រះខែ អកអំបុក-Water Festival Ceremony', '2026-11-24', '', '2026-05-28 14:52:36', '2026-05-28 14:52:36'),
-(90, 'ពិធីបុណ្យអុំទូក បណ្តែតប្រទីប និងសំពះព្រះខែ អកអំបុក-Water Festival Ceremony', '2026-11-25', '', '2026-05-28 14:52:36', '2026-05-28 14:52:36'),
-(91, 'ទិវាសន្តិភាពនៅកម្ពុជា-Peace Day in Cambodia/Christmas', '2026-12-29', '', '2026-05-28 14:54:38', '2026-05-28 15:15:56'),
-(92, 'Extra Day 25', '2026-12-25', '', '2026-05-28 15:05:12', '2026-05-28 15:47:56'),
-(93, 'Extra Day', '2027-11-26', '', '2026-05-28 15:19:35', '2026-05-28 15:19:57'),
-(94, 'Extra Days', '2027-12-26', '', '2026-05-28 15:21:57', '2026-05-28 15:21:57'),
-(95, 'Extra Day 26', '2026-12-26', '', '2026-05-28 15:29:38', '2026-05-28 15:48:11'),
-(96, 'Extra Day 30', '2026-12-30', '', '2026-05-28 15:30:28', '2026-05-28 15:48:19'),
-(97, 'Extra Day 31', '2026-12-31', '', '2026-05-28 15:30:45', '2026-05-28 15:48:29'),
-(98, 'New Year\'s Day-ទិវាបុណ្យចូលឆ្នាំសកល', '2027-01-01', '', '2026-05-28 15:32:08', '2026-05-28 15:32:08'),
-(99, 'ទិវាជ័យជម្នះលើរបបប្រល័យពូជសាសន៍-Victory Over Genocide Day', '2027-01-07', '', '2026-05-28 15:32:45', '2026-05-28 15:33:32'),
-(100, 'ពិធីបុណ្យចូលឆ្នាំចិន-Chinese New Year\'s Eve', '2027-02-05', '', '2026-05-28 15:38:04', '2026-05-28 15:38:04'),
-(101, 'ទិវាអន្តរជាតិនារី-International Women\'s Day', '2027-03-08', '', '2026-05-28 15:39:22', '2026-05-28 15:39:22'),
-(102, 'ពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិ-Khmer New Year', '2027-04-14', '', '2026-05-28 15:41:04', '2026-05-28 15:41:04'),
-(103, 'ពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិ-Khmer New Year', '2027-04-15', '', '2026-05-28 15:41:04', '2026-05-28 15:41:04'),
-(104, 'ពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិ-Khmer New Year', '2027-04-16', '', '2026-05-28 15:41:04', '2026-05-28 15:41:04'),
-(105, 'Extra Day 13', '2027-04-13', '', '2026-05-28 15:41:33', '2026-05-28 15:48:38'),
-(106, 'Extra Day 17', '2027-04-17', '', '2026-05-28 15:42:00', '2026-05-28 15:48:47'),
-(107, 'ទិវាពលកម្មអន្តរជាតិ-International Labor', '2027-05-01', '', '2026-05-28 15:42:59', '2026-05-28 16:21:52');
-INSERT INTO `holidays` (`id`, `name`, `date`, `description`, `created_at`, `updated_at`) VALUES
-(108, 'ព្រះរាជពិធីបុណ្យចម្រើនព្រះជន្ម ព្រះករុណា ព្រះបាទសម្តេច ព្រះបរមនាថ នរោត្តម សីហមុនី-King Sihamoni\'s Birthday', '2027-05-14', '', '2026-05-28 15:44:15', '2026-05-28 15:44:15'),
-(109, 'ពិធីបុណ្យវិសាខបូជា-Visak Bochea', '2027-05-20', '', '2026-05-28 15:45:38', '2026-05-28 15:45:38'),
-(110, 'ព្រះរាជពិធីច្រត់ព្រះនង្គ័ល-Royal Ploughing Ceremony', '2027-05-24', '', '2026-05-28 15:46:13', '2026-05-28 15:46:13'),
-(112, 'ព្រះរាជពិធីបុណ្យចម្រើនព្រះជន្ម សម្តេចព្រះមហាក្សត្រី នរោត្តម មុនិនាថ សីហនុ-Queen Mother\'s Birthday', '2027-06-18', '', '2026-05-28 15:47:45', '2026-05-28 15:47:45');
-
 -- items_group: 2 rows
 INSERT INTO `items_group` (`id`, `group_name`, `items_id`, `unit_id`, `created_at`, `updated_at`) VALUES
 (1, 'សៀវភៅមតេ្តយ្យសិក្សាកម្រិតខ្ពស់', '45,46', -1, '2025-07-09 11:07:07', '2025-07-09 11:07:07'),
@@ -4566,14 +4450,6 @@ INSERT INTO `learning_time_slots` (`id`, `slot_name`, `start_time`, `end_time`, 
 (46, 'MH-Session 2', '09:00:00', '09:50:00', NULL, 46, 1, 1, '2026-03-19 11:03:09', '2026-03-19 11:03:09', NULL, NULL),
 (47, 'MH-Session 3', '10:00:00', '10:50:00', NULL, 47, 1, 1, '2026-03-19 11:04:04', '2026-03-19 11:04:04', NULL, NULL),
 (48, 'MH-Session 4', '11:00:00', '11:50:00', NULL, 48, 1, 1, '2026-03-19 11:04:41', '2026-03-19 11:04:41', NULL, NULL);
-
--- leave_type_allocations: 5 rows
-INSERT INTO `leave_type_allocations` (`id`, `leave_type_id`, `academic_id`, `allocated_days`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(6, 1, 1, 11.0e0, 1, 1, '2026-07-17 10:15:54', '2026-08-20 07:50:57'),
-(7, 5, 1, 2.0e0, 1, 1, '2026-07-17 10:15:54', '2026-07-17 10:15:54'),
-(8, 4, 1, 4.0e0, 1, 1, '2026-07-17 10:15:54', '2026-07-17 10:15:54'),
-(9, 2, 1, 4.0e0, 1, 1, '2026-07-17 10:15:54', '2026-07-17 10:15:54'),
-(12, 9, 1, 10.0e0, 1, 1, '2026-08-21 02:32:49', '2026-08-21 02:32:49');
 
 -- leave_types: 5 rows
 INSERT INTO `leave_types` (`id`, `name`, `description`, `max_days_per_year`, `is_paid`, `requires_approval`, `created_at`, `updated_at`, `requires_proof`, `is_active`, `display_order`, `color_hex`, `max_days_per_month`) VALUES
@@ -5149,13 +5025,6 @@ INSERT INTO `medal_points_setup` (`program_name`, `gold_pts`, `silver_pts`, `bro
 ('សិស្សឆ្នើម', 2.0e0, 1.0e0, 0.5e0, 0.0e0, 0.0e0),
 ('អំណាន និងកំណាព្យ', 2.0e0, 1.0e0, 0.5e0, 0.0e0, 0.0e0);
 
--- medal_price: 4 rows
-INSERT INTO `medal_price` (`id`, `name_us`, `name_kh`, `amount`, `academic_id`, `created_at`, `updated_at`) VALUES
-(8, 'Gold', 'មាស', 20.00, 1, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
-(9, 'Silver', 'ប្រាក់', 15.00, 1, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
-(10, 'Bronze', 'សំរិទ្ធ', 10.00, 1, '2026-09-09 06:47:59', '2026-09-09 06:47:59'),
-(11, 'Dimond', 'ពេជ្រ', 20.00, 1, '2026-09-09 06:47:59', '2026-09-09 06:47:59');
-
 -- medalname: 93 rows
 INSERT INTO `medalname` (`id`, `medal_name`, `created_at`, `updated_at`) VALUES
 (1, 'កម្មវិធីប៉ាម៉ា', '2025-07-25 13:04:17', '2025-07-25 13:04:17'),
@@ -5675,7 +5544,7 @@ INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
 
 -- settings: 1 rows
 INSERT INTO `settings` (`id`, `enterpriseName`, `enterpriseType`, `eProvince`, `eDistrict`, `eCommune`, `eVillage`, `enterpriseAddress`, `ownerKname`, `ownerEname`, `ownerGender`, `ownerNationality`, `isForeigner`, `prefixid`, `suffix`, `digit_number`, `follow_type`, `academicid`, `startid`, `status_fixedexchange`, `default_exchange`, `telegrambot`, `parent_bot_token`, `chat_id`, `time_report`, `report_chat_id`, `report_status`, `skip_sat`, `skip_sun`, `time_allow_start`, `time_allow_end`, `marks_extraday`, `notify_parents`, `system_logo`, `system_name`, `secret_pass`, `created_at`, `updated_at`, `image_header`, `facebook_url`, `telegram_url`, `youtube_url`, `instagram_url`, `tiktok_url`, `active_storage_provider`, `cloudinary_cloud_name`, `cloudinary_api_key`, `cloudinary_api_secret`, `aws_access_key_id`, `aws_secret_access_key`, `aws_region_name`, `aws_bucket_name`, `firebase_storage_bucket`, `firebase_service_account_json`, `enable_schedule_reminders`, `ota_updates_enabled`, `phone_conflict_lock_enabled`) VALUES
-(1, 'School Name', 'គ្រឹះស្ថានអប់រំ', '', '', '', '', '', '', '', '', 'ខ្មែរ', 1, 'SIS-', '', 6, 'settings', 1, 1, 'no', 4100, '', '', '', '16:30:00', '', NULL, 'yes', 'yes', '07:15:00', '21:15:00', '500', 'yes', '', 'SIS', '', '2025-05-20 21:41:14', '2026-09-03 13:07:09', '', NULL, NULL, NULL, NULL, NULL, 'local', '', '', '', '', '', '', '', '', NULL, 'yes', 0, 0);
+(1, 'School Name', 'គ្រឹះស្ថានអប់រំ', '', '', '', '', '', '', '', '', '', 0, 'SIS-', '', 6, 'settings', 1, 1, 'no', 4100, '', '', '', '16:30:00', '', 'no', 'yes', 'yes', '07:15:00', '21:15:00', '500', 'no', '', 'SIS', '', '2025-05-20 21:41:14', '2026-09-03 13:07:09', '', NULL, NULL, NULL, NULL, NULL, 'local', '', '', '', '', '', '', '', '', NULL, 'no', 0, 0);
 
 -- shift: 2 rows
 INSERT INTO `shift` (`id`, `shift_name`, `shift_name_en`, `start_at`, `end_at`, `report_status`, `send_report_at`, `weeken_send`, `created_at`, `updated_at`) VALUES

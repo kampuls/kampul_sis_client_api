@@ -33,7 +33,7 @@ from sqlalchemy.exc import DBAPIError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from ...core import get_db, settings
-from ...core.database import SessionLocal, engine
+from ...core.database import SessionLocal, engine, resolve_tenant_db_name, get_tenant_session_factory
 from ...models import User
 from ...services.desktop_sql import (
     DesktopSqlRejected,
@@ -396,6 +396,7 @@ def execute_desktop_command(
     request: Request,
     body: DesktopCommandRequest,
     current_user: User = Depends(get_current_desktop_user),
+    db: Session = Depends(get_db),
 ):
     """Execute one authenticated desktop operation immediately against MySQL."""
 
@@ -408,7 +409,8 @@ def execute_desktop_command(
     try:
         # A transaction is used for every command so CTE mutations and future
         # compatibility statements cannot be accidentally rolled back.
-        with engine.begin() as connection:
+        bind_engine = db.get_bind()
+        with bind_engine.begin() as connection:
             response = _execute_on_connection(connection, body)
             if is_mutation(body.sql):
                 client_ip = getattr(request.client, "host", "unknown") if request.client else "unknown"
@@ -468,7 +470,9 @@ async def desktop_transaction_socket(websocket: WebSocket):
 
     authorization = websocket.headers.get("authorization", "")
     scheme, _, token = authorization.partition(" ")
-    db = SessionLocal()
+    db_name = resolve_tenant_db_name(websocket)
+    factory = get_tenant_session_factory(db_name)
+    db = factory()
     connection: Connection | None = None
     transaction = None
     try:
@@ -479,7 +483,8 @@ async def desktop_transaction_socket(websocket: WebSocket):
             )
         user = _decode_desktop_token(token, db)
         await websocket.accept()
-        connection = engine.connect()
+        tenant_engine = factory.kw.get("bind") or engine
+        connection = tenant_engine.connect()
         transaction = connection.begin()
         await websocket.send_json({"type": "ready"})
 
