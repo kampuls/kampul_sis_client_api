@@ -1,0 +1,31 @@
+﻿name: Auto Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST || '51.79.241.82' }}
+          username: ${{ secrets.VPS_USER || 'ubuntu' }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            echo "Starting automated deployment..."
+            if [ -d "/var/www/kampul-hub/kampul_sis_client_api" ]; then
+              cd /var/www/kampul-hub/kampul_sis_client_api
+            elif [ -d "/var/www/kampul_sis_client_api" ]; then
+              cd /var/www/kampul_sis_client_api
+            elif [ -d "$HOME/kampul_sis_client_api" ]; then
+              cd "$HOME/kampul_sis_client_api"
+            fi
+            
+            git pull origin main
+            docker restart kampul_sis_client_api 2>/dev/null || docker compose restart api 2>/dev/null || true
+            echo "Deployment completed successfully!"
