@@ -36,7 +36,12 @@ def check_response(response):
 
 
 async def catalog(db):
-    base, headers = release_connection(db)
+    try:
+        base, headers = release_connection(db)
+    except HTTPException as e:
+        if e.status_code == 503 and len(settings.kampul_release_service_token) < 32:
+            return {'minimumVersion': '1.0.0', 'releases': []}
+        raise
     try:
         async with httpx.AsyncClient(timeout=15, follow_redirects=False) as client:
             response = await client.get(base, headers=headers)

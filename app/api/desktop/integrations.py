@@ -325,6 +325,8 @@ async def available_releases(current_user: User = Depends(get_current_desktop_us
 async def get_update_manifest(current_user: User = Depends(get_current_desktop_user), db: Session = Depends(get_db)):
     from ...services.kampul_releases import catalog
     policy = await catalog(db)
+    if not policy.get("releases"):
+        return TextValueResponse(value="")
     release = policy["releases"][0]
     version = release['version']
     value = (f";aiu;\n[Update]\nProductVersion={version}\n"
