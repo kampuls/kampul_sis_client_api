@@ -1,4 +1,4 @@
-﻿name: Auto Deploy to VPS
+name: Auto Deploy to VPS
 
 on:
   push:
@@ -28,5 +28,6 @@ jobs:
             fi
             
             git pull origin main
-            docker restart kampul_sis_client_api 2>/dev/null || docker compose restart api 2>/dev/null || true
-            echo "Deployment completed successfully!"
+            docker compose build api
+            docker compose up -d api
+            echo "Deployment and auto-migrations completed successfully!"
