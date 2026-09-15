@@ -14,6 +14,7 @@ from fastapi import (
     File,
     Form,
     HTTPException,
+    Query,
     Request,
     UploadFile,
     WebSocket,
@@ -64,6 +65,14 @@ router = APIRouter()
 security = HTTPBearer()
 
 _SAFE_FOLDER_RE = re.compile(r"[^A-Za-z0-9_-]+")
+
+# Certificate media is shared with Flutter. Desktop uploads for these folders
+# must land in the same StorageService path Flutter already uses.
+_FLUTTER_SHARED_FOLDERS = {
+    "certificates-backgrounds": "certificates/backgrounds",
+    "certificates-stamps": "certificates/stamps",
+    "certificates-signatures": "certificates/signatures",
+}
 
 
 def _detect_resource_content_type(content: bytes) -> str | None:
@@ -457,16 +466,42 @@ async def upload_desktop_resource(
         )
 
     clean_folder = _SAFE_FOLDER_RE.sub("-", folder).strip("-")[:60] or "general"
+    storage_folder = _FLUTTER_SHARED_FOLDERS.get(
+        clean_folder, f"desktop/{clean_folder}"
+    )
     url = await asyncio.to_thread(
         StorageService.upload_file,
         content,
-        f"desktop/{clean_folder}",
+        storage_folder,
         None,
         content_type,
     )
     if not url:
         raise HTTPException(status_code=500, detail="Desktop resource upload failed")
     return {"url": url}
+
+
+def _is_managed_resource_url(url: str) -> bool:
+    value = (url or "").strip()
+    return value.startswith(("http://", "https://", "/uploads/", "uploads/"))
+
+
+@router.delete("/resources")
+async def delete_desktop_resource(
+    url: str = Query(..., min_length=1),
+    current_user: User = Depends(get_current_desktop_user),
+):
+    """Delete a StorageService file. Same path Flutter uses for certificate media."""
+
+    del current_user
+    resource_url = url.strip()
+    if not _is_managed_resource_url(resource_url):
+        raise HTTPException(
+            status_code=400,
+            detail="The resource URL is not a managed storage path",
+        )
+    deleted = await asyncio.to_thread(StorageService.delete_file, resource_url)
+    return {"ok": True, "deleted": bool(deleted)}
 
 
 @router.websocket("/transaction")

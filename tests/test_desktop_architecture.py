@@ -29,6 +29,7 @@ def test_desktop_router_and_media_compatibility_migrations_exist():
 
     assert '@router.post("/command"' in router
     assert '@router.post("/resources"' in router
+    assert '@router.delete("/resources"' in router
     assert '@router.websocket("/transaction"' in router
     assert "_detect_resource_content_type(content)" in router
     assert "_migrate_all_binary_media_to_resources(connection)" in migrations
