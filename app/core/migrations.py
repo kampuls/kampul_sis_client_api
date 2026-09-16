@@ -212,6 +212,9 @@ def run_migrations():
         # verified phone to one short-lived, one-use registration proof.
         _migrate_telegram_otp_security(connection)
 
+        from .finance_schema import migrate_finance
+        migrate_finance(connection)
+
     print("Database migrations completed.")
 
 

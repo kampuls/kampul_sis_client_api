@@ -34,6 +34,7 @@ def test_background_scheduler_contains_every_singleton_job():
     assert scheduler.timezone == "Asia/Phnom_Penh"
     assert {job[1]["id"] for job in scheduler.jobs} == {
         "cache_cleanup",
+        "finance_reminders",
         "schedule_reminder",
         "attendance_reminder",
         "pending_student_cleanup",

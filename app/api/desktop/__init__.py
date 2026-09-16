@@ -13,6 +13,8 @@ from .staff_registrations import router as staff_registrations_router
 from .student_profile_edits import router as student_profile_edits_router
 
 api_router = APIRouter()
+from .finance import router as finance_router
+api_router.include_router(finance_router, prefix="/finance", tags=["desktop-finance"])
 
 # Include routers
 api_router.include_router(auth_router, prefix="/auth", tags=["desktop-auth"])

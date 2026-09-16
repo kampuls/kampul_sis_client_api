@@ -39,6 +39,10 @@ def start_background_job_scheduler() -> BackgroundScheduler:
     )
 
     scheduler = BackgroundScheduler(timezone="Asia/Phnom_Penh")
+    from .finance_reminders import run_finance_reminders
+    scheduler.add_job(run_finance_reminders, trigger="interval", minutes=15,
+                      id="finance_reminders", replace_existing=True, max_instances=1,
+                      misfire_grace_time=300)
 
     scheduler.add_job(
         lambda: (

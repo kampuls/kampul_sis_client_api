@@ -334,7 +334,7 @@ def get_dashboard_overview(
                        SUM(CASE WHEN COALESCE(i.remaining_amount, 0) > 0 THEN i.remaining_amount ELSE 0 END) AS outstanding_amount
                 FROM invoice i
                 WHERE i.academic_id = :academic_id
-                  AND COALESCE(i.isDone, 0) = 0
+                  AND COALESCE(i.payment_status, '') <> 'Void'
                   {branch_invoice}
                   {program_invoice}
                 """
@@ -447,7 +447,7 @@ def get_dashboard_overview(
                    (SELECT COALESCE(SUM(i.remaining_amount), 0)
                     FROM invoice i
                     WHERE i.academic_id = :academic_id AND i.branch_id = b.id
-                      AND COALESCE(i.isDone, 0) = 0 AND COALESCE(i.remaining_amount, 0) > 0
+                      AND COALESCE(i.payment_status, '') <> 'Void' AND COALESCE(i.remaining_amount, 0) > 0
                       {program_invoice}) AS outstanding_amount,
                    (SELECT COALESCE(SUM(lt.amount), 0)
                     FROM logtransaction lt

@@ -328,8 +328,17 @@ def _is_students_image_binary_column(connection: Connection) -> bool:
         return _STUDENTS_IMAGE_IS_BINARY
 
 
-def _execute_on_connection(connection: Connection, body: DesktopCommandRequest) -> DesktopCommandResponse:
+def _execute_on_connection(connection: Connection, body: DesktopCommandRequest, finance_user=None) -> DesktopCommandResponse:
     sql, parameters, student_resources = _prepare_request(body)
+    stock_before = None
+    if finance_user is not None:
+        from ...services.desktop_finance_guard import guard_finance_mutation, FinanceMutationRejected
+        try:
+            guard_finance_mutation(connection, sql, parameters, finance_user)
+            from ...services.desktop_finance_guard import inventory_snapshot
+            stock_before = inventory_snapshot(connection, sql, parameters)
+        except FinanceMutationRejected as exc:
+            raise DesktopSqlRejected(str(exc)) from exc
     if "image" in student_resources and not _is_students_image_binary_column(connection):
         # The database column students.image is VARCHAR/TEXT (e.g. converted by migration 53).
         # Binding raw binary bytes to a VARCHAR column triggers MySQL DataError 1366.
@@ -370,6 +379,9 @@ def _execute_on_connection(connection: Connection, body: DesktopCommandRequest) 
 
     last_insert_id = getattr(result, "lastrowid", None)
     affected_rows = max(int(result.rowcount or 0), 0)
+    if finance_user is not None and affected_rows:
+        from ...services.desktop_finance_guard import record_inventory_change
+        record_inventory_change(connection, sql, parameters, stock_before, last_insert_id, finance_user)
     if "image" in student_resources:
         student_resource_url = student_resources["image"]
         student_id = _written_student_id(sql, parameters, last_insert_id)
@@ -425,7 +437,7 @@ def execute_desktop_command(
         # compatibility statements cannot be accidentally rolled back.
         bind_engine = db.get_bind()
         with bind_engine.begin() as connection:
-            response = _execute_on_connection(connection, body)
+            response = _execute_on_connection(connection, body, current_user)
             if is_mutation(body.sql):
                 client_ip = getattr(request.client, "host", "unknown") if request.client else "unknown"
                 tables = extract_mutation_tables(body.sql)
@@ -552,7 +564,7 @@ async def desktop_transaction_socket(websocket: WebSocket):
                 raise DesktopSqlRejected(
                     "Administrative privilege is required to modify user accounts or system security settings."
                 )
-            response = _execute_on_connection(connection, body)
+            response = _execute_on_connection(connection, body, user)
             if is_mutation(body.sql):
                 client_ip = getattr(websocket.client, "host", "unknown") if websocket.client else "unknown"
                 tables = extract_mutation_tables(body.sql)
