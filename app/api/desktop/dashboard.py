@@ -282,18 +282,32 @@ def get_dashboard_overview(
         db.execute(
             text(
                 f"""
-                SELECT COUNT(*) AS active_students,
-                       SUM(CASE WHEN s.gender IN ('ស្រី', 'female', 'Female') THEN 1 ELSE 0 END) AS female_students,
-                       SUM(CASE WHEN s.created_at >= :start_at AND s.created_at < :end_at THEN 1 ELSE 0 END) AS new_students
+                SELECT SUM(CASE WHEN s.status = 1 THEN 1 ELSE 0 END) AS active_students,
+                       SUM(CASE WHEN s.status = 1 AND s.gender IN ('ស្រី', 'female', 'Female') THEN 1 ELSE 0 END) AS female_students,
+                       SUM(CASE WHEN s.status = 1 AND s.created_at >= :start_at AND s.created_at < :end_at THEN 1 ELSE 0 END) AS new_students,
+                       SUM(CASE WHEN s.status IN (3, 5) THEN 1 ELSE 0 END) AS stopped_students,
+                       SUM(CASE WHEN s.status = 2 THEN 1 ELSE 0 END) AS inactive_students
                 FROM students s
-                WHERE s.status = 1
+                WHERE 1 = 1
                   {branch_student}
-                  AND EXISTS (
-                      SELECT 1
-                      FROM learning l
-                      WHERE l.studentid = s.id
-                        AND l.academicid = :academic_id
-                        {program_learning}
+                  AND (
+                      (s.status = 1 AND EXISTS (
+                          SELECT 1
+                          FROM learning l
+                          WHERE l.studentid = s.id
+                            AND l.academicid = :academic_id
+                            {program_learning}
+                      ))
+                      OR (s.status <> 1 AND (
+                          s.academic = :academic_id
+                          OR EXISTS (
+                              SELECT 1
+                              FROM learning l
+                              WHERE l.studentid = s.id
+                                AND l.academicid = :academic_id
+                                {program_learning}
+                          )
+                      ))
                   )
                 """
             ),
@@ -551,6 +565,8 @@ def get_dashboard_overview(
             "active_students": _integer(student_row.get("active_students")) if can_view_basic else 0,
             "female_students": _integer(student_row.get("female_students")) if can_view_basic else 0,
             "new_students": _integer(student_row.get("new_students")) if can_view_basic else 0,
+            "stopped_students": _integer(student_row.get("stopped_students")) if can_view_basic else 0,
+            "inactive_students": _integer(student_row.get("inactive_students")) if can_view_basic else 0,
             "active_staff": _integer(staff_row.get("active_staff")) if can_view_basic else 0,
             "inactive_staff": _integer(staff_row.get("inactive_staff")) if can_view_basic else 0,
             "collected_usd": _json_number(cash_row.get("collected_usd")) if can_view_accounting else 0.0,
@@ -578,5 +594,11 @@ def get_dashboard_overview(
         },
         "trend": trend if can_view_accounting else [],
         "branch_comparison": branch_comparison if can_view_accounting else [],
+        "student_breakdown": [
+            {"key": "active", "name": "សិស្សសកម្ម", "count": _integer(student_row.get("active_students"))},
+            {"key": "new", "name": "ចុះឈ្មោះថ្មី", "count": _integer(student_row.get("new_students"))},
+            {"key": "stopped", "name": "ឈប់រៀន", "count": _integer(student_row.get("stopped_students"))},
+            {"key": "inactive", "name": "អសកម្ម", "count": _integer(student_row.get("inactive_students"))},
+        ] if can_view_basic else [],
         "recent_payments": recent_payments if can_view_accounting else [],
     }
