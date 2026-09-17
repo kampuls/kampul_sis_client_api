@@ -110,12 +110,15 @@ def receipt_number(body: ReceiptNumber, db: Session = Depends(get_db), user: Use
     return {'number': f'FIN-{body.branch_id}-{number:08d}'}
 
 @router.get('/options')
-def options(branch_id: int = Query(gt=0), db: Session = Depends(get_db), user: User = Depends(get_current_desktop_user)):
+def options(branch_id: int = Query(default=0, ge=0), db: Session = Depends(get_db), user: User = Depends(get_current_desktop_user)):
     permissions = ['ViewInvoices', 'ViewExpense', 'ViewInventories', 'DashboardAccounting']
     if not any(_has_permission(db, int(user.role), p) for p in permissions):
         raise HTTPException(403, 'Finance access required')
-    require(db, user, next(p for p in permissions if _has_permission(db, int(user.role), p)), branch_id)
     branch_choices = rows(db, 'SELECT id,branch_name AS name FROM branch ORDER BY branch_name', {}) if _has_permission(db,int(user.role),'ViewAllBranches') else rows(db,'SELECT id,branch_name AS name FROM branch WHERE id=:id',{'id':int(user.workplace or 0)})
+    if branch_id <= 0 and branch_choices:
+        branch_id = branch_choices[0]['id']
+    if branch_id > 0:
+        require(db, user, next(p for p in permissions if _has_permission(db, int(user.role), p)), branch_id)
     return {'branches': branch_choices,
             'accounts': rows(db, 'SELECT id, account_name AS name, currency FROM accounts WHERE branch_id=:branch_id', {'branch_id': branch_id}) if any(_has_permission(db,int(user.role),p) for p in ('ViewInvoices','ViewExpense')) else [],
             'products': rows(db, '''SELECT i.id, i.product_name AS name FROM inventories i
