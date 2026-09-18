@@ -842,3 +842,59 @@ async def upload_user_signature(
     db.commit()
     
     return {"message": "Signature updated successfully", "signature_url": f"/{db_path}"}
+
+
+@router.get("/portfolio/{identifier}")
+async def get_public_employee_portfolio(
+    identifier: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Public portfolio view for employee/teacher.
+    No authentication required, sanitized output only.
+    """
+    from ...models import Department, Position, Branch
+    is_num = identifier.isdigit()
+    filter_cond = (User.uniqueId == identifier)
+    if is_num:
+        filter_cond = filter_cond | (User.id == int(identifier))
+
+    user = db.query(User).filter(filter_cond).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Employee not found")
+
+    dept = db.query(Department).filter(Department.id == user.departmentId).first() if user.departmentId else None
+    pos = db.query(Position).filter(Position.id == user.positionId).first() if user.positionId else None
+    branch = db.query(Branch).filter(Branch.id == user.workplace).first() if user.workplace else None
+
+    return {
+        "id": user.id,
+        "uniqueId": user.uniqueId,
+        "employeeId": f"{getattr(dept, 'code', 'EMP')}-{user.id:04d}",
+        "cardNo": f"{getattr(dept, 'code', 'EMP')}-{user.id:04d}",
+        "khmerName": user.kName,
+        "latinName": user.eName,
+        "positionKhmer": getattr(pos, "translate", None) or getattr(pos, "position", None),
+        "positionLatin": getattr(pos, "position", None),
+        "departmentKhmer": getattr(dept, "translate", None) or getattr(dept, "department", None),
+        "departmentLatin": getattr(dept, "department", None),
+        "branchName": getattr(branch, "branch_name", None),
+        "gender": user.gender,
+        "genderLatin": "Female" if user.gender in ["ស្រី", "Female"] else "Male",
+        "dob": str(user.dob) if user.dob else None,
+        "nationality": user.nationality,
+        "religion": user.religion,
+        "phone": user.phone,
+        "email": user.email,
+        "telegram": user.telegramId,
+        "address": f"{user.village or ''} {user.commune or ''} {user.district or ''} {user.province or ''}".strip(),
+        "pAddress": f"{user.pVillage or ''} {user.pCommune or ''} {user.pDistrict or ''} {user.pProvince or ''}".strip(),
+        "identityNumber": user.identityNumber,
+        "startWork": str(user.startWork) if user.startWork else None,
+        "education": user.education,
+        "photoUrl": user.image if user.image else None,
+        "signatureUrl": user.signatureImagePath if user.signatureImagePath else None,
+        "status": "Active Faculty" if user.status == 1 else "Inactive",
+        "isVerified": user.status == 1
+    }
+

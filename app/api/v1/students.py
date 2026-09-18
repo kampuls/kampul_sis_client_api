@@ -84,7 +84,8 @@ async def get_all_students(
         query = """
             SELECT 
                 s.id, s.studentid, s.optional_id, NULL as username,
-                s.kName, s.eName, s.gender, s.dob, ur.avatar as image,
+                s.kName, s.eName, s.gender, s.dob,
+                COALESCE((SELECT student_media.avatar FROM users_resource student_media WHERE student_media.user_id = s.id AND student_media.user_type = 'student' AND student_media.status = 1 ORDER BY student_media.id DESC LIMIT 1), NULLIF(s.image, '')) as image,
                 s.student_phone, s.is_foreigner, s.province, s.district,
                 s.commune, s.village, s.previousSchool, s.leaveDate,
                 s.myparents, s.child_order, s.academic, s.branch, s.status,
@@ -94,7 +95,6 @@ async def get_all_students(
                 s.pickup_audio_url
             FROM students s
             LEFT JOIN branch b ON b.id = s.branch
-            LEFT JOIN users_resource ur ON ur.user_id = s.id AND ur.user_type = 'student'
             WHERE 1=1
         """
         
@@ -1080,12 +1080,11 @@ async def get_student_by_id(
                     b.branch_name,
                     a.academic_us_name as academic_name,
                     TIMESTAMPDIFF(YEAR, s.dob, CURDATE()) as age,
-                    ur.avatar as ur_avatar,
+                    COALESCE((SELECT student_media.avatar FROM users_resource student_media WHERE student_media.user_id = s.id AND student_media.user_type = 'student' AND student_media.status = 1 ORDER BY student_media.id DESC LIMIT 1), NULLIF(s.image, '')) as ur_avatar,
                     s.pickup_audio_url
                 FROM students s
                 LEFT JOIN branch b ON b.id = s.branch
                 LEFT JOIN academic a ON s.academic = a.id
-                LEFT JOIN users_resource ur ON ur.user_id = s.id AND ur.user_type = 'student'
                 WHERE s.id = :student_id
             """
             result = db.execute(text(query), {'student_id': student_id})
@@ -1108,7 +1107,7 @@ async def get_student_by_id(
                         NULL as branch_name,
                         NULL as academic_name,
                         TIMESTAMPDIFF(YEAR, s.dob, CURDATE()) as age,
-                        NULL as ur_avatar,
+                        COALESCE((SELECT student_media.avatar FROM users_resource student_media WHERE student_media.user_id = s.id AND student_media.user_type = 'student' AND student_media.status = 1 ORDER BY student_media.id DESC LIMIT 1), NULLIF(s.image, '')) as ur_avatar,
                         s.pickup_audio_url
                     FROM students s
                     WHERE s.id = :student_id
@@ -1523,11 +1522,10 @@ async def get_students_by_parent(
                 SELECT 
                     s.*,
                     b.branch_name,
-                    ur.avatar as ur_avatar,
+                    COALESCE((SELECT student_media.avatar FROM users_resource student_media WHERE student_media.user_id = s.id AND student_media.user_type = 'student' AND student_media.status = 1 ORDER BY student_media.id DESC LIMIT 1), NULLIF(s.image, '')) as ur_avatar,
                     TIMESTAMPDIFF(YEAR, s.dob, CURDATE()) as age
                 FROM students s
                 LEFT JOIN branch b ON b.id = s.branch
-                LEFT JOIN users_resource ur ON ur.user_id = s.id AND ur.user_type = 'student'
                 WHERE s.id IN ({placeholders})
                 ORDER BY s.child_order ASC, s.kName ASC
             """
@@ -1542,10 +1540,9 @@ async def get_students_by_parent(
                     SELECT 
                         s.*,
                         NULL as branch_name,
-                        ur.avatar as ur_avatar,
+                        COALESCE((SELECT student_media.avatar FROM users_resource student_media WHERE student_media.user_id = s.id AND student_media.user_type = 'student' AND student_media.status = 1 ORDER BY student_media.id DESC LIMIT 1), NULLIF(s.image, '')) as ur_avatar,
                         TIMESTAMPDIFF(YEAR, s.dob, CURDATE()) as age
                     FROM students s
-                    LEFT JOIN users_resource ur ON ur.user_id = s.id AND ur.user_type = 'student'
                     WHERE s.id IN ({placeholders})
                     ORDER BY s.child_order ASC, s.kName ASC
                 """
