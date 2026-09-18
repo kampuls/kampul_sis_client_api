@@ -442,16 +442,18 @@ def invoice_editable(invoice_id: int, db: Session = Depends(get_db), user: User 
 @router.get('/reminders')
 def reminder_list(academic_id: int = Query(gt=0), branch_id: int = Query(gt=0), db: Session = Depends(get_db), user: User = Depends(get_current_desktop_user)):
     require(db, user, 'ViewInvoices', branch_id)
-    return rows(db, '''SELECT d.id,d.milestone,d.state,d.attempts,d.error,d.updated_at,c.service,s.kName AS student,
+    scope = locals_scope(academic_id, branch_id)
+    renewals = rows(db, '''SELECT d.id,d.milestone,d.state,d.attempts,d.error,d.updated_at,c.service,s.kName AS student,
         'Renewal' AS reminder_type FROM finance_reminder_delivery d
         JOIN finance_coverage c ON c.id=d.coverage_id JOIN finance_coverage_academics a ON a.coverage_id=c.id
-        JOIN students s ON s.id=c.student_id WHERE a.academic_id=:academic_id AND c.branch_id=:branch_id
-        UNION ALL
-        SELECT d.id,d.milestone,d.state,d.attempts,d.error,d.updated_at,i.invoice_no AS service,
+        JOIN students s ON s.id=c.student_id WHERE a.academic_id=:academic_id AND c.branch_id=:branch_id''', scope)
+    debts = rows(db, '''SELECT d.id,d.milestone,d.state,d.attempts,d.error,d.updated_at,i.invoice_no AS service,
         s.kName AS student,'Balance' AS reminder_type FROM finance_debt_reminder_delivery d
         JOIN invoice i ON i.id=d.invoice_id JOIN students s ON s.id=i.student_id
-        WHERE i.academic_id=:academic_id AND i.branch_id=:branch_id
-        ORDER BY updated_at DESC''', locals_scope(academic_id, branch_id))
+        WHERE i.academic_id=:academic_id AND i.branch_id=:branch_id''', scope)
+    result = renewals + debts
+    result.sort(key=lambda r: r.get('updated_at') or datetime.min, reverse=True)
+    return result
 
 @router.get('/balances')
 def balances(academic_id: int = Query(gt=0), branch_id: int = Query(gt=0), db: Session = Depends(get_db), user: User = Depends(get_current_desktop_user)):
