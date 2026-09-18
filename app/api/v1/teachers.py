@@ -320,7 +320,11 @@ async def get_teacher_classes(
     # Helper functions (duplicated from read_teachers for isolation)
     def format_date(val):
         if val is None: return None
-        if isinstance(val, str): return val
+        if isinstance(val, str):
+            val = val.strip()
+            if not val or val in ('0000-00-00', '0000-00-00 00:00:00'):
+                return None
+            return val
         if hasattr(val, 'isoformat'): return val.isoformat()
         return str(val)
 
@@ -351,7 +355,7 @@ async def get_teacher_classes(
         'phone': safe_get(row, 5),
         'subject': safe_get(row, 6) or '',
         'department': dept_name or '',
-        'hire_date': None,
+        'hire_date': format_date(safe_get(row, 8)),
         'salary': 0.0,
         'is_active': safe_get(row, 10) == 1,
         'created_at': format_date(safe_get(row, 11)),
@@ -639,6 +643,9 @@ async def read_teachers(
             if val is None:
                 return None
             if isinstance(val, str):
+                val = val.strip()
+                if not val or val in ('0000-00-00', '0000-00-00 00:00:00'):
+                    return None
                 return val
             if hasattr(val, 'isoformat'):
                 return val.isoformat()
