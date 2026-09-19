@@ -4505,45 +4505,101 @@ async def employee_portfolio_page(identifier: str, request: Request):
             from fastapi.responses import RedirectResponse
             return RedirectResponse(url=f"/portfolio/{user.uniqueId}", status_code=307)
 
-        dept = None
-        pos = None
-        branch = None
-        settings = None
+        from sqlalchemy import text
+        dept_code = "EMP"
+        dept_name_km = None
+        dept_name_en = None
+        if getattr(user, "departmentId", None):
+            try:
+                dept_row = db.execute(
+                    text("SELECT id, department, translate, code FROM department WHERE id = :id LIMIT 1"),
+                    {"id": user.departmentId}
+                ).mappings().first()
+                if dept_row:
+                    dept_code = dept_row.get("code") or "EMP"
+                    dept_name_en = dept_row.get("department")
+                    dept_name_km = dept_row.get("translate") or dept_name_en
+            except Exception as d_err:
+                logger.warning(f"Could not fetch department {user.departmentId}: {d_err}")
+                db.rollback()
+
+        pos_name_km = None
+        pos_name_en = None
+        if getattr(user, "positionId", None):
+            try:
+                pos_row = db.execute(
+                    text("SELECT id, position, translate FROM position WHERE id = :id LIMIT 1"),
+                    {"id": user.positionId}
+                ).mappings().first()
+                if pos_row:
+                    pos_name_en = pos_row.get("position")
+                    pos_name_km = pos_row.get("translate") or pos_name_en
+            except Exception as p_err:
+                logger.warning(f"Could not fetch position {user.positionId}: {p_err}")
+                db.rollback()
+
+        branch_name = "Main Campus"
+        school_kh = "សាលាអន្តរជាតិ ប៉ាម៉ា"
+        school_en = "PAMA International School"
+        school_logo = ""
+        director_name = "PHON Hoklaim"
+        if getattr(user, "workplace", None):
+            try:
+                branch_row = db.execute(
+                    text("SELECT id, branch_name, app_display_name, image_header, image_header_path, director_kName FROM branch WHERE id = :id LIMIT 1"),
+                    {"id": user.workplace}
+                ).mappings().first()
+                if branch_row:
+                    branch_name = branch_row.get("branch_name") or branch_name
+                    school_kh = branch_row.get("app_display_name") or school_kh
+                    school_en = branch_row.get("branch_name") or school_en
+                    school_logo = branch_row.get("image_header_path") or branch_row.get("image_header") or ""
+                    director_name = branch_row.get("director_kName") or director_name
+            except Exception as b_err:
+                logger.warning(f"Could not fetch branch {user.workplace}: {b_err}")
+                db.rollback()
 
         try:
-            if user.departmentId:
-                dept = db.query(Department).filter(Department.id == user.departmentId).first()
-        except Exception:
-            pass
+            settings_row = db.execute(
+                text("SELECT enterpriseName, system_name FROM settings LIMIT 1")
+            ).mappings().first()
+            if settings_row:
+                if not school_kh:
+                    school_kh = settings_row.get("enterpriseName") or school_kh
+                if not school_en:
+                    school_en = settings_row.get("system_name") or school_en
+        except Exception as s_err:
+            logger.warning(f"Could not fetch settings: {s_err}")
+            db.rollback()
 
+        # Employee ID code formatting
+        user_id_val = getattr(user, "id", 0)
         try:
-            if user.positionId:
-                pos = db.query(Position).filter(Position.id == user.positionId).first()
+            emp_code = f"{dept_code}-{int(user_id_val):04d}"
         except Exception:
-            pass
+            emp_code = f"{dept_code}-{user_id_val}"
 
-        try:
-            if user.workplace:
-                branch = db.query(Branch).filter(Branch.id == user.workplace).first()
-        except Exception:
-            pass
+        # Photo URL fallback to users_resource if user.image is empty
+        photo_url = user.image if getattr(user, "image", None) else ""
+        if not photo_url:
+            try:
+                res_row = db.execute(
+                    text("""
+                        SELECT avatar FROM users_resource
+                        WHERE user_id = :uid AND user_type IN ('employee', 'teacher') AND status = 1
+                        ORDER BY id DESC LIMIT 1
+                    """),
+                    {"uid": user.id}
+                ).fetchone()
+                if res_row and res_row[0]:
+                    photo_url = res_row[0]
+            except Exception:
+                db.rollback()
 
-        try:
-            settings = db.query(SystemSettings).first()
-        except Exception:
-            pass
-
-        dept_code = getattr(dept, "code", "EMP") or "EMP"
-        emp_code = f"{dept_code}-{user.id:04d}"
-
-        photo_url = user.image if user.image else ""
         if photo_url and not photo_url.startswith(("http://", "https://", "data:")):
             photo_url = photo_url.lstrip("/")
             photo_url = f"{str(request.base_url).rstrip('/')}/{photo_url}"
 
-        school_kh = getattr(branch, "app_display_name", None) or getattr(settings, "enterpriseName", None) or "សាលាអន្តរជាតិ ប៉ាម៉ា"
-        school_en = getattr(branch, "branch_name", None) or getattr(settings, "system_name", None) or "PAMA International School"
-        school_logo = getattr(branch, "image_header_path", None) or getattr(branch, "image_header", None) or ""
         if school_logo and not school_logo.startswith(("http://", "https://", "data:")):
             school_logo = f"{str(request.base_url).rstrip('/')}/{school_logo.lstrip('/')}"
 
@@ -4554,11 +4610,11 @@ async def employee_portfolio_page(identifier: str, request: Request):
             "cardNo": emp_code,
             "khmerName": user.kName,
             "latinName": user.eName,
-            "positionKhmer": getattr(pos, "translate", None) or getattr(pos, "position", None),
-            "positionLatin": getattr(pos, "position", None),
-            "departmentKhmer": getattr(dept, "translate", None) or getattr(dept, "department", None),
-            "departmentLatin": getattr(dept, "department", None),
-            "branchName": getattr(branch, "branch_name", None) or "Main Campus",
+            "positionKhmer": pos_name_km,
+            "positionLatin": pos_name_en,
+            "departmentKhmer": dept_name_km,
+            "departmentLatin": dept_name_en,
+            "branchName": branch_name,
             "gender": user.gender,
             "genderLatin": "Female" if user.gender in ["ស្រី", "Female"] else "Male",
             "dob": str(user.dob) if user.dob else None,
@@ -4578,17 +4634,23 @@ async def employee_portfolio_page(identifier: str, request: Request):
             "schoolLogo": school_logo,
             "schoolPhone": "012/093 746046",
             "schoolWebsite": str(request.base_url).rstrip('/'),
-            "directorName": getattr(branch, "director_kName", None) or "PHON Hoklaim",
+            "directorName": director_name,
         }
 
         try:
             return HTMLResponse(content=render_portfolio_html(data), status_code=200)
         except Exception as render_err:
+            import traceback
+            import sys
+            traceback.print_exc(file=sys.stderr)
             logger.exception(f"Error rendering portfolio HTML: {render_err}")
-            return HTMLResponse(content=render_not_found_html(ident), status_code=200)
+            return HTMLResponse(content=f"<!-- Error: {render_err} -->" + render_not_found_html(ident), status_code=500)
     except Exception as e:
+        import traceback
+        import sys
+        traceback.print_exc(file=sys.stderr)
         logger.exception(f"Error in employee_portfolio_page: {e}")
-        return HTMLResponse(content=render_not_found_html(identifier), status_code=200)
+        return HTMLResponse(content=f"<!-- Error: {e} -->" + render_not_found_html(identifier), status_code=500)
     finally:
         db.close()
 

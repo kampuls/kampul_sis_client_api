@@ -6,7 +6,7 @@ from .base import Base
 
 class Department(Base):
     """Department model for organizational structure"""
-    __tablename__ = "departments"
+    __tablename__ = "department"
 
     id = Column(Integer, primary_key=True, index=True)
     department = Column(String(100), nullable=False)
@@ -86,7 +86,7 @@ class Position(Base):
     id = Column(Integer, primary_key=True, index=True)
     position = Column(String(100), nullable=True)
     translate = Column(String(100), nullable=True)
-    code = Column(String(100), nullable=True)
+    departmentId = Column(Integer, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 

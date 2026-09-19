@@ -853,32 +853,101 @@ async def get_public_employee_portfolio(
     Public portfolio view for employee/teacher.
     No authentication required, sanitized output only.
     """
-    from ...models import Department, Position, Branch
+    from sqlalchemy import text
     is_num = identifier.isdigit()
     filter_cond = (User.uniqueId == identifier)
     if is_num:
         filter_cond = filter_cond | (User.id == int(identifier))
+    elif "-" in identifier:
+        parts = identifier.split("-")
+        if parts[-1].isdigit():
+            filter_cond = filter_cond | (User.id == int(parts[-1]))
 
     user = db.query(User).filter(filter_cond).first()
     if not user:
         raise HTTPException(status_code=404, detail="Employee not found")
 
-    dept = db.query(Department).filter(Department.id == user.departmentId).first() if user.departmentId else None
-    pos = db.query(Position).filter(Position.id == user.positionId).first() if user.positionId else None
-    branch = db.query(Branch).filter(Branch.id == user.workplace).first() if user.workplace else None
+    dept_code = "EMP"
+    dept_name_km = None
+    dept_name_en = None
+    if getattr(user, "departmentId", None):
+        try:
+            d_row = db.execute(
+                text("SELECT id, department, translate, code FROM department WHERE id = :id LIMIT 1"),
+                {"id": user.departmentId}
+            ).mappings().first()
+            if d_row:
+                dept_code = d_row.get("code") or "EMP"
+                dept_name_en = d_row.get("department")
+                dept_name_km = d_row.get("translate") or dept_name_en
+        except Exception:
+            db.rollback()
+
+    pos_name_km = None
+    pos_name_en = None
+    if getattr(user, "positionId", None):
+        try:
+            p_row = db.execute(
+                text("SELECT id, position, translate FROM position WHERE id = :id LIMIT 1"),
+                {"id": user.positionId}
+            ).mappings().first()
+            if p_row:
+                pos_name_en = p_row.get("position")
+                pos_name_km = p_row.get("translate") or pos_name_en
+        except Exception:
+            db.rollback()
+
+    branch_name = None
+    if getattr(user, "workplace", None):
+        try:
+            b_row = db.execute(
+                text("SELECT id, branch_name FROM branch WHERE id = :id LIMIT 1"),
+                {"id": user.workplace}
+            ).mappings().first()
+            if b_row:
+                branch_name = b_row.get("branch_name")
+        except Exception:
+            db.rollback()
+
+    # Employee ID code formatting
+    user_id_val = getattr(user, "id", 0)
+    try:
+        emp_code = f"{dept_code}-{int(user_id_val):04d}"
+    except Exception:
+        emp_code = f"{dept_code}-{user_id_val}"
+
+    # Photo URL fallback to users_resource if user.image is empty
+    photo_url = user.image if getattr(user, "image", None) else None
+    if not photo_url:
+        try:
+            res_row = db.execute(
+                text("""
+                    SELECT avatar FROM users_resource
+                    WHERE user_id = :uid AND user_type IN ('employee', 'teacher') AND status = 1
+                    ORDER BY id DESC LIMIT 1
+                """),
+                {"uid": user.id}
+            ).fetchone()
+            if res_row and res_row[0]:
+                photo_url = res_row[0]
+        except Exception:
+            db.rollback()
+
+    user_status = getattr(user, "status", 1)
+    is_active = (user_status == 1)
 
     return {
         "id": user.id,
-        "uniqueId": user.uniqueId,
-        "employeeId": f"{getattr(dept, 'code', 'EMP')}-{user.id:04d}",
-        "cardNo": f"{getattr(dept, 'code', 'EMP')}-{user.id:04d}",
+        "uniqueId": user.uniqueId or emp_code,
+        "employeeId": emp_code,
+        "cardNo": emp_code,
         "khmerName": user.kName,
         "latinName": user.eName,
-        "positionKhmer": getattr(pos, "translate", None) or getattr(pos, "position", None),
-        "positionLatin": getattr(pos, "position", None),
-        "departmentKhmer": getattr(dept, "translate", None) or getattr(dept, "department", None),
-        "departmentLatin": getattr(dept, "department", None),
-        "branchName": getattr(branch, "branch_name", None),
+        "positionKhmer": pos_name_km,
+        "positionLatin": pos_name_en,
+        "departmentKhmer": dept_name_km,
+        "departmentLatin": dept_name_en,
+        "branchName": branch_name,
         "gender": user.gender,
         "genderLatin": "Female" if user.gender in ["ស្រី", "Female"] else "Male",
         "dob": str(user.dob) if user.dob else None,
@@ -892,9 +961,9 @@ async def get_public_employee_portfolio(
         "identityNumber": user.identityNumber,
         "startWork": str(user.startWork) if user.startWork else None,
         "education": user.education,
-        "photoUrl": user.image if user.image else None,
-        "signatureUrl": user.signatureImagePath if user.signatureImagePath else None,
-        "status": "Active Faculty" if user.status == 1 else "Inactive",
-        "isVerified": user.status == 1
+        "photoUrl": photo_url,
+        "signatureUrl": user.signatureImagePath if getattr(user, "signatureImagePath", None) else None,
+        "status": "Active Faculty" if is_active else "Inactive",
+        "isVerified": is_active
     }
 
