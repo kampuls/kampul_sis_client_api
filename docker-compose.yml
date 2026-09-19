@@ -33,7 +33,7 @@ services:
       MYSQL_USER: ${DB_USER:-kampul_user}
       MYSQL_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set}
     volumes:
-      - kampul_sis_client_db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
       interval: 5s
@@ -46,8 +46,8 @@ services:
     container_name: kampul_sis_client_redis
     restart: always
     volumes:
-      - kampul_sis_client_redis_data:/data
+      - redis_data:/data
 
 volumes:
-  kampul_sis_client_db_data:
-  kampul_sis_client_redis_data:
+  db_data:
+  redis_data:
