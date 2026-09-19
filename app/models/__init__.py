@@ -9,7 +9,8 @@ from .parent import Parent
 from .teacher import Teacher
 from .class_model import Class
 from .enrollment import Enrollment
-from .organization import Branch, Role, Department, BranchContact
+from .organization import Branch, Role, Department, BranchContact, Position
+from .settings import SystemSettings
 from .notification import Notification
 from .leave_management import (
     LeaveType, LeavePolicy, LeaveBalance, LeaveRequest,

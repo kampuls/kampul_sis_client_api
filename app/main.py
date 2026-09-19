@@ -4505,10 +4505,33 @@ async def employee_portfolio_page(identifier: str, request: Request):
             from fastapi.responses import RedirectResponse
             return RedirectResponse(url=f"/portfolio/{user.uniqueId}", status_code=307)
 
-        dept = db.query(Department).filter(Department.id == user.departmentId).first() if user.departmentId else None
-        pos = db.query(Position).filter(Position.id == user.positionId).first() if user.positionId else None
-        branch = db.query(Branch).filter(Branch.id == user.workplace).first() if user.workplace else None
-        settings = db.query(SystemSettings).first()
+        dept = None
+        pos = None
+        branch = None
+        settings = None
+
+        try:
+            if user.departmentId:
+                dept = db.query(Department).filter(Department.id == user.departmentId).first()
+        except Exception:
+            pass
+
+        try:
+            if user.positionId:
+                pos = db.query(Position).filter(Position.id == user.positionId).first()
+        except Exception:
+            pass
+
+        try:
+            if user.workplace:
+                branch = db.query(Branch).filter(Branch.id == user.workplace).first()
+        except Exception:
+            pass
+
+        try:
+            settings = db.query(SystemSettings).first()
+        except Exception:
+            pass
 
         dept_code = getattr(dept, "code", "EMP") or "EMP"
         emp_code = f"{dept_code}-{user.id:04d}"
@@ -4558,7 +4581,14 @@ async def employee_portfolio_page(identifier: str, request: Request):
             "directorName": getattr(branch, "director_kName", None) or "PHON Hoklaim",
         }
 
-        return HTMLResponse(content=render_portfolio_html(data), status_code=200)
+        try:
+            return HTMLResponse(content=render_portfolio_html(data), status_code=200)
+        except Exception as render_err:
+            logger.exception(f"Error rendering portfolio HTML: {render_err}")
+            return HTMLResponse(content=render_not_found_html(ident), status_code=200)
+    except Exception as e:
+        logger.exception(f"Error in employee_portfolio_page: {e}")
+        return HTMLResponse(content=render_not_found_html(identifier), status_code=200)
     finally:
         db.close()
 

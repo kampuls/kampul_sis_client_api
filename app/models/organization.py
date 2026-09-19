@@ -78,8 +78,17 @@ class Role(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
-    # Relationships removed - database doesn't have foreign key constraints
-    # If needed, query users manually: db.query(User).filter(User.role == role.id).all()
+
+class Position(Base):
+    """Position model for staff and teacher titles"""
+    __tablename__ = "position"
+
+    id = Column(Integer, primary_key=True, index=True)
+    position = Column(String(100), nullable=True)
+    translate = Column(String(100), nullable=True)
+    code = Column(String(100), nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
 
 class BranchContact(Base):
