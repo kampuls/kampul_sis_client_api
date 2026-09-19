@@ -4475,6 +4475,95 @@ if __name__ == "__main__":
 
 
 # =============================================================
+# 🪪 PUBLIC EMPLOYEE PORTFOLIO ROUTE
+# Accessible directly via QR code scan: https://{host}/portfolio/{identifier}
+# =============================================================
+@app.get("/portfolio/{identifier}", response_class=HTMLResponse, include_in_schema=False)
+async def employee_portfolio_page(identifier: str, request: Request):
+    from .services.portfolio_html_service import render_portfolio_html, render_not_found_html
+    from .models import User, Department, Position, Branch, SystemSettings
+
+    db = SessionLocal()
+    try:
+        ident = identifier.strip()
+        filter_cond = (User.uniqueId == ident)
+
+        if ident.isdigit():
+            filter_cond = filter_cond | (User.id == int(ident))
+        elif "-" in ident:
+            parts = ident.split("-")
+            if parts[-1].isdigit():
+                filter_cond = filter_cond | (User.id == int(parts[-1]))
+
+        user = db.query(User).filter(filter_cond).first()
+        if not user:
+            return HTMLResponse(content=render_not_found_html(ident), status_code=404)
+
+        # Privacy Protection: If accessed via numeric ID (e.g. 19) or department code (e.g. ITD-0019),
+        # immediately redirect to the employee's random uniqueId so users cannot guess other employees' URLs!
+        if user.uniqueId and ident != user.uniqueId:
+            from fastapi.responses import RedirectResponse
+            return RedirectResponse(url=f"/portfolio/{user.uniqueId}", status_code=307)
+
+        dept = db.query(Department).filter(Department.id == user.departmentId).first() if user.departmentId else None
+        pos = db.query(Position).filter(Position.id == user.positionId).first() if user.positionId else None
+        branch = db.query(Branch).filter(Branch.id == user.workplace).first() if user.workplace else None
+        settings = db.query(SystemSettings).first()
+
+        dept_code = getattr(dept, "code", "EMP") or "EMP"
+        emp_code = f"{dept_code}-{user.id:04d}"
+
+        photo_url = user.image if user.image else ""
+        if photo_url and not photo_url.startswith(("http://", "https://", "data:")):
+            photo_url = photo_url.lstrip("/")
+            photo_url = f"{str(request.base_url).rstrip('/')}/{photo_url}"
+
+        school_kh = getattr(branch, "app_display_name", None) or getattr(settings, "enterpriseName", None) or "សាលាអន្តរជាតិ ប៉ាម៉ា"
+        school_en = getattr(branch, "branch_name", None) or getattr(settings, "system_name", None) or "PAMA International School"
+        school_logo = getattr(branch, "image_header_path", None) or getattr(branch, "image_header", None) or ""
+        if school_logo and not school_logo.startswith(("http://", "https://", "data:")):
+            school_logo = f"{str(request.base_url).rstrip('/')}/{school_logo.lstrip('/')}"
+
+        data = {
+            "id": user.id,
+            "uniqueId": user.uniqueId or emp_code,
+            "employeeId": emp_code,
+            "cardNo": emp_code,
+            "khmerName": user.kName,
+            "latinName": user.eName,
+            "positionKhmer": getattr(pos, "translate", None) or getattr(pos, "position", None),
+            "positionLatin": getattr(pos, "position", None),
+            "departmentKhmer": getattr(dept, "translate", None) or getattr(dept, "department", None),
+            "departmentLatin": getattr(dept, "department", None),
+            "branchName": getattr(branch, "branch_name", None) or "Main Campus",
+            "gender": user.gender,
+            "genderLatin": "Female" if user.gender in ["ស្រី", "Female"] else "Male",
+            "dob": str(user.dob) if user.dob else None,
+            "nationality": user.nationality,
+            "religion": user.religion,
+            "phone": user.phone,
+            "email": user.email,
+            "telegram": user.telegramId,
+            "address": f"{user.village or ''} {user.commune or ''} {user.district or ''} {user.province or ''}".strip(),
+            "pAddress": f"{user.pVillage or ''} {user.pCommune or ''} {user.pDistrict or ''} {user.pProvince or ''}".strip(),
+            "identityNumber": user.identityNumber,
+            "startWork": str(user.startWork) if user.startWork else None,
+            "education": user.education,
+            "photoUrl": photo_url,
+            "schoolNameKhmer": school_kh,
+            "schoolNameLatin": school_en,
+            "schoolLogo": school_logo,
+            "schoolPhone": "012/093 746046",
+            "schoolWebsite": str(request.base_url).rstrip('/'),
+            "directorName": getattr(branch, "director_kName", None) or "PHON Hoklaim",
+        }
+
+        return HTMLResponse(content=render_portfolio_html(data), status_code=200)
+    finally:
+        db.close()
+
+
+# =============================================================
 # 🔗 FRAME SLUG CATCH-ALL ROUTE
 # Must be registered LAST so it does not shadow /api/*, /health, etc.
 # When a user opens https://pamais.duckdns.org/{slug} in a browser,
