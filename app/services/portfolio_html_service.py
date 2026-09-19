@@ -1,7 +1,8 @@
 """
 Employee Profile & Portfolio HTML Service
-Renders a modern, responsive, mobile-first bilingual (Khmer/English)
-employee profile portfolio page directly from FastAPI.
+Renders an executive, institutional, mobile-first bilingual (Khmer/English)
+employee credentials portfolio page directly from FastAPI.
+Uses Kantumruy Pro typography exclusively for a pristine, authoritative academic presentation.
 """
 
 from typing import Any, Dict, Optional
@@ -84,11 +85,11 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
     bio = _esc(data.get("bio") or f"សមាជិកបុគ្គលិកផ្លូវការនៃផ្នែក {dept_kh} ប្រកបដោយការប្តេជ្ញាចិត្តខ្ពស់ក្នុងការអភិវឌ្ឍគុណភាពអប់រំ និងសេវាកម្មសិក្សា។")
     status = _esc(data.get("status") or "មន្ត្រីពេញសិទ្ធិ (Active)")
 
-    # School
+    # School information
     school_kh = _esc(data.get("schoolNameKhmer") or "សាលាអន្តរជាតិ ប៉ាម៉ា")
     school_en = _esc(data.get("schoolNameLatin") or "PAMA International School")
     school_logo = data.get("schoolLogo") or ""
-    school_phone = _esc(data.get("schoolPhone") or "")
+    school_phone = _esc(data.get("schoolPhone") or "012/093 746046")
     school_website = _esc(data.get("schoolWebsite") or "https://pamais.duckdns.org")
     director_name = _esc(data.get("directorName") or "PHON Hoklaim")
 
@@ -96,14 +97,14 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
     if school_logo:
         school_logo_html = f'<img src="{_esc(school_logo)}" alt="{school_en}" class="school-logo">'
     else:
-        school_logo_html = '<div class="school-logo-fallback">P</div>'
+        school_logo_html = f'<div class="school-logo-fallback">{school_en[:1].upper()}</div>'
 
     # Photo avatar
     photo_url = data.get("photoUrl") or ""
     initials = e_name[:2].upper()
     if not photo_url:
         avatar_html = f'<div class="avatar-fallback">{initials}</div>'
-        pvc_photo_html = f'<div class="pvc-photo" style="display:flex;align-items:center;justify-content:center;color:white;font-size:32px;">{initials}</div>'
+        pvc_photo_html = f'<div class="pvc-photo pvc-photo-fallback">{initials}</div>'
     else:
         avatar_html = f'<img src="{_esc(photo_url)}" alt="{e_name}" class="avatar-img">'
         pvc_photo_html = f'<img src="{_esc(photo_url)}" alt="{e_name}" class="pvc-photo">'
@@ -122,230 +123,312 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>{k_name} ({e_name}) – {pos_en} | {school_en}</title>
-  <meta name="description" content="Official Verified Employee Profile for {e_name} ({pos_en}) at {school_en}.">
+  <meta name="description" content="Official Institutional Employee Credential for {e_name} ({pos_en}) at {school_en}.">
   
   <meta property="og:title" content="{k_name} ({e_name}) – {school_en}">
-  <meta property="og:description" content="Official Employee Profile Portfolio. Code: {code}">
+  <meta property="og:description" content="Official Employee Profile & Verification. ID: {code}">
   <meta property="og:type" content="profile">
   {og_image_tag}
 
+  <!-- Google Font: Kantumruy Pro exclusively for all Khmer and Latin typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Siemreap&family=Battambang:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
   <style>
     :root {{
-      --primary: #059669;
-      --primary-dark: #047857;
-      --accent: #38bdf8;
-      --bg: #0b1329;
-      --card-bg: #111e38;
-      --card-inner: #162646;
-      --border: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+      --primary: #0f2942;
+      --primary-dark: #091a2b;
+      --accent-blue: #1d4ed8;
+      --accent-light: #eff6ff;
+      --accent-border: #bfdbfe;
+      --emerald-accent: #059669;
+      --emerald-bg: #ecfdf5;
+      --emerald-border: #a7f3d0;
+      --emerald-text: #065f46;
+      --surface-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --row-bg: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --radius-xl: 16px;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
     }}
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+
+    *, *::before, *::after {{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kantumruy Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    }}
+
     body {{
-      font-family: 'Plus Jakarta Sans', 'Siemreap', 'Battambang', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--surface-bg);
+      color: var(--text-main);
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-bottom: 60px;
+      padding: 0 0 60px 0;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }}
-    .bg-glow {{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+
+    .top-navy-bar {{
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #0f2942 0%, #1d4ed8 50%, #059669 100%);
     }}
-    .glow-1 {{
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(5, 150, 105, 0.25) 0%, rgba(11, 19, 41, 0) 70%);
-      filter: blur(60px);
-    }}
+
     .container {{
       width: 100%;
-      max-width: 640px;
-      padding: 16px;
-      position: relative;
-      z-index: 1;
+      max-width: 680px;
+      padding: 20px 16px;
     }}
+
+    /* Institutional Header */
     .header {{
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 16px;
-      background: rgba(17, 30, 56, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      margin-bottom: 16px;
+      padding: 14px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
     }}
+
     .school-brand {{
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }}
+
     .school-logo {{
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
       border-radius: 10px;
-      object-fit: cover;
+      object-fit: contain;
       background: #ffffff;
+      border: 1px solid #e2e8f0;
       padding: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
     }}
+
     .school-logo-fallback {{
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #059669, #0284c7);
+      background: #0f2942;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      color: white;
-      font-size: 16px;
-    }}
-    .school-names h2 {{
-      font-size: 14px;
       font-weight: 700;
-      color: #fff;
-      line-height: 1.3;
+      color: white;
+      font-size: 18px;
+      border: 1px solid #1e293b;
     }}
+
+    .school-names h2 {{
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      letter-spacing: -0.2px;
+    }}
+
     .school-names p {{
-      font-size: 11px;
-      color: var(--text-muted);
+      font-size: 11.5px;
+      color: var(--text-subtle);
+      font-weight: 500;
     }}
+
     .lang-toggle {{
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border);
-      color: #fff;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: var(--text-main);
       font-size: 12px;
       font-weight: 600;
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 20px;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
     }}
+
+    .lang-toggle:hover {{
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }}
+
+    /* Hero Profile Card */
     .hero-card {{
-      background: linear-gradient(180deg, #162646 0%, #111e38 100%);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px 20px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }}
+
+    .hero-banner {{
+      height: 90px;
+      background: linear-gradient(135deg, #0f2942 0%, #1e3a8a 70%, #0369a1 100%);
+      position: relative;
+    }}
+
+    .hero-content {{
+      padding: 0 24px 24px;
       text-align: center;
       position: relative;
-      overflow: hidden;
-      margin-bottom: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }}
+
     .avatar-wrapper {{
       position: relative;
-      width: 108px;
-      height: 108px;
-      margin: 0 auto 16px;
+      width: 112px;
+      height: 112px;
+      margin: -56px auto 14px;
     }}
+
     .avatar-img {{
       width: 100%;
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid #162646;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      background: #1e293b;
+      border: 4px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+      background: #f1f5f9;
     }}
+
     .avatar-fallback {{
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      border: 4px solid #162646;
-      background: linear-gradient(135deg, #059669, #047857);
+      border: 4px solid #ffffff;
+      background: linear-gradient(135deg, #0f2942, #1e3a8a);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
-      font-weight: 800;
+      font-size: 34px;
+      font-weight: 700;
       color: white;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
     }}
+
     .status-badge-dot {{
       position: absolute;
-      bottom: 4px;
-      right: 4px;
-      width: 18px;
-      height: 18px;
+      bottom: 2px;
+      right: 2px;
+      width: 22px;
+      height: 22px;
       background: #10b981;
-      border: 3px solid #162646;
+      border: 3px solid #ffffff;
       border-radius: 50%;
-      box-shadow: 0 0 10px #10b981;
-    }}
-    .k-name {{
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 2px;
-    }}
-    .e-name {{
-      font-size: 16px;
-      font-weight: 600;
-      color: #38bdf8;
-      margin-bottom: 8px;
-    }}
-    .position-pill {{
-      display: inline-block;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #34d399;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 4px 14px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-    }}
-    .meta-info {{
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--text-muted);
-      font-size: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }}
+
+    .status-badge-dot svg {{
+      width: 11px;
+      height: 11px;
+      fill: #ffffff;
+    }}
+
+    .k-name {{
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }}
+
+    .e-name {{
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+      letter-spacing: 0.2px;
+    }}
+
+    .position-badge {{
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-blue);
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 5px 16px;
+      border-radius: 24px;
+      margin-bottom: 14px;
+    }}
+
+    .verified-banner {{
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      color: var(--emerald-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }}
+
+    .verified-banner svg {{
+      width: 14px;
+      height: 14px;
+      fill: var(--emerald-accent);
+      flex-shrink: 0;
+    }}
+
+    .meta-row {{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--text-subtle);
+      font-size: 12.5px;
+      padding-top: 14px;
+      border-top: 1px solid #f1f5f9;
+    }}
+
     .meta-item {{
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }}
-    .verified-chip {{
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #7dd3fc;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 600;
+
+    .meta-item svg {{
+      width: 15px;
+      height: 15px;
+      fill: #64748b;
     }}
+
+    /* Action Buttons Grid */
     .actions-grid {{
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 18px;
     }}
+
     .action-btn {{
       display: flex;
       flex-direction: column;
@@ -353,256 +436,508 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
       justify-content: center;
       gap: 6px;
       background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
       padding: 12px 6px;
-      color: var(--text);
+      color: var(--text-main);
       text-decoration: none;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: var(--shadow-sm);
       transition: all 0.2s ease;
     }}
-    .action-btn:hover, .action-btn:active {{
-      background: var(--card-inner);
-      border-color: rgba(255, 255, 255, 0.2);
+
+    .action-btn:hover {{
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
     }}
-    .action-icon {{
-      font-size: 18px;
+
+    .action-icon-wrap {{
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }}
+
+    .action-icon-wrap svg {{
+      width: 18px;
+      height: 18px;
+    }}
+
+    /* Specific Action Icon Tones */
+    .btn-phone .action-icon-wrap {{ background: #ecfdf5; color: #059669; }}
+    .btn-phone .action-icon-wrap svg {{ fill: #059669; }}
+    .btn-email .action-icon-wrap {{ background: #eff6ff; color: #2563eb; }}
+    .btn-email .action-icon-wrap svg {{ fill: #2563eb; }}
+    .btn-tg .action-icon-wrap {{ background: #f0f9ff; color: #0284c7; }}
+    .btn-tg .action-icon-wrap svg {{ fill: #0284c7; }}
+    .btn-save .action-icon-wrap {{ background: #fef3c7; color: #d97706; }}
+    .btn-save .action-icon-wrap svg {{ fill: #d97706; }}
+    .btn-share .action-icon-wrap {{ background: #f5f3ff; color: #7c3aed; }}
+    .btn-share .action-icon-wrap svg {{ fill: #7c3aed; }}
+
+    /* Segmented Tabs */
     .tabs-nav {{
       display: flex;
-      gap: 6px;
-      background: rgba(17, 30, 56, 0.8);
-      padding: 5px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      margin-bottom: 16px;
+      gap: 4px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: var(--radius-lg);
+      margin-bottom: 18px;
       overflow-x: auto;
+      scrollbar-width: none;
     }}
+
+    .tabs-nav::-webkit-scrollbar {{
+      display: none;
+    }}
+
     .tab-btn {{
       flex: 1;
       white-space: nowrap;
       background: transparent;
       border: none;
-      color: var(--text-muted);
-      font-size: 12px;
+      color: var(--text-subtle);
+      font-size: 12.5px;
       font-weight: 600;
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
       cursor: pointer;
       text-align: center;
+      transition: all 0.2s ease;
     }}
+
     .tab-btn.active {{
-      background: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 2px 10px rgba(5, 150, 105, 0.4);
+      background: #ffffff;
+      color: var(--text-main);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }}
+
+    /* Tab Panels */
     .tab-panel {{
       display: none;
       background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 20px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
     }}
-    .tab-panel.active {{ display: block; }}
+
+    .tab-panel.active {{
+      display: block;
+    }}
+
     .section-title {{
       font-size: 15px;
       font-weight: 700;
-      color: #fff;
+      color: var(--text-main);
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
+      gap: 9px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
     }}
+
+    .section-title svg {{
+      width: 18px;
+      height: 18px;
+      fill: #1d4ed8;
+      flex-shrink: 0;
+    }}
+
+    /* Stats Row in Overview */
     .stats-row {{
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 20px;
     }}
+
     .stat-box {{
-      background: var(--card-inner);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 12px 10px;
+      background: var(--row-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 14px 10px;
       text-align: center;
     }}
+
     .stat-val {{
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 700;
-      color: #38bdf8;
-      margin-bottom: 2px;
+      color: var(--accent-blue);
+      margin-bottom: 3px;
     }}
+
     .stat-lbl {{
       font-size: 11px;
-      color: var(--text-muted);
+      color: var(--text-subtle);
+      font-weight: 500;
     }}
+
+    /* Detail Lists */
     .detail-list {{
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
     }}
+
     .detail-item {{
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 8px 12px;
-      background: var(--card-inner);
-      border-radius: 10px;
+      padding: 11px 14px;
+      background: var(--row-bg);
+      border: 1px solid #f1f5f9;
+      border-radius: var(--radius-md);
       font-size: 13px;
     }}
+
     .detail-item .lbl {{
-      color: var(--text-muted);
-      min-width: 110px;
+      color: var(--text-subtle);
+      min-width: 120px;
       font-weight: 500;
+      flex-shrink: 0;
     }}
+
     .detail-item .val {{
-      color: #f1f5f9;
+      color: var(--text-main);
       font-weight: 600;
       text-align: right;
       word-break: break-word;
     }}
-    .card-3d-wrapper {{
+
+    /* PVC ID Card Preview */
+    .card-preview-wrapper {{
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 10px 0;
     }}
+
     .pvc-card {{
       width: 100%;
-      max-width: 310px;
-      height: 460px;
-      background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
-      border: 1px solid rgba(52, 211, 153, 0.3);
+      max-width: 320px;
+      height: 480px;
+      background: linear-gradient(145deg, #091a2b 0%, #0f2942 55%, #133e68 100%);
+      border: 1px solid #334155;
       border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-      padding: 20px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+      padding: 22px 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      overflow: hidden;
     }}
-    .pvc-header {{ text-align: center; width: 100%; }}
-    .pvc-school {{ font-size: 12px; font-weight: 700; color: #a7f3d0; }}
-    .pvc-sub {{ font-size: 9px; color: #6ee7b7; text-transform: uppercase; }}
+
+    .pvc-card::before {{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #d97706, #fbbf24);
+    }}
+
+    .pvc-header {{
+      text-align: center;
+      width: 100%;
+    }}
+
+    .pvc-school-km {{
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+    }}
+
+    .pvc-school-en {{
+      font-size: 9.5px;
+      color: #93c5fd;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }}
+
     .pvc-photo {{
-      width: 110px;
-      height: 130px;
-      border-radius: 10px;
+      width: 106px;
+      height: 128px;
+      border-radius: 8px;
       object-fit: cover;
-      border: 3px solid #34d399;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-      background: #064e3b;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      background: #1e293b;
     }}
-    .pvc-name-km {{ font-size: 18px; font-weight: 700; color: #ffffff; margin-top: 8px; }}
-    .pvc-name-en {{ font-size: 13px; font-weight: 600; color: #38bdf8; }}
-    .pvc-role {{ font-size: 11px; color: #fbbf24; font-weight: 600; }}
+
+    .pvc-photo-fallback {{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+      background: #1e3a8a;
+    }}
+
+    .pvc-name-km {{
+      font-size: 17.5px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 10px;
+      line-height: 1.25;
+    }}
+
+    .pvc-name-en {{
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #93c5fd;
+      letter-spacing: 0.2px;
+    }}
+
+    .pvc-role {{
+      display: inline-block;
+      font-size: 11.5px;
+      color: #fbbf24;
+      font-weight: 600;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-top: 6px;
+    }}
+
     .pvc-footer {{
       width: 100%;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
       padding-top: 10px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 10px;
-      color: #d1fae5;
+      align-items: flex-end;
+      font-size: 10.5px;
+      color: #cbd5e1;
     }}
-    .pvc-code {{ font-family: monospace; font-size: 12px; font-weight: 700; }}
-    .footer {{ text-align: center; margin-top: 30px; color: #64748b; font-size: 11px; }}
-    .footer a {{ color: #38bdf8; text-decoration: none; }}
+
+    .pvc-code {{
+      font-family: 'Kantumruy Pro', monospace !important;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+    }}
+
+    /* Guarantee & Verification Box */
+    .verification-card {{
+      margin-top: 18px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }}
+
+    .verification-card svg {{
+      width: 28px;
+      height: 28px;
+      fill: #059669;
+      flex-shrink: 0;
+    }}
+
+    .verification-card p {{
+      font-size: 11.5px;
+      color: var(--text-subtle);
+      line-height: 1.5;
+    }}
+
+    /* Institutional Footer */
+    .footer {{
+      text-align: center;
+      margin-top: 24px;
+      color: #64748b;
+      font-size: 11.5px;
+      line-height: 1.6;
+    }}
+
+    .footer a {{
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }}
+
+    .footer a:hover {{
+      text-decoration: underline;
+    }}
+
+    /* Toast Notification for Share / Copy */
+    .toast {{
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }}
+
+    .toast.show {{
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }}
+
+    /* Print Stylesheet */
     @media print {{
-      body {{ background: #fff; color: #000; padding: 0; }}
-      .bg-glow, .actions-grid, .tabs-nav, .lang-toggle, .footer {{ display: none !important; }}
-      .hero-card, .tab-panel {{ background: #fff; border: 1px solid #ccc; color: #000; box-shadow: none; }}
-      .tab-panel {{ display: block !important; margin-bottom: 20px; }}
-      .k-name, .e-name, .section-title {{ color: #000 !important; }}
-      .detail-item {{ background: #f8fafc; border: 1px solid #e2e8f0; color: #000; }}
-      .detail-item .lbl {{ color: #475569; }}
-      .detail-item .val {{ color: #000; }}
+      body {{
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+      }}
+      .top-navy-bar, .actions-grid, .tabs-nav, .lang-toggle, .footer, .verification-card, .toast {{
+        display: none !important;
+      }}
+      .container {{
+        max-width: 100% !important;
+        padding: 0 !important;
+      }}
+      .header, .hero-card, .tab-panel {{
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }}
+      .tab-panel {{
+        display: block !important;
+        margin-bottom: 20px !important;
+        page-break-inside: avoid;
+      }}
+      .hero-banner {{
+        background: #0f2942 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }}
     }}
   </style>
 </head>
 <body>
-  <div class="bg-glow"><div class="glow-1"></div></div>
+  <div class="top-navy-bar"></div>
 
   <div class="container">
+    <!-- Institutional Header -->
     <header class="header">
       <div class="school-brand">
         {school_logo_html}
         <div class="school-names">
           <h2 class="lang-text" data-km="{school_kh}" data-en="{school_en}">{school_kh}</h2>
-          <p class="lang-text" data-km="ប្រព័ន្ធគ្រប់គ្រងសាលារៀនឌីជីថល" data-en="Digital School Management System">ប្រព័ន្ធគ្រប់គ្រងសាលារៀនឌីជីថល</p>
+          <p class="lang-text" data-km="ប្រព័ន្ធផ្ទៀងផ្ទាត់បុគ្គលិកផ្លូវការ" data-en="Official Staff Verification Portal">ប្រព័ន្ធផ្ទៀងផ្ទាត់បុគ្គលិកផ្លូវការ</p>
         </div>
       </div>
-      <button class="lang-toggle" onclick="toggleLanguage()">
-        🌐 <span id="langLabel">English</span>
+      <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle Language">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <span id="langLabel">English</span>
       </button>
     </header>
 
+    <!-- Faculty Hero Card -->
     <section class="hero-card">
-      <div class="avatar-wrapper">
-        {avatar_html}
-        <div class="status-badge-dot" title="Active Faculty"></div>
-      </div>
+      <div class="hero-banner"></div>
+      <div class="hero-content">
+        <div class="avatar-wrapper">
+          {avatar_html}
+          <div class="status-badge-dot" title="Verified Active Faculty">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+        </div>
 
-      <div class="names-section">
         <h1 class="k-name">{k_name}</h1>
         <div class="e-name">{e_name}</div>
-        <div class="position-pill lang-text" data-km="{pos_kh}" data-en="{pos_en}">{pos_kh}</div>
         
-        <div class="meta-info">
+        <div class="position-badge lang-text" data-km="{pos_kh}" data-en="{pos_en}">{pos_kh}</div>
+
+        <div>
+          <div class="verified-banner">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            <span class="lang-text" data-km="វិញ្ញាបនបត្រផ្លូវការ • ផ្ទៀងផ្ទាត់ដោយជោគជ័យ" data-en="Official Credential • Authenticated">វិញ្ញាបនបត្រផ្លូវការ • ផ្ទៀងផ្ទាត់ដោយជោគជ័យ</span>
+          </div>
+        </div>
+
+        <div class="meta-row">
           <div class="meta-item">
-            <span>🏢</span>
+            <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
             <span class="lang-text" data-km="{dept_kh}" data-en="{dept_en}">{dept_kh}</span>
           </div>
           <div class="meta-item">
-            <span>📍</span>
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
             <span>{branch}</span>
           </div>
-          <div class="verified-chip">
-            <span>✔</span>
-            <span class="lang-text" data-km="ផ្ទៀងផ្ទាត់ផ្លូវការ" data-en="Verified Staff">ផ្ទៀងផ្ទាត់ផ្លូវការ</span>
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zm-7-2h6v-2h-6v2zm0-4h6v-2h-6v2zm-4 4h2v-6H8v6z"/></svg>
+            <span>{code}</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Professional Actions Grid -->
     <div class="actions-grid">
-      <a href="tel:{phone}" class="action-btn" style="color:#10b981;" title="Call">
-        <span class="action-icon">📞</span>
+      <a href="tel:{phone}" class="action-btn btn-phone" title="Call">
+        <div class="action-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
         <span class="lang-text" data-km="ទូរស័ព្ទ" data-en="Call">ទូរស័ព្ទ</span>
       </a>
 
-      <a href="mailto:{email}" class="action-btn" style="color:#f59e0b;" title="Email">
-        <span class="action-icon">✉️</span>
+      <a href="mailto:{email}" class="action-btn btn-email" title="Email">
+        <div class="action-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
         <span class="lang-text" data-km="អ៊ីមែល" data-en="Email">អ៊ីមែល</span>
       </a>
 
-      <a href="https://t.me/{clean_tg}" target="_blank" rel="noopener" class="action-btn" style="color:#38bdf8;" title="Telegram">
-        <span class="action-icon">✈️</span>
+      <a href="https://t.me/{clean_tg}" target="_blank" rel="noopener" class="action-btn btn-tg" title="Telegram">
+        <div class="action-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        </div>
         <span>Telegram</span>
       </a>
 
-      <button onclick="downloadVCard()" class="action-btn" style="color:#a855f7;" title="Save to Contacts">
-        <span class="action-icon">💾</span>
-        <span class="lang-text" data-km="រក្សាទុក" data-en="Save">រក្សាទុក</span>
+      <button onclick="downloadVCard()" class="action-btn btn-save" title="Save Contact (vCard)">
+        <div class="action-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <span class="lang-text" data-km="រក្សាទុក" data-en="Save Contact">រក្សាទុក</span>
       </button>
 
-      <button onclick="shareProfile()" class="action-btn" style="color:#ec4899;" title="Share Profile">
-        <span class="action-icon">🔗</span>
+      <button onclick="shareProfile()" class="action-btn btn-share" title="Share Profile">
+        <div class="action-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+        </div>
         <span class="lang-text" data-km="ចែករំលែក" data-en="Share">ចែករំលែក</span>
       </button>
     </div>
 
+    <!-- Segmented Dossier Tabs -->
     <div class="tabs-nav">
       <button class="tab-btn active" onclick="switchTab(event, 'tab-overview')">
         <span class="lang-text" data-km="ទិដ្ឋភាពទូទៅ" data-en="Overview">ទិដ្ឋភាពទូទៅ</span>
       </button>
       <button class="tab-btn" onclick="switchTab(event, 'tab-work')">
-        <span class="lang-text" data-km="ការងារ" data-en="Work">ការងារ</span>
+        <span class="lang-text" data-km="ការងារ & តួនាទី" data-en="Work & Role">ការងារ & តួនាទី</span>
       </button>
       <button class="tab-btn" onclick="switchTab(event, 'tab-education')">
         <span class="lang-text" data-km="សញ្ញាបត្រ" data-en="Education">សញ្ញាបត្រ</span>
@@ -615,24 +950,25 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
       </button>
     </div>
 
+    <!-- TAB 1: OVERVIEW -->
     <div id="tab-overview" class="tab-panel active">
       <h3 class="section-title">
-        <span>📋</span>
-        <span class="lang-text" data-km="ព័ត៌មានសង្ខេប & សមិទ្ធផល" data-en="Summary & Overview">ព័ត៌មានសង្ខេប & សមិទ្ធផល</span>
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        <span class="lang-text" data-km="ព័ត៌មានសង្ខេប & អតីតភាព" data-en="Summary & Overview">ព័ត៌មានសង្ខេប & អតីតភាព</span>
       </h3>
 
       <div class="stats-row">
         <div class="stat-box">
           <div class="stat-val lang-text" data-km="{service_km}" data-en="{service_en}">{service_km}</div>
-          <div class="stat-lbl lang-text" data-km="អតីតភាពការងារ" data-en="Service Time">អតីតភាពការងារ</div>
+          <div class="stat-lbl lang-text" data-km="អតីតភាពការងារ" data-en="Service Tenure">អតីតភាពការងារ</div>
         </div>
         <div class="stat-box">
           <div class="stat-val">{code}</div>
-          <div class="stat-lbl lang-text" data-km="លេខកូដសម្គាល់" data-en="ID Number">លេខកូដសម្គាល់</div>
+          <div class="stat-lbl lang-text" data-km="លេខកូដសម្គាល់" data-en="Staff ID">លេខកូដសម្គាល់</div>
         </div>
         <div class="stat-box">
-          <div class="stat-val" style="color:#10b981;">100%</div>
-          <div class="stat-lbl lang-text" data-km="ស្ថានភាព" data-en="Status">ស្ថានភាព</div>
+          <div class="stat-val" style="color:#059669;">100%</div>
+          <div class="stat-lbl lang-text" data-km="សុពលភាព" data-en="Active Status">សុពលភាព</div>
         </div>
       </div>
 
@@ -643,7 +979,7 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
         </div>
         <div class="detail-item">
           <span class="lbl lang-text" data-km="ស្ថានភាពការងារ" data-en="Duty Status">ស្ថានភាពការងារ</span>
-          <span class="val" style="color:#34d399;">{status}</span>
+          <span class="val" style="color:#059669;">{status}</span>
         </div>
         <div class="detail-item">
           <span class="lbl lang-text" data-km="ស្ថាប័ន / សាលា" data-en="Institution">ស្ថាប័ន / សាលា</span>
@@ -652,10 +988,11 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
       </div>
     </div>
 
+    <!-- TAB 2: WORK & ROLE -->
     <div id="tab-work" class="tab-panel">
       <h3 class="section-title">
-        <span>💼</span>
-        <span class="lang-text" data-km="ប្រវត្តិការងារ និងតួនាទី" data-en="Work Dossier & Role">ប្រវត្តិការងារ និងតួនាទី</span>
+        <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+        <span class="lang-text" data-km="ប្រវត្តិការងារ & បេសកកម្ម" data-en="Work Dossier & Role">ប្រវត្តិការងារ & បេសកកម្ម</span>
       </h3>
 
       <div class="detail-list">
@@ -681,14 +1018,19 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
         </div>
         <div class="detail-item">
           <span class="lbl lang-text" data-km="លេខបណ្ណបុគ្គលិក" data-en="Card Number">លេខបណ្ណបុគ្គលិក</span>
-          <span class="val" style="font-family:monospace;color:#38bdf8;">{code}</span>
+          <span class="val" style="color:#1d4ed8;">{code}</span>
+        </div>
+        <div class="detail-item">
+          <span class="lbl lang-text" data-km="នាយកគ្រប់គ្រង" data-en="Director">នាយកគ្រប់គ្រង</span>
+          <span class="val">{director_name}</span>
         </div>
       </div>
     </div>
 
+    <!-- TAB 3: EDUCATION & QUALIFICATIONS -->
     <div id="tab-education" class="tab-panel">
       <h3 class="section-title">
-        <span>🎓</span>
+        <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
         <span class="lang-text" data-km="កម្រិតវប្បធម៌ & សញ្ញាបត្រ" data-en="Education & Qualifications">កម្រិតវប្បធម៌ & សញ្ញាបត្រ</span>
       </h3>
 
@@ -699,7 +1041,7 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
         </div>
         <div class="detail-item">
           <span class="lbl lang-text" data-km="ការផ្ទៀងផ្ទាត់សញ្ញាបត្រ" data-en="Accreditation">ការផ្ទៀងផ្ទាត់សញ្ញាបត្រ</span>
-          <span class="val" style="color:#10b981;">✔ បានផ្ទៀងផ្ទាត់ (Verified)</span>
+          <span class="val" style="color:#059669;">✔ បានផ្ទៀងផ្ទាត់ផ្លូវការ (Verified)</span>
         </div>
         <div class="detail-item">
           <span class="lbl lang-text" data-km="ភាសា" data-en="Languages">ភាសា</span>
@@ -708,9 +1050,10 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
       </div>
     </div>
 
+    <!-- TAB 4: PERSONAL INFORMATION -->
     <div id="tab-personal" class="tab-panel">
       <h3 class="section-title">
-        <span>👤</span>
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         <span class="lang-text" data-km="ព័ត៌មានផ្ទាល់ខ្លួន & ទំនាក់ទំនង" data-en="Personal Information">ព័ត៌មានផ្ទាល់ខ្លួន & ទំនាក់ទំនង</span>
       </h3>
 
@@ -733,18 +1076,18 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
         </div>
         <div class="detail-item">
           <span class="lbl lang-text" data-km="អត្តសញ្ញាណប័ណ្ណ" data-en="National ID">អត្តសញ្ញាណប័ណ្ណ</span>
-          <span class="val" style="font-family:monospace;">{id_num}</span>
+          <span class="val">{id_num}</span>
         </div>
         <div class="detail-item">
-          <span class="lbl lang-text" data-km="ទូរស័ព្ទ" data-en="Phone">ទូរស័ព្ទ</span>
-          <span class="val"><a href="tel:{phone}" style="color:#38bdf8;text-decoration:none;">{phone or "N/A"}</a></span>
+          <span class="lbl lang-text" data-km="ទូរស័ព្ទផ្ទាល់" data-en="Direct Phone">ទូរស័ព្ទផ្ទាល់</span>
+          <span class="val"><a href="tel:{phone}" style="color:#1d4ed8;text-decoration:none;">{phone or "N/A"}</a></span>
         </div>
         <div class="detail-item">
-          <span class="lbl lang-text" data-km="អ៊ីមែល" data-en="Email">អ៊ីមែល</span>
-          <span class="val"><a href="mailto:{email}" style="color:#38bdf8;text-decoration:none;">{email or "N/A"}</a></span>
+          <span class="lbl lang-text" data-km="អ៊ីមែលផ្លូវការ" data-en="Official Email">អ៊ីមែលផ្លូវការ</span>
+          <span class="val"><a href="mailto:{email}" style="color:#1d4ed8;text-decoration:none;">{email or "N/A"}</a></span>
         </div>
         <div class="detail-item">
-          <span class="lbl lang-text" data-km="អាសយដ្ឋានបច្ចុប្បន្ន" data-en="Address">អាសយដ្ឋានបច្ចុប្បន្ន</span>
+          <span class="lbl lang-text" data-km="អាសយដ្ឋានបច្ចុប្បន្ន" data-en="Current Address">អាសយដ្ឋានបច្ចុប្បន្ន</span>
           <span class="val">{address}</span>
         </div>
         <div class="detail-item">
@@ -754,20 +1097,21 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
       </div>
     </div>
 
+    <!-- TAB 5: DIGITAL PVC CARD -->
     <div id="tab-card" class="tab-panel">
       <h3 class="section-title">
-        <span>🪪</span>
-        <span class="lang-text" data-km="បណ្ណសម្គាល់ខ្លួនឌីជីថល (CR80)" data-en="Official Digital ID Card">បណ្ណសម្គាល់ខ្លួនឌីជីថល (CR80)</span>
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zm-7-2h6v-2h-6v2zm0-4h6v-2h-6v2zm-4 4h2v-6H8v6z"/></svg>
+        <span class="lang-text" data-km="បណ្ណសម្គាល់ខ្លួនផ្លូវការ (CR80 PVC)" data-en="Official Faculty PVC ID Card">បណ្ណសម្គាល់ខ្លួនផ្លូវការ (CR80 PVC)</span>
       </h3>
 
-      <div class="card-3d-wrapper">
+      <div class="card-preview-wrapper">
         <div class="pvc-card">
           <div class="pvc-header">
-            <div class="pvc-school">{school_kh}</div>
-            <div class="pvc-sub">{school_en}</div>
+            <div class="pvc-school-km">{school_kh}</div>
+            <div class="pvc-school-en">{school_en}</div>
           </div>
 
-          <div style="text-align:center;margin:12px 0;">
+          <div style="text-align:center;margin:10px 0;">
             {pvc_photo_html}
             <div class="pvc-name-km">{k_name}</div>
             <div class="pvc-name-en">{e_name}</div>
@@ -777,29 +1121,56 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
           <div class="pvc-footer">
             <div>
               <div>ID NO: <span class="pvc-code">{code}</span></div>
-              <div style="font-size:8px;color:#94a3b8;">KAMPUL SECURE SIS</div>
+              <div style="font-size:8.5px;color:#93c5fd;letter-spacing:0.5px;">KAMPUL SECURE SIS</div>
             </div>
             <div style="text-align:right;">
-              <div>{director_name}</div>
-              <div style="font-size:8px;color:#94a3b8;">PRINCIPAL</div>
+              <div style="font-weight:600;">{director_name}</div>
+              <div style="font-size:8.5px;color:#93c5fd;letter-spacing:0.5px;">PRINCIPAL</div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Official Verification Statement -->
+    <div class="verification-card">
+      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+      <p class="lang-text" data-km="ទិន្នន័យនេះត្រូវបានផ្ទៀងផ្ទាត់ដោយផ្ទាល់ពីប្រព័ន្ធគ្រប់គ្រងសាលារៀនឌីជីថល (KAMPUL SIS)។ រាល់ព័ត៌មានទាំងអស់មានសុពលភាពផ្លូវការស្របច្បាប់។" data-en="This credential record is verified in real-time from the official school database via KAMPUL SIS. All details are certified and legally authenticated.">
+        ទិន្នន័យនេះត្រូវបានផ្ទៀងផ្ទាត់ដោយផ្ទាល់ពីប្រព័ន្ធគ្រប់គ្រងសាលារៀនឌីជីថល (KAMPUL SIS)។ រាល់ព័ត៌មានទាំងអស់មានសុពលភាពផ្លូវការស្របច្បាប់។
+      </p>
+    </div>
+
+    <!-- Footer -->
     <footer class="footer">
-      <p class="lang-text" data-km="ព័ត៌មានផ្លូវការចេញផ្សាយដោយ {school_kh} តាមរយៈ KAMPUL SIS" data-en="Official profile issued by {school_en} via KAMPUL SIS">
+      <p class="lang-text" data-km="ព័ត៌មានផ្លូវការចេញផ្សាយដោយ {school_kh} តាមរយៈ KAMPUL SIS" data-en="Official faculty record authenticated by {school_en} via KAMPUL SIS">
         ព័ត៌មានផ្លូវការចេញផ្សាយដោយ {school_kh} តាមរយៈ KAMPUL SIS
       </p>
       <p style="margin-top:6px;">
-        <a href="{school_website}" target="_blank">{school_website}</a>
+        <a href="{school_website}" target="_blank" rel="noopener">{school_website}</a>
       </p>
     </footer>
   </div>
 
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#10b981"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    <span id="toastMsg">បានចម្លងតំណភ្ជាប់ដោយជោគជ័យ!</span>
+  </div>
+
   <script>
     let currentLang = 'km';
+
+    function showToast(msg) {{
+      const t = document.getElementById('toast');
+      const m = document.getElementById('toastMsg');
+      if (t && m) {{
+        m.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => {{
+          t.classList.remove('show');
+        }}, 2500);
+      }}
+    }}
 
     function toggleLanguage() {{
       currentLang = currentLang === 'km' ? 'en' : 'km';
@@ -844,19 +1215,22 @@ def render_portfolio_html(data: Dict[str, Any]) -> str:
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      showToast(currentLang === 'km' ? 'បានរក្សាទុកទំនាក់ទំនងដោយជោគជ័យ!' : 'Contact saved successfully!');
     }}
 
     function shareProfile() {{
       if (navigator.share) {{
         navigator.share({{
           title: '{k_name} ({e_name}) – {pos_en}',
-          text: 'Official Employee Portfolio for {e_name} at {school_en}',
+          text: 'Official Employee Credential for {e_name} at {school_en}',
           url: window.location.href
         }}).catch(() => {{}});
       }} else {{
         navigator.clipboard.writeText(window.location.href).then(() => {{
-          alert(currentLang === 'km' ? 'បានចម្លងតំណភ្ជាប់ដោយជោគជ័យ!' : 'Portfolio link copied to clipboard!');
-        }}).catch(() => {{}});
+          showToast(currentLang === 'km' ? 'បានចម្លងតំណភ្ជាប់ដោយជោគជ័យ!' : 'Portfolio link copied to clipboard!');
+        }}).catch(() => {{
+          showToast('Failed to copy');
+        }});
       }}
     }}
   </script>
@@ -871,27 +1245,80 @@ def render_not_found_html(identifier: str) -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>រកមិនឃើញព័ត៌មានបុគ្គលិក / Employee Not Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
   <style>
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    *, *::before, *::after {{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kantumruy Pro', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }}
     body {{
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0b1329; color: #f8fafc;
-      display: flex; align-items: center; justify-content: center;
-      min-height: 100vh; padding: 24px; text-align: center;
+      background: #f8fafc;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      text-align: center;
     }}
     .box {{
-      background: #111e38; border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px; padding: 40px 24px; max-width: 420px; width: 100%;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 40px 28px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
     }}
-    .icon {{ font-size: 54px; margin-bottom: 16px; }}
-    h1 {{ font-size: 18px; margin-bottom: 8px; color: #38bdf8; }}
-    p {{ font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 20px; }}
-    .badge {{ display: inline-block; background: #1e293b; padding: 6px 14px; border-radius: 8px; font-family: monospace; color: #fbbf24; }}
+    .icon {{
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #fef2f2;
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }}
+    .icon svg {{
+      width: 28px;
+      height: 28px;
+      fill: #ef4444;
+    }}
+    h1 {{
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }}
+    p {{
+      font-size: 13.5px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }}
+    .badge {{
+      display: inline-block;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #334155;
+      font-size: 13px;
+    }}
   </style>
 </head>
 <body>
   <div class="box">
-    <div class="icon">🔍</div>
+    <div class="icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+    </div>
     <h1>រកមិនឃើញព័ត៌មានបុគ្គលិក</h1>
     <p>មិនមានទិន្នន័យបុគ្គលិកដែលត្រូវនឹងលេខកូដនេះក្នុងប្រព័ន្ធឡើយ។<br>Employee record could not be found for:</p>
     <div class="badge">{_esc(identifier)}</div>
